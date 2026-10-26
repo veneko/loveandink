@@ -1,0 +1,869 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Tiny Legends Adventures · Love & Ink</title>
+<meta name="description" content="One real family, animated. Watch the episodes, meet the Legends and shop CamBam’s Closet. In English, Español, Português, Français, हिन्दी and 中文.">
+<link rel="canonical" href="https://loveandink.co/tinylegends/"><link rel="icon" type="image/png" sizes="32x32" href="/tinylegends/favicon-32.png"><link rel="apple-touch-icon" href="/tinylegends/apple-touch-icon.png">
+<meta name="theme-color" content="#3A1A6B">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Tiny Legends Adventures"><meta property="og:url" content="https://loveandink.co/tinylegends/">
+<meta property="og:title" content="Tiny Legends Adventures"><meta property="og:description" content="Small humans. Big legend energy. 9.8M views on one karate nap.">
+<meta property="og:image" content="https://loveandink.co/og/tinylegends.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"></head><body>
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&family=Gochi+Hand&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap">
+<style>
+/* Concept: "A day in the Legends' house." One night-stage hero with a Reels phone, then a scroll from morning to lights-out.
+   One component system: sticker panels (ink outline + offset shadow), hand-lettered tags, candy brand colors. Single committed look. */
+:root{
+  color-scheme: light;
+  --ink:#3A1A6B; --ink-2:#5B4785; --night:#1C1240; --night-2:#120A30;
+  --paper:#FFF8EC; --pink:#FF4FA3; --orange:#FF8A2B; --yellow:#FFD23F; --cyan:#3EC6F2; --purple:#7B3FE4; --gold:#F5B82E; --white:#fff;
+  --f-display:"Fredoka","Baloo 2","Arial Rounded MT Bold",system-ui,sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --f-hand:"Gochi Hand","Comic Sans MS","Marker Felt",cursive;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --gut-r:max(16px,env(safe-area-inset-right,0px));
+}
+:lang(hi){--f-display:"Fredoka","Noto Sans Devanagari",sans-serif;--f-body:"Nunito","Noto Sans Devanagari",sans-serif;--f-hand:"Noto Sans Devanagari",sans-serif}
+:lang(zh){--f-display:"Fredoka","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;--f-body:"Nunito","Noto Sans SC","PingFang SC",sans-serif;--f-hand:"Noto Sans SC","PingFang SC",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit}
+:focus-visible{outline:3px dashed var(--pink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.06;text-wrap:balance;margin:0;letter-spacing:-.005em}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:700}
+p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- buttons & stickers ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-display);font-weight:700;font-size:1.06rem;text-decoration:none;padding:12px 22px;border-radius:999px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);cursor:pointer;transition:transform .15s,box-shadow .15s;color:var(--ink);background:var(--white);white-space:nowrap}
+.btn:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.yellow{background:var(--yellow)} .btn.pink{background:var(--pink);color:#fff} .btn.cyan{background:var(--cyan)} .btn.purple{background:var(--purple);color:#fff}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;border-color:#fff;box-shadow:4px 4px 0 var(--pink)}
+.tag{display:inline-block;align-self:flex-start;width:fit-content;font-family:var(--f-hand);font-size:1.12rem;line-height:1.2;padding:3px 12px;border-radius:999px;border:2px solid var(--ink);background:var(--t,var(--yellow));color:var(--ink);transform:rotate(-2deg)}
+.panel{background:rgba(255,255,255,.93);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:3px solid var(--ink);border-radius:26px;padding:24px;box-shadow:7px 7px 0 var(--ink);display:flex;flex-direction:column;gap:12px;color:var(--ink)}
+.panel p{color:var(--ink-2)}
+.panel.dark{background:rgba(24,14,60,.9);color:#fff;border-color:var(--yellow);box-shadow:7px 7px 0 var(--pink)}
+.panel.dark p{color:#E4D8FF}
+.panel .btn{align-self:flex-start}
+
+/* ---------- Love & Ink bar + nav ---------- */
+.li-bar{background:var(--ink);color:#EADFFF;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+.li-bar .wrap{display:flex;gap:14px;align-items:center;justify-content:space-between;padding-block:6px}
+.li-bar b{letter-spacing:.16em}
+.li-crumbs span:last-child{color:var(--yellow)}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(255,248,236,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:2px solid rgba(58,26,107,.12)}
+.nav .wrap{display:flex;align-items:center;gap:14px;padding-block:8px}
+.nav .mark{width:96px;flex:none}
+.nav nav{display:flex;gap:4px;margin-left:auto;min-width:0}
+.nav nav a{font-family:var(--f-display);font-weight:600;text-decoration:none;padding:7px 14px;border-radius:999px;border:2.5px solid transparent;white-space:nowrap}
+.nav nav a:hover{background:rgba(255,210,63,.35)}
+.nav nav a[aria-current="page"]{border-color:var(--ink);background:var(--yellow);box-shadow:3px 3px 0 var(--ink)}
+.lang{position:relative;flex:none}
+.lang select{appearance:none;-webkit-appearance:none;font-family:var(--f-display);font-weight:600;font-size:.92rem;color:var(--ink);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233A1A6B' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center;border:2.5px solid var(--ink);border-radius:999px;padding:6px 30px 6px 12px;cursor:pointer}
+.bag{flex:none;font-family:var(--f-display);font-weight:700;background:var(--pink);color:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:7px 14px;box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.nav-short{display:none}
+
+/* ---------- views ---------- */
+.view[hidden]{display:none!important}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;color:#fff;background:var(--night);isolation:isolate}
+.hero-bg{position:absolute;inset:-3%;background:url(assets/stage.webp) center 35%/cover no-repeat;z-index:-2;animation:drift 20s ease-in-out infinite alternate}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,18,64,.82) 0%,rgba(28,18,64,.35) 45%,rgba(28,18,64,.05) 70%),linear-gradient(180deg,transparent 70%,rgba(28,18,64,.85) 100%)}
+@keyframes drift{to{transform:scale(1.06) translate(-1%,1%)}}
+.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:24px;align-items:center;padding-block:36px 44px;min-height:min(800px,calc(100vh - 150px))}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.hero-logo{width:min(320px,34vw);filter:drop-shadow(0 10px 24px rgba(0,0,0,.45));animation:pop .9s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop{from{transform:scale(.5) rotate(-8deg);opacity:.3}}
+.hero h1{font-size:clamp(2.2rem,4.2vw,3.7rem);font-weight:700;text-shadow:0 4px 0 var(--ink),0 12px 30px rgba(0,0,0,.4)}
+.hero h1 span{color:var(--yellow);display:block}
+.hero .lead{max-width:46ch;color:#F3ECFF;font-size:1.1rem;text-shadow:0 2px 10px rgba(20,10,50,.85)}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.stats{position:relative;background:var(--ink);border-top:4px solid var(--yellow)}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-block:16px;text-align:center}
+.stats b{display:block;font-family:var(--f-display);font-size:clamp(1.4rem,2.8vw,2rem);color:var(--yellow);line-height:1;font-variant-numeric:tabular-nums}
+.stats span{font-size:.86rem;color:#D9CCF5}
+
+/* phone stage (hero) */
+.phone-stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:620px}
+.peek{position:absolute;bottom:0;pointer-events:none;z-index:1}
+.peek img{height:100%;width:auto;max-width:none;filter:drop-shadow(0 18px 22px rgba(0,0,0,.45))}
+.peek.l{left:-13%;height:74%;animation:sway 3.4s ease-in-out infinite;transform-origin:bottom center}
+.peek.r{right:-6%;height:86%;animation:hop 1.8s ease-in-out infinite}
+.peek.f{left:2%;bottom:-3%;height:28%;z-index:4;animation:kick 2.6s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(2.5deg)}}
+@keyframes hop{50%{transform:translateY(-18px) rotate(-2deg)}}
+@keyframes kick{0%,100%{transform:translateY(0)}40%{transform:translateY(-22px) rotate(-6deg)}60%{transform:translateY(-16px) rotate(3deg)}}
+
+/* ---------- PHONE PLAYER (shared) ---------- */
+.player{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:12px}
+.phone{width:min(270px,66vw);aspect-ratio:9/19;background:#0d0d12;border-radius:44px;padding:10px;position:relative;box-shadow:0 0 0 3px var(--ink),0 0 0 7px var(--yellow),0 30px 60px rgba(0,0,0,.5),0 0 90px rgba(255,79,163,.3)}
+.hero .phone{transform:rotateY(-9deg) rotateX(3deg) rotate(2deg);animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:rotateY(-5deg) rotateX(2deg) rotate(1deg) translateY(-8px)}}
+.notch{position:absolute;top:17px;left:50%;transform:translateX(-50%);width:80px;height:22px;background:#0d0d12;border-radius:12px;z-index:5}
+.screen{position:relative;width:100%;height:100%;border-radius:35px;overflow:hidden;background:#000;color:#fff}
+.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .42s cubic-bezier(.6,0,.2,1),opacity .42s}
+.screen video.out{transform:translateY(-100%);opacity:.2}
+.screen video.in{transform:translateY(100%);transition:none}
+.r-top{position:absolute;top:46px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;font-family:var(--f-display);font-weight:700;font-size:.92rem;text-shadow:0 1px 6px rgba(0,0,0,.7);z-index:2}
+.r-top .live{font-size:.7rem;color:var(--yellow)}
+.r-side{position:absolute;right:12px;bottom:110px;display:flex;flex-direction:column;gap:16px;z-index:2}
+.r-side svg{width:26px;height:26px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
+.r-cap{position:absolute;left:12px;right:52px;bottom:20px;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,.85)}
+.r-cap .who{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800}
+.r-cap .who img{width:24px;height:24px;border-radius:50%;border:2px solid #fff}
+.r-cap .t{font-size:.86rem;margin-top:4px;line-height:1.3}
+.r-cap .badge{display:inline-block;margin-top:5px;font-size:.7rem;background:rgba(255,79,163,.9);padding:2px 9px;border-radius:999px;font-weight:800}
+.r-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.25);z-index:2}
+.r-bar i{display:block;height:100%;width:0;background:var(--yellow)}
+.snd{position:absolute;top:74px;left:50%;transform:translateX(-50%);z-index:3;background:rgba(0,0,0,.55);color:#fff;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;padding:5px 12px;font-weight:800;font-size:.76rem;cursor:pointer;white-space:nowrap}
+.dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:280px}
+.dots button{width:11px;height:11px;border-radius:999px;border:2px solid currentColor;background:transparent;cursor:pointer;padding:0;transition:width .25s}
+.dots button[aria-current="true"]{background:var(--yellow);border-color:var(--yellow);width:26px}
+.ig{font-weight:800;font-size:.95rem;color:var(--yellow)}
+
+/* ---------- HOUSE / ROOMS ---------- */
+.doorway{background:var(--ink);color:var(--yellow);text-align:center;padding-block:20px}
+.doorway p{font-family:var(--f-hand);font-size:1.35rem}
+.room{position:relative;height:250vh;--p:1}
+.room-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;isolation:isolate}
+.room-bg{position:absolute;inset:-4%;background-size:cover;background-position:center 60%;z-index:-2;transform:scale(calc(1.14 - .1*var(--p))) translateX(calc(var(--p)*-2%))}
+.shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,248,236,.75) 0%,rgba(255,248,236,.3) 36%,transparent 58%)}
+.shade.r{background:linear-gradient(270deg,rgba(255,248,236,.8) 0%,rgba(255,248,236,.3) 38%,transparent 60%)}
+.shade.n{background:linear-gradient(90deg,rgba(28,18,64,.85) 0%,rgba(28,18,64,.4) 38%,transparent 60%)}
+.room-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10vh;background:linear-gradient(transparent,rgba(28,18,64,.3));pointer-events:none;z-index:1}
+.room-ui{position:relative;z-index:3;height:100%;display:flex;align-items:center;padding-top:70px}
+.room-ui.right{justify-content:flex-end}
+.room .panel{width:min(410px,100%)}
+.kids{position:absolute;inset:0;z-index:2;pointer-events:none}
+.kid{position:absolute;margin:0;left:var(--x);bottom:var(--b);height:var(--h);translate:-50% 0}
+.kid img{height:100%;width:auto;max-width:none;filter:drop-shadow(0 16px 18px rgba(30,15,60,.35));animation:idle 2.8s ease-in-out infinite}
+.kid:nth-child(2) img{animation-duration:2.3s;animation-delay:-.6s}
+.kid:nth-child(3) img{animation-duration:3.1s;animation-delay:-1.2s}
+@keyframes idle{50%{transform:translateY(-9px) rotate(-1.2deg)}}
+.say{position:absolute;top:-9%;left:50%;transform:translateX(-50%) rotate(-3deg);white-space:nowrap;font-family:var(--f-hand);font-size:clamp(1rem,1.4vw,1.2rem);background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:16px;padding:3px 12px;box-shadow:3px 3px 0 var(--ink);transition:opacity .3s,transform .35s cubic-bezier(.34,1.56,.64,1)}
+.say[data-hide]{opacity:0;transform:translateX(-50%) rotate(-3deg) scale(.4)}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.thumbs button{position:relative;aspect-ratio:9/13;border-radius:12px;overflow:hidden;border:2.5px solid var(--ink);padding:0;cursor:pointer;background:#000;transition:transform .2s}
+.thumbs button:hover{transform:rotate(-3deg) scale(1.05)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs span{position:absolute;right:5px;bottom:5px;width:24px;height:24px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);display:grid;place-items:center}
+.minishop{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.minishop div{background:var(--paper);border:2.5px solid var(--ink);border-radius:14px;padding:8px;text-align:center}
+.minishop img{aspect-ratio:1;object-fit:contain;width:100%}
+.minishop b{display:block;font-family:var(--f-display);font-size:1rem}
+.minishop small{display:block;font-size:.78rem;color:var(--ink-2);line-height:1.2}
+.np{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.np b{display:block;font-family:var(--f-display);color:var(--yellow);font-size:1.05rem;line-height:1.2}
+.np small{color:#D9CCF5}
+.eq{display:flex;gap:3px;align-items:flex-end;height:28px;flex:none}
+.eq i{width:5px;background:var(--pink);border-radius:3px;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.3s;background:var(--yellow)}.eq i:nth-child(3){animation-delay:-.6s;background:var(--cyan)}.eq i:nth-child(4){animation-delay:-.15s;background:var(--purple)}
+@keyframes eq{0%,100%{height:6px}50%{height:28px}}
+.sweep{position:absolute;inset:0;z-index:-1;background:conic-gradient(from 200deg at 62% 110%,transparent 0 10deg,rgba(255,79,163,.22) 14deg,transparent 22deg,transparent 40deg,rgba(62,198,242,.2) 46deg,transparent 54deg,transparent 70deg,rgba(255,210,63,.2) 76deg,transparent 84deg);mix-blend-mode:screen;animation:sweep 6s ease-in-out infinite alternate;transform-origin:62% 110%}
+@keyframes sweep{to{transform:rotate(14deg)}}
+.recline{display:flex;gap:18px;flex-wrap:wrap}
+.recline div b{display:block;font-family:var(--f-display);font-size:1.8rem;color:var(--yellow);line-height:1;font-variant-numeric:tabular-nums}
+.recline div span{font-size:.85rem;color:#D9CCF5}
+
+/* lights out */
+.lights{position:relative;background:#FFF1D6;color:var(--ink);text-align:center;padding-block:90px 110px;overflow:hidden;transition:background 1.1s,color 1.1s}
+.stars{position:absolute;inset:0;opacity:0;transition:opacity 1.2s;background-image:radial-gradient(2px 2px at 10% 20%,#fff,transparent),radial-gradient(2px 2px at 30% 70%,#FFD23F,transparent),radial-gradient(3px 3px at 70% 30%,#fff,transparent),radial-gradient(2px 2px at 85% 75%,#3EC6F2,transparent),radial-gradient(2px 2px at 50% 10%,#FF4FA3,transparent),radial-gradient(2px 2px at 20% 45%,#fff,transparent),radial-gradient(2px 2px at 92% 40%,#fff,transparent)}
+.lights-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px}
+.lights-logo{width:min(360px,72vw);opacity:.35;transform:translateY(-24px) scale(.88);transition:all 1s cubic-bezier(.34,1.56,.64,1)}
+.gn{font-family:var(--f-hand);font-size:2rem;opacity:.5;transition:opacity 1s}
+.handle{font-family:var(--f-display);font-weight:700;font-size:clamp(1.3rem,3.2vw,2.3rem);word-break:break-word}
+.lights .sub{max-width:46ch;opacity:.8}
+.lights.off{background:var(--night-2);color:#fff}
+.lights.off .stars{opacity:1}
+.lights.off .lights-logo{opacity:1;transform:none}
+.lights.off .gn{opacity:1;color:var(--yellow)}
+.switch{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;cursor:pointer;color:inherit}
+.plate{width:60px;height:90px;background:#fff;border:3px solid var(--ink);border-radius:14px;display:grid;place-items:center;box-shadow:3px 3px 0 var(--ink)}
+.toggle{width:20px;height:38px;border-radius:8px;background:var(--yellow);border:3px solid var(--ink);transform:translateY(-11px);transition:transform .25s}
+.switch[aria-pressed="true"] .toggle{transform:translateY(11px);background:var(--purple)}
+.switch .hand{font-family:var(--f-hand);font-size:1.15rem}
+
+/* house map */
+.map{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:10px}
+.map a{display:flex;flex-direction:row-reverse;align-items:center;gap:8px;text-decoration:none}
+.map i{width:13px;height:13px;border-radius:50%;background:#fff;border:2.5px solid var(--ink);transition:transform .2s,background .2s}
+.map span{font-family:var(--f-display);font-weight:600;font-size:.82rem;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:1px 10px;opacity:0;transform:translateX(6px);transition:all .2s;color:var(--ink);white-space:nowrap}
+.map a:hover span,.map a:focus-visible span,.map a[aria-current="true"] span{opacity:1;transform:none}
+.map a[aria-current="true"] i{background:var(--yellow);transform:scale(1.35)}
+.map[hidden]{display:none}
+
+/* ---------- LEGENDS view ---------- */
+.page-head{padding-block:40px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.page-head .tag{align-self:center}
+.page-head p{max-width:58ch;color:var(--ink-2)}
+.lineup{margin-top:10px;border-radius:24px;overflow:hidden;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--purple)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px;padding-block:40px 80px}
+.card{--c:var(--purple);background:#fff;border:3px solid var(--ink);border-radius:24px;overflow:hidden;box-shadow:6px 6px 0 var(--c);display:flex;flex-direction:column;transition:transform .2s}
+.card:hover{transform:translateY(-4px) rotate(-1deg)}
+.card .pic{background:var(--c);aspect-ratio:4/5;overflow:hidden}
+.card .pic img{width:100%;height:100%;object-fit:cover;object-position:top}
+.card .body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:6px}
+.card .role{font-family:var(--f-hand);font-size:1.15rem;color:var(--ink-2)}
+.card h3{font-size:1.5rem}
+.card dl{margin:4px 0 0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:.92rem}
+.card dt{font-weight:800}.card dd{margin:0;color:var(--ink-2)}
+.card q{margin-top:8px;background:var(--paper);border-radius:12px;padding:8px 12px;font-family:var(--f-hand);font-size:1.12rem;line-height:1.25;quotes:"“" "”"}
+
+/* ---------- WATCH view ---------- */
+.watch{background:var(--night);color:#fff;min-height:calc(100vh - 120px);position:relative;overflow:hidden}
+.watch::before{content:"";position:absolute;inset:0;background:url(assets/stage.webp) center/cover;opacity:.28}
+.watch .wrap{position:relative;display:grid;grid-template-columns:auto 1fr;gap:48px;padding-block:40px 70px;align-items:start}
+.watch .player{position:sticky;top:110px;color:#fff}
+.watch .dots{display:none}
+.watch-head{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.watch-head p{color:#D9CCF5;max-width:52ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{font-family:var(--f-display);font-weight:600;border:2.5px solid #fff;background:transparent;color:#fff;border-radius:999px;padding:5px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.upnext{font-family:var(--f-hand);font-size:1.3rem;color:var(--yellow);margin-bottom:10px}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.feed button{position:relative;display:flex;flex-direction:column;gap:6px;background:none;border:0;padding:0;color:#fff;text-align:left;cursor:pointer}
+.feed .th{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:3px solid rgba(255,255,255,.25);transition:transform .2s,border-color .2s}
+.feed button:hover .th{transform:translateY(-4px)}
+.feed button[aria-current="true"] .th{border-color:var(--yellow);box-shadow:0 0 0 3px var(--pink)}
+.feed .th img{width:100%;height:100%;object-fit:cover}
+.feed .k{position:absolute;top:8px;left:8px;font-size:.68rem;font-weight:800;background:rgba(0,0,0,.6);padding:2px 8px;border-radius:999px}
+.feed .nowp{position:absolute;inset:auto 8px 8px 8px;font-size:.7rem;font-weight:800;color:var(--ink);background:var(--yellow);border-radius:999px;padding:2px 8px;text-align:center}
+.feed b{font-family:var(--f-display);font-weight:600;font-size:.95rem;line-height:1.2}
+
+/* ---------- SHOP view ---------- */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;padding-block:30px 24px}
+.item{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:12px;box-shadow:5px 5px 0 var(--ink);display:flex;flex-direction:column;gap:9px;position:relative}
+.item .pic{aspect-ratio:1;background:var(--paper);border-radius:14px;overflow:hidden;display:grid;place-items:center}
+.item .pic img{width:100%;height:100%;object-fit:contain}
+.item h3{font-size:1.1rem}
+.item .flag{position:absolute;top:-12px;right:12px;background:var(--yellow);border:2.5px solid var(--ink);font-family:var(--f-hand);padding:1px 10px;border-radius:8px;transform:rotate(4deg)}
+.sizes{display:flex;gap:6px;flex-wrap:wrap}
+.sizes button{font-weight:800;font-size:.78rem;border:2px solid var(--ink);background:#fff;border-radius:8px;padding:3px 8px;cursor:pointer}
+.sizes button[aria-pressed="true"]{background:var(--yellow)}
+.row-b{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.price{font-family:var(--f-display);font-weight:700;font-size:1.25rem;font-variant-numeric:tabular-nums}
+.add{font-family:var(--f-display);font-weight:700;border:2.5px solid var(--ink);background:var(--pink);color:#fff;border-radius:999px;padding:6px 16px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.shop-note{padding-block:6px 80px;color:var(--ink-2);font-size:.92rem;display:flex;gap:6px 14px;flex-wrap:wrap}
+
+footer{background:var(--ink);color:#EADFFF;padding-block:30px calc(30px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer small{opacity:.8}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);opacity:0;background:var(--ink);color:#fff;font-family:var(--f-display);font-weight:600;padding:12px 20px;border-radius:999px;box-shadow:4px 4px 0 var(--pink);transition:transform .3s,opacity .3s;z-index:80;max-width:calc(100% - 32px);text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .peek.l{left:-12%;height:66%}.peek.r{right:-14%;height:72%}
+}
+@media (max-width:900px){
+  .nav-long{display:none}.nav-short{display:inline}
+  .watch .wrap{grid-template-columns:1fr;gap:28px}
+  .watch .player{position:relative;top:0}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .li-crumbs{display:none}
+  .nav .wrap{gap:8px}
+  .nav .mark{width:58px}
+  .nav nav{gap:0;overflow-x:auto;scrollbar-width:none}
+  .nav nav::-webkit-scrollbar{display:none}
+  .nav nav a{padding:6px 9px;font-size:.92rem}
+  .lang select{padding:5px 24px 5px 9px;font-size:.82rem;background-position:right 7px center}
+  .bag{padding:6px 10px;font-size:.85rem}
+  .hero-grid{grid-template-columns:1fr;min-height:0;padding-block:22px 26px;text-align:center}
+  .hero-copy{align-items:center}
+  .hero-logo{width:min(260px,66vw)}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(28,18,64,.7) 0%,rgba(28,18,64,.25) 45%,rgba(28,18,64,.85) 100%)}
+  .ctas{justify-content:center}
+  .phone-stage{min-height:520px;margin-top:8px}
+  .phone{width:min(230px,62vw)}
+  .peek.l{left:-10%;height:62%}.peek.r{right:-12%;height:66%}.peek.f{display:none}
+  .stats .wrap{grid-template-columns:repeat(3,1fr);gap:6px}
+  .stats span{font-size:.72rem;line-height:1.2;display:block}
+  .room{height:320vh}
+  .room-ui,.room-ui.right{align-items:flex-start;justify-content:flex-start;padding-top:66px}
+  .room .panel{padding:16px;gap:9px;box-shadow:5px 5px 0 var(--ink)}
+  .room .panel.dark{box-shadow:5px 5px 0 var(--pink)}
+  .room .panel p{font-size:.9rem;line-height:1.45}
+  .room .panel h2{font-size:1.65rem}
+  .shade,.shade.r{background:linear-gradient(180deg,rgba(255,248,236,.65) 0%,rgba(255,248,236,.15) 55%,transparent 70%)}
+  .shade.n{background:linear-gradient(180deg,rgba(28,18,64,.75) 0%,rgba(28,18,64,.2) 60%,transparent 75%)}
+  .thumbs,.minishop,.np,.recline{display:none}
+  .kid{left:50%!important;height:calc(var(--h)*.74)!important;bottom:3vh!important}
+  .say{top:-11%}
+  .map{display:none}
+  .page-head{padding-top:26px}
+  .watch .wrap{padding-block:24px 50px}
+  .feed{grid-template-columns:repeat(3,1fr);gap:10px}
+  .feed b{font-size:.8rem}
+}
+/* ---------- mobile tab bar ---------- */
+.tabbar{display:none}
+@media (max-width:760px){
+  .nav nav{display:none}
+  .nav .lang{margin-left:auto}
+  .nav .mark{width:74px}
+  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:65;background:rgba(255,248,236,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:2.5px solid var(--ink);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;font-family:var(--f-display);font-weight:600;font-size:.74rem;color:var(--ink-2);padding:4px 0;border-radius:14px}
+  .tabbar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+  .tabbar a[aria-current="page"]{color:var(--ink);background:var(--yellow)}
+  .tabbar a[aria-current="page"] svg{fill:var(--ink)}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+  .cards{grid-template-columns:repeat(2,1fr);gap:14px;padding-block:24px 50px}
+  .card .body{padding:10px 10px 12px}.card h3{font-size:1.15rem}.card dl{font-size:.78rem;grid-template-columns:1fr}.card dt{margin-top:4px}.card q{font-size:.95rem}.card .role{font-size:.95rem}
+  .shop-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .item{padding:8px;gap:6px;box-shadow:4px 4px 0 var(--ink)}.item h3{font-size:.92rem}.price{font-size:1.05rem}.add{padding:4px 12px;font-size:.88rem}.sizes button{font-size:.7rem;padding:2px 6px}
+  .lineup{box-shadow:4px 4px 0 var(--purple)}
+}
+
+@media (max-width:380px){.feed{grid-template-columns:repeat(2,1fr)}.nav nav a{padding:6px 7px}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .room{height:auto}.room-stage{position:relative;height:auto;min-height:100vh}
+}
+/* embedded inside Love & Ink: the parent site's nav replaces the breadcrumb bar */
+html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
+</style>
+
+<div class="li-bar"><div class="wrap"><a href="/" style="color:inherit;text-decoration:none"><b>Love &amp; Ink</b></a><div class="li-crumbs"><span data-i="crumb"></span></div></div></div>
+
+<header class="nav"><div class="wrap">
+  <a href="#home" data-go="home"><img class="mark" src="assets/logo.webp" alt="Tiny Legends Adventures"></a>
+  <nav aria-label="Tiny Legends">
+    <a href="#home" data-go="home" data-i="nav_home"></a>
+    <a href="#legends" data-go="legends"><span class="nav-long" data-i="nav_legends"></span><span class="nav-short" data-i="nav_legends_s"></span></a>
+    <a href="#watch" data-go="watch" data-i="nav_watch"></a>
+    <a href="#shop" data-go="shop" data-i="nav_shop"></a>
+  </nav>
+  <label class="lang"><span class="sr" data-i="lang_label"></span>
+    <select id="langSel">
+      <option value="en">EN</option><option value="es">ES</option><option value="pt">PT</option><option value="fr">FR</option><option value="hi">हिं</option><option value="zh">中文</option>
+    </select>
+  </label>
+  <button class="bag" id="bag" type="button"><span data-i="bag"></span> · <span id="bagN">0</span></button>
+</div></header>
+
+<main>
+<!-- ================= HOME ================= -->
+<div class="view" id="v-home">
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <img class="hero-logo" src="assets/logo.webp" alt="Tiny Legends Adventures">
+        <h1 id="h1"><span data-i="h1a" style="color:#fff;display:inline"></span> <span data-i="h1b"></span></h1>
+        <p class="lead" data-i="lead"></p>
+        <div class="ctas">
+          <a class="btn yellow" href="#r-living" data-jump="r-living" data-i="cta_start"></a>
+          <a class="btn ghost" href="#watch" data-go="watch" data-i="cta_watch"></a>
+        </div>
+      </div>
+      <div class="phone-stage">
+        <figure class="peek l" aria-hidden="true"><img src="assets/act_cambam.webp" alt=""></figure>
+        <figure class="peek r" aria-hidden="true"><img src="assets/act_jaziel.webp" alt=""></figure>
+        <div class="player" id="heroPlayer"></div>
+        <figure class="peek f" aria-hidden="true"><img src="assets/act_evaluna.webp" alt=""></figure>
+      </div>
+    </div>
+    <div class="stats"><div class="wrap">
+      <div><b>9.8M</b><span data-i="stat1"></span></div>
+      <div><b>9K+</b><span data-i="stat2"></span></div>
+      <div><b>∞–0</b><span data-i="stat3"></span></div>
+    </div></div>
+  </section>
+
+  <div class="doorway"><p data-i="doorway"></p></div>
+
+  <section class="room" id="r-living">
+    <div class="room-stage">
+      <div class="room-bg" style="background-image:url(assets/room_living.webp)"></div><div class="shade"></div>
+      <div class="room-ui wrap">
+        <div class="panel" data-at="0.02" data-from="-30,0,-3">
+          <span class="tag" style="--t:var(--cyan)" data-i="living_tag"></span>
+          <h2 data-i="living_title"></h2>
+          <p data-i="living_text"></p>
+          <div class="thumbs" id="livingThumbs"></div>
+          <a class="btn cyan" href="#watch" data-go="watch" data-i="cta_watch"></a>
+        </div>
+      </div>
+      <div class="kids">
+        <figure class="kid" style="--x:47%;--h:34vh;--b:4vh" data-at="0.10" data-from="-90,6,-8"><span class="say" data-i="b_liv_j"></span><img src="assets/liv_jaziel.webp" alt=""></figure>
+        <figure class="kid" style="--x:67%;--h:60vh;--b:6vh" data-at="0.22" data-from="0,40,10"><span class="say" data-i="b_liv_c"></span><img src="assets/liv_cambam.webp" alt=""></figure>
+        <figure class="kid" style="--x:85%;--h:30vh;--b:2vh" data-at="0.36" data-from="80,0,6"><span class="say" style="left:28%" data-i="b_liv_e"></span><img src="assets/liv_evaluna.webp" alt=""></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" id="r-kitchen">
+    <div class="room-stage">
+      <div class="room-bg" style="background-image:url(assets/room_kitchen.webp)"></div><div class="shade r"></div>
+      <div class="kids">
+        <figure class="kid" style="--x:9%;--h:62vh;--b:4vh" data-at="0.08" data-from="-70,0,-6"><span class="say" style="left:66%" data-i="b_kit_c"></span><img src="assets/kit_cambam.webp" alt=""></figure>
+        <figure class="kid" style="--x:27%;--h:46vh;--b:2vh" data-at="0.22" data-from="0,50,0"><span class="say" data-i="b_kit_e"></span><img src="assets/kit_evaluna.webp" alt=""></figure>
+        <figure class="kid" style="--x:42%;--h:58vh;--b:3vh" data-at="0.36" data-from="60,0,8"><span class="say" data-i="b_kit_j"></span><img src="assets/kit_jaziel.webp" alt=""></figure>
+      </div>
+      <div class="room-ui wrap right">
+        <div class="panel" data-at="0.04" data-from="30,0,3">
+          <span class="tag" style="--t:var(--pink);color:#fff" data-i="kitchen_tag"></span>
+          <h2 data-i="kitchen_title"></h2>
+          <p data-i="kitchen_text"></p>
+          <div class="minishop" id="miniShop"></div>
+          <a class="btn pink" href="#shop" data-go="shop" data-i="kitchen_cta"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" id="r-concert">
+    <div class="room-stage">
+      <div class="room-bg" style="background-image:url(assets/room_concert.webp);background-position:center 55%"></div><div class="shade n"></div><div class="sweep" aria-hidden="true"></div>
+      <div class="room-ui wrap">
+        <div class="panel dark" data-at="0.02" data-from="-30,0,-3">
+          <span class="tag" style="--t:var(--orange)" data-i="concert_tag"></span>
+          <h2 data-i="concert_title"></h2>
+          <p data-i="concert_text"></p>
+          <div class="np"><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><b data-i="song1"></b><small data-i="song_soon"></small></div></div>
+          <a class="btn yellow" href="https://www.instagram.com/tinylegendsadventures/" target="_blank" rel="noopener" data-i="concert_cta"></a>
+        </div>
+      </div>
+      <div class="kids">
+        <figure class="kid" style="--x:49%;--h:44vh;--b:16vh" data-at="0.10" data-from="0,40,0"><span class="say" data-i="b_con_j"></span><img src="assets/con_jaziel.webp" alt=""></figure>
+        <figure class="kid" style="--x:67%;--h:60vh;--b:10vh" data-at="0.22" data-from="0,50,6"><span class="say" data-i="b_con_c"></span><img src="assets/con_cambam.webp" alt=""></figure>
+        <figure class="kid" style="--x:86%;--h:38vh;--b:14vh" data-at="0.36" data-from="60,0,8"><span class="say" style="left:30%" data-i="b_con_e"></span><img src="assets/con_evaluna.webp" alt=""></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" id="r-bedroom">
+    <div class="room-stage">
+      <div class="room-bg" style="background-image:url(assets/room_bedroom.webp)"></div><div class="shade n"></div>
+      <div class="room-ui wrap">
+        <div class="panel dark" data-at="0.02" data-from="-30,0,-3">
+          <span class="tag" style="--t:var(--purple);color:#fff" data-i="bedroom_tag"></span>
+          <h2 data-i="bedroom_title"></h2>
+          <p data-i="bedroom_text"></p>
+          <div class="recline"><div><b>∞–0</b><span data-i="rec_label"></span></div><div><b>9.8M</b><span data-i="stat1"></span></div></div>
+          <a class="btn yellow" href="#legends" data-go="legends" data-i="nav_legends"></a>
+        </div>
+      </div>
+      <div class="kids">
+        <figure class="kid" style="--x:48%;--h:54vh;--b:5vh" data-at="0.10" data-from="-50,30,-10"><span class="say" data-i="b_bed_j"></span><img src="assets/bed_jaziel.webp" alt=""></figure>
+        <figure class="kid" style="--x:63%;--h:38vh;--b:22vh" data-at="0.24" data-from="0,-60,-12"><span class="say" data-i="b_bed_e"></span><img src="assets/bed_evaluna.webp" alt=""></figure>
+        <figure class="kid" style="--x:83%;--h:58vh;--b:3vh" data-at="0.38" data-from="70,0,8"><span class="say" data-i="b_bed_c"></span><img src="assets/bed_cambam.webp" alt=""></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="lights" id="lights">
+    <div class="stars" aria-hidden="true"></div>
+    <div class="wrap lights-in">
+      <button class="switch" id="switch" type="button" aria-pressed="false"><span class="plate"><span class="toggle"></span></span><span class="hand" id="switchLbl"></span></button>
+      <img class="lights-logo" src="assets/logo.webp" alt="Tiny Legends Adventures">
+      <p class="gn" data-i="goodnight"></p>
+      <p class="handle">@tinylegendsadventures</p>
+      <p class="sub" data-i="lights_sub"></p>
+      <a class="btn yellow" href="https://www.instagram.com/tinylegendsadventures/" target="_blank" rel="noopener" data-i="follow_ig"></a>
+    </div>
+  </section>
+</div>
+
+<!-- ================= LEGENDS ================= -->
+<div class="view" id="v-legends" hidden>
+  <div class="wrap page-head">
+    <span class="tag" data-i="lg_eyebrow"></span>
+    <h2 data-i="nav_legends"></h2>
+    <p data-i="lg_intro"></p>
+    <div class="lineup"><img src="assets/lineup.webp" alt="Dada, Mamá, CamBam, Jaziel, Evaluna"></div>
+  </div>
+  <div class="wrap cards" id="cards"></div>
+</div>
+
+<!-- ================= WATCH ================= -->
+<div class="view" id="v-watch" hidden>
+  <section class="watch"><div class="wrap">
+    <div class="player" id="watchPlayer"></div>
+    <div>
+      <div class="watch-head"><span class="tag" style="--t:var(--cyan)" data-i="living_title"></span><h2 data-i="w_title"></h2><p data-i="w_sub"></p></div>
+      <div class="chips" id="chips" role="group"></div>
+      <p class="upnext" data-i="w_upnext"></p>
+      <div class="feed" id="feed"></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ================= SHOP ================= -->
+<div class="view" id="v-shop" hidden>
+  <div class="wrap page-head">
+    <span class="tag" style="--t:var(--pink);color:#fff" data-i="kitchen_title"></span>
+    <h2 data-i="s_title"></h2>
+    <p data-i="s_sub"></p>
+  </div>
+  <div class="wrap shop-grid" id="shopGrid"></div>
+  <div class="wrap shop-note"><b>Yupiti</b><span data-i="paylock"></span></div>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <div><b style="font-family:var(--f-display);font-size:1.15rem">Tiny Legends Adventures</b><br><small><span data-i="f_series"></span> · loveandink.co/tinylegends</small></div>
+  <small data-i="f_made"></small>
+</div></footer>
+
+<nav class="map" id="map" aria-label="House map">
+  <a href="#top" data-jump="top"><i></i><span data-i="map_stage"></span></a>
+  <a href="#r-living" data-jump="r-living"><i></i><span data-i="map_living"></span></a>
+  <a href="#r-kitchen" data-jump="r-kitchen"><i></i><span data-i="map_kitchen"></span></a>
+  <a href="#r-concert" data-jump="r-concert"><i></i><span data-i="map_concert"></span></a>
+  <a href="#r-bedroom" data-jump="r-bedroom"><i></i><span data-i="map_bedroom"></span></a>
+  <a href="#lights" data-jump="lights"><i></i><span data-i="map_lights"></span></a>
+</nav>
+<nav class="tabbar" aria-label="Tiny Legends">
+  <a href="#home" data-go="home"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9h-6v-6H9v6H3z"/></svg><span data-i="nav_home"></span></a>
+  <a href="#legends" data-go="legends"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.6 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><span data-i="nav_legends_s"></span></a>
+  <a href="#watch" data-go="watch"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 9l5 3-5 3z" fill="#FFF8EC"/></svg><span data-i="nav_watch"></span></a>
+  <a href="#shop" data-go="shop"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8a3 3 0 0 1 6 0" /></svg><span data-i="nav_shop"></span></a>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===================== i18n ===================== */
+const LANGS=['en','es','pt','fr','hi','zh'];
+const T={
+crumb:["Shop › Publishing › Tiny Legends","Tienda › Publicaciones › Tiny Legends","Loja › Publicações › Tiny Legends","Boutique › Édition › Tiny Legends","शॉप › पब्लिशिंग › Tiny Legends","商店 › 出版 › Tiny Legends"],
+nav_home:["Home","Inicio","Início","Accueil","होम","首页"],
+nav_legends:["Meet the Legends","Conoce a las Leyendas","Conheça as Lendas","Rencontre les Légendes","लेजेंड्स से मिलें","认识小传奇"],
+nav_legends_s:["Legends","Leyendas","Lendas","Légendes","लेजेंड्स","小传奇"],
+nav_watch:["Watch","Ver","Assistir","Regarder","देखें","观看"],
+nav_shop:["Shop","Tienda","Loja","Boutique","शॉप","商店"],
+bag:["Bag","Bolsa","Sacola","Panier","बैग","购物袋"],
+lang_label:["Language","Idioma","Idioma","Langue","भाषा","语言"],
+h1a:["Small humans.","Pequeños humanos.","Pequenos humanos.","Petits humains.","छोटे बच्चे।","小小的人，"],
+h1b:["Big legend energy.","Energía de leyenda.","Energia de lenda.","Énergie de légende.","बड़ा लेजेंड जोश।","大大的传奇能量。"],
+lead:["One real family. A baby who wins karate fights in her sleep, a boy who never walks when he can zoom, and a big sister who sings like the world is her stage.",
+"Una familia real. Una bebé que gana peleas de karate dormida, un niño que nunca camina si puede correr, y una hermana mayor que canta como si el mundo fuera su escenario.",
+"Uma família de verdade. Uma bebê que vence lutas de caratê dormindo, um menino que nunca anda quando pode correr e uma irmã mais velha que canta como se o mundo fosse o seu palco.",
+"Une vraie famille. Un bébé qui gagne ses combats de karaté en dormant, un garçon qui ne marche jamais quand il peut foncer, et une grande sœur qui chante comme si le monde était sa scène.",
+"एक असली परिवार। एक बेबी जो सोते-सोते कराटे जीत जाती है, एक लड़का जो चलता नहीं बस दौड़ता है, और एक बड़ी बहन जो ऐसे गाती है जैसे पूरी दुनिया उसका मंच हो।",
+"一个真实的家庭。一个睡着也能赢空手道的宝宝，一个从不走路只会飞奔的小男孩，还有一个把全世界当舞台唱歌的大姐姐。"],
+cta_start:["Start the day ↓","Empieza el día ↓","Comece o dia ↓","Commencer la journée ↓","दिन शुरू करें ↓","开始这一天 ↓"],
+cta_watch:["▶ Watch episodes","▶ Ver episodios","▶ Ver episódios","▶ Voir les épisodes","▶ एपिसोड देखें","▶ 观看剧集"],
+stat1:["views on one karate nap","vistas en una siesta de karate","visualizações de um cochilo de caratê","vues pour une sieste de karaté","एक कराटे झपकी पर व्यूज़","一个空手道午睡视频的播放量"],
+stat2:["Legends following along","Leyendas que nos siguen","Lendas acompanhando","Légendes qui nous suivent","साथ जुड़े लेजेंड्स","位小传奇粉丝"],
+stat3:["Evaluna's fight record","récord de peleas de Evaluna","recorde de lutas da Evaluna","palmarès d'Evaluna","इवालूना का फाइट रिकॉर्ड","Evaluna 的战绩"],
+now_playing:["Now playing","Reproduciendo","Tocando agora","En lecture","अभी चल रहा है","正在播放"],
+snd_muted:["🔇 Tap for sound","🔇 Toca para sonido","🔇 Toque para som","🔇 Touchez pour le son","🔇 आवाज़ के लिए टैप करें","🔇 点击开启声音"],
+snd_on:["🔊 Sound on","🔊 Sonido activado","🔊 Som ligado","🔊 Son activé","🔊 आवाज़ चालू","🔊 声音已开启"],
+ig_link:["Watch on Instagram →","Ver en Instagram →","Ver no Instagram →","Voir sur Instagram →","Instagram पर देखें →","在 Instagram 观看 →"],
+play_clip:["Play clip","Reproducir clip","Tocar clipe","Lire l'extrait","क्लिप चलाएं","播放片段"],
+k_viral:["9.8M views","9.8M vistas","9,8 mi de visualizações","9,8 M de vues","98 लाख व्यूज़","980万播放"],
+k_milestone:["Milestone","Hito","Marco","Étape","माइलस्टोन","里程碑"],
+k_episode:["Episode","Episodio","Episódio","Épisode","एपिसोड","剧集"],
+k_trend:["Trend","Tendencia","Trend","Tendance","ट्रेंड","热门挑战"],
+c_karate:["The original karate nap","La siesta de karate original","O cochilo de caratê original","La sieste de karaté originale","असली कराटे झपकी","最初的空手道午睡"],
+c_9m:["9M: the champ gets her belt","9M: la campeona gana su cinturón","9M: a campeã ganha o cinturão","9M : la championne reçoit sa ceinture","9M: चैंपियन को मिली बेल्ट","900万：冠军拿到腰带"],
+c_dance:["The sibling dance trend","El baile de los hermanos","A dança dos irmãos","La danse des frères et sœurs","भाई-बहनों का डांस ट्रेंड","兄弟姐妹舞蹈挑战"],
+c_7m:["7M: Jaziel's flying kick","7M: la patada voladora de Jaziel","7M: o chute voador do Jaziel","7M : le coup de pied sauté de Jaziel","7M: जज़ील की फ्लाइंग किक","700万：Jaziel 的飞踢"],
+c_5m:["5M: Jaziel joins the fight","5M: Jaziel se une a la pelea","5M: Jaziel entra na luta","5M : Jaziel rejoint le combat","5M: जज़ील भी लड़ाई में","500万：Jaziel 加入战斗"],
+c_3m:["3M: the big explosion","3M: la gran explosión","3M: a grande explosão","3M : la grande explosion","3M: बड़ा धमाका","300万：大爆炸"],
+c_2m:["2M: karate flow","2M: estilo karate","2M: no ritmo do caratê","2M : en mode karaté","2M: कराटे फ्लो","200万：空手道节奏"],
+c_1m:["1M: the first knockout","1M: el primer nocaut","1M: o primeiro nocaute","1M : le premier K.-O.","1M: पहला नॉकआउट","100万：第一次击倒"],
+c_revenge:["Dada's Revenge","La venganza de Dada","A vingança do Dada","La revanche de Dada","दादा का बदला","爸爸的复仇"],
+c_padrino:["Padrino & Madrina visit","La visita de Padrino y Madrina","A visita do Padrino e da Madrina","Padrino et Madrina en visite","पाद्रिनो और माद्रिना की मुलाकात","教父教母来访"],
+c_kitchen:["The midnight kitchen raid","El asalto nocturno a la cocina","O ataque à cozinha à meia-noite","Le raid de minuit dans la cuisine","आधी रात रसोई पर धावा","午夜厨房大作战"],
+c_pilot:["Pilot: Dada's studio","Piloto: el estudio de Dada","Piloto: o estúdio do Dada","Pilote : le studio de Dada","पायलट: दादा का स्टूडियो","试播集：爸爸的工作室"],
+doorway:["Come on in. Shoes off, the baby's asleep.","Pasa. Sin zapatos, la bebé está dormida.","Entre. Tire os sapatos, a bebê está dormindo.","Entre. Enlève tes chaussures, le bébé dort.","अंदर आइए। जूते उतारिए, बेबी सो रही है।","请进。脱鞋，宝宝在睡觉。"],
+map_stage:["Stage","Escenario","Palco","Scène","मंच","舞台"],
+map_living:["Living room","Sala","Sala","Salon","लिविंग रूम","客厅"],
+map_kitchen:["Kitchen","Cocina","Cozinha","Cuisine","रसोई","厨房"],
+map_concert:["Concert","Concierto","Show","Concert","कॉन्सर्ट","演唱会"],
+map_bedroom:["Bedroom","Habitación","Quarto","Chambre","बेडरूम","卧室"],
+map_lights:["Lights out","Luces fuera","Luzes apagadas","Extinction des feux","लाइट्स बंद","熄灯"],
+living_tag:["Living room · 8:00 AM","Sala · 8:00 a. m.","Sala · 8h","Salon · 8 h","लिविंग रूम · सुबह 8 बजे","客厅 · 早上8点"],
+living_title:["Jaziel's Zoom Zone","La Zona Turbo de Jaziel","A Zona Turbo do Jaziel","La Zone Turbo de Jaziel","जज़ील का ज़ूम ज़ोन","Jaziel 的极速地带"],
+living_text:["The couch is a racetrack and nobody has walked since sunrise. Every adventure lives here.","El sofá es una pista de carreras y nadie ha caminado desde el amanecer. Aquí viven todas las aventuras.","O sofá virou pista de corrida e ninguém anda desde o nascer do sol. Todas as aventuras moram aqui.","Le canapé est une piste de course et personne n'a marché depuis le lever du soleil. Toutes les aventures sont ici.","सोफ़ा रेस ट्रैक है और सुबह से कोई चला नहीं। हर एडवेंचर यहीं है।","沙发变成赛道，从日出起就没人好好走过路。所有冒险都在这里。"],
+kitchen_tag:["Kitchen · 2:00 PM","Cocina · 2:00 p. m.","Cozinha · 14h","Cuisine · 14 h","रसोई · दोपहर 2 बजे","厨房 · 下午2点"],
+kitchen_title:["Fresh off the press","Recién salido de la prensa","Saindo da prensa","Tout juste pressé","प्रेस से ताज़ा","新鲜出炉"],
+kitchen_text:["Mamá runs the stove, CamBam runs the merch. Every tee, hoodie and tumbler is pressed by hand at home.","Mamá manda en la estufa, CamBam en la mercancía. Cada camiseta, sudadera y vaso se estampa a mano en casa.","A Mamá comanda o fogão, a CamBam comanda os produtos. Cada camiseta, moletom e copo é estampado à mão em casa.","Mamá s'occupe des fourneaux, CamBam du merch. Chaque t-shirt, sweat et gobelet est pressé à la main à la maison.","मामा चूल्हा संभालती हैं, कैमबैम मर्च। हर टी-शर्ट, हुडी और टम्बलर घर पर हाथ से प्रेस होता है।","妈妈掌勺，CamBam 管周边。每件T恤、卫衣和保温杯都在家里手工压印。"],
+kitchen_cta:["Shop CamBam's Closet","Compra en el clóset de CamBam","Compre no closet da CamBam","Le dressing de CamBam","कैमबैम की अलमारी देखें","逛逛 CamBam 的衣橱"],
+concert_tag:["Backyard · 6:00 PM","Patio · 6:00 p. m.","Quintal · 18h","Jardin · 18 h","बैकयार्ड · शाम 6 बजे","后院 · 傍晚6点"],
+concert_title:["Tiny Legends Live","Tiny Legends en vivo","Tiny Legends ao vivo","Tiny Legends en live","टाइनी लेजेंड्स लाइव","Tiny Legends 现场"],
+concert_text:["CamBam on the mic, Jaziel on drums, Evaluna asleep on the speaker. Mamá and Dada are front row.","CamBam al micrófono, Jaziel en la batería, Evaluna dormida sobre el altavoz. Mamá y Dada en primera fila.","CamBam no microfone, Jaziel na bateria, Evaluna dormindo na caixa de som. Mamá e Dada na primeira fila.","CamBam au micro, Jaziel à la batterie, Evaluna endormie sur l'enceinte. Mamá et Dada au premier rang.","माइक पर कैमबैम, ड्रम पर जज़ील, स्पीकर पर सोती इवालूना। मामा और दादा सबसे आगे।","CamBam 拿麦，Jaziel 打鼓，Evaluna 在音箱上睡着了。妈妈和爸爸坐第一排。"],
+song1:["Undefeated (Nap-Fu Anthem)","Invicta (Himno del Siesta-Fu)","Invicta (Hino do Soneca-Fu)","Invaincue (L'hymne du Sieste-Fu)","अजेय (नैप-फू एंथम)","不败（午睡功夫之歌）"],
+song_soon:["Original songs coming soon","Canciones originales muy pronto","Músicas originais em breve","Chansons originales bientôt","ओरिजिनल गाने जल्द आ रहे हैं","原创歌曲即将上线"],
+concert_cta:["Follow for the premiere","Síguenos para el estreno","Siga para a estreia","Abonne-toi pour la première","प्रीमियर के लिए फ़ॉलो करें","关注首发"],
+bedroom_tag:["Bedroom · 9:00 PM · PJs on","Habitación · 9:00 p. m. · en pijama","Quarto · 21h · de pijama","Chambre · 21 h · en pyjama","बेडरूम · रात 9 बजे · पजामा टाइम","卧室 · 晚上9点 · 换睡衣"],
+bedroom_title:["Evaluna's Dojo","El Dojo de Evaluna","O Dojô da Evaluna","Le Dojo d'Evaluna","इवालूना का डोजो","Evaluna 的道场"],
+bedroom_text:["Lights low, parents down. Eight months old, black belt in nap-fu, and she has never opened her eyes for a fight.","Luces bajas, papás noqueados. Ocho meses, cinturón negro en siesta-fu y nunca ha abierto los ojos para pelear.","Luzes baixas, pais nocauteados. Oito meses, faixa preta em soneca-fu, e nunca abriu os olhos para lutar.","Lumières tamisées, parents K.-O. Huit mois, ceinture noire de sieste-fu, et elle n'a jamais ouvert les yeux pour se battre.","रोशनी धीमी, मम्मी-पापा ढेर। आठ महीने की, नैप-फू में ब्लैक बेल्ट, और लड़ाई में कभी आँखें नहीं खोलीं।","灯光调暗，爸妈倒下。八个月大，午睡功夫黑带，打架从来不睁眼。"],
+rec_label:["fight record","récord de peleas","recorde de lutas","palmarès","फाइट रिकॉर्ड","战绩"],
+b_liv_j:["VROOOM!","¡RUUUM!","VRUUUM!","VROUUUM !","व्रूऊम!","呜——！"],
+b_liv_c:["Watch me twirl!","¡Mírame girar!","Olha eu girar!","Regarde-moi tourner !","मुझे घूमते देखो!","看我转圈！"],
+b_liv_e:["*40 mph crawl*","*gateo a 60 km/h*","*engatinhando a 60 km/h*","*quatre pattes à 60 km/h*","*60 किमी/घंटा*","*时速60公里爬行*"],
+b_kit_c:["♪ fresh off the press ♪","♪ recién salido ♪","♪ fresquinho ♪","♪ tout juste pressé ♪","♪ एकदम ताज़ा ♪","♪ 新鲜出炉 ♪"],
+b_kit_e:["HI-YAH! (pancakes lost)","¡JI-YA! (los panqueques perdieron)","IÁÁÁ! (as panquecas perderam)","HI-YAH ! (les crêpes ont perdu)","हाय-या! (पैनकेक हार गए)","嘿哈！（松饼输了）"],
+b_kit_j:["I didn't take any cookies.","Yo no tomé galletas.","Eu não peguei biscoito nenhum.","J'ai pas pris de cookies.","मैंने कोई कुकी नहीं ली।","我没拿饼干。"],
+b_con_j:["♪ ba-dum-TSS ♪","♪ ba-dum-TSS ♪","♪ ba-dum-TSS ♪","♪ ba-dum-TSS ♪","♪ धा-धिन-धा ♪","♪ 咚哒-嚓 ♪"],
+b_con_c:["Make some noise, Legends!","¡Hagan ruido, Leyendas!","Façam barulho, Lendas!","Faites du bruit, les Légendes !","शोर मचाओ, लेजेंड्स!","小传奇们，嗨起来！"],
+b_con_e:["…zzz (still rocking)","…zzz (sigue rockeando)","…zzz (ainda no rock)","…zzz (toujours rock)","…zzz (अब भी रॉक)","…zzz（照样摇滚）"],
+b_bed_j:["PILLOW FIGHT!","¡GUERRA DE ALMOHADAS!","GUERRA DE TRAVESSEIROS!","BATAILLE D'OREILLERS !","तकिया लड़ाई!","枕头大战！"],
+b_bed_e:["HI-YAH! …zzz","¡JI-YA! …zzz","IÁÁÁ! …zzz","HI-YAH ! …zzz","हाय-या! …zzz","嘿哈！…zzz"],
+b_bed_c:["♪ one more song ♪","♪ una canción más ♪","♪ só mais uma música ♪","♪ encore une chanson ♪","♪ बस एक और गाना ♪","♪ 再唱一首 ♪"],
+sw_off:["Lights out?","¿Apagamos?","Apagar a luz?","On éteint ?","लाइट बंद करें?","关灯吗？"],
+sw_on:["Lights on?","¿Encendemos?","Acender a luz?","On rallume ?","लाइट जलाएं?","开灯吗？"],
+goodnight:["Goodnight, Legends.","Buenas noches, Leyendas.","Boa noite, Lendas.","Bonne nuit, les Légendes.","शुभ रात्रि, लेजेंड्स।","晚安，小传奇们。"],
+lights_sub:["New episodes drop on Instagram first. Follow so the champ doesn't wake up mad.","Los nuevos episodios salen primero en Instagram. Síguenos para que la campeona no se despierte enojada.","Os episódios novos saem primeiro no Instagram. Siga para a campeã não acordar brava.","Les nouveaux épisodes sortent d'abord sur Instagram. Abonne-toi pour que la championne ne se réveille pas fâchée.","नए एपिसोड सबसे पहले Instagram पर आते हैं। फ़ॉलो करें ताकि चैंपियन गुस्से में न उठे।","新剧集首发在 Instagram。快关注，别让冠军醒来生气。"],
+follow_ig:["Follow on Instagram","Síguenos en Instagram","Siga no Instagram","Suivre sur Instagram","Instagram पर फ़ॉलो करें","在 Instagram 关注"],
+lg_eyebrow:["The whole crew","Toda la pandilla","A turma toda","Toute la bande","पूरी टोली","全员到齐"],
+lg_intro:["Every Legend keeps their own look, and the family always matches: everybody in PJs, or everybody dressed for adventure.","Cada Leyenda tiene su propio estilo, y la familia siempre combina: todos en pijama o todos listos para la aventura.","Cada Lenda tem seu próprio estilo, e a família sempre combina: todo mundo de pijama ou todo mundo pronto para a aventura.","Chaque Légende garde son style, et la famille est toujours assortie : tout le monde en pyjama, ou tout le monde prêt pour l'aventure.","हर लेजेंड का अपना अंदाज़ है, और परिवार हमेशा मैच करता है: या तो सब पजामे में, या सब एडवेंचर के लिए तैयार।","每位小传奇都有自己的造型，全家总是统一：要么都穿睡衣，要么都穿冒险装。"],
+f_power:["Superpower","Superpoder","Superpoder","Superpouvoir","सुपरपावर","超能力"],
+f_loves:["Loves","Le encanta","Ama","Adore","पसंद","最爱"],
+w_title:["Watch the adventures","Mira las aventuras","Assista às aventuras","Regarde les aventures","एडवेंचर देखें","观看冒险"],
+w_sub:["Every episode and every milestone fight, Reels-style. Tap any clip to play it.","Cada episodio y cada pelea de hito, estilo Reels. Toca un clip para verlo.","Cada episódio e cada luta de marco, estilo Reels. Toque em um clipe para assistir.","Chaque épisode et chaque combat d'étape, façon Reels. Touche un extrait pour le lire.","हर एपिसोड और हर माइलस्टोन फाइट, रील्स स्टाइल में। चलाने के लिए क्लिप पर टैप करें।","每一集、每一场里程碑之战，Reels 风格。点击任意片段播放。"],
+w_all:["Everyone","Todos","Todos","Tout le monde","सभी","全部"],
+w_upnext:["Up next","A continuación","A seguir","À suivre","आगे","接下来"],
+w_empty:["No episodes yet. This Legend is still napping.","Aún no hay episodios. Esta Leyenda sigue durmiendo.","Ainda não há episódios. Esta Lenda ainda está cochilando.","Pas encore d'épisodes. Cette Légende fait encore la sieste.","अभी कोई एपिसोड नहीं। यह लेजेंड अभी सो रहा है।","还没有剧集，这位小传奇还在睡觉。"],
+s_title:["CamBam's Closet","El clóset de CamBam","O closet da CamBam","Le dressing de CamBam","कैमबैम की अलमारी","CamBam 的衣橱"],
+s_sub:["Shirts, hoodies and tumblers pressed by hand at home. Baby, kids and adult sizes so the whole family can match.","Camisetas, sudaderas y vasos estampados a mano en casa. Tallas de bebé, niño y adulto para que toda la familia combine.","Camisetas, moletons e copos estampados à mão em casa. Tamanhos bebê, infantil e adulto para a família toda combinar.","T-shirts, sweats et gobelets pressés à la main. Tailles bébé, enfant et adulte pour que toute la famille soit assortie.","घर पर हाथ से प्रेस की गई शर्ट, हुडी और टम्बलर। बेबी, बच्चों और बड़ों के साइज़ ताकि पूरा परिवार मैच करे।","在家手工压印的T恤、卫衣和保温杯。婴儿、儿童和成人尺码，全家都能穿同款。"],
+add:["Add","Añadir","Adicionar","Ajouter","जोड़ें","加入"],
+added:["Added:","Añadido:","Adicionado:","Ajouté :","जोड़ा गया:","已加入："],
+bag_empty:["Your bag is empty. CamBam is disappointed.","Tu bolsa está vacía. CamBam está decepcionada.","Sua sacola está vazia. A CamBam ficou decepcionada.","Ton panier est vide. CamBam est déçue.","आपका बैग खाली है। कैमबैम निराश है।","购物袋是空的。CamBam 很失望。"],
+bag_ready:["in your bag, ready for Pay-Lock checkout","en tu bolsa, listos para pagar con Pay-Lock","na sacola, prontos para o checkout Pay-Lock","dans ton panier, prêts pour le paiement Pay-Lock","आपके बैग में, Pay-Lock चेकआउट के लिए तैयार","件在购物袋，可用 Pay-Lock 结账"],
+paylock:["Secure checkout through Love & Ink.","Pago seguro con Love & Ink.","Checkout seguro pela Love & Ink.","Paiement sécurisé via Love & Ink.","Love & Ink पर सुरक्षित चेकआउट।","通过 Love & Ink 安全结账。"],
+sample:["Prices shown are sample pricing for this prototype.","Los precios son de muestra para este prototipo.","Os preços são exemplos para este protótipo.","Les prix affichés sont des exemples pour ce prototype.","दिखाए गए दाम इस प्रोटोटाइप के लिए नमूना हैं।","显示价格仅为原型示例。"],
+sz_baby:["Baby","Bebé","Bebê","Bébé","बेबी","婴儿"],sz_toddler:["Toddler","Pequeño","Criança","Tout-petit","टॉडलर","幼儿"],sz_kids:["Kids","Niños","Infantil","Enfant","बच्चे","儿童"],sz_adult:["Adult","Adulto","Adulto","Adulte","बड़े","成人"],sz_20:["20 oz","20 oz","20 oz","20 oz","20 oz","20 oz"],
+p_undefeated:["Undefeated While Asleep Tee","Camiseta Invicta Dormida","Camiseta Invicta Dormindo","T-shirt Invaincue en dormant","“सोते हुए अजेय” टी-शर्ट","“睡着也不败”T恤"],
+p_poster:["Sleeping Champion Tee","Camiseta Campeona Dormida","Camiseta Campeã Dorminhoca","T-shirt Championne Endormie","“सोती चैंपियन” टी-शर्ट","“沉睡冠军”T恤"],
+p_belt:["Champion Belt Hoodie","Sudadera Cinturón de Campeona","Moletom Cinturão de Campeã","Sweat Ceinture de Championne","चैंपियन बेल्ट हुडी","冠军腰带卫衣"],
+p_squad:["Legends Squad Tee","Camiseta Escuadrón Leyendas","Camiseta Esquadrão das Lendas","T-shirt Team Légendes","लेजेंड्स स्क्वॉड टी-शर्ट","小传奇战队T恤"],
+p_tumbler:["Undefeated 20 oz Tumbler","Vaso Invicta 20 oz","Copo Invicta 20 oz","Gobelet Invaincue 20 oz","अजेय 20 oz टम्बलर","不败 20 oz 保温杯"],
+p_logo:["Tiny Legends Logo Tee","Camiseta Logo Tiny Legends","Camiseta Logo Tiny Legends","T-shirt Logo Tiny Legends","टाइनी लेजेंड्स लोगो टी-शर्ट","Tiny Legends 标志T恤"],
+t_best:["Best seller","Más vendido","Mais vendido","Best-seller","बेस्ट सेलर","热销"],t_new:["New","Nuevo","Novo","Nouveau","नया","新品"],t_match:["Family match","Para combinar","Família combinando","Assorti famille","फैमिली मैच","亲子款"],
+f_series:["A Love & Ink Publishing series","Una serie de Love & Ink Publishing","Uma série da Love & Ink Publishing","Une série Love & Ink Publishing","Love & Ink पब्लिशिंग की एक सीरीज़","Love & Ink 出版系列"],
+f_made:["Made with love (and very little sleep) by the Legends' parents.","Hecho con amor (y muy poco sueño) por los papás de las Leyendas.","Feito com amor (e pouquíssimo sono) pelos pais das Lendas.","Fait avec amour (et très peu de sommeil) par les parents des Légendes.","लेजेंड्स के मम्मी-पापा ने प्यार (और बहुत कम नींद) से बनाया।","由小传奇的爸妈用爱（和很少的睡眠）打造。"],
+r_evaluna:["The Sleeping Champion","La Campeona Dormida","A Campeã Dorminhoca","La Championne Endormie","सोती हुई चैंपियन","沉睡的冠军"],
+p_evaluna:["Karate, fully asleep","Karate, completamente dormida","Caratê, totalmente dormindo","Karaté, profondément endormie","गहरी नींद में कराटे","熟睡中打空手道"],
+l_evaluna:["Naps, belts, winning","Siestas, cinturones, ganar","Sonecas, faixas, vencer","Siestes, ceintures, victoires","झपकी, बेल्ट, जीत","午睡、腰带、赢"],
+q_evaluna:["…zzz (that's a win)","…zzz (eso es una victoria)","…zzz (isso é vitória)","…zzz (ça, c'est une victoire)","…zzz (यह जीत है)","…zzz（这算赢）"],
+r_jaziel:["The Zoomer","El Veloz","O Foguete","Le Bolide","रफ़्तार का राजा","极速小子"],
+p_jaziel:["Light-up sneakers at max speed","Tenis con luces a toda velocidad","Tênis de luz em velocidade máxima","Baskets lumineuses à fond","पूरी रफ़्तार में चमकते जूते","闪光鞋全速冲刺"],
+l_jaziel:["Monster trucks, flying kicks","Monster trucks, patadas voladoras","Monster trucks, chutes voadores","Monster trucks, coups de pied sautés","मॉन्स्टर ट्रक, फ्लाइंग किक","大脚车、飞踢"],
+q_jaziel:["Walking is for grown-ups!","¡Caminar es para adultos!","Andar é coisa de adulto!","Marcher, c'est pour les grands !","चलना तो बड़ों का काम है!","走路是大人的事！"],
+r_cambam:["The Big Sister","La Hermana Mayor","A Irmã Mais Velha","La Grande Sœur","बड़ी बहन","大姐姐"],
+p_cambam:["Turning any outfit into a look","Convertir cualquier ropa en un look","Transformar qualquer roupa num look","Transformer n'importe quelle tenue en look","किसी भी कपड़े को स्टाइल बनाना","任何衣服都能穿出造型"],
+l_cambam:["Singing, heart shades, tutus","Cantar, gafas de corazón, tutús","Cantar, óculos de coração, tutus","Chanter, lunettes cœur, tutus","गाना, दिल वाले चश्मे, टूटू","唱歌、爱心墨镜、蓬蓬裙"],
+q_cambam:["If it's not cute, it's not going on.","Si no es lindo, no me lo pongo.","Se não for fofo, não vou usar.","Si c'est pas mignon, je le mets pas.","अगर क्यूट नहीं, तो नहीं पहनूंगी।","不可爱的我不穿。"],
+r_mama:["The Boss","La Jefa","A Chefe","La Patronne","बॉस","一家之主"],
+p_mama:["One look ends any argument","Una mirada acaba cualquier discusión","Um olhar encerra qualquer discussão","Un regard met fin à toute dispute","एक नज़र में बहस ख़त्म","一个眼神结束争吵"],
+l_mama:["Purple braids, peace and quiet","Trenzas moradas, paz y tranquilidad","Tranças roxas, paz e sossego","Tresses violettes, calme et silence","बैंगनी चोटियाँ, सुकून","紫色辫子、清静"],
+q_mama:["Everybody in PJs. Now.","Todos en pijama. Ya.","Todo mundo de pijama. Já.","Tout le monde en pyjama. Maintenant.","सब पजामे में। अभी।","全都换睡衣。现在。"],
+r_dada:["The Director","El Director","O Diretor","Le Réalisateur","डायरेक्टर","导演"],
+p_dada:["Stays cool under pressure","Mantiene la calma bajo presión","Mantém a calma sob pressão","Garde son calme sous pression","दबाव में भी शांत","临危不乱"],
+l_dada:["Cameras, plans, coffee","Cámaras, planes, café","Câmeras, planos, café","Caméras, plans, café","कैमरा, प्लान, कॉफ़ी","相机、计划、咖啡"],
+q_dada:["Okay. New plan.","Bien. Nuevo plan.","Beleza. Novo plano.","OK. Nouveau plan.","ठीक है। नया प्लान।","好。新计划。"],
+r_padrino:["The Hype Man","El Animador","O Animador","L'Ambianceur","जोश बढ़ाने वाले","气氛担当"],
+p_padrino:["Turns any room into a party","Convierte cualquier lugar en fiesta","Transforma qualquer lugar em festa","Transforme chaque pièce en fête","हर कमरे को पार्टी बना दें","走到哪儿嗨到哪儿"],
+l_padrino:["Orange shades, loud shirts","Gafas naranjas, camisas llamativas","Óculos laranja, camisas chamativas","Lunettes orange, chemises flashy","नारंगी चश्मा, चटकीली शर्ट","橙色墨镜、花衬衫"],
+q_padrino:["Where's my goddaughter?!","¿Dónde está mi ahijada?","Cadê minha afilhada?!","Où est ma filleule ?!","मेरी गॉडडॉटर कहाँ है?!","我的教女在哪儿？！"],
+r_madrina:["The Sweetheart","La Dulzura","A Docinho","La Tendresse","प्यारी माद्रिना","甜心教母"],
+p_madrina:["Hugs that fix everything","Abrazos que lo arreglan todo","Abraços que resolvem tudo","Des câlins qui réparent tout","हर चीज़ ठीक करने वाली झप्पी","一个拥抱解决一切"],
+l_madrina:["Snacks, selfies, Evaluna","Snacks, selfies, Evaluna","Lanchinhos, selfies, Evaluna","Goûters, selfies, Evaluna","स्नैक्स, सेल्फ़ी, इवालूना","零食、自拍、Evaluna"],
+q_madrina:["Come here, mamita!","¡Ven acá, mamita!","Vem cá, mamita!","Viens ici, mamita !","इधर आओ, मामिता!","过来，小宝贝！"]
+};
+let LANG='en';
+const t=k=>{const r=T[k];if(!r)return k;return r[LANGS.indexOf(LANG)]||r[0]};
+
+/* ===================== data ===================== */
+const IG="https://www.instagram.com/tinylegendsadventures/";
+const CLIPS=[
+ {id:'karate',k:'k_viral',who:['evaluna']},
+ {id:'9m',k:'k_milestone',who:['evaluna','jaziel']},
+ {id:'dance',k:'k_trend',who:['cambam','jaziel','evaluna']},
+ {id:'7m',k:'k_milestone',who:['jaziel','evaluna']},
+ {id:'5m',k:'k_milestone',who:['jaziel','evaluna']},
+ {id:'3m',k:'k_milestone',who:['evaluna']},
+ {id:'revenge',k:'k_episode',who:['dada','evaluna']},
+ {id:'2m',k:'k_milestone',who:['evaluna']},
+ {id:'1m',k:'k_milestone',who:['evaluna']},
+ {id:'padrino',k:'k_episode',who:['padrino','madrina','evaluna']},
+ {id:'kitchen',k:'k_episode',who:['jaziel','evaluna','mama']},
+ {id:'pilot',k:'k_episode',who:['dada','evaluna']}];
+const HERO_CLIPS=['karate','9m','dance','7m','kitchen'].map(id=>CLIPS.find(c=>c.id===id));
+const LEGENDS=[['evaluna','var(--purple)'],['jaziel','var(--cyan)'],['cambam','var(--pink)'],['mama','var(--orange)'],['dada','var(--yellow)'],['padrino','var(--gold)'],['madrina','var(--cyan)']];
+const NAMES={evaluna:'Evaluna',jaziel:'Jaziel',cambam:'CamBam',mama:'Mamá',dada:'Dada',padrino:'Padrino Jey',madrina:'Madrina'};
+const PRODUCTS=[
+ {id:'undefeated',img:'m_undefeated',p:24,tag:'t_best',sz:['sz_baby','sz_kids','sz_adult']},
+ {id:'poster',img:'m_poster',p:26,tag:'t_new',sz:['sz_kids','sz_adult']},
+ {id:'belt',img:'m_belt',p:42,tag:'t_match',sz:['sz_kids','sz_adult']},
+ {id:'squad',img:'m_squad',p:26,tag:'t_match',sz:['sz_toddler','sz_kids','sz_adult']},
+ {id:'tumbler',img:'m_undefeated',p:28,tag:'t_new',sz:['sz_20']},
+ {id:'logo',img:'logo',p:22,tag:'t_best',sz:['sz_toddler','sz_kids','sz_adult']}];
+const $=s=>document.querySelector(s);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===================== phone player ===================== */
+const ICON={heart:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.4 1.1 4.1 2.3h3C14.2 6.1 15.6 5 17.6 5 21 5 23.1 8.4 21.6 11.8 19.5 16.4 12 21 12 21z"/></svg>',
+ chat:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.4 1.2 4.6 3.2 6.1L4 21l4.2-2.1c1.2.4 2.5.6 3.8.6 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg>',
+ share:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M21 3 3 10.5l7 2.5 2.5 7z"/></svg>'};
+function Player(root,getList,opts={}){
+  root.innerHTML=`<div class="phone"><div class="notch" aria-hidden="true"></div><div class="screen">
+   <video muted playsinline preload="metadata"></video>
+   <div class="r-top"><span>Reels</span><span class="live">● <span class="np-l"></span></span></div>
+   <div class="r-side" aria-hidden="true">${ICON.heart}${ICON.chat}${ICON.share}</div>
+   <div class="r-cap"><div class="who"><img src="assets/avatar.webp" alt="">tinylegendsadventures</div><p class="t"></p><span class="badge"></span></div>
+   <div class="r-bar"><i></i></div><button class="snd" type="button"></button></div></div>
+   <div class="dots" role="group"></div><a class="ig" href="${IG}" target="_blank" rel="noopener"></a>`;
+  const v=root.querySelector('video'),bar=root.querySelector('.r-bar i'),dots=root.querySelector('.dots'),snd=root.querySelector('.snd'),screen=root.querySelector('.screen');
+  let list=getList(),i=0,active=false,onChange=null;
+  function label(){const c=list[i];root.querySelector('.t').textContent=c?t('c_'+c.id):'';root.querySelector('.badge').textContent=c?t(c.k):'';
+    root.querySelector('.np-l').textContent=t('now_playing');root.querySelector('.ig').textContent=t('ig_link');snd.textContent=v.muted?t('snd_muted'):t('snd_on');
+    [...dots.children].forEach((d,n)=>{d.setAttribute('aria-label',t('play_clip')+' '+(n+1)+': '+t('c_'+list[n].id))});dots.setAttribute('aria-label',t('play_clip'))}
+  function renderDots(){dots.innerHTML=list.map((c,n)=>`<button type="button" aria-current="${n===i}"></button>`).join('');label()}
+  function load(k,animate){
+    if(!list.length)return; i=(k+list.length)%list.length; const c=list[i];
+    const go=()=>{v.src='video/clip_'+c.id+'.mp4';v.poster='video/clip_'+c.id+'.jpg';if(active)v.play().catch(()=>{});};
+    if(animate&&!reduce){v.classList.add('out');setTimeout(()=>{go();v.classList.remove('out');v.classList.add('in');requestAnimationFrame(()=>requestAnimationFrame(()=>v.classList.remove('in')))},280)}else go();
+    [...dots.children].forEach((d,n)=>d.setAttribute('aria-current',n===i)); bar.style.width='0'; label(); onChange&&onChange(c);
+  }
+  v.addEventListener('ended',()=>load(i+1,true));
+  v.addEventListener('timeupdate',()=>{if(v.duration)bar.style.width=(v.currentTime/v.duration*100)+'%'});
+  v.addEventListener('error',()=>{setTimeout(()=>{if(active)load(i+1,true)},4000)});
+  dots.addEventListener('click',e=>{const b=e.target.closest('button');if(b)load([...dots.children].indexOf(b),true)});
+  snd.addEventListener('click',()=>{v.muted=!v.muted;label();v.play().catch(()=>{})});
+  let sy=null;screen.addEventListener('touchstart',e=>{sy=e.touches[0].clientY},{passive:true});
+  screen.addEventListener('touchend',e=>{if(sy==null)return;const d=e.changedTouches[0].clientY-sy;if(Math.abs(d)>40)load(i+(d<0?1:-1),true);sy=null});
+  renderDots(); load(0,false);
+  return {
+    setList(l,start=0){list=l;i=Math.min(start,l.length-1);renderDots();load(i,true)},
+    play(id){const k=list.findIndex(c=>c.id===id);if(k>=0)load(k,true)},
+    activate(on){active=on;if(on){v.play().catch(()=>{})}else v.pause()},
+    relabel:label, onChange(f){onChange=f}
+  };
+}
+
+/* ===================== render ===================== */
+let heroP, watchP, filter='all', bag=0;
+function renderStatic(){
+  document.documentElement.lang=LANG==='zh'?'zh-Hans':LANG;
+  document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
+  $('#switchLbl').textContent=$('#lights').classList.contains('off')?t('sw_on'):t('sw_off');
+  $('#switch').setAttribute('aria-label',$('#switchLbl').textContent);
+  $('#livingThumbs').innerHTML=['karate','9m','dance'].map(id=>`<button type="button" data-watch="${id}" aria-label="${t('play_clip')}: ${t('c_'+id)}"><img src="video/clip_${id}.jpg" alt="" loading="lazy"><span aria-hidden="true">▶</span></button>`).join('');
+  $('#miniShop').innerHTML=PRODUCTS.slice(0,2).map(p=>`<div><img src="assets/${p.img}.webp" alt="" loading="lazy"><b>$${p.p}</b><small>${t('p_'+p.id)}</small></div>`).join('');
+  $('#cards').innerHTML=LEGENDS.map(([k,c])=>`<article class="card" style="--c:${c}"><div class="pic"><img src="assets/${k}.webp" alt="${NAMES[k]}" loading="lazy"></div><div class="body"><p class="role">${t('r_'+k)}</p><h3>${NAMES[k]}</h3><dl><dt>${t('f_power')}</dt><dd>${t('p_'+k)}</dd><dt>${t('f_loves')}</dt><dd>${t('l_'+k)}</dd></dl><q>${t('q_'+k)}</q></div></article>`).join('');
+  $('#shopGrid').innerHTML=PRODUCTS.map(p=>`<div class="item"><span class="flag">${t(p.tag)}</span><div class="pic"><img src="assets/${p.img}.webp" alt="${t('p_'+p.id)}" loading="lazy"></div><h3>${t('p_'+p.id)}</h3><div class="sizes" role="group">${p.sz.map((s,j)=>`<button type="button" aria-pressed="${j===0}" data-sz>${t(s)}</button>`).join('')}</div><div class="row-b"><span class="price">$${p.p}</span><button class="add" type="button" data-add="${p.id}">${t('add')}</button></div></div>`).join('');
+  const who=[['all'],...LEGENDS.filter(([k])=>CLIPS.some(c=>c.who.includes(k)))];
+  $('#chips').innerHTML=who.map(([k])=>`<button class="chip" type="button" aria-pressed="${k===filter}" data-f="${k}">${k==='all'?t('w_all'):NAMES[k]}</button>`).join('');
+  renderFeed(); heroP&&heroP.relabel(); watchP&&watchP.relabel();
+}
+function feedList(){return filter==='all'?CLIPS:CLIPS.filter(c=>c.who.includes(filter))}
+let current='karate';
+function renderFeed(){
+  const l=feedList();
+  $('#feed').innerHTML=l.length?l.map(c=>`<button type="button" data-clip="${c.id}" aria-current="${c.id===current}"><div class="th"><img src="video/clip_${c.id}.jpg" alt="" loading="lazy"><span class="k">${t(c.k)}</span>${c.id===current?`<span class="nowp">${t('now_playing')}</span>`:''}</div><b>${t('c_'+c.id)}</b></button>`).join(''):`<p>${t('w_empty')}</p>`;
+}
+
+/* ===================== routing ===================== */
+const VIEWS=['home','legends','watch','shop'];
+function go(v,push){
+  if(!VIEWS.includes(v))v='home';
+  VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v});
+  document.querySelectorAll('.nav nav a, .tabbar a').forEach(a=>{a.dataset.go===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+  if(push){try{history.replaceState(null,'','#'+v)}catch(e){}}
+  window.scrollTo({top:0,behavior:'instant'});
+  heroP&&heroP.activate(v==='home'&&heroVisible); watchP&&watchP.activate(v==='watch');
+  $('#map').hidden=v!=='home'||innerWidth<=760;
+  setTimeout(()=>{frame();mapUpd()},40);
+}
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]'); if(g){e.preventDefault();go(g.dataset.go,true);return}
+  const j=e.target.closest('[data-jump]'); if(j){e.preventDefault();if($('#v-home').hidden)go('home',true);const id=j.dataset.jump;const top=id==='top'?0:document.getElementById(id).offsetTop+2;window.scrollTo({top,behavior:reduce?'auto':'smooth'});return}
+  const w=e.target.closest('[data-watch]'); if(w){go('watch',true);filter='all';renderStatic();watchP.setList(feedList(),feedList().findIndex(c=>c.id===w.dataset.watch));return}
+  const c=e.target.closest('[data-clip]'); if(c){watchP.setList(feedList(),feedList().findIndex(x=>x.id===c.dataset.clip));const ph=$('#watchPlayer');if(innerWidth<=900)ph.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});return}
+  const f=e.target.closest('[data-f]'); if(f){filter=f.dataset.f;document.querySelectorAll('#chips .chip').forEach(x=>x.setAttribute('aria-pressed',x===f));renderFeed();return}
+  const s=e.target.closest('[data-sz]'); if(s){s.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===s));return}
+  const a=e.target.closest('[data-add]'); if(a){bag++;$('#bagN').textContent=bag;toast(t('added')+' '+t('p_'+a.dataset.add));return}
+});
+$('#bag').addEventListener('click',()=>toast(bag?bag+' '+t('bag_ready'):t('bag_empty')));
+let tt;function toast(m){const el=$('#toast');el.textContent=m;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2200)}
+
+/* ===================== house scroll ===================== */
+const rooms=[...document.querySelectorAll('.room')];
+const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+function frame(){
+  if($('#v-home').hidden)return;
+  const vh=innerHeight, mobile=innerWidth<=760;
+  rooms.forEach(r=>{
+    const rect=r.getBoundingClientRect(); if(rect.bottom<-vh||rect.top>vh*2)return;
+    const span=Math.max(1,r.offsetHeight-vh);
+    const p=Math.min(1,Math.max(0,-rect.top/span));
+    const ent=Math.min(1,Math.max(0,(vh-rect.top)/vh));
+    const prog=reduce?1:Math.min(1,p*1.6+ent*.35);
+    r.style.setProperty('--p',p.toFixed(3));
+    const kids=[...r.querySelectorAll('.kid')];
+    r.querySelectorAll('[data-at]').forEach(el=>{
+      const isKid=el.classList.contains('kid'); let [dx,dy,rot]=el.dataset.from.split(',').map(Number); let tx,ty,tr,op,q;
+      if(reduce){tx=ty=tr=0;op=1;q=1}
+      else if(mobile&&isKid){
+        const k=kids.indexOf(el),n=kids.length,seg=1/n,st=k*seg;
+        const qi=Math.min(1,Math.max(0,(p-st+.04)/(seg*.45)));
+        const qo=k===n-1?0:Math.min(1,Math.max(0,(p-(st+seg*.85))/(seg*.3)));
+        q=back(qi); tx=(1-q)*(k%2?70:-70)-qo*80; ty=(1-q)*10; tr=(1-q)*(k%2?8:-8)-qo*10; op=Math.min(1,qi*1.4)*(1-qo);
+      } else {
+        q=Math.min(1,Math.max(0,(prog-(+el.dataset.at))/.28)); q=back(q); tx=(1-q)*dx; ty=(1-q)*dy; tr=(1-q)*rot; op=Math.min(1,Math.max(0,q*1.4));
+      }
+      el.style.transform=`translate(${tx}vw,${ty}vh) rotate(${tr}deg)`; el.style.opacity=op.toFixed(2);
+      const say=el.querySelector('.say'); if(say){(q>.95&&op>.9)?say.removeAttribute('data-hide'):say.setAttribute('data-hide','')}
+    });
+  });
+}
+const map=$('#map'), mapLinks=[...map.querySelectorAll('a')];
+function mapUpd(){if($('#v-home').hidden)return;const mid=innerHeight*.5;let cur='top';['r-living','r-kitchen','r-concert','r-bedroom','lights'].forEach(id=>{if(document.getElementById(id).getBoundingClientRect().top<mid)cur=id});mapLinks.forEach(l=>l.setAttribute('aria-current',l.dataset.jump===cur))}
+let tick=false;addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(()=>{frame();mapUpd();tick=false})}},{passive:true});
+addEventListener('resize',()=>{frame();map.hidden=$('#v-home').hidden||innerWidth<=760});
+
+/* lights */
+function setLights(off){$('#lights').classList.toggle('off',off);$('#switch').setAttribute('aria-pressed',off);$('#switchLbl').textContent=off?t('sw_on'):t('sw_off');$('#switch').setAttribute('aria-label',$('#switchLbl').textContent)}
+$('#switch').addEventListener('click',()=>setLights(!$('#lights').classList.contains('off')));
+let autoOff=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!autoOff){autoOff=true;setTimeout(()=>setLights(true),900)}}),{threshold:.5}).observe($('#lights'));
+
+/* ===================== boot ===================== */
+let heroVisible=true;
+(function boot(){
+  let saved=null;try{saved=localStorage.getItem('tla_lang')}catch(e){}
+  const nav=(navigator.language||'en').slice(0,2).toLowerCase();
+  LANG=LANGS.includes(saved)?saved:(LANGS.includes(nav)?nav:'en');
+  $('#langSel').value=LANG;
+  heroP=Player($('#heroPlayer'),()=>HERO_CLIPS);
+  watchP=Player($('#watchPlayer'),()=>CLIPS);
+  watchP.onChange(c=>{current=c.id;renderFeed()});
+  renderStatic();
+  $('#langSel').addEventListener('change',e=>{LANG=e.target.value;try{localStorage.setItem('tla_lang',LANG)}catch(err){}renderStatic()});
+  new IntersectionObserver(es=>es.forEach(e=>{heroVisible=e.isIntersecting;heroP.activate(heroVisible&&!$('#v-home').hidden)}),{threshold:.25}).observe($('#heroPlayer'));
+  go((location.hash||'#home').slice(1),false);
+})();
+</script>
+
+<script>
+/* Love & Ink bridge: when this page runs inside loveandink.co, the bag and routes talk to the parent site. */
+(function(){if(window.parent===window)return;document.documentElement.classList.add('emb');
+  const P=m=>{try{parent.postMessage(Object.assign({src:'tla'},m),'*')}catch(e){}};
+  document.addEventListener('click',e=>{
+    if(e.target.closest('#bag')){e.stopPropagation();e.preventDefault();P({type:'bag'});return}
+    const a=e.target.closest('[data-add]');if(!a)return;const id=a.dataset.add,p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+    const item=a.closest('.item'),btns=item?[...item.querySelectorAll('.sizes button')]:[],k=btns.findIndex(b=>b.getAttribute('aria-pressed')==='true'),sk=k>=0?p.sz[k]:'';
+    P({type:'add',id,name:t('p_'+id),price:p.p,size:k>=0?btns[k].textContent:'',sizeKey:sk?sk.replace('sz_',''):'',img:new URL('assets/'+p.img+'.webp',location.href).href})},true);
+  addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data||{};if(d.src!=='li')return;
+    if(d.type==='count')$('#bagN').textContent=d.n;
+    if(d.type==='route'&&d.v)go(d.v,true);
+    if(d.type==='pause'){heroP&&heroP.activate(false);watchP&&watchP.activate(false)}
+    if(d.type==='resume'){const v=(location.hash||'#home').slice(1);heroP&&heroP.activate(v==='home'&&heroVisible);watchP&&watchP.activate(v==='watch')}});
+  P({type:'ready'})})();
+</script>
+</body></html>

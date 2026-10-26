@@ -1,0 +1,6 @@
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+
+# Checkout mode lives in site/*/index.html as window.LI_PAY_MODE (default "preorder").
+# Square env vars: SQUARE_ACCESS_TOKEN, SQUARE_LOCATION_ID, SQUARE_ENV (sandbox | production)
