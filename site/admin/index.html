@@ -264,6 +264,46 @@ details.more[open] summary{margin-bottom:12px}
 .idetail dl{display:grid;grid-template-columns:140px 1fr;gap:8px 16px;margin:16px 0}
 .idetail dt{color:var(--mut);font-size:.84rem}.idetail dd{margin:0;white-space:pre-wrap;word-break:break-word}
 
+/* ---------- orders ---------- */
+.olist{display:flex;flex-direction:column;gap:10px}
+.ocard{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;text-align:left;width:100%;cursor:pointer;transition:border-color .15s,transform .15s}
+.ocard:hover{border-color:var(--line2);transform:translateY(-1px)}
+.ocard .code{font-family:var(--m);font-size:.78rem;color:var(--mut)}
+.ocard b{font-size:1rem}
+.ocard .its{color:var(--ink2);font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ocard .right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.ocard .tot{font-family:var(--d);font-size:1.4rem;font-weight:600;line-height:1}
+.dots3{display:flex;gap:4px}.dots3 i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.shopdot{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--ink2)}.shopdot i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.st-new{color:var(--hot);background:var(--hot-soft);border-color:transparent}
+.st-production{color:#9A6A00;background:rgba(232,178,58,.16);border-color:transparent}
+.st-packed{color:var(--info);background:color-mix(in srgb,var(--info) 14%,transparent);border-color:transparent}
+.st-shipped,.st-delivered{color:var(--ok);background:var(--ok-soft);border-color:transparent}
+.st-cancelled{color:var(--mut)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.steps button{border:1px solid var(--line2);background:var(--card2);border-radius:10px;padding:8px 4px;font-size:.78rem;font-weight:600;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:4px}
+.steps button i{width:10px;height:10px;border-radius:50%;border:2px solid currentColor}
+.steps button.done{color:var(--ok);border-color:transparent;background:var(--ok-soft)}.steps button.done i{background:currentColor}
+.steps button.cur{color:#fff;background:var(--hot);border-color:var(--hot)}.steps button.cur i{background:#fff;border-color:#fff}
+.oitems{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.oitems .sh{padding:8px 12px;background:var(--card2);font-family:var(--m);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);display:flex;gap:8px;align-items:center}
+.oitems .sh i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.oitem{display:grid;grid-template-columns:34px 1fr auto;gap:10px;padding:10px 12px;border-top:1px solid var(--line);align-items:start}
+.oitem .q{font-family:var(--m);font-weight:500;background:var(--line);border-radius:8px;text-align:center;padding:3px 0}
+.oitem small{display:block;color:var(--mut)}
+.osum{display:grid;grid-template-columns:1fr auto;gap:4px 16px;font-size:.9rem;padding:10px 12px;border-top:1px solid var(--line)}
+.osum b{font-size:1rem}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.files a{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;font-size:.74rem;color:var(--mut)}
+.files img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--card2)}
+.files span{display:block;padding:5px 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist{display:flex;flex-direction:column;gap:6px;font-size:.84rem;color:var(--ink2)}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-r{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;font-size:.86rem}
+.bar-r .tr{height:10px;border-radius:999px;background:var(--line);overflow:hidden}.bar-r .tr i{display:block;height:100%;border-radius:999px;background:var(--c)}
+.bar-r b{font-family:var(--m);font-size:.8rem}
+@media (max-width:860px){.ocard{grid-template-columns:1fr auto}.ocard .dots3{display:none}.steps{grid-template-columns:repeat(3,1fr)}}
+
 /* ---------- brand kit ---------- */
 .kgroup{margin-bottom:26px}.kgroup>h2{margin-bottom:12px}
 .kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
@@ -314,6 +354,11 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
   .two,.three{grid-template-columns:1fr}
   .quick{grid-template-columns:1fr}
   .ibox{grid-template-columns:1fr}
+  #ordStatus,#ordShop,#inboxFilter,#brandChips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+  #ordStatus::-webkit-scrollbar,#ordShop::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  #ordKpis{display:none}
+  .tools{flex-wrap:wrap}
   .ilist{max-height:none}
   .vrow{grid-template-columns:1fr 1fr 36px}.vrow .vn{grid-column:1/-1}.vrow.h{display:none}
   .grid{grid-template-columns:1fr 1fr;gap:10px}
@@ -381,7 +426,7 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
     <button class="nav-i" data-go="brand"><svg class="i"><use href="#i-palette"/></svg>Brand kit</button>
     <div class="nav-g">Shop</div>
     <button class="nav-i" data-go="merch"><svg class="i"><use href="#i-tag"/></svg>Merch &amp; stock</button>
-    <button class="nav-i" data-go="orders"><svg class="i"><use href="#i-box"/></svg>Orders<span class="soon">next</span></button>
+    <button class="nav-i" data-go="orders"><svg class="i"><use href="#i-box"/></svg>Orders<span class="ct" data-count="orders" hidden></span></button>
     <div class="nav-g">Fans</div>
     <button class="nav-i" data-go="inbox"><svg class="i"><use href="#i-inbox"/></svg>Inbox<span class="ct" data-count="inbox" hidden></span></button>
     <button class="nav-i" data-go="growth"><svg class="i"><use href="#i-chart"/></svg>Campaigns &amp; social<span class="soon">soon</span></button>
@@ -412,19 +457,22 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
       <div class="hello"><div><div class="eyebrow" id="today"></div><h1 class="serif" id="hello">Hello</h1></div>
         <div class="tools" style="margin:0"><button class="btn ghost" data-go="studio"><svg class="i"><use href="#i-brush"/></svg>Edit website</button><button class="btn hot" id="dashPromo"><svg class="i"><use href="#i-plus"/></svg>New promo</button></div></div>
       <div class="kpis">
-        <div class="card kpi soon"><svg class="i"><use href="#i-chart"/></svg><div class="eyebrow">Sales this week</div><div class="v" id="kSales">—</div><div class="s" id="kSalesS">Arrives with Orders, the next update</div></div>
+        <div class="card kpi"><svg class="i"><use href="#i-chart"/></svg><div class="eyebrow">Sales this week</div><div class="v" id="kSales">$0</div><div class="s" id="kSalesS">No orders yet</div></div>
         <div class="card kpi"><svg class="i"><use href="#i-inbox"/></svg><div class="eyebrow">New messages</div><div class="v" id="kInbox">0</div><div class="s" id="kInboxS">From fans and customers</div></div>
         <div class="card kpi"><svg class="i"><use href="#i-mega"/></svg><div class="eyebrow">Live promos</div><div class="v" id="kPromos">0</div><div class="s" id="kPromosS">Showing on the site</div></div>
         <div class="card kpi"><svg class="i"><use href="#i-tag"/></svg><div class="eyebrow">Merch</div><div class="v" id="kMerch">—</div><div class="s" id="kMerchS">Connect Square to see stock</div></div>
       </div>
       <div class="dgrid">
-        <div class="card"><div class="card-h"><h2>Latest messages</h2><button class="btn small ghost" data-go="inbox">Open inbox</button></div><div class="list" id="dMsgs"></div></div>
+        <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+          <div class="card"><div class="card-h"><h2>Sales by shop · last 30 days</h2><button class="btn small ghost" data-go="orders">All orders</button></div><div class="bars" id="dShops"></div><div class="muted" id="dShopsN" style="font-size:.8rem;margin-top:10px"></div></div>
+          <div class="card"><div class="card-h"><h2>Orders to ship</h2></div><div class="list" id="dOrders"></div></div>
+          <div class="card"><div class="card-h"><h2>Latest messages</h2><button class="btn small ghost" data-go="inbox">Open inbox</button></div><div class="list" id="dMsgs"></div></div></div>
         <div style="display:flex;flex-direction:column;gap:14px">
           <div class="card"><div class="card-h"><h2>Needs attention</h2></div><div class="list" id="dAttn"></div></div>
           <div class="card"><div class="card-h"><h2>Coming to this dashboard</h2></div>
             <div class="road">
-              <div class="card"><svg class="i"><use href="#i-box"/></svg><b>Orders</b><small>Every Square order, packed → shipped → delivered, with tracking</small></div>
-              <div class="card"><svg class="i"><use href="#i-truck"/></svg><b>Shipping</b><small>Tracking now, Shippo labels after</small></div>
+              <div class="card"><svg class="i"><use href="#i-truck"/></svg><b>Shipping labels</b><small>Buy and print labels with Shippo, right from each order</small></div>
+              <div class="card"><svg class="i"><use href="#i-inbox"/></svg><b>Customer emails</b><small>Order received and shipped-with-tracking emails through Resend</small></div>
               <div class="card"><svg class="i"><use href="#i-chart"/></svg><b>Campaigns</b><small>Promo links per item, clicks and sales</small></div>
               <div class="card"><svg class="i"><use href="#i-share"/></svg><b>Social</b><small>Instagram, TikTok, YouTube, Facebook</small></div>
             </div></div>
@@ -506,20 +554,19 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
       <div class="grid" id="grid"></div>
     </section>
 
-    <!-- ===== orders (next) ===== -->
+    <!-- ===== orders ===== -->
     <section class="page" data-panel="orders" hidden>
-      <div class="head"><div><div class="eyebrow">Shop</div><h1 class="serif">Orders</h1><p>Coming in the next update, once Square is connected.</p></div></div>
-      <div class="card"><div class="road">
-        <div class="card"><b>Order board</b><small>New → Packed → Shipped → Delivered, straight from Square</small></div>
-        <div class="card"><b>Packing slips</b><small>Printable, with custom art files attached for print orders</small></div>
-        <div class="card"><b>Tracking</b><small>Paste a tracking number, the customer gets an email</small></div>
-        <div class="card"><b>Shippo labels</b><small>Buy and print labels without leaving the back office (after)</small></div>
-      </div></div>
+      <div class="head"><div><div class="eyebrow">Shop · all four stores</div><h1 class="serif">Orders</h1><p>Every checkout from Tiny Legends, Prints, Publishing and Lifestyle. One package and one tracking number per order.</p></div>
+        <button class="icon" id="ordReload" title="Refresh" aria-label="Refresh">↻</button></div>
+      <div class="kpis" id="ordKpis"></div>
+      <div class="chips" id="ordStatus" style="margin-bottom:10px"></div>
+      <div class="tools"><div class="chips" id="ordShop"></div><input class="search" id="ordQ" type="search" placeholder="Search name, email, order code or item" aria-label="Search orders" style="min-width:220px"></div>
+      <div class="olist" id="olist"></div>
     </section>
 
     <!-- ===== inbox ===== -->
     <section class="page" data-panel="inbox" hidden>
-      <div class="head"><div><div class="eyebrow">Fans</div><h1 class="serif">Inbox</h1><p>Everything sent through the website: messages, pre-orders, reviews and drop sign-ups.</p></div>
+      <div class="head"><div><div class="eyebrow">Fans</div><h1 class="serif">Inbox</h1><p>Everything fans send through the website: messages, reviews and drop sign-ups. Orders live in Orders.</p></div>
         <button class="icon" id="inboxReload" title="Refresh" aria-label="Refresh">↻</button></div>
       <div class="chips" id="inboxFilter" style="margin-bottom:14px"></div>
       <div class="ibox"><div class="card ilist" id="ilist"></div><div class="card idetail" id="idetail"><div class="empty">Pick a message to read it.</div></div></div>
@@ -552,7 +599,7 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
   <nav class="mobnav" aria-label="Sections">
     <button data-go="home"><svg class="i"><use href="#i-home"/></svg>Home</button>
     <button data-go="studio"><svg class="i"><use href="#i-brush"/></svg>Studio</button>
-    <button data-go="promos"><svg class="i"><use href="#i-mega"/></svg>Promos</button>
+    <button data-go="orders"><svg class="i"><use href="#i-box"/></svg>Orders<span class="ct" data-count="orders" hidden></span></button>
     <button data-go="merch"><svg class="i"><use href="#i-tag"/></svg>Merch</button>
     <button data-go="inbox"><svg class="i"><use href="#i-inbox"/></svg>Inbox<span class="ct" data-count="inbox" hidden></span></button>
     <button data-go="more"><svg class="i"><use href="#i-dots"/></svg>More</button>
@@ -571,6 +618,13 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
     <p class="mono muted" style="margin:0">SKUs are made automatically and tie each size to checkout. Leave them as they are.</p>
   </div>
   <div class="sheet-f"><button class="btn danger small" id="edHide">Hide from shop</button><span class="sp"></span><button class="btn ghost" data-close>Cancel</button><button class="btn hot" id="edSave">Save to Square</button></div>
+</div></div>
+
+<!-- order detail -->
+<div class="sheet" id="osheet" hidden><div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="oTitle">
+  <div class="sheet-h"><button class="icon" data-close aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button><h2 id="oTitle">Order</h2><span class="pill" id="oPay"></span></div>
+  <div class="sheet-b" id="obody"></div>
+  <div class="sheet-f"><button class="btn ghost small" id="oSlip"><svg class="i"><use href="#i-box"/></svg>Packing slip</button><span class="sp"></span><button class="btn ghost" id="oSave">Save</button><button class="btn hot" id="oNext">Next step</button></div>
 </div></div>
 
 <!-- recipe editor -->
@@ -678,16 +732,16 @@ async function start(me){S.me=me;$('#gate').hidden=true;$('#app').hidden=false;
   const [def,content,site]=await Promise.all([fetch('/admin/defaults.json').then(r=>r.json()),fetch(F('content'),{cache:'no-store'}).then(r=>r.json()).catch(()=>({})),api('site?draft=1').catch(()=>({}))]);
   S.def=def;S.content=JSON.parse(JSON.stringify({recipes:content.recipes&&content.recipes.length?content.recipes:def.recipes,announcement:content.announcement||def.announcement,picks:content.picks||def.picks,hero:content.hero||def.hero}));
   S.site={text:site.text||{},theme:site.theme||{},images:site.images||{},layout:site.layout||{},promos:site.promos||[]};S.publishedAt=site.publishedAt;setSiteDirty(!!site.dirty,true);
-  renderRecipes();renderHome();renderPromos();renderTheme();renderChanges();loadMerch();loadStatus();loadInbox();
+  renderRecipes();renderHome();renderPromos();renderTheme();renderChanges();loadMerch();loadStatus();loadInbox();loadOrders();
   route(location.hash.slice(1)||'home')}
 
 /* ================= routing ================= */
 const TITLES={home:'Dashboard',studio:'Studio',promos:'Promos',tl:'Tiny Legends',brand:'Brand kit',merch:'Merch & stock',orders:'Orders',inbox:'Inbox',growth:'Campaigns & social',settings:'Square & connections'};
-function route(t){if(t==='more'){const m=['tl','brand','orders','growth','settings'];t=m[(m.indexOf(S.cur)+1)%m.length]||'tl'}
+function route(t){if(t==='more'){const m=['promos','tl','brand','growth','settings'];t=m[(m.indexOf(S.cur)+1)%m.length]||'tl'}
   if(!TITLES[t])t='home';S.cur=t;
-  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);$$('.nav-i,.mobnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===t||(b.dataset.go==='more'&&['tl','brand','orders','growth','settings'].includes(t))));
+  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);$$('.nav-i,.mobnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===t||(b.dataset.go==='more'&&['promos','tl','brand','growth','settings'].includes(t))));
   $('#pageTitle').textContent=TITLES[t];history.replaceState(null,'','#'+t);window.scrollTo(0,0);
-  if(t==='studio'&&!$('#pv').src)loadFrame();if(t==='inbox')renderInbox();if(t==='brand')renderKit()}
+  if(t==='studio'&&!$('#pv').src)loadFrame();if(t==='inbox')renderInbox();if(t==='orders')loadOrders();if(t==='brand')renderKit()}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b&&!b.closest('.sheet')){route(b.dataset.go)}});
 addEventListener('beforeunload',e=>{if(S.tlDirty||S.saving){e.preventDefault();e.returnValue=''}});
 const mq=matchMedia('(max-width:860px)');const mob=()=>{$('#mobTheme').hidden=!mq.matches};mq.addEventListener('change',mob);mob();
@@ -884,7 +938,7 @@ $('#tlSave').onclick=async()=>{const b=$('#tlSave');busy(b,true,'Publishing');tr
 
 /* ================= inbox ================= */
 const FORMS={notify:'Drop alert sign-up',preorder:'Pre-order',review:'Review',contact:'Message'};
-async function loadInbox(){try{S.inbox=(await api('inbox')).items;}catch(e){S.inbox=[]}renderInbox();dashboard()}
+async function loadInbox(){try{S.inbox=(await api('inbox')).items.filter(m=>m.form!=='preorder');}catch(e){S.inbox=[]}renderInbox();dashboard()}
 $('#inboxReload').onclick=()=>loadInbox().then(()=>toast('Inbox refreshed'));
 function ibName(m){return m.name||m.fields.name||m.email||m.fields.email||'Someone'}
 function ibSnippet(m){const f=m.fields||{};return f.message||f.review||f.text||f.notes||Object.entries(f).filter(([k])=>!['name','email'].includes(k)).map(([k,v])=>v).join(' · ')}
@@ -903,14 +957,86 @@ function showMsg(m){const f=m.fields||{},email=m.email||f.email;const rows=Objec
    <div class="tools">${email?`<a class="btn hot" href="mailto:${esc(email)}?subject=${encodeURIComponent('Love & Ink')}">Reply by email</a>`:''}<button class="btn ghost" data-ist="done">Mark done</button><button class="btn ghost" data-ist="${m.status==='archived'?'read':'archived'}">${m.status==='archived'?'Move back':'Archive'}</button></div>`}
 $('#idetail').onclick=async e=>{const b=e.target.closest('[data-ist]');if(!b)return;const m=S.inbox.find(x=>x.id===S.ibSel);if(!m)return;m.status=b.dataset.ist;renderInbox();showMsg(m);dashboard();try{await api('inbox',{method:'POST',body:JSON.stringify({id:m.id,status:m.status})})}catch(err){toast(err.message,1)}};
 
+/* ================= orders ================= */
+const SHOP={tla:['Tiny Legends','#7B3FE4'],prints:['Prints','#2F45D8'],pub:['Publishing','#C99A2E'],li:['Lifestyle','#D9822B'],other:['Other','#8C8794']};
+const OST=[['new','New'],['production','In production'],['packed','Packed'],['shipped','Shipped'],['delivered','Delivered']];
+const OSTL=Object.fromEntries([...OST,['cancelled','Cancelled']]);
+const fm=n=>'$'+(Math.round(n*100)/100).toLocaleString(undefined,{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});
+Object.assign(S,{orders:[],oF:'open',oShop:'all',oSel:null});
+async function loadOrders(say){try{const d=await api('orders');S.orders=d.orders;S.ordSquare=d.square}catch(e){S.orders=S.orders||[]}renderOrders();dashboard();if(say)toast('Orders refreshed')}
+$('#ordReload').onclick=()=>loadOrders(true);
+const open=o=>!['delivered','cancelled','shipped'].includes(o.status);
+const counts=o=>o.status!=='cancelled'&&!['refunded','canceled'].includes(o.payment&&o.payment.state);
+function payPill(o){const p=(o.payment&&o.payment.state)||'not charged';return {paid:['live','Paid'],pending:['sched','Awaiting payment'],refunded:['hid','Refunded'],canceled:['hid','Canceled'],'not charged':['out','Pre-order · not charged']}[p]||['',p]}
+function renderOrders(){const O=S.orders;const n=O.filter(o=>o.status==='new').length;$$('[data-count="orders"]').forEach(c=>{c.hidden=!n;c.textContent=n});
+  const wk=Date.now()-7*864e5;
+  $('#ordKpis').innerHTML=[['New',O.filter(o=>o.status==='new').length,'Waiting to start'],['In production',O.filter(o=>o.status==='production').length,'Custom and made-to-order'],['Ready to ship',O.filter(o=>o.status==='packed').length,'Packed, needs a label'],['Shipped this week',O.filter(o=>['shipped','delivered'].includes(o.status)&&(o.history||[]).some(h=>h.status==='shipped'&&new Date(h.at)>wk)).length,'On their way']]
+    .map(([l,v,sub])=>`<div class="card kpi"><div class="eyebrow">${l}</div><div class="v">${v}</div><div class="s">${sub}</div></div>`).join('');
+  const sc=[['open','Open',O.filter(open).length],...OST.map(([k,l])=>[k,l,O.filter(o=>o.status===k).length]),['all','All',O.length],['cancelled','Cancelled',O.filter(o=>o.status==='cancelled').length]];
+  $('#ordStatus').innerHTML=sc.map(([k,l,c])=>`<button class="chip" data-of="${k}" aria-pressed="${k===S.oF}">${l} <span class="mono">${c}</span></button>`).join('');
+  $('#ordShop').innerHTML=[['all','All shops','var(--ink)'],...['tla','prints','pub','li'].map(k=>[k,SHOP[k][0],SHOP[k][1]])].map(([k,l,c])=>`<button class="chip" style="--c:${c}" data-os="${k}" aria-pressed="${k===S.oShop}">${k!=='all'?'<i></i>':''}${l}</button>`).join('');
+  const q=$('#ordQ').value.trim().toLowerCase();
+  const L=O.filter(o=>(S.oF==='open'?open(o):S.oF==='all'?true:o.status===S.oF)&&(S.oShop==='all'||(o.shops||[]).includes(S.oShop))&&(!q||[o.code,o.name,o.email,...o.items.map(i=>i.name+' '+i.sku)].join(' ').toLowerCase().includes(q)));
+  $('#olist').innerHTML=L.length?L.map(o=>{const [pc,pl]=payPill(o);const nItems=o.items.reduce((a,i)=>a+i.qty,0);return `<button class="card ocard" data-ord="${esc(o.code)}"><span class="dots3">${(o.shops||[]).map(k=>`<i style="--c:${(SHOP[k]||SHOP.other)[1]}" title="${(SHOP[k]||SHOP.other)[0]}"></i>`).join('')}</span>
+    <span style="min-width:0"><span class="code">${esc(o.code)} · ${ago(o.at)}</span><b style="display:block">${esc(o.name||o.email||'Customer')}</b><span class="its" style="display:block">${nItems} item${nItems>1?'s':''} · ${esc(o.items.map(i=>i.name).join(', '))}</span>
+    <span style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="pill st-${o.status}">${OSTL[o.status]}</span><span class="pill ${pc}">${pl}</span>${o.custom?'<span class="pill">Made to order</span>':''}${o.tracking?`<span class="pill">${esc(o.carrier||'')} ${esc(o.tracking)}</span>`:''}</span></span>
+    <span class="right"><span class="tot">${fm(o.total)}</span></span></button>`}).join('')
+   :`<div class="card empty">${O.length?'No orders match.':'No orders yet. Every checkout from the four shops shows up here, starting now.'}</div>`}
+$('#ordStatus').onclick=e=>{const b=e.target.closest('[data-of]');if(b){S.oF=b.dataset.of;renderOrders()}};
+$('#ordShop').onclick=e=>{const b=e.target.closest('[data-os]');if(b){S.oShop=b.dataset.os;renderOrders()}};
+$('#ordQ').oninput=renderOrders;
+$('#olist').onclick=e=>{const b=e.target.closest('[data-ord]');if(b)openOrder(b.dataset.ord)};
+const trackUrl=o=>{const t=encodeURIComponent(o.tracking||'');return {USPS:`https://tools.usps.com/go/TrackConfirmAction?tLabels=${t}`,UPS:`https://www.ups.com/track?tracknum=${t}`,FedEx:`https://www.fedex.com/fedextrack/?trknbr=${t}`,DHL:`https://www.dhl.com/us-en/home/tracking.html?tracking-id=${t}`}[o.carrier]||''};
+const fileUrl=f=>f.id?F('orders')+'?file='+f.id:f.url;
+function openOrder(code){const o=S.orders.find(x=>x.code===code);if(!o)return;S.oSel=JSON.parse(JSON.stringify(o));const [pc,pl]=payPill(o);
+  $('#oTitle').textContent=(o.name||'Order')+' · '+o.code;$('#oPay').className='pill '+pc;$('#oPay').textContent=pl;
+  const groups={};o.items.forEach(i=>{(groups[i.shop]=groups[i.shop]||[]).push(i)});
+  const idx=OST.findIndex(x=>x[0]===o.status);
+  $('#obody').innerHTML=`<div class="steps">${OST.map(([k,l],i)=>`<button type="button" data-ost="${k}" class="${k===o.status?'cur':idx>i&&o.status!=='cancelled'?'done':''}"><i></i>${l}</button>`).join('')}</div>
+   <div class="two"><div><div class="eyebrow" style="margin-bottom:6px">Customer</div><b>${esc(o.name)}</b><div>${o.email?`<a href="mailto:${esc(o.email)}?subject=${encodeURIComponent('Your Love & Ink order '+o.code)}">${esc(o.email)}</a>`:''}</div></div>
+    <div><div class="eyebrow" style="margin-bottom:6px">Ship to</div><div style="white-space:pre-line">${esc(o.address||'No address yet')}</div></div></div>
+   <div class="oitems">${Object.entries(groups).map(([k,its])=>`<div class="sh" style="--c:${(SHOP[k]||SHOP.other)[1]}"><i></i>${(SHOP[k]||SHOP.other)[0]}${k==='prints'?' · made to order':''}</div>${its.map(i=>`<div class="oitem"><span class="q">${i.qty}×</span><span><b style="font-size:.92rem">${esc(i.name)}</b>${i.meta?`<small>${esc(i.meta)}</small>`:''}<small class="mono">${esc(i.sku)}</small></span><span class="mono">${fm(i.amount)}</span></div>`).join('')}`).join('')}
+    <div class="osum"><span class="muted">Subtotal</span><span>${fm(o.subtotal)}</span><span class="muted">Shipping</span><span>${o.shipping?fm(o.shipping):'Free'}</span><b>Total</b><b>${fm(o.total)}</b></div></div>
+   ${o.files&&o.files.length?`<div><div class="eyebrow" style="margin-bottom:8px">Customer art for printing</div><div class="files">${o.files.map(f=>`<a href="${esc(fileUrl(f))}" target="_blank" rel="noopener"><img src="${esc(fileUrl(f))}" alt="" loading="lazy"><span>${esc(f.name)}</span></a>`).join('')}</div></div>`:''}
+   ${o.note?`<div class="note warn" style="margin:0">${esc(o.note)}</div>`:''}
+   <div class="two"><label class="f">Carrier<select class="in" id="oCar"><option value="">Choose</option>${['USPS','UPS','FedEx','DHL','Other'].map(c=>`<option${c===o.carrier?' selected':''}>${c}</option>`).join('')}</select></label>
+    <label class="f">Tracking number<input class="in" id="oTrk" value="${esc(o.tracking||'')}" placeholder="9400 1000 0000 0000 0000 00" autocomplete="off"></label></div>
+   ${o.tracking&&trackUrl(o)?`<a class="btn ghost small" href="${trackUrl(o)}" target="_blank" rel="noopener" style="align-self:flex-start"><svg class="i"><use href="#i-truck"/></svg>Track package</a>`:''}
+   <label class="f">Team note <small>Only you two see this</small><textarea class="in" id="oNote" placeholder="e.g. Customer asked for gift wrap">${esc(o.staffNote||'')}</textarea></label>
+   <details class="more"><summary>History</summary><div class="hist">${(o.history||[]).slice().reverse().map(h=>`<div><b>${esc(OSTL[h.status]||h.status)}</b> · ${new Date(h.at).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} · ${esc(h.by)}</div>`).join('')}</div></details>
+   ${o.status!=='cancelled'?`<button class="btn danger small" data-ost="cancelled" style="align-self:flex-start">Cancel order</button>`:`<button class="btn ghost small" data-ost="new" style="align-self:flex-start">Reopen order</button>`}`;
+  const nx=OST[idx+1];$('#oNext').hidden=!nx||o.status==='cancelled';if(nx)$('#oNext').textContent='Mark '+nx[1].toLowerCase();
+  $('#osheet').hidden=false;document.body.style.overflow='hidden'}
+async function saveOrder(patch,msg){const o=S.oSel;try{const r=await api('orders',{method:'POST',body:JSON.stringify(Object.assign({code:o.code,tracking:$('#oTrk').value,carrier:$('#oCar').value,staffNote:$('#oNote').value},patch))});
+  const i=S.orders.findIndex(x=>x.code===r.code);S.orders[i]=r;renderOrders();dashboard();openOrder(r.code);toast(msg||'Order saved')}catch(e){toast(e.message,1)}}
+$('#obody').addEventListener('click',e=>{const b=e.target.closest('[data-ost]');if(!b)return;const st=b.dataset.ost;
+  if(st==='cancelled'&&!confirm('Cancel this order? If it was paid, refund it in Square too.'))return;
+  if(st==='shipped'&&!$('#oTrk').value.trim()&&!confirm('No tracking number yet. Mark shipped anyway?'))return;saveOrder({status:st},'Marked '+OSTL[st].toLowerCase())});
+$('#oSave').onclick=()=>saveOrder({});
+$('#oNext').onclick=()=>{const idx=OST.findIndex(x=>x[0]===S.oSel.status),nx=OST[idx+1];if(!nx)return;if(nx[0]==='shipped'&&!$('#oTrk').value.trim()&&!confirm('No tracking number yet. Mark shipped anyway?'))return;saveOrder({status:nx[0]},'Marked '+nx[1].toLowerCase())};
+$('#oSlip').onclick=()=>{const o=S.oSel,w=window.open('','_blank');if(!w)return toast('Allow pop-ups to print the slip',1);
+  w.document.write(`<!doctype html><title>Packing slip ${esc(o.code)}</title><style>body{font:14px/1.5 -apple-system,system-ui,sans-serif;margin:40px;color:#111}h1{font-family:Georgia,serif;font-weight:500;font-size:28px;margin:0}table{width:100%;border-collapse:collapse;margin:24px 0}td,th{text-align:left;padding:8px 6px;border-bottom:1px solid #ddd}th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#777}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.box{border:1px solid #ddd;border-radius:10px;padding:14px;white-space:pre-line;min-width:240px}img{height:56px}.thx{margin-top:30px;font-family:Georgia,serif;font-size:18px}</style>
+   <div class="top"><div><img src="/brand/heart_lockup.png" alt="Love & Ink"><h1>Packing slip</h1><div>Order <b>${esc(o.code)}</b> · ${new Date(o.at).toLocaleDateString()}</div></div><div class="box"><b>Ship to</b>\n${esc(o.address||o.name)}</div></div>
+   <table><tr><th>Qty</th><th>Item</th><th>Shop</th><th>SKU</th></tr>${o.items.map(i=>`<tr><td>${i.qty}</td><td>${esc(i.name)}${i.meta?`<br><small>${esc(i.meta)}</small>`:''}</td><td>${(SHOP[i.shop]||SHOP.other)[0]}</td><td>${esc(i.sku)}</td></tr>`).join('')}</table>
+   <div class="thx">Thank you for supporting our family studio.<br>— Jasmine &amp; Veneko</div><script>onload=()=>print()<\/script>`);w.document.close()};
+
+document.addEventListener('click',e=>{const b=e.target.closest('[data-dord]');if(b){route('orders');openOrder(b.dataset.dord)}});
 /* ================= dashboard ================= */
-function dashboard(){const n=S.inbox.filter(m=>m.status==='new').length;$('#kInbox').textContent=n;$('#kInboxS').textContent=S.inbox.length?`${S.inbox.length} total from fans and customers`:'Nothing yet';
+function dashboard(){const n=S.inbox.filter(m=>m.status==='new').length;const O=(S.orders||[]).filter(counts);
+  const wk=Date.now()-7*864e5,mo=Date.now()-30*864e5,W=O.filter(o=>new Date(o.at)>wk),M=O.filter(o=>new Date(o.at)>mo);
+  $('#kSales').textContent=fm(W.reduce((a,o)=>a+o.total,0));$('#kSalesS').textContent=W.length?`${W.length} order${W.length>1?'s':''}${W.some(o=>o.payment&&o.payment.state==='not charged')?' · includes pre-orders':''}`:'No orders this week yet';
+  const by={};M.forEach(o=>o.items.forEach(i=>{by[i.shop]=(by[i.shop]||0)+i.amount}));const mx=Math.max(1,...Object.values(by));
+  $('#dShops').innerHTML=['tla','prints','pub','li'].map(k=>`<div class="bar-r"><span class="shopdot" style="--c:${SHOP[k][1]}"><i></i>${SHOP[k][0]}</span><span class="tr"><i style="--c:${SHOP[k][1]};width:${(by[k]||0)/mx*100}%"></i></span><b>${fm(by[k]||0)}</b></div>`).join('');
+  $('#dShopsN').textContent=M.length?`${M.length} orders · ${fm(M.reduce((a,o)=>a+o.total,0))} total in the last 30 days`:'Sales show up here as orders come in.';
+  const ts=(S.orders||[]).filter(o=>['new','production','packed'].includes(o.status)).slice(0,5);
+  $('#dOrders').innerHTML=ts.length?ts.map(o=>`<button class="row-i" data-dord="${esc(o.code)}"><span class="av" style="background:var(--line);color:var(--ink)">${esc((o.name||'?')[0].toUpperCase())}</span><span class="tx"><b>${esc(o.name||o.code)}</b><small>${esc(o.code)} · ${esc(OSTL[o.status])} · ${o.items.reduce((a,i)=>a+i.qty,0)} items</small></span><span class="mono">${fm(o.total)}</span></button>`).join(''):'<div class="empty" style="padding:24px 0">Nothing waiting. ✓</div>';$('#kInbox').textContent=n;$('#kInboxS').textContent=S.inbox.length?`${S.inbox.length} total from fans and customers`:'Nothing yet';
   const lp=S.site.promos.filter(p=>pstate(p)[1]==='Live');$('#kPromos').textContent=lp.length;$('#kPromosS').textContent=lp.length?lp.map(p=>p.name||p.title).slice(0,2).join(', '):(S.siteDirty?'Publish to put drafts live':'None running');
   if(S.sq&&S.sq.connected){const items=S.items.filter(i=>!i.archived);const out=items.filter(i=>total(i)===0).length;$('#kMerch').textContent=items.length;$('#kMerchS').textContent=`${out} sold out · ${S.sq.env==='production'?'live payments':'sandbox'}`;$('.kpi:nth-child(4)').classList.remove('soon')}
   $('#dMsgs').innerHTML=S.inbox.slice(0,5).map(m=>`<button class="row-i" data-go="inbox"><span class="av">${esc(ibName(m)[0].toUpperCase())}</span><span class="tx"><b>${esc(ibName(m))}</b><small>${esc(FORMS[m.form]||m.form)} · ${esc(ibSnippet(m).slice(0,80))}</small></span><span class="mono muted">${ago(m.at)}</span></button>`).join('')||'<div class="empty" style="padding:24px 0">No messages yet. Sign-ups, pre-orders and reviews land here.</div>';
   const at=[];if(!S.sq||!S.sq.connected)at.push(['Connect Square','So merch, stock and orders can show up here','settings']);
   if(S.siteDirty)at.push(['Website draft not published','Your Studio changes are saved but not live','studio']);if(S.tlDirty)at.push(['Tiny Legends changes not published','Recipes or homepage edits are waiting','tl']);
   if(n)at.push([`${n} new message${n>1?'s':''}`,'Fans are waiting on you','inbox']);
+  const no=(S.orders||[]).filter(o=>o.status==='new').length;if(no)at.unshift([`${no} new order${no>1?'s':''}`,'Start making or packing','orders']);
   S.items.filter(i=>!i.archived&&i.brand&&total(i)!==null&&total(i)<=3).slice(0,4).forEach(i=>at.push([`${i.name}: ${total(i)?'only '+total(i)+' left':'sold out'}`,'Restock or hide it','merch']));
   $('#dAttn').innerHTML=at.length?at.map(([t,s,g])=>`<button class="row-i" data-go="${g}"><span class="av" style="background:var(--warn-soft);color:var(--warn)">!</span><span class="tx"><b>${esc(t)}</b><small>${esc(s)}</small></span></button>`).join(''):'<div class="empty" style="padding:24px 0">All clear ✓</div>'}
 

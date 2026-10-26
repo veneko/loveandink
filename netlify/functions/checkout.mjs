@@ -4,7 +4,7 @@
 //   SQUARE_ACCESS_TOKEN  (Sandbox token first, then Production)
 //   SQUARE_LOCATION_ID
 //   SQUARE_ENV           "sandbox" or "production"
-import { loadSquare } from '../lib/lib.mjs';
+import { loadSquare, store } from '../lib/lib.mjs';
 let API;
 const H = () => ({ 'Square-Version': '2025-01-23', Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`, 'Content-Type': 'application/json' });
 // Custom prints are priced in the Prints studio; the server only accepts prices inside these ranges (USD).
@@ -67,6 +67,7 @@ export default async (req) => {
       checkout_options: { redirect_url: `${site}/?order=${encodeURIComponent(code)}`, ask_for_shipping_address: true, allow_tipping: false },
       pre_populated_data: email ? { buyer_email: email } : undefined
     });
+    try { await store().setJSON('paylink/' + code.replace(/[^\w-]/g, ''), { orderId: d.payment_link.order_id, linkId: d.payment_link.id, at: new Date().toISOString() }) } catch (e) {}
     return json({ url: d.payment_link.url });
   } catch (e) { return json({ error: e.message || 'Checkout is busy. Try again.' }, 502) }
 };
