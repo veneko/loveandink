@@ -4,3 +4,7 @@
 
 # Checkout mode lives in site/*/index.html as window.LI_PAY_MODE (default "preorder").
 # Square env vars: SQUARE_ACCESS_TOKEN, SQUARE_LOCATION_ID, SQUARE_ENV (sandbox | production)
+# Back office (/admin) env vars: GOOGLE_CLIENT_ID (Google sign-in). Optional ADMIN_EMAILS (comma list; default Jasmine + Veneko).
+
+[functions]
+  node_bundler = "esbuild"

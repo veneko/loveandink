@@ -26,8 +26,15 @@ export default async (req) => {
     const catalog = items.filter(i => !/^CUSTOM-/.test(i.sku));
     const found = {};
     await Promise.all([...new Set(catalog.map(i => i.sku))].map(async sku => {
-      const d = await sq('/v2/catalog/search', { object_types: ['ITEM_VARIATION'], query: { exact_query: { attribute_name: 'sku', attribute_value: sku } } });
-      const v = (d.objects || [])[0]; if (v) found[sku] = v;
+      let v;
+      if (/^SQV-[A-Z0-9]+$/i.test(sku)) { // items added in Square without a SKU: the variation id travels instead
+        const r = await fetch(API + '/v2/catalog/object/' + sku.slice(4), { headers: H() }); const d = await r.json().catch(() => ({}));
+        if (r.ok && d.object && d.object.type === 'ITEM_VARIATION' && !d.object.is_deleted) v = d.object;
+      } else {
+        const d = await sq('/v2/catalog/search', { object_types: ['ITEM_VARIATION'], query: { exact_query: { attribute_name: 'sku', attribute_value: sku } } });
+        v = (d.objects || [])[0];
+      }
+      if (v) found[sku] = v;
     }));
     const missing = catalog.find(i => !found[i.sku]);
     if (missing) return json({ error: `${missing.name} isn’t available right now.` }, 409);

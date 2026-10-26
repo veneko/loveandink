@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Back office · Love & Ink</title>
+<link rel="icon" href="/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1820;--ink2:#4A4650;--mut:#7A7480;--paper:#FBF8F3;--cloud:#F4EFE7;--line:rgba(26,24,32,.13);--line2:rgba(26,24,32,.24);
+  --tla:#7B3FE4;--li:#D9822B;--pub:#2F45D8;--ok:#2E7D4F;--warn:#B4532F;--acc:var(--tla);
+  --d:"Cormorant Garamond",Garamond,serif;--u:"Instrument Sans",system-ui,sans-serif;--m:"DM Mono",ui-monospace,monospace;--r:14px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cloud);color:var(--ink);font:15px/1.5 var(--u);-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+[hidden]{display:none!important}
+.mono{font-family:var(--m);font-size:.78rem;letter-spacing:.02em}
+.eyebrow{font-family:var(--m);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+h1,h2,h3{font-family:var(--d);font-weight:600;line-height:1.05;margin:0}
+h1{font-size:clamp(2.3rem,7vw,3.4rem)}h2{font-size:1.9rem}h3{font-size:1.35rem}
+
+/* ---------- sign in ---------- */
+.gate{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px 16px}
+.gate-card{width:min(460px,100%);background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:34px 28px 28px;box-shadow:0 30px 80px -40px rgba(26,24,32,.4);text-align:center}
+.gate-mark{display:flex;justify-content:center;gap:10px;margin-bottom:18px}
+.gate-mark i{width:12px;height:12px;border-radius:50%;display:block}
+.gate h1{margin:6px 0 10px}
+.gate p{color:var(--ink2);margin:0 auto 22px;max-width:34ch}
+#gbtn{display:flex;justify-content:center;min-height:44px}
+.gate .err{color:var(--warn);margin:16px 0 0;font-weight:500}
+.gate .fine{font-size:.8rem;color:var(--mut);margin:22px 0 0}
+
+/* ---------- shell ---------- */
+.top{position:sticky;top:0;z-index:20;background:rgba(244,239,231,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top-in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--d);font-size:1.45rem;font-weight:600;white-space:nowrap}
+.brand small{font-family:var(--m);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-left:8px;font-weight:400}
+.me{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:0}
+.me img{width:30px;height:30px;border-radius:50%;object-fit:cover;background:var(--line)}
+.me span{font-size:.85rem;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:28vw}
+.tabs{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:none;padding:10px 12px 12px;font-weight:600;color:var(--mut);border-bottom:2px solid transparent;white-space:nowrap}
+.tab[aria-selected=true]{color:var(--ink);border-color:var(--ink)}
+main{max-width:1100px;margin:0 auto;padding:26px 16px 120px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.head p{margin:6px 0 0;color:var(--ink2);max-width:58ch}
+
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:10px 18px;font-weight:600;display:inline-flex;align-items:center;gap:8px;min-height:42px;text-decoration:none;transition:transform .15s,opacity .15s}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line2)}
+.btn.small{padding:6px 12px;min-height:34px;font-size:.85rem}
+.btn.danger{background:transparent;color:var(--warn);border-color:rgba(180,83,47,.4)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.icon{border:1px solid var(--line2);background:var(--paper);width:36px;height:36px;border-radius:10px;display:inline-grid;place-items:center;font-size:1rem;line-height:1}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.note{background:var(--paper);border:1px dashed var(--line2);border-radius:var(--r);padding:16px 18px;color:var(--ink2);font-size:.92rem;margin-bottom:18px}
+.note b{color:var(--ink)}
+.note ol{margin:8px 0 0;padding-left:20px}
+.note.warn{border-style:solid;border-color:rgba(180,83,47,.35);background:#FBF1EA}
+
+/* brand chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line2);background:var(--paper);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:8px}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tools{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+.search{flex:1;min-width:0;border:1px solid var(--line2);background:var(--paper);border-radius:999px;padding:10px 16px;min-height:42px}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.prod{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;transition:transform .2s,box-shadow .2s}
+.prod:hover{transform:translateY(-2px);box-shadow:0 18px 40px -26px rgba(26,24,32,.5)}
+.prod .ph{aspect-ratio:4/3;background:var(--cloud) center/contain no-repeat;border-bottom:1px solid var(--line);position:relative}
+.prod .ph .pill{position:absolute;top:10px;left:10px}
+.prod .bd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px}
+.prod b{font-size:1rem;line-height:1.25}
+.prod .row{display:flex;justify-content:space-between;align-items:center;color:var(--ink2);font-size:.86rem}
+.pill{font-family:var(--m);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--paper);border:1px solid var(--line2)}
+.pill.live{color:var(--ok);border-color:rgba(46,125,79,.35)}
+.pill.out{color:var(--warn);border-color:rgba(180,83,47,.4)}
+.pill.hid{color:var(--mut)}
+.prod.is-hidden .ph{filter:grayscale(1);opacity:.55}
+.empty{padding:40px 16px;text-align:center;color:var(--mut)}
+
+/* editor sheet */
+.sheet{position:fixed;inset:0;z-index:50;display:flex;justify-content:flex-end;background:rgba(26,24,32,.35)}
+.sheet-in{width:min(640px,100%);height:100%;background:var(--paper);overflow:auto;padding:0 0 calc(110px + env(safe-area-inset-bottom));animation:slide .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes slide{from{transform:translateX(40px);opacity:0}}
+.sheet-h{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);padding:calc(14px + env(safe-area-inset-top)) 18px 14px;display:flex;align-items:center;gap:12px;z-index:2}
+.sheet-h h2{font-size:1.6rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-b{padding:18px;display:flex;flex-direction:column;gap:18px}
+.sheet-f{position:fixed;bottom:0;right:0;width:min(640px,100%);background:var(--paper);border-top:1px solid var(--line);padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;gap:10px;align-items:center;z-index:3}
+.sheet-f .sp{flex:1}
+label.f{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.86rem}
+label.f small{font-weight:400;color:var(--mut)}
+.in{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:10px 12px;width:100%;min-height:42px}
+.in:focus,.search:focus{outline:2px solid var(--acc);outline-offset:1px}
+textarea.in{min-height:96px;resize:vertical;line-height:1.45}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.photo{display:flex;gap:14px;align-items:center}
+.photo .ph{width:112px;aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:var(--cloud) center/cover no-repeat;flex:none}
+.vars{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.vrow{display:grid;grid-template-columns:1.3fr .8fr .8fr 36px;gap:8px;align-items:center;padding:10px;border-top:1px solid var(--line)}
+.vrow:first-child{border-top:0}
+.vrow.h{background:var(--cloud);font-family:var(--m);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding-block:8px}
+.vrow .in{min-height:38px;padding:7px 10px}
+.vrow .sku{grid-column:1/-1;margin-top:-2px;color:var(--mut)}
+.money{position:relative}.money::before{content:"$";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--mut)}.money .in{padding-left:20px}
+.add-row{border:0;background:none;color:var(--acc);font-weight:600;padding:12px;width:100%;text-align:left;border-top:1px solid var(--line)}
+
+/* recipes */
+.rlist{display:flex;flex-direction:column;gap:10px}
+.rcard{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.rcard .dot{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 18%,transparent)}
+.rcard .tx{flex:1;min-width:0}
+.rcard b{display:block;font-size:1.02rem}
+.rcard small{color:var(--mut)}
+.rcard .act{display:flex;gap:6px}
+.lang-tag{font-family:var(--m);font-size:.66rem;letter-spacing:.1em;color:var(--mut);margin-left:6px;font-weight:400}
+.stale{outline:2px solid #E8B23A;outline-offset:1px}
+.hint{font-size:.8rem;color:#9A6A00;font-weight:500}
+details.more{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+details.more summary{font-weight:600;cursor:pointer}
+details.more[open] summary{margin-bottom:12px}
+.sw{display:flex;gap:8px;flex-wrap:wrap}
+.sw button{width:34px;height:34px;border-radius:50%;border:2px solid #fff;background:var(--c);box-shadow:0 0 0 1px var(--line2)}
+.sw button[aria-pressed=true]{box-shadow:0 0 0 2px var(--ink)}
+
+/* home tab */
+.sec{margin-bottom:26px}
+.sec>h3{margin-bottom:10px}
+.toggle{display:flex;align-items:center;gap:12px;font-weight:600}
+.toggle input{width:44px;height:26px;appearance:none;-webkit-appearance:none;background:var(--line2);border-radius:999px;position:relative;transition:background .2s;flex:none}
+.toggle input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.toggle input:checked{background:var(--ok)}.toggle input:checked::after{transform:translateX(18px)}
+.picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.picks .card{display:flex;flex-direction:column;gap:8px}
+.clips{display:flex;flex-direction:column;gap:8px}
+.clip{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.clip img{width:44px;height:58px;object-fit:cover;border-radius:8px;background:var(--line)}
+.clip .t{flex:1;font-weight:600}
+.clip .n{font-family:var(--m);color:var(--mut);width:18px}
+
+/* square tab */
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:18px}
+.stat .card b{display:block;font-family:var(--d);font-size:1.6rem;margin-top:4px}
+
+.savebar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 8px 8px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);width:max-content;max-width:calc(100% - 32px)}
+.savebar .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,calc(-100% - 40px));background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;font-weight:600;z-index:90;transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0)}
+.toast.bad{background:var(--warn)}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:sp .7s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(1turn)}}
+@media (max-width:620px){
+  .two{grid-template-columns:1fr}
+  .vrow{grid-template-columns:1fr 1fr 36px}
+  .vrow .vn{grid-column:1/-1}
+  .vrow.h{display:none}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .prod .bd{padding:10px}
+  .brand small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- sign in -->
+<section class="gate" id="gate" hidden>
+  <div class="gate-card">
+    <div class="gate-mark" aria-hidden="true"><i style="background:#1A1820"></i><i style="background:#2F45D8"></i><i style="background:#F2C46B"></i><i style="background:#D9822B"></i><i style="background:#7B3FE4"></i></div>
+    <div class="eyebrow">Love & Ink · team only</div>
+    <h1>Back office</h1>
+    <p>Merch, stock, recipes and the Tiny Legends homepage, all in one place. Sign in with your Google account.</p>
+    <div id="gbtn"></div>
+    <p class="err" id="gateErr" hidden></p>
+    <p class="fine">Only Jasmine and Veneko can get in. Everyone else is turned away by the server.</p>
+  </div>
+</section>
+
+<!-- app -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="top-in">
+      <div class="brand">Love & Ink<small>Back office</small></div>
+      <div class="me"><img id="meImg" alt=""><span id="meName"></span><button class="btn ghost small" id="signOut">Sign out</button></div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="merch" aria-selected="true">Merch & stock</button>
+      <button class="tab" role="tab" data-tab="recipes" aria-selected="false">Recipes</button>
+      <button class="tab" role="tab" data-tab="home" aria-selected="false">Tiny Legends home</button>
+      <button class="tab" role="tab" data-tab="square" aria-selected="false">Square</button>
+    </nav>
+  </header>
+  <main>
+    <section data-panel="merch">
+      <div class="head"><div><div class="eyebrow">Square is the source of truth</div><h2>Merch & stock</h2><p>Every change here saves straight into Square, so the shop, your Square app and checkout always agree.</p></div>
+        <button class="btn" id="newItem">+ New item</button></div>
+      <div id="sqMissing" class="note warn" hidden></div>
+      <div class="chips" id="brandChips"></div>
+      <div id="brandNote" class="note" hidden></div>
+      <div class="tools"><input class="search" id="q" type="search" placeholder="Search merch" aria-label="Search merch"><button class="icon" id="reload" title="Reload from Square" aria-label="Reload from Square">↻</button></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section data-panel="recipes" hidden>
+      <div class="head"><div><div class="eyebrow">Tiny Legends · kitchen</div><h2>Recipes</h2><p>These are the recipe cards on the Tiny Legends page. English and Spanish first; other languages are optional.</p></div>
+        <button class="btn" id="newRecipe">+ New recipe</button></div>
+      <div class="rlist" id="rlist"></div>
+    </section>
+
+    <section data-panel="home" hidden>
+      <div class="head"><div><div class="eyebrow">Tiny Legends · homepage</div><h2>Homepage</h2><p>The announcement bar, each Legend's closet picks, and which reels play in the hero phone.</p></div></div>
+      <div class="sec card">
+        <h3>Announcement bar</h3>
+        <label class="toggle" style="margin:6px 0 14px"><input type="checkbox" id="annOn"> Show it on the site</label>
+        <div class="two"><label class="f">English<input class="in" id="annEn" maxlength="120" placeholder="Free shipping over $75 this weekend"></label><label class="f">Español<input class="in" id="annEs" maxlength="120" placeholder="Envío gratis sobre $75 este fin de semana"></label></div>
+      </div>
+      <div class="sec"><h3>Closet picks</h3><div class="picks" id="picks"></div></div>
+      <div class="sec"><h3>Hero reels, in order</h3><div class="clips" id="clips"></div>
+        <div class="tools" style="margin-top:10px"><select class="in" id="clipAdd" aria-label="Add a reel"></select><button class="btn ghost" id="clipAddBtn">Add</button></div></div>
+    </section>
+
+    <section data-panel="square" hidden>
+      <div class="head"><div><div class="eyebrow">Payments & inventory</div><h2>Square</h2><p>Jasmine's Square account runs checkout and inventory for all three shops.</p></div></div>
+      <div id="sqStatus"></div>
+    </section>
+  </main>
+</div>
+
+<!-- product editor -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="edTitle">
+    <div class="sheet-h"><button class="icon" data-close aria-label="Close">✕</button><h2 id="edTitle">Item</h2><span class="pill" id="edPill"></span></div>
+    <div class="sheet-b">
+      <div class="photo"><div class="ph" id="edPh"></div><div><label class="btn ghost small" style="cursor:pointer">Change photo<input type="file" id="edFile" accept="image/jpeg,image/png,image/webp" hidden></label><div class="mono" style="margin-top:8px;color:var(--mut)">JPG or PNG, square works best</div></div></div>
+      <label class="f">Name<input class="in" id="edName" maxlength="120"></label>
+      <label class="f">Section<select class="in" id="edSection"></select></label>
+      <label class="f">Description <small>Shows in Square and on receipts</small><textarea class="in" id="edDesc" maxlength="1000"></textarea></label>
+      <div><div class="eyebrow" style="margin-bottom:8px">Sizes / options · price · in stock</div>
+        <div class="vars" id="edVars"></div></div>
+      <p class="mono" style="color:var(--mut);margin:0">SKUs are made automatically and tie each size to checkout. Leave them as they are.</p>
+    </div>
+    <div class="sheet-f"><button class="btn danger small" id="edHide">Hide from shop</button><span class="sp"></span><button class="btn ghost" data-close>Cancel</button><button class="btn" id="edSave">Save to Square</button></div>
+  </div>
+</div>
+
+<!-- recipe editor -->
+<div class="sheet" id="rsheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="rTitle">
+    <div class="sheet-h"><button class="icon" data-close aria-label="Close">✕</button><h2 id="rTitle">Recipe</h2></div>
+    <div class="sheet-b" id="rbody"></div>
+    <div class="sheet-f"><button class="btn danger small" id="rDel">Delete</button><span class="sp"></span><button class="btn ghost" data-close>Cancel</button><button class="btn" id="rDone">Save recipe</button></div>
+  </div>
+</div>
+
+<div class="savebar" id="savebar" hidden><span id="saveMsg">Unsaved changes</span><button class="btn small" id="saveAll">Publish</button></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const F=n=>'/.netlify/functions/'+n;
+const BR={tla:{n:'Tiny Legends',c:'#7B3FE4',sec:{wear:'Wear',baby:'Baby',studio:'Stickers & Studio',books:'Books & Prints',digital:'Digital'}},
+  li:{n:'Lifestyle',c:'#D9822B',sec:{men:'Men',women:'Women',swim:'Swim',acc:'Accessories'}},
+  pub:{n:'Publishing',c:'#2F45D8',sec:{books:'Books',digital:'Digital',art:'Art prints'}}};
+const SW=[['var(--purple)','#7B3FE4','Evaluna purple'],['var(--cyan)','#3EC6F2','Jaziel cyan'],['var(--pink)','#FF4FA3','CamBam pink'],['var(--orange)','#FF8A2B','Mamá orange'],['var(--yellow)','#FFD23F','Dada yellow'],['var(--gold)','#F5B82E','Gold']];
+const hex=c=>(SW.find(s=>s[0]===c)||[])[1]||c||'#7B3FE4';
+const LN=['en','es','pt','fr','hi','zh'],LNAME={pt:'Português',fr:'Français',hi:'हिन्दी',zh:'中文'};
+const S={me:null,items:[],sq:null,brand:'tla',def:null,content:null,dirty:false,edit:null,photo:null,rIdx:-1};
+
+let tt;function toast(m,bad){const t=$('#toast');t.textContent=m;t.classList.toggle('bad',!!bad);t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),bad?5000:2400)}
+async function api(path,opt={}){const r=await fetch(F(path),Object.assign({credentials:'same-origin',headers:{'Content-Type':'application/json'}},opt));
+  const d=await r.json().catch(()=>({}));if(r.status===401&&path!=='auth'){showGate('You were signed out. Sign in again.');throw new Error('signed out')}
+  if(!r.ok)throw new Error(d.error||('Error '+r.status));return d}
+const busy=(b,on,label)=>{if(on){b.dataset.l=b.innerHTML;b.disabled=true;b.innerHTML='<span class="spin"></span> '+(label||'Saving')}else{b.disabled=false;b.innerHTML=b.dataset.l||b.innerHTML}};
+
+/* ---------------- sign in ---------------- */
+function showGate(err){$('#app').hidden=true;$('#gate').hidden=false;if(err){$('#gateErr').textContent=err;$('#gateErr').hidden=false}
+  api('auth?config').then(c=>{if(!c.clientId){$('#gbtn').innerHTML='<p class="note" style="margin:0">Google sign-in is almost ready. Veneko just needs to add the Google client ID in Netlify.</p>';return}
+    const go=()=>{google.accounts.id.initialize({client_id:c.clientId,callback:onCred,ux_mode:'popup',auto_select:false});
+      google.accounts.id.renderButton($('#gbtn'),{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',width:280})};
+    if(window.google&&google.accounts)go();else{const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;s.onload=go;document.head.appendChild(s)}}).catch(()=>{})}
+async function onCred(r){$('#gateErr').hidden=true;try{const me=await api('auth',{method:'POST',body:JSON.stringify({credential:r.credential})});start(me)}
+  catch(e){$('#gateErr').textContent=e.message;$('#gateErr').hidden=false}}
+$('#signOut').onclick=async()=>{if(S.dirty&&!confirm('You have unpublished changes. Sign out anyway?'))return;await api('auth',{method:'DELETE'}).catch(()=>{});S.dirty=false;try{google.accounts.id.disableAutoSelect()}catch(e){}showGate()};
+
+async function start(me){S.me=me;$('#gate').hidden=true;$('#app').hidden=false;
+  $('#meName').textContent=(me.name||me.email).split(' ')[0];$('#meImg').src=me.picture||'/favicon-32.png';
+  const [def,content]=await Promise.all([fetch('/admin/defaults.json').then(r=>r.json()),fetch(F('content'),{cache:'no-store'}).then(r=>r.json()).catch(()=>({}))]);
+  S.def=def;S.content=JSON.parse(JSON.stringify({recipes:content.recipes&&content.recipes.length?content.recipes:def.recipes,announcement:content.announcement||def.announcement,picks:content.picks||def.picks,hero:content.hero||def.hero}));
+  renderRecipes();renderHome();loadMerch();loadStatus();setTab(location.hash.slice(1)||'merch')}
+
+/* ---------------- tabs ---------------- */
+function setTab(t){if(!$(`[data-panel="${t}"]`))t='merch';$$('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===t));$$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);history.replaceState(null,'','#'+t)}
+$$('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
+addEventListener('beforeunload',e=>{if(S.dirty){e.preventDefault();e.returnValue=''}});
+
+/* ---------------- merch ---------------- */
+function imgFor(it){if(it.image)return '/sqimg/'+it.image;
+  if(it.brand==='tla'){const d=(S.def.products||[]).find(p=>p.id===it.id);return d?'/tinylegends/assets/'+d.img+'.webp':'/tinylegends/assets/logo.webp'}
+  if(it.brand==='li')return '/img/lp_'+it.id+'.webp';
+  return '/img/book_'+it.id+'.webp'}
+const total=it=>it.variations.some(v=>v.stock==null)?null:it.variations.reduce((a,v)=>a+(v.stock||0),0);
+const priceRange=it=>{const ps=it.variations.map(v=>v.price);const lo=Math.min(...ps),hi=Math.max(...ps);const f=n=>'$'+(n%1?n.toFixed(2):n);return lo===hi?f(lo):f(lo)+'–'+f(hi)};
+function status(it){if(it.archived)return['hid','Hidden'];const t=total(it);if(t===0)return['out','Sold out'];return['live','Live']}
+function chips(){$('#brandChips').innerHTML=Object.entries(BR).map(([k,b])=>{const n=S.items.filter(i=>i.brand===k).length;return `<button class="chip" style="--c:${b.c}" data-brand="${k}" aria-pressed="${k===S.brand}"><i></i>${b.n}<span class="mono">${n}</span></button>`}).join('')}
+$('#brandChips').onclick=e=>{const b=e.target.closest('[data-brand]');if(!b)return;S.brand=b.dataset.brand;document.documentElement.style.setProperty('--acc',BR[S.brand].c);chips();grid()};
+function grid(){const q=$('#q').value.trim().toLowerCase();
+  const note=$('#brandNote');note.hidden=S.brand==='tla';
+  if(S.brand!=='tla')note.innerHTML=`<b>${BR[S.brand].n} is art-directed.</b> Prices, stock and hiding update the site instantly. New ${BR[S.brand].n} pieces need a styled photo for their spot on the page, so send those to Veneko.`;
+  $('#newItem').hidden=S.brand!=='tla';
+  const list=S.items.filter(i=>i.brand===S.brand&&(!q||i.name.toLowerCase().includes(q)||i.variations.some(v=>(v.sku||'').toLowerCase().includes(q))));
+  if(!S.sq||!S.sq.connected){$('#grid').innerHTML='';return}
+  $('#grid').innerHTML=list.length?list.map(it=>{const [c,l]=status(it),t=total(it);return `<button class="prod${it.archived?' is-hidden':''}" data-item="${it.sqId}"><div class="ph" style="background-image:url('${esc(imgFor(it))}')"><span class="pill ${c}">${l}</span></div><div class="bd"><b>${esc(it.name)}</b><div class="row"><span>${priceRange(it)}</span><span>${t==null?'∞':t+' in stock'}</span></div><div class="row"><span class="mono">${esc(BR[it.brand].sec[it.section]||'')}</span><span class="mono">${it.variations.length} ${it.variations.length===1?'option':'options'}</span></div></div></button>`}).join(''):`<div class="empty" style="grid-column:1/-1">${q?'Nothing matches that search.':'No '+BR[S.brand].n+' items in Square yet.'}</div>`}
+$('#q').oninput=grid;
+$('#grid').onclick=e=>{const b=e.target.closest('[data-item]');if(b)openItem(S.items.find(i=>i.sqId===b.dataset.item))};
+$('#reload').onclick=()=>loadMerch(true);
+async function loadMerch(say){
+  try{if(!S.sq)S.sq=(await api('admin?what=status')).square;
+    if(!S.sq.connected){chips();sqMissing();grid();return}
+    $('#grid').innerHTML='<div class="empty" style="grid-column:1/-1"><span class="spin"></span> Loading from Square</div>';
+    S.items=(await api('admin')).items;chips();grid();renderHome();if(say)toast('Up to date with Square')}
+  catch(e){if(e.message!=='signed out'){$('#grid').innerHTML=`<div class="empty" style="grid-column:1/-1">${esc(e.message)}</div>`}}}
+function sqMissing(){const n=$('#sqMissing');n.hidden=false;n.innerHTML=S.sq&&S.sq.error?`<b>Square answered with an error:</b> ${esc(S.sq.error)}. Check the token in Netlify, then reload.`:`<b>Square isn't connected yet.</b> Recipes and the homepage work now. Merch shows up here as soon as the Square keys are in Netlify (see the Square tab).`}
+
+function openItem(it){S.edit=it?JSON.parse(JSON.stringify(it)):{sqId:null,brand:'tla',section:'wear',name:'',description:'',image:null,archived:false,variations:[{name:'Kids',price:24,stock:0},{name:'Adult',price:28,stock:0}]};S.photo=null;
+  const e=S.edit;$('#edTitle').textContent=it?it.name:'New item';
+  const [c,l]=it?status(it):['hid','Draft'];$('#edPill').className='pill '+c;$('#edPill').textContent=l;
+  $('#edPh').style.backgroundImage=it?`url('${imgFor(it)}')`:'none';
+  $('#edName').value=e.name;$('#edDesc').value=e.description||'';
+  $('#edSection').innerHTML=Object.entries(BR[e.brand].sec).map(([k,v])=>`<option value="${k}"${k===e.section?' selected':''}>${v}</option>`).join('');
+  $('#edHide').hidden=!it;$('#edHide').textContent=e.archived?'Put back in shop':'Hide from shop';$('#edHide').className='btn small '+(e.archived?'ghost':'danger');
+  vars();$('#sheet').hidden=false;document.body.style.overflow='hidden';if(!it)setTimeout(()=>$('#edName').focus({preventScroll:true}),50)}
+function vars(){const e=S.edit;$('#edVars').innerHTML=`<div class="vrow h"><span>Size / option</span><span>Price</span><span>In stock</span><span></span></div>`+e.variations.map((v,i)=>`<div class="vrow" data-v="${i}"><input class="in vn" data-k="name" value="${esc(v.name)}" placeholder="e.g. Kids" aria-label="Size or option"><span class="money"><input class="in" data-k="price" type="number" inputmode="decimal" min="0" step="0.01" value="${v.price}" aria-label="Price"></span><input class="in" data-k="stock" type="number" inputmode="numeric" min="0" step="1" value="${v.stock==null?'':v.stock}" placeholder="${v.stock==null&&v.sqId?'Not tracked':'0'}" aria-label="In stock"><button class="icon" data-rm="${i}" aria-label="Remove ${esc(v.name)}"${e.variations.length<2?' disabled':''}>−</button>${v.sku?`<span class="sku mono">${esc(v.sku)}</span>`:''}</div>`).join('')+`<button class="add-row" id="addVar">+ Add a size or option</button>`}
+$('#edVars').addEventListener('input',e=>{const r=e.target.closest('[data-v]');if(!r)return;const v=S.edit.variations[+r.dataset.v],k=e.target.dataset.k;v[k]=k==='name'?e.target.value:(e.target.value===''?(k==='stock'?null:0):Number(e.target.value))});
+$('#edVars').addEventListener('click',e=>{if(e.target.id==='addVar'){const l=S.edit.variations[S.edit.variations.length-1]||{price:0};S.edit.variations.push({name:'',price:l.price,stock:0});vars();$$('#edVars .vn').pop().focus();return}
+  const b=e.target.closest('[data-rm]');if(b){S.edit.variations.splice(+b.dataset.rm,1);vars()}});
+$('#edFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{S.photo=await shrink(f);$('#edPh').style.backgroundImage=`url('${S.photo}')`}catch(err){toast('That photo could not be read',1)}e.target.value=''};
+function shrink(file){return new Promise((res,rej)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const m=1600,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.86))};im.onerror=rej;im.src=u})}
+$('#edSave').onclick=async()=>{const e=S.edit,b=$('#edSave');e.name=$('#edName').value.trim();e.description=$('#edDesc').value;e.section=$('#edSection').value;
+  if(!e.name)return toast('Give it a name first',1);if(e.variations.some(v=>!String(v.name).trim()))return toast('Every size needs a name',1);
+  const names=e.variations.map(v=>v.name.trim().toLowerCase());if(new Set(names).size!==names.length)return toast('Two sizes have the same name',1);
+  busy(b,true);try{
+    const before=e.sqId?S.items.find(i=>i.sqId===e.sqId):null;
+    const {sqId}=await api('admin',{method:'POST',body:JSON.stringify({action:'save',item:e})});
+    if(S.photo){b.innerHTML='<span class="spin"></span> Uploading photo';await api('admin',{method:'POST',body:JSON.stringify({action:'photo',sqId,data:S.photo,caption:e.name})})}
+    let fresh=(await api('admin')).items,it=fresh.find(i=>i.sqId===sqId);
+    const jobs=[];e.variations.forEach(v=>{if(v.stock==null)return;const fv=it&&it.variations.find(x=>x.name.trim().toLowerCase()===v.name.trim().toLowerCase());
+      const old=before&&v.sqId?(before.variations.find(x=>x.sqId===v.sqId)||{}).stock:undefined;
+      if(fv&&fv.track&&(fv.stock!==v.stock||old!==v.stock))jobs.push(api('admin',{method:'POST',body:JSON.stringify({action:'stock',variationId:fv.sqId,quantity:v.stock})}))});
+    if(jobs.length){b.innerHTML='<span class="spin"></span> Updating stock';await Promise.all(jobs);fresh=(await api('admin')).items}
+    S.items=fresh;chips();grid();renderHome();closeSheets();toast(e.sqId?'Saved to Square':'Added to Square and the shop')}
+  catch(err){toast(err.message,1)}finally{busy(b,false)}};
+$('#edHide').onclick=async()=>{const e=S.edit,b=$('#edHide'),act=e.archived?'restore':'archive';
+  if(act==='archive'&&!confirm(`Hide “${e.name}” from the shop? It stays in Square, and you can put it back any time.`))return;
+  busy(b,true,act==='archive'?'Hiding':'Restoring');try{await api('admin',{method:'POST',body:JSON.stringify({action:act,sqId:e.sqId})});S.items=(await api('admin')).items;chips();grid();closeSheets();toast(act==='archive'?'Hidden from the shop':'Back in the shop')}catch(err){toast(err.message,1)}finally{busy(b,false)}};
+$('#newItem').onclick=()=>{if(!S.sq||!S.sq.connected)return toast('Connect Square first (Square tab)',1);openItem(null)};
+
+function closeSheets(){$$('.sheet').forEach(s=>s.hidden=true);document.body.style.overflow=''}
+$$('.sheet').forEach(s=>s.addEventListener('click',e=>{if(e.target===s||e.target.closest('[data-close]'))closeSheets()}));
+addEventListener('keydown',e=>{if(e.key==='Escape')closeSheets()});
+
+/* ---------------- recipes ---------------- */
+const lines=s=>String(s||'').split('|').join('\n'),unlines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean).join('|');
+function renderRecipes(){const R=S.content.recipes;$('#rlist').innerHTML=R.length?R.map((r,i)=>`<div class="rcard" style="--c:${hex(r.color)}"><span class="dot"></span><div class="tx"><b>${esc(r.name[0])}</b><small>${esc(r.name[1]||'')}${r.name[1]?' · ':''}${esc((S.def.names||{})[r.who]||r.who)}</small></div><div class="act"><button class="icon" data-mv="${i}:-1" aria-label="Move up"${i?'':' disabled'}>↑</button><button class="icon" data-mv="${i}:1" aria-label="Move down"${i<R.length-1?'':' disabled'}>↓</button><button class="btn ghost small" data-ed="${i}">Edit</button></div></div>`).join(''):'<div class="empty">No recipes yet.</div>'}
+$('#rlist').onclick=e=>{const m=e.target.closest('[data-mv]');if(m){const [i,d]=m.dataset.mv.split(':').map(Number),R=S.content.recipes;[R[i],R[i+d]]=[R[i+d],R[i]];renderRecipes();dirty();return}
+  const b=e.target.closest('[data-ed]');if(b)openRecipe(+b.dataset.ed)};
+$('#newRecipe').onclick=()=>openRecipe(-1);
+function openRecipe(i){S.rIdx=i;const r=i>=0?JSON.parse(JSON.stringify(S.content.recipes[i])):{id:'r'+Date.now().toString(36),who:'evaluna',color:'var(--purple)',name:['',''],meta:['',''],ing:['',''],steps:['','']};S.rDraft=r;S.rOrig=JSON.parse(JSON.stringify(r));
+  $('#rTitle').textContent=i>=0?r.name[0]:'New recipe';$('#rDel').hidden=i<0;
+  const who=Object.entries(S.def.names||{}).map(([k,n])=>`<option value="${k}"${k===r.who?' selected':''}>${esc(n)}</option>`).join('');
+  const pair=(f,label,ta,ph)=>`<div><div class="eyebrow" style="margin-bottom:6px">${label}</div><div class="two">${['en','es'].map((l,j)=>`<label class="f">${j?'Español':'English'}${ta?`<textarea class="in" data-f="${f}" data-l="${j}" placeholder="${ph[j]}">${esc(lines(r[f][j]))}</textarea>`:`<input class="in" data-f="${f}" data-l="${j}" value="${esc(r[f][j]||'')}" placeholder="${ph[j]}">`}</label>`).join('')}</div><div class="hint" data-hint="${f}" hidden>You changed the English. Update the Spanish too?</div></div>`;
+  $('#rbody').innerHTML=`<div class="two"><label class="f">Whose recipe<select class="in" id="rWho">${who}</select></label><div class="f"><span>Card color</span><div class="sw" id="rSw">${SW.map(s=>`<button type="button" style="--c:${s[1]}" data-c="${s[0]}" aria-label="${s[2]}" aria-pressed="${s[0]===r.color}"></button>`).join('')}</div></div></div>
+   ${pair('name','Name',0,['Pancake Karate Stack','Torre de Panqueques Karate'])}
+   ${pair('meta','Under the name',0,["Evaluna's · 20 min · serves 4",'De Evaluna · 20 min · 4 porciones'])}
+   ${pair('ing','Ingredients · one per line',1,['2 cups pancake mix\n1 banana','2 tazas de mezcla\n1 plátano'])}
+   ${pair('steps','Steps · one per line',1,['A grown-up heats the pan.\nStack them tall.','Un adulto calienta el sartén.\nApílalos bien alto.'])}
+   <details class="more"><summary>More languages <span class="lang-tag">optional</span></summary><p class="mono" style="color:var(--mut);margin:0 0 12px">Leave blank and these visitors see the English. If you change the English and not these, they reset to English so nothing goes out of date.</p>
+   ${[2,3,4,5].map(j=>`<div style="margin-bottom:14px"><div class="eyebrow" style="margin-bottom:6px">${LNAME[LN[j]]}</div><div class="two"><input class="in" data-f="name" data-l="${j}" value="${esc(r.name[j]||'')}" placeholder="Name"><input class="in" data-f="meta" data-l="${j}" value="${esc(r.meta[j]||'')}" placeholder="Under the name"></div><div class="two" style="margin-top:8px"><textarea class="in" data-f="ing" data-l="${j}" placeholder="Ingredients">${esc(lines(r.ing[j]))}</textarea><textarea class="in" data-f="steps" data-l="${j}" placeholder="Steps">${esc(lines(r.steps[j]))}</textarea></div></div>`).join('')}</details>`;
+  $('#rsheet').hidden=false;document.body.style.overflow='hidden'}
+$('#rbody').addEventListener('input',e=>{const f=e.target.dataset.f;if(!f)return;const l=+e.target.dataset.l,r=S.rDraft;const v=e.target.tagName==='TEXTAREA'?unlines(e.target.value):e.target.value;while(r[f].length<=l)r[f].push('');r[f][l]=v;
+  const h=$(`[data-hint="${f}"]`);if(h){const st=r[f][0]!==S.rOrig[f][0]&&(r[f][1]||'')===(S.rOrig[f][1]||'')&&S.rIdx>=0;h.hidden=!st;$(`[data-f="${f}"][data-l="1"]`).classList.toggle('stale',st)}});
+$('#rbody').addEventListener('click',e=>{const s=e.target.closest('[data-c]');if(s){S.rDraft.color=s.dataset.c;$$('#rSw button').forEach(b=>b.setAttribute('aria-pressed',b===s))}});
+$('#rbody').addEventListener('change',e=>{if(e.target.id==='rWho')S.rDraft.who=e.target.value});
+$('#rDone').onclick=()=>{const r=S.rDraft,o=S.rOrig;if(!r.name[0].trim())return toast('Give the recipe a name',1);if(!r.ing[0]||!r.steps[0])return toast('Add ingredients and steps',1);
+  ['name','meta','ing','steps'].forEach(f=>{if(r[f][0]!==o[f][0])for(let j=2;j<6;j++)if((r[f][j]||'')===(o[f][j]||''))r[f][j]=''});
+  if(S.rIdx>=0)S.content.recipes[S.rIdx]=r;else S.content.recipes.push(r);renderRecipes();closeSheets();dirty()};
+$('#rDel').onclick=()=>{if(!confirm('Delete this recipe from the site?'))return;S.content.recipes.splice(S.rIdx,1);renderRecipes();closeSheets();dirty()};
+
+/* ---------------- homepage ---------------- */
+function tlProducts(){const live=S.items.filter(i=>i.brand==='tla'&&!i.archived&&!['books','digital'].includes(i.section));return live.length?live.map(i=>({id:i.id,name:i.name})):(S.def.products||[]).filter(p=>!['books','digital'].includes(p.section))}
+function renderHome(){const c=S.content,a=c.announcement||{on:false,text:['','']};$('#annOn').checked=!!a.on;$('#annEn').value=a.text[0]||'';$('#annEs').value=a.text[1]||'';
+  const P=tlProducts(),opt=sel=>(P.some(p=>p.id===sel)?'':'<option value="" selected disabled>Choose a piece (the old one is hidden)</option>')+P.map(p=>`<option value="${esc(p.id)}"${p.id===sel?' selected':''}>${esc(p.name)}</option>`).join('');
+  $('#picks').innerHTML=[['c','CamBam','#FF4FA3'],['j','Jaziel','#3EC6F2'],['e','Evaluna','#7B3FE4']].map(([k,n,col])=>`<div class="card" style="border-top:4px solid ${col}"><b style="font-family:var(--d);font-size:1.3rem">${n}'s closet</b>${[0,1].map(i=>`<select class="in" data-pick="${k}:${i}" aria-label="${n} pick ${i+1}">${opt((c.picks[k]||[])[i])}</select>`).join('')}</div>`).join('');
+  const C=S.def.clips||[];$('#clips').innerHTML=c.hero.map((id,i)=>{const x=C.find(z=>z.id===id)||{label:id};return `<div class="clip"><span class="n">${i+1}</span><img src="/tinylegends/video/clip_${esc(id)}.jpg" alt="" loading="lazy"><span class="t">${esc(x.label)}</span><button class="icon" data-cv="${i}:-1" aria-label="Move up"${i?'':' disabled'}>↑</button><button class="icon" data-cv="${i}:1" aria-label="Move down"${i<c.hero.length-1?'':' disabled'}>↓</button><button class="icon" data-cv="${i}:x" aria-label="Remove"${c.hero.length>1?'':' disabled'}>✕</button></div>`}).join('');
+  $('#clipAdd').innerHTML=C.filter(x=>!c.hero.includes(x.id)).map(x=>`<option value="${x.id}">${esc(x.label)}</option>`).join('')||'<option value="">All reels are in</option>'}
+$('#annOn').onchange=$('#annEn').oninput=$('#annEs').oninput=()=>{S.content.announcement={on:$('#annOn').checked,text:[$('#annEn').value,$('#annEs').value]};dirty()};
+$('#picks').onchange=e=>{const s=e.target.closest('[data-pick]');if(!s)return;const [k,i]=s.dataset.pick.split(':');S.content.picks[k]=S.content.picks[k]||[];S.content.picks[k][+i]=s.value;dirty()};
+$('#clips').onclick=e=>{const b=e.target.closest('[data-cv]');if(!b)return;const [i,d]=b.dataset.cv.split(':'),H=S.content.hero,k=+i;if(d==='x')H.splice(k,1);else{const j=k+(+d);[H[k],H[j]]=[H[j],H[k]]}renderHome();dirty()};
+$('#clipAddBtn').onclick=()=>{const v=$('#clipAdd').value;if(!v)return;S.content.hero.push(v);renderHome();dirty()};
+
+/* ---------------- publish content ---------------- */
+function dirty(){S.dirty=true;$('#savebar').hidden=false}
+$('#saveAll').onclick=async()=>{const b=$('#saveAll');busy(b,true,'Publishing');try{await api('content',{method:'PUT',body:JSON.stringify(S.content)});S.dirty=false;$('#savebar').hidden=true;toast('Live on the Tiny Legends page')}catch(e){toast(e.message,1)}finally{busy(b,false)}};
+
+/* ---------------- square status ---------------- */
+async function loadStatus(){try{const s=(await api('admin?what=status')).square;S.sq=s;
+  $('#sqStatus').innerHTML=s.connected?`<div class="stat"><div class="card"><div class="eyebrow">Status</div><b style="color:var(--ok)">Connected</b></div><div class="card"><div class="eyebrow">Mode</div><b>${s.env==='production'?'Live payments':'Sandbox (test)'}</b></div><div class="card"><div class="eyebrow">Location</div><b>${esc(s.location||'')}</b></div></div>
+    <div class="note"><b>Two ways to edit, one list.</b> Change merch here or in the Square app or dashboard. Both write to the same Square catalog, and the site reads it within about a minute.<br><br>New items only appear on the site when they sit in a category that starts with <span class="mono">Tiny Legends ·</span>, <span class="mono">Lifestyle ·</span> or <span class="mono">Publishing ·</span>. Items made here are filed automatically.</div>
+    <a class="btn ghost" href="${esc(s.dashboard)}" target="_blank" rel="noopener">Open Square item library ↗</a>`
+   :`<div class="note warn"><b>${s.error?'Square answered with an error: '+esc(s.error):'Not connected yet.'}</b></div>
+    <div class="card"><h3>Connect Square (Jasmine, one time, about 5 minutes)</h3><ol style="padding-left:20px;margin:12px 0 0;display:flex;flex-direction:column;gap:8px">
+     <li>Sign in at <a href="https://developer.squareup.com/apps" target="_blank" rel="noopener">developer.squareup.com/apps</a> with your Square login and create an app called <b>Love & Ink website</b>.</li>
+     <li>Open the app's <b>Credentials</b> page. Start on <b>Sandbox</b> to test, then switch to <b>Production</b>. Copy the <b>Access token</b>.</li>
+     <li>Open <b>Locations</b> in the same app and copy your store's <b>Location ID</b>.</li>
+     <li>In Netlify, open the <b>loveandink</b> project, then <b>Site configuration → Environment variables</b>. Add <span class="mono">SQUARE_ACCESS_TOKEN</span>, <span class="mono">SQUARE_LOCATION_ID</span> and <span class="mono">SQUARE_ENV</span> (<span class="mono">sandbox</span> or <span class="mono">production</span>).</li>
+     <li>Redeploy (Deploys → Trigger deploy), then come back and reload this page.</li></ol>
+     <p class="mono" style="color:var(--mut);margin:14px 0 0">Keep the token private: paste it only into Netlify, never into email or chat.</p></div>`;
+  if(!s.connected)sqMissing()}catch(e){}}
+
+/* ---------------- boot ---------------- */
+api('auth').then(start).catch(()=>showGate());
+})();
+</script>
+</body>
+</html>

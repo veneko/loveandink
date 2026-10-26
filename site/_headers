@@ -1,3 +1,7 @@
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+  X-Frame-Options: DENY
 /img/*
   Cache-Control: public, max-age=31536000, immutable
 /tinylegends/assets/*

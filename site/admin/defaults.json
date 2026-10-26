@@ -1,0 +1,292 @@
+{
+ "langs": [
+  "en",
+  "es",
+  "pt",
+  "fr",
+  "hi",
+  "zh"
+ ],
+ "names": {
+  "evaluna": "Evaluna",
+  "jaziel": "Jaziel",
+  "cambam": "CamBam",
+  "mama": "Mamá",
+  "dada": "Dada",
+  "padrino": "Padrino Jey",
+  "madrina": "Madrina"
+ },
+ "recipes": [
+  {
+   "id": "pancake",
+   "who": "evaluna",
+   "color": "var(--purple)",
+   "name": [
+    "Pancake Karate Stack",
+    "Torre de Panqueques Karate",
+    "Torre de Panquecas Caratê",
+    "Pile de crêpes karaté",
+    "पैनकेक कराटे स्टैक",
+    "空手道松饼塔"
+   ],
+   "meta": [
+    "Evaluna's · 20 min · serves 4",
+    "De Evaluna · 20 min · 4 porciones",
+    "Da Evaluna · 20 min · 4 porções",
+    "D'Evaluna · 20 min · 4 parts",
+    "इवालूना की · 20 मिनट · 4 लोग",
+    "Evaluna 的 · 20分钟 · 4人份"
+   ],
+   "ing": [
+    "2 cups pancake mix|1 banana, sliced into coins|A handful of berries|Maple syrup",
+    "2 tazas de mezcla para panqueques|1 plátano en rodajas|Un puñado de frutos rojos|Miel de maple",
+    "2 xícaras de mistura para panqueca|1 banana em rodelas|Um punhado de frutas vermelhas|Xarope de bordo",
+    "2 tasses de préparation à pancakes|1 banane en rondelles|Une poignée de baies|Sirop d'érable",
+    "2 कप पैनकेक मिक्स|1 केला, गोल टुकड़ों में|मुट्ठी भर बेरीज़|मेपल सिरप",
+    "松饼预拌粉 2杯|香蕉 1根，切片|浆果一小把|枫糖浆"
+   ],
+   "steps": [
+    "A grown-up cooks small pancakes on the griddle.|Stack them tall with banana coins between every layer.|Crown it with berries. HI-YAH! Then eat it before it wakes up.",
+    "Un adulto cocina panqueques pequeños en la plancha.|Apílalos bien alto con rodajas de plátano entre cada capa.|Corónala con frutos rojos. ¡JI-YA! Y cómetela antes de que despierte.",
+    "Um adulto faz panquecas pequenas na chapa.|Empilhe bem alto com rodelas de banana entre cada camada.|Coroe com frutas vermelhas. IÁÁÁ! E coma antes que ela acorde.",
+    "Un adulte cuit de petites pancakes à la poêle.|Empile-les bien haut avec des rondelles de banane entre chaque couche.|Couronne de baies. HI-YAH ! Et mange-la avant qu'elle se réveille.",
+    "कोई बड़ा तवे पर छोटे पैनकेक बनाए।|हर परत के बीच केले के टुकड़े रखकर ऊँचा स्टैक बनाओ।|ऊपर बेरीज़ सजाओ। हाय-या! और उसके जागने से पहले खा लो।",
+    "请大人在平底锅上煎几块小松饼。|一层松饼一层香蕉片，叠得高高的。|顶上放浆果。嘿哈！趁她醒来之前吃掉。"
+   ]
+  },
+  {
+   "id": "smoothie",
+   "who": "jaziel",
+   "color": "var(--cyan)",
+   "name": [
+    "Jaziel's Zoom Smoothie",
+    "Smoothie Turbo de Jaziel",
+    "Smoothie Turbo do Jaziel",
+    "Smoothie Turbo de Jaziel",
+    "जज़ील की ज़ूम स्मूदी",
+    "Jaziel 的极速奶昔"
+   ],
+   "meta": [
+    "Jaziel's · 5 min · serves 2",
+    "De Jaziel · 5 min · 2 porciones",
+    "Do Jaziel · 5 min · 2 porções",
+    "De Jaziel · 5 min · 2 parts",
+    "जज़ील की · 5 मिनट · 2 लोग",
+    "Jaziel 的 · 5分钟 · 2人份"
+   ],
+   "ing": [
+    "1 banana|1 cup frozen mango|1 cup milk or yogurt|A handful of spinach (shh, it's turbo fuel)",
+    "1 plátano|1 taza de mango congelado|1 taza de leche o yogur|Un puñado de espinaca (shh, es combustible turbo)",
+    "1 banana|1 xícara de manga congelada|1 xícara de leite ou iogurte|Um punhado de espinafre (psiu, é combustível turbo)",
+    "1 banane|1 tasse de mangue surgelée|1 tasse de lait ou de yaourt|Une poignée d'épinards (chut, c'est du carburant turbo)",
+    "1 केला|1 कप फ्रोज़न आम|1 कप दूध या दही|मुट्ठी भर पालक (श्श, यह टर्बो फ़्यूल है)",
+    "香蕉 1根|冷冻芒果 1杯|牛奶或酸奶 1杯|菠菜一小把（嘘，这是涡轮燃料）"
+   ],
+   "steps": [
+    "Drop everything into the blender.|A grown-up blends it at top speed for 30 seconds. VROOOM!|Pour, add a straw, and drink it at full speed.",
+    "Pon todo en la licuadora.|Un adulto la licúa a toda velocidad por 30 segundos. ¡RUUUM!|Sirve, ponle un popote y tómatela a toda velocidad.",
+    "Coloque tudo no liquidificador.|Um adulto bate na velocidade máxima por 30 segundos. VRUUUM!|Sirva, coloque um canudo e beba a toda velocidade.",
+    "Mets tout dans le blender.|Un adulte mixe à fond pendant 30 secondes. VROUUUM !|Verse, ajoute une paille et bois à toute vitesse.",
+    "सब कुछ ब्लेंडर में डालो।|कोई बड़ा 30 सेकंड तक फ़ुल स्पीड पर चलाए। व्रूऊम!|गिलास में डालो, स्ट्रॉ लगाओ और फ़ुल स्पीड से पियो।",
+    "把所有材料放进搅拌机。|请大人用最高速搅打30秒。呜——！|倒出来，插上吸管，全速喝光。"
+   ]
+  },
+  {
+   "id": "popcorn",
+   "who": "cambam",
+   "color": "var(--pink)",
+   "name": [
+    "CamBam's Pink Party Popcorn",
+    "Palomitas Rosas de Fiesta de CamBam",
+    "Pipoca Rosa de Festa da CamBam",
+    "Pop-corn rose de fête de CamBam",
+    "कैमबैम का पिंक पार्टी पॉपकॉर्न",
+    "CamBam 的粉红派对爆米花"
+   ],
+   "meta": [
+    "CamBam's · 15 min · serves 6",
+    "De CamBam · 15 min · 6 porciones",
+    "Da CamBam · 15 min · 6 porções",
+    "De CamBam · 15 min · 6 parts",
+    "कैमबैम का · 15 मिनट · 6 लोग",
+    "CamBam 的 · 15分钟 · 6人份"
+   ],
+   "ing": [
+    "8 cups popped popcorn|1 cup white chocolate chips|1/2 cup freeze-dried strawberries, crushed|Rainbow sprinkles",
+    "8 tazas de palomitas|1 taza de chispas de chocolate blanco|1/2 taza de fresas liofilizadas, trituradas|Chispas de colores",
+    "8 xícaras de pipoca estourada|1 xícara de gotas de chocolate branco|1/2 xícara de morangos liofilizados, esmagados|Granulado colorido",
+    "8 tasses de pop-corn éclaté|1 tasse de pépites de chocolat blanc|1/2 tasse de fraises lyophilisées, écrasées|Vermicelles arc-en-ciel",
+    "8 कप पॉपकॉर्न|1 कप व्हाइट चॉकलेट चिप्स|1/2 कप फ़्रीज़-ड्राइड स्ट्रॉबेरी, कुटी हुई|रंग-बिरंगे स्प्रिंकल्स",
+    "爆好的爆米花 8杯|白巧克力豆 1杯|冻干草莓碎 1/2杯|彩虹糖针"
+   ],
+   "steps": [
+    "A grown-up melts the white chocolate.|Stir in the crushed strawberries until it turns party pink.|Drizzle over the popcorn, add sprinkles, let it set 10 minutes. Then dance.",
+    "Un adulto derrite el chocolate blanco.|Mezcla las fresas trituradas hasta que quede rosa fiesta.|Báñalas sobre las palomitas, agrega chispas y deja reposar 10 minutos. Luego, a bailar.",
+    "Um adulto derrete o chocolate branco.|Misture os morangos esmagados até ficar rosa festa.|Regue a pipoca, jogue o granulado e deixe firmar por 10 minutos. Depois, dance.",
+    "Un adulte fait fondre le chocolat blanc.|Ajoute les fraises écrasées jusqu'à obtenir un rose fête.|Verse sur le pop-corn, ajoute les vermicelles, laisse prendre 10 minutes. Puis danse.",
+    "कोई बड़ा व्हाइट चॉकलेट पिघलाए।|कुटी स्ट्रॉबेरी मिलाओ जब तक रंग पार्टी पिंक न हो जाए।|पॉपकॉर्न पर डालो, स्प्रिंकल्स छिड़को, 10 मिनट जमने दो। फिर डांस करो।",
+    "请大人把白巧克力融化。|拌入草莓碎，直到变成派对粉。|淋在爆米花上，撒上糖针，静置10分钟。然后跳舞吧。"
+   ]
+  }
+ ],
+ "picks": {
+  "c": [
+   "logo",
+   "belt"
+  ],
+  "j": [
+   "squad",
+   "stickers"
+  ],
+  "e": [
+   "onesie",
+   "undefeated"
+  ]
+ },
+ "hero": [
+  "karate",
+  "9m",
+  "dance",
+  "7m",
+  "kitchen"
+ ],
+ "clips": [
+  {
+   "id": "karate",
+   "label": "The original karate nap"
+  },
+  {
+   "id": "9m",
+   "label": "9M: the champ gets her belt"
+  },
+  {
+   "id": "dance",
+   "label": "The sibling dance trend"
+  },
+  {
+   "id": "7m",
+   "label": "7M: Jaziel's flying kick"
+  },
+  {
+   "id": "5m",
+   "label": "5M: Jaziel joins the fight"
+  },
+  {
+   "id": "3m",
+   "label": "3M: the big explosion"
+  },
+  {
+   "id": "revenge",
+   "label": "Dada's Revenge"
+  },
+  {
+   "id": "2m",
+   "label": "2M: karate flow"
+  },
+  {
+   "id": "1m",
+   "label": "1M: the first knockout"
+  },
+  {
+   "id": "padrino",
+   "label": "Padrino & Madrina visit"
+  },
+  {
+   "id": "kitchen",
+   "label": "The midnight kitchen raid"
+  },
+  {
+   "id": "pilot",
+   "label": "Pilot: Dada's studio"
+  }
+ ],
+ "products": [
+  {
+   "id": "undefeated",
+   "img": "prod_undefeated",
+   "name": "Undefeated While Asleep Tee",
+   "section": "wear"
+  },
+  {
+   "id": "onesie",
+   "img": "clo_evaluna",
+   "name": "Undefeated Baby Onesie",
+   "section": "baby"
+  },
+  {
+   "id": "logo",
+   "img": "prod_logo",
+   "name": "Tiny Legends Logo Tee",
+   "section": "wear"
+  },
+  {
+   "id": "belt",
+   "img": "prod_belt",
+   "name": "Champion Belt Hoodie",
+   "section": "wear"
+  },
+  {
+   "id": "squad",
+   "img": "prod_squad",
+   "name": "Legends Squad Tee",
+   "section": "wear"
+  },
+  {
+   "id": "stickers",
+   "img": "prod_stickers",
+   "name": "Legends Sticker Sheet",
+   "section": "studio"
+  },
+  {
+   "id": "poster",
+   "img": "prod_poster",
+   "name": "Sleeping Champion Tee",
+   "section": "wear"
+  },
+  {
+   "id": "tumbler",
+   "img": "prod_tumbler",
+   "name": "Undefeated 20 oz Tumbler",
+   "section": "studio"
+  },
+  {
+   "id": "bstory",
+   "img": "book_story",
+   "name": "Little Luna, Big Trouble (picture book)",
+   "section": "books"
+  },
+  {
+   "id": "bcolor",
+   "img": "book_coloring",
+   "name": "Tiny Legends Coloring Book",
+   "section": "books"
+  },
+  {
+   "id": "bdigital",
+   "img": "book_digital",
+   "name": "Printable Activity Pack",
+   "section": "books"
+  },
+  {
+   "id": "bprint",
+   "img": "book_print",
+   "name": "Legends Art Print",
+   "section": "books"
+  }
+ ],
+ "announcement": {
+  "on": false,
+  "text": [
+   "",
+   ""
+  ]
+ },
+ "colors": {
+  "var(--purple)": "#7B3FE4",
+  "var(--cyan)": "#19B5E5",
+  "var(--pink)": "#FF5FA2",
+  "var(--orange)": "#FF8A1F",
+  "var(--yellow)": "#FFD23F",
+  "var(--gold)": "#E8B23A"
+ }
+}

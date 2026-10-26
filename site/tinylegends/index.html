@@ -488,8 +488,8 @@ footer small{opacity:.8}
 @media (max-width:760px){.shop-models{grid-template-columns:1fr}.pick{grid-template-columns:1fr}.adm-top h2{font-size:1.4rem}.drawer{box-shadow:none}}
 /* embedded inside Love & Ink: the parent site's nav replaces the breadcrumb bar */
 html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
-/* live site: the back-office prototype stays out of public view */
-.admin-link{display:none}
+/* sizes that sold out in Square */
+.sizes button.sz-out{opacity:.4;text-decoration:line-through;cursor:not-allowed}
 </style>
 
 <div class="li-bar"><div class="wrap"><a href="/" style="color:inherit;text-decoration:none"><b>Love &amp; Ink</b></a><div class="li-crumbs"><span data-i="crumb"></span></div></div></div>
@@ -1313,7 +1313,8 @@ let heroVisible=true;
   const all=()=>(typeof ALLP==='function'?ALLP():PRODUCTS);
   const img=p=>new URL('assets/'+p.img+'.webp',location.href).href;
   const item=(id,szIdx,qty)=>{const p=all().find(x=>x.id===id);if(!p)return null;const sk=(p.sz&&p.sz[szIdx]||'').replace('sz_','');
-    return{id,p,qty:qty||1,size:p.sz&&p.sz[szIdx]?t(p.sz[szIdx]):'',sizeKey:sk,name:t('p_'+id),price:p.p,img:img(p)}};
+    const sku=p.skus&&p.skus[szIdx]?p.skus[szIdx]:('TLA-'+id+(sk?'-'+sk:'')).toUpperCase();
+    return{id,p,qty:qty||1,size:p.sz&&p.sz[szIdx]?t(p.sz[szIdx]):'',sizeKey:sk,sku,name:t('p_'+id),price:p.vp&&p.vp[szIdx]!=null?p.vp[szIdx]:p.p,img:img(p)}};
   if(EMB){
     document.documentElement.classList.add('emb');
     const P=m=>{try{parent.postMessage(Object.assign({src:'tla'},m),'*')}catch(e){}};
@@ -1321,7 +1322,7 @@ let heroVisible=true;
       if(e.target.closest('#bag')){e.stopPropagation();e.preventDefault();P({type:'bag'});return}
       const a=e.target.closest('[data-add]');if(!a||a.disabled)return;
       const it=a.closest('.item'),btns=it?[...it.querySelectorAll('.sizes button')]:[],k=Math.max(0,btns.findIndex(b=>b.getAttribute('aria-pressed')==='true'));
-      const x=item(a.dataset.add,k);if(x)P({type:'add',id:x.id,name:x.name,price:x.price,size:x.size,sizeKey:x.sizeKey,img:x.img})},true);
+      const x=item(a.dataset.add,k);if(x)P({type:'add',id:x.id,name:x.name,price:x.price,size:x.size,sizeKey:x.sizeKey,sku:x.sku,img:x.img})},true);
     addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data||{};if(d.src!=='li')return;
       if(d.type==='count')$('#bagN').textContent=d.n;
       if(d.type==='route'&&d.v)go(d.v,true);
@@ -1333,11 +1334,55 @@ let heroVisible=true;
     if(co&&typeof BAG!=='undefined'){co.addEventListener('click',e=>{e.stopImmediatePropagation();
       let li=[];try{li=JSON.parse(localStorage.getItem('li_bag')||'[]')}catch(err){}
       BAG.forEach(L=>{const x=item(L.id,L.sz,L.qty);if(!x)return;const key='tla-'+x.id+(x.sizeKey?'-'+x.sizeKey:'');const f=li.find(b=>b.key===key);
-        if(f)f.qty+=x.qty;else li.push({key,id:'tla-'+x.id,sku:('TLA-'+x.id+(x.sizeKey?'-'+x.sizeKey:'')).toUpperCase(),name:x.name,price:x.price,img:x.img,shop:'Tiny Legends',meta:x.size,qty:x.qty})});
+        if(f)f.qty+=x.qty;else li.push({key,id:'tla-'+x.id,sku:x.sku,name:x.name,price:x.price,img:x.img,shop:'Tiny Legends',meta:x.size,qty:x.qty})});
       try{localStorage.setItem('li_bag',JSON.stringify(li))}catch(err){}
       location.href='/?bag=1'},true);
       const dm=document.querySelector('.drawer .demo');if(dm)dm.textContent='Secure checkout with Square through Love & Ink.'}
   }
+})();
+</script>
+
+<script>
+/* Love & Ink live data (added at build time): products, prices and stock from Square,
+   recipes / announcement / closet picks / hero clips from the back office at /admin. */
+(function(){
+  if(typeof PRODUCTS==='undefined')return;
+  const J=u=>fetch(u,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
+  const LI=()=>Math.max(0,LANGS.indexOf(LANG));
+  let ANN=null;
+  function applyAnn(){const a=document.getElementById('announce');if(!a||!ANN)return;const tx=(ANN.text&&(ANN.text[LI()]||ANN.text[0]))||'';a.textContent=tx;a.hidden=!(ANN.on&&tx)}
+  function applySizes(){document.querySelectorAll('.item[data-item]').forEach(el=>{const p=ALLP().find(x=>x.id===el.dataset.item);if(!p||!p.vstock||p.tag==='t_preorder')return;
+    const bs=[...el.querySelectorAll('.sizes button')];let first=-1;
+    bs.forEach((b,j)=>{const out=p.vstock[j]===0;b.disabled=out;b.classList.toggle('sz-out',out);if(out)b.setAttribute('aria-pressed','false');else if(first<0)first=j});
+    if(first>=0&&!bs.some(b=>b.getAttribute('aria-pressed')==='true'))bs[first].setAttribute('aria-pressed','true')})}
+  const orig=window.renderStatic;window.renderStatic=function(){orig.apply(this,arguments);applyAnn();applySizes()};
+  /* team sign-in goes to the real back office */
+  document.querySelectorAll('.admin-link').forEach(a=>{a.href='/admin/';a.removeAttribute('data-go');a.target='_top'});
+  if(location.hash==='#admin')location.replace('/admin/');
+  addEventListener('hashchange',()=>{if(location.hash==='#admin')location.href='/admin/'});
+
+  Promise.all([J('/.netlify/functions/content'),J('/.netlify/functions/catalog')]).then(([c,cat])=>{
+    c=c||{};
+    if(Array.isArray(c.recipes)&&c.recipes.length){RECIPES.length=0;c.recipes.forEach(r=>{RECIPES.push({id:r.id,who:r.who,c:r.color||'var(--purple)'});
+      T['rc_'+r.id]=r.name;T['rm_'+r.id]=r.meta;T['ri_'+r.id]=r.ing;T['rs_'+r.id]=r.steps})}
+    if(c.announcement)ANN=c.announcement;
+    if(cat&&cat.connected&&Array.isArray(cat.items)){const tl=cat.items.filter(i=>i.brand==='tla'&&i.variations&&i.variations.length);
+      if(tl.length){const old=Object.fromEntries(ALLP().map(p=>[p.id,p])),np=[],nb=[];
+        tl.forEach(it=>{const o=old[it.id],vs=it.variations,pre='TLA-'+it.id.toUpperCase()+'-';
+          const sz=vs.map(v=>{const s=(v.sku||'').toUpperCase(),suf=s.startsWith(pre)?s.slice(pre.length).toLowerCase():'';if(suf&&T['sz_'+suf])return 'sz_'+suf;const k='szq_'+v.sqId;T[k]=[v.name];return k});
+          const p=Object.assign({tag:'t_new'},o||{},{id:it.id,p:Math.min(...vs.map(v=>v.price)),vp:vs.map(v=>v.price),sz,skus:vs.map(v=>v.sku||('SQV-'+v.sqId)),vstock:vs.map(v=>v.stock)});
+          if(it.image){p.img='sq/'+it.image;if(!o)delete p.on}else if(!o)p.img='logo';
+          if(!o||!o.cat||!o.cat.includes(it.section))p.cat=[it.section];
+          if(!T['p_'+it.id]||T['p_'+it.id][0]!==it.name)T['p_'+it.id]=[it.name];
+          STOCK[it.id]=vs.some(v=>v.stock==null)?999:vs.reduce((a,v)=>a+v.stock,0);
+          (it.section==='books'||it.section==='digital'?nb:np).push(p)});
+        if(np.length){PRODUCTS.splice(0,PRODUCTS.length,...np)}BOOKS.splice(0,BOOKS.length,...nb);
+        const ids=PRODUCTS.map(p=>p.id);BAG.splice(0,BAG.length,...BAG.filter(L=>ALLP().some(p=>p.id===L.id)))}}
+    if(c.picks)Object.keys(PICKS).forEach(k=>{if(Array.isArray(c.picks[k])&&c.picks[k].length===2)PICKS[k]=c.picks[k].slice()});
+    const ids=PRODUCTS.map(p=>p.id);let n=0;Object.keys(PICKS).forEach(k=>{PICKS[k]=PICKS[k].map(id=>ids.includes(id)?id:ids[(n++)%ids.length])});
+    if(Array.isArray(c.hero)){const l=c.hero.map(id=>CLIPS.find(x=>x.id===id)).filter(Boolean);if(l.length){HERO_CLIPS.splice(0,HERO_CLIPS.length,...l);if(typeof HERO_ON!=='undefined')HERO_ON.splice(0,HERO_ON.length,...l.map(x=>x.id));heroP&&heroP.setList(HERO_CLIPS)}}
+    window.renderStatic();
+  });
 })();
 </script>
 

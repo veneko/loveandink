@@ -1014,6 +1014,7 @@ body[data-view="tinylegends"] .nav-links a.nav-tla[aria-current="page"]::after{d
   .ch-print,.ch-spread.flip .ch-print{width:min(78vw,380px);justify-self:center;transform:rotate(1deg)}
 }
 @media (prefers-reduced-motion:reduce){.ch-print{clip-path:none;opacity:1}.ch-spread .ch-no,.ch-spread h2,.ch-spread p{opacity:1;transform:none}.ch-spread .ch-rule{transform:none}}
+[data-rf-size].so{opacity:.35;text-decoration:line-through;cursor:not-allowed}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -2083,6 +2084,10 @@ inits.prints=()=>{initStudio();
 leaves.prints=()=>{cancelAnimationFrame(printsRAF);EX.stop()};
 
 /* ---------------- PUBLISHING ---------------- */
+/* live prices & stock from Square (filled on loveandink.co; the preview keeps the printed prices) */
+const LIVE={};
+const livePrice=(sku,def)=>{const v=LIVE[sku.toUpperCase()];return v?v.price:def};
+const liveOut=sku=>{const v=LIVE[sku.toUpperCase()];return !!v&&v.stock===0};
 const BOOKS=[
   {id:'luna',series:'Wonder series',title:'Luna Explores',es:'Luna explora',img:'book_luna',en1:'Every night, Luna counts the stars. Tonight, one of them counted back.',es1:'Cada noche, Luna cuenta las estrellas. Esta noche, una le devolvió la cuenta.'},
   {id:'jaziel',series:'Adventure series',title:'The Adventures of Jaziel',es:'Las aventuras de Jaziel',img:'book_jaziel',en1:'Jaziel packed three things: a flashlight, a sandwich, and a very small dinosaur.',es1:'Jaziel empacó tres cosas: una linterna, un sándwich y un dinosaurio muy pequeñito.'},
@@ -2090,9 +2095,9 @@ const BOOKS=[
 ];
 let lang='en';
 function renderShelf(){$('#track').innerHTML=BOOKS.map(b=>`<article class="book"><img data-k="${b.img}" alt="${b.title} picture book cover held up by a child"><div><div class="series">${b.series}</div><h3>${lang==='en'?b.title:b.es}</h3><blockquote>“${lang==='en'?b.en1:b.es1}”</blockquote><div class="formats">
-  <button data-add='${JSON.stringify({id:b.id+'-hc',name:b.title+', hardcover',price:19.99,img:b.img,shop:'Publishing',meta:'Bilingual EN/ES'})}'><b>Hardcover</b><span>$19.99</span></button>
-  <button data-add='${JSON.stringify({id:b.id+'-pb',name:b.title+', paperback',price:11.99,img:b.img,shop:'Publishing',meta:'Bilingual EN/ES'})}'><b>Paperback</b><span>$11.99</span></button>
-  <button data-add='${JSON.stringify({id:b.id+'-cb',name:b.title+' coloring book',price:9,img:b.img,shop:'Publishing',meta:'Printable PDF'})}'><b>Coloring book, printable</b><span>$9</span></button></div></div></article>`).join('');
+  <button data-add='${JSON.stringify({id:b.id+'-hc',name:b.title+', hardcover',price:livePrice('PUB-'+b.id+'-HC',19.99),img:b.img,shop:'Publishing',meta:'Bilingual EN/ES'})}'${liveOut('PUB-'+b.id+'-HC')?' disabled':''}><b>Hardcover</b><span>${liveOut('PUB-'+b.id+'-HC')?'Sold out':money(livePrice('PUB-'+b.id+'-HC',19.99))}</span></button>
+  <button data-add='${JSON.stringify({id:b.id+'-pb',name:b.title+', paperback',price:livePrice('PUB-'+b.id+'-PB',11.99),img:b.img,shop:'Publishing',meta:'Bilingual EN/ES'})}'${liveOut('PUB-'+b.id+'-PB')?' disabled':''}><b>Paperback</b><span>${liveOut('PUB-'+b.id+'-PB')?'Sold out':money(livePrice('PUB-'+b.id+'-PB',11.99))}</span></button>
+  <button data-add='${JSON.stringify({id:b.id+'-cb',name:b.title+' coloring book',price:livePrice('PUB-'+b.id+'-CB',9),img:b.img,shop:'Publishing',meta:'Printable PDF'})}'${liveOut('PUB-'+b.id+'-CB')?' disabled':''}><b>Coloring book, printable</b><span>${liveOut('PUB-'+b.id+'-CB')?'Sold out':money(livePrice('PUB-'+b.id+'-CB',9))}</span></button></div></div></article>`).join('');
   $$('#track img').forEach(i=>i.src=A[i.dataset.k])}
 $$('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;$$('.lang button').forEach(x=>x.setAttribute('aria-pressed',x===b));
   $$('#track blockquote,#track h3').forEach((q,i)=>{if(window.gsap&&!RM)gsap.fromTo(q,{opacity:0,y:8},{opacity:1,y:0,duration:.5,delay:i*.03})});
@@ -2205,7 +2210,7 @@ const LPI={};LP.forEach(g=>LPI[g.id]=g);
 const HOOK={"brisa": {"s": 2.2543, "ht": 0.0798, "hk": 0.2659}, "marea": {"s": 1.6993, "ht": 0.0693, "hk": 0.2309}, "ola": {"s": 2.5658, "ht": 0.0898, "hk": 0.2993}, "playa": {"s": 1.7295, "ht": 0.0678, "hk": 0.2262}, "sol": {"s": 2.2543, "ht": 0.0841, "hk": 0.2803}, "coral": {"s": 2.1972, "ht": 0.0794, "hk": 0.2648}, "arena": {"s": 3.9394, "ht": 0.0697, "hk": 0.2323}, "ambar": {"s": 3.1579, "ht": 0.0777, "hk": 0.2591}, "luna": {"s": 3.8806, "ht": 0.0701, "hk": 0.2338}, "noche": {"s": 2.3494, "ht": 0.075, "hk": 0.25}, "estrella": {"s": 2.7758, "ht": 0.0886, "hk": 0.2954}};
 const SIZES={women:['XS','S','M','L','XL'],men:['S','M','L','XL','XXL'],swim:['XS','S','M','L','XL'],acc:['One size']};
 function lpItem(g,i){const k=HOOK[g.id]||{s:2.2,ht:.08,hk:.26};return`<li class="pc" style="--s:${k.s};--ht:${k.ht};--hk:${k.hk};--i:${i}"><button class="pc-b" data-pc="${g.id}" aria-label="${g.n}, ${money(g.p)}. View details"><span class="pc-hang"><img class="pc-img" data-a="lp_${g.id}" alt="${g.n} in ${g.col.toLowerCase()}"><img class="pc-tag" data-a="lp_oaktag" alt=""></span><span class="pc-cap"><b>${g.n}</b>${money(g.p)}</span></button></li>`}
-function lpBuild(){$$('.rail').forEach(r=>{const ch=r.dataset.rail,list=LP.filter(g=>g.ch===ch);
+function lpBuild(){$$('.rail').forEach(r=>{const ch=r.dataset.rail,list=LP.filter(g=>g.ch===ch&&!g.hide);
   r.querySelector('.rail-items').innerHTML=list.map(lpItem).join('');
   r.querySelector('.rail-caps').innerHTML=list.map(g=>`<li data-cap="${g.id}"><b>${g.n}</b><span>${money(g.p)}</span></li>`).join('')});
   $$('#lifestyle [data-a]').forEach(el=>{if(!el.src)el.src=A[el.dataset.a]})}
@@ -2235,7 +2240,7 @@ function lpParallax(){const vh=innerHeight;$$('#lifestyle [data-speed]').forEach
   $$('.ch-spread').forEach(h=>{const r=h.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const k=clamp(1-(r.top+r.height)/(vh+r.height));h.style.setProperty('--zoom',(1.14-k*.14).toFixed(4));h.style.setProperty('--lift',((k-.5)*-60).toFixed(1)+'px')})}
 /* ---------- close-up ---------- */
 const PV={open:null,size:null,list:[]};
-function pvOpen(id,from){const g=LPI[id];PV.open=id;PV.list=LP.filter(x=>x.ch===g.ch);PV.size=g.cat==='acc'?'One size':null;const fo=$('#rackFocus');pvFill();fo.hidden=false;document.body.classList.add('rf-on');
+function pvOpen(id,from){const g=LPI[id];PV.open=id;PV.list=LP.filter(x=>x.ch===g.ch&&!x.hide);PV.size=g.cat==='acc'?'One size':null;const fo=$('#rackFocus');pvFill();fo.hidden=false;document.body.classList.add('rf-on');
   const st=$('.rf-stage');if(!RM&&from){const a=from.getBoundingClientRect(),b=st.getBoundingClientRect(),s=Math.min(a.height/b.height,a.width/b.width)||.3;
     st.animate([{transform:`translate(${a.left+a.width/2-(b.left+b.width/2)}px,${a.top+a.height/2-(b.top+b.height/2)}px) scale(${s})`},{transform:'none'}],{duration:760,easing:'cubic-bezier(.2,.8,.15,1)'});
     fo.animate([{opacity:0},{opacity:1}],{duration:420,easing:'ease-out'});$$('.rf-info>*').forEach((x,k)=>x.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:600,delay:200+k*40,easing:'cubic-bezier(.2,.7,.1,1)',fill:'backwards'}))}
@@ -2245,7 +2250,8 @@ function pvFill(){const g=LPI[PV.open],i=PV.list.indexOf(g),n=PV.list.length;
   $('#rfCount').textContent=g.ch==='acc'?'The extras':LP_CH[g.ch].n;$('#rfName').textContent=g.n;$('#rfMeta').textContent=g.m;$('#rfPrice').textContent=money(g.p);$('#rfColor').textContent=g.col;
   $('#rfDetails').innerHTML=g.d.map(x=>`<li>${x}</li>`).join('');
   $('#rfSizes').innerHTML=SIZES[g.cat].map(s=>`<button data-rf-size="${s}" aria-pressed="${s===PV.size}">${s}</button>`).join('');$('#rfSizeLbl').hidden=g.cat==='acc';$('#rfSizes').hidden=g.cat==='acc';
-  $('#rfAdd').disabled=!PV.size;$('#rfAdd').textContent=PV.size?'Add to bag':'Pick a size';$('.rf-nav').hidden=n<2}
+  $('#rfAdd').disabled=!PV.size;$('#rfAdd').textContent=PV.size?'Add to bag':'Pick a size';$('.rf-nav').hidden=n<2;
+  if(g.so&&g.so.length){$$('#rfSizes button').forEach(b=>{if(g.so.includes(b.dataset.rfSize.toUpperCase())){b.disabled=true;b.classList.add('so')}});if(g.out){$('#rfAdd').disabled=true;$('#rfAdd').textContent='Sold out'}}}
 function pvStep(d){const n=PV.list.length,i=PV.list.indexOf(LPI[PV.open]);PV.open=PV.list[(i+d+n)%n].id;const g=LPI[PV.open];PV.size=g.cat==='acc'?'One size':null;
   if(!RM)$('.rf-stage').animate([{opacity:0,transform:`translateX(${d*40}px)`},{opacity:1,transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.7,.1,1)'});pvFill()}
 function pvClose(){if(!PV.open)return;const fo=$('#rackFocus'),done=()=>{fo.hidden=true;document.body.classList.remove('rf-on');const b=$(`[data-pc="${PV.open}"]`);PV.open=null;b&&b.focus({preventScroll:true})};
@@ -2401,7 +2407,7 @@ inits.tinylegends=()=>{navH();const f=TL.frame();
 leaves.tinylegends=()=>TL.post({type:'pause'});
 addEventListener('message',e=>{const d=e.data||{};if(d.src!=='tla'||e.source!==(TL.frame()&&TL.frame().contentWindow))return;
   if(d.type==='ready'){TL.ready=true;$('#tinylegends').classList.add('loaded');TL.count();if(TL.pending){TL.post({type:'route',v:TL.pending});TL.pending=null}}
-  if(d.type==='add'){const price=+d.price||0;addToBag({key:'tla-'+d.id+(d.sizeKey?'-'+d.sizeKey:''),id:'tla-'+d.id,sku:('TLA-'+d.id+(d.sizeKey?'-'+d.sizeKey:'')).toUpperCase(),name:d.name,price,img:d.img,shop:'Tiny Legends',meta:d.size||''});TL.count()}
+  if(d.type==='add'){const price=+d.price||0;addToBag({key:'tla-'+d.id+(d.sizeKey?'-'+d.sizeKey:''),id:'tla-'+d.id,sku:/^(TLA|SQV)-[A-Z0-9_-]+$/i.test(d.sku||'')?d.sku:('TLA-'+d.id+(d.sizeKey?'-'+d.sizeKey:'')).toUpperCase(),name:d.name,price,img:d.img,shop:'Tiny Legends',meta:d.size||''});TL.count()}
   if(d.type==='bag')openBag(true)});
 if(current==='tinylegends')inits.tinylegends();
 
@@ -2441,6 +2447,18 @@ if(PayLock.config.mode==='square'){
       const d=await r.json();if(!r.ok||!d.url)return{ok:false,message:d.error||'Checkout is busy. Hold again in a moment.'};
       bag=[];bagSave();setTimeout(()=>location.href=d.url,700);return{ok:true,code}}catch(e){return{ok:false,message:'Checkout is busy. Hold again in a moment.'}}};
 }
+/* ---------- live catalog (production): Jasmine's edits in Square / the back office show up here ---------- */
+if(PROD)fetch('/.netlify/functions/catalog').then(r=>r.ok?r.json():null).then(d=>{if(!d||!d.connected||!Array.isArray(d.items))return;
+  d.items.forEach(it=>it.variations.forEach(v=>{if(v.sku)LIVE[v.sku.toUpperCase()]={price:v.price,stock:v.stock}}));
+  if(d.items.some(i=>i.brand==='li')||(d.hidden||[]).length){LP.forEach(g=>{const base=('LI-'+g.id).toUpperCase(),vs=Object.keys(LIVE).filter(k=>k===base||k.startsWith(base+'-'));
+    const hid=(d.hidden||[]).some(k=>{k=k.toUpperCase();return k===base||k.startsWith(base+'-')});
+    if(g.cat==='acc'){if(hid&&!vs.length){g.so=['ONE SIZE'];g.out=true}else if(vs.length){g.p=LIVE[vs[0]].price;g.out=LIVE[vs[0]].stock===0;g.so=g.out?['ONE SIZE']:[]}
+      $$('.il-list button[data-pc="'+g.id+'"]').forEach(b=>{const sp=b.nextElementSibling;if(sp)sp.textContent=g.out?'Sold out':money(g.p)});return}
+    g.hide=hid&&!vs.length;if(!vs.length)return;g.p=Math.min(...vs.map(k=>LIVE[k].price));
+    const have=vs.map(k=>k===base?'ONE SIZE':k.slice(base.length+1));g.so=SIZES[g.cat].map(z=>z.toUpperCase()).filter(z=>!have.includes(z)||LIVE[z==='ONE SIZE'?base:base+'-'+z].stock===0);g.out=g.so.length===SIZES[g.cat].length});
+    if($('.rail .pc'))railInit()}
+  if(d.items.some(i=>i.brand==='pub'))renderShelf();
+}).catch(()=>{});
 
 /* returning from Square checkout */
 (()=>{const q=new URLSearchParams(location.search);if(q.get('bag')){bag=store.get('li_bag',[]);renderBag();setTimeout(()=>openBag(true),600);history.replaceState(null,'',location.pathname)}})();

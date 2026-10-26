@@ -3,3 +3,6 @@
 /books       /publishing   301
 /tla         /tinylegends/ 301
 /tiny-legends /tinylegends/ 301
+# product photos uploaded from the back office live in Square
+/sqimg/:id                    /.netlify/functions/sqimg?id=:id  200
+/tinylegends/assets/sq/:id    /.netlify/functions/sqimg?id=:id  200
