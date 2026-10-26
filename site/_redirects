@@ -5,4 +5,6 @@
 /tiny-legends /tinylegends/ 301
 # product photos uploaded from the back office live in Square
 /sqimg/:id                    /.netlify/functions/sqimg?id=:id  200
+# images uploaded in the Studio
+/media/:id                    /.netlify/functions/media?id=:id  200
 /tinylegends/assets/sq/:id    /.netlify/functions/sqimg?id=:id  200

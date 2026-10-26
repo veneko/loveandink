@@ -4,7 +4,16 @@ import { randomBytes } from 'node:crypto';
 
 export class HttpError extends Error { constructor(status, msg) { super(msg); this.status = status } }
 export const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', ...headers } });
-export const wrap = fn => async (req, ctx) => { try { return await fn(req, ctx) } catch (e) { return json({ error: e.message || 'Something went wrong.' }, e.status || 500) } };
+/* Square keys come from Netlify env vars, or from the back office "Connect Square" box (kept server-side in Blobs). */
+const ENV_SQ = !!process.env.SQUARE_ACCESS_TOKEN;
+export async function loadSquare() {
+  if (ENV_SQ) return 'env';
+  const c = await getStore({ name: 'loveandink', consistency: 'strong' }).get('secret/square', { type: 'json' }).catch(() => null);
+  if (c && c.token && c.location) { process.env.SQUARE_ACCESS_TOKEN = c.token; process.env.SQUARE_LOCATION_ID = c.location; process.env.SQUARE_ENV = c.env }
+  else { delete process.env.SQUARE_ACCESS_TOKEN; delete process.env.SQUARE_LOCATION_ID }
+  return c ? 'backoffice' : null;
+}
+export const wrap = fn => async (req, ctx) => { try { await loadSquare(); return await fn(req, ctx) } catch (e) { return json({ error: e.message || 'Something went wrong.' }, e.status || 500) } };
 export const store = () => getStore({ name: 'loveandink', consistency: 'strong' });
 
 /* ---------- admins + sessions ---------- */

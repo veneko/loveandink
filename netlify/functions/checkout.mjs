@@ -4,7 +4,8 @@
 //   SQUARE_ACCESS_TOKEN  (Sandbox token first, then Production)
 //   SQUARE_LOCATION_ID
 //   SQUARE_ENV           "sandbox" or "production"
-const API = process.env.SQUARE_ENV === 'production' ? 'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
+import { loadSquare } from '../lib/lib.mjs';
+let API;
 const H = () => ({ 'Square-Version': '2025-01-23', Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`, 'Content-Type': 'application/json' });
 // Custom prints are priced in the Prints studio; the server only accepts prices inside these ranges (USD).
 const CUSTOM_RANGE = { MUG: [22, 28], TUMBLER: [32, 52], APPAREL: [28, 54], KEYCHAIN: [12, 18] };
@@ -16,6 +17,7 @@ async function sq(path, body) {
   return d;
 }
 export default async (req) => {
+  await loadSquare(); API = process.env.SQUARE_ENV === 'production' ? 'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
   if (req.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
   if (!process.env.SQUARE_ACCESS_TOKEN || !process.env.SQUARE_LOCATION_ID) return json({ error: 'Checkout is not connected yet.' }, 503);
   let p; try { p = await req.json() } catch { return json({ error: 'Bad request' }, 400) }

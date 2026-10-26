@@ -1,9 +1,11 @@
 // Netlify Function: live stock for SKUs. GET /.netlify/functions/stock?skus=TLA-UNDEFEATED-BABY,LI-BRISA-M
 // Returns { "SKU": quantity } for variations that track inventory in Square.
-const API = process.env.SQUARE_ENV === 'production' ? 'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
+import { loadSquare } from '../lib/lib.mjs';
+let API;
 const H = () => ({ 'Square-Version': '2025-01-23', Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`, 'Content-Type': 'application/json' });
 const post = async (p, b) => (await fetch(API + p, { method: 'POST', headers: H(), body: JSON.stringify(b) })).json();
 export default async (req) => {
+  await loadSquare(); API = process.env.SQUARE_ENV === 'production' ? 'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
   const skus = (new URL(req.url).searchParams.get('skus') || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 60);
   if (!skus.length || !process.env.SQUARE_ACCESS_TOKEN) return Response.json({});
   const vars = {};
