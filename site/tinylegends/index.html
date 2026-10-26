@@ -325,13 +325,171 @@ footer small{opacity:.8}
   .lineup{box-shadow:4px 4px 0 var(--purple)}
 }
 
+/* ===== v7: solo / together rooms ===== */
+.room.solo,.room.together{height:200vh}
+.kid.star img{filter:drop-shadow(0 24px 30px rgba(30,15,60,.45))}
+.kid.star .say{font-size:clamp(1.05rem,1.6vw,1.35rem)}
+/* shop models */
+.shop-models{display:grid;grid-template-columns:1fr 1fr 1.6fr 1fr;gap:18px;align-items:end;padding-block:10px 0}
+.shop-models figure{margin:0;position:relative;background:radial-gradient(ellipse at 50% 80%,rgba(255,210,63,.35),rgba(123,63,228,.12) 60%,transparent 75%);border-radius:28px;display:flex;flex-direction:column;align-items:center}
+.shop-models img{max-height:340px;width:auto;filter:drop-shadow(0 14px 16px rgba(58,26,107,.25))}
+.shop-models .mid img{max-height:420px}
+.shop-models figcaption{font-family:var(--f-hand);font-size:1.15rem;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:1px 12px;margin-top:-14px;position:relative}
+.item .pic{position:relative}
+.item .pic .on{position:absolute;inset:0;opacity:0;transition:opacity .3s;background:var(--paper);display:grid;place-items:center}
+.item .pic .on img{object-fit:contain;height:92%;width:auto}
+.item.flip .pic .on{opacity:1}
+.see{font-size:.78rem;font-weight:800;background:none;border:0;color:var(--purple);text-decoration:underline;cursor:pointer;padding:0;align-self:flex-start}
+@media (hover:hover){.item:hover .pic .on{opacity:1}}
+@media (max-width:760px){
+  .room.solo,.room.together{height:170vh}
+  .kid.star{left:50%!important;height:calc(var(--h)*.82)!important;bottom:2vh!important}
+  .shop-models{grid-template-columns:1fr}
+  .shop-models figure:not(.mid){display:none}
+  .shop-models .mid img{max-height:230px}
+  #r-living .kid.star{height:28vh!important;bottom:5vh!important}
+}
+
 @media (max-width:380px){.feed{grid-template-columns:repeat(2,1fr)}.nav nav a{padding:6px 7px}}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .room{height:auto}.room-stage{position:relative;height:auto;min-height:100vh}
 }
+/* v8: recipes */
+.recipes{display:grid;gap:8px}
+.recipes button{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;text-align:left;background:var(--paper);border:2.5px solid var(--ink);border-radius:16px;padding:8px 12px;cursor:pointer;font:inherit;color:var(--ink);box-shadow:3px 3px 0 var(--c);transition:transform .15s}
+.recipes button:hover{transform:translate(-1px,-2px)}
+.recipes .dot{width:14px;height:14px;border-radius:50%;background:var(--c);border:2px solid var(--ink)}
+.recipes b{display:block;font-family:var(--f-display);font-size:1rem;line-height:1.15}
+.recipes small{color:var(--ink-2);font-size:.78rem}
+.recipes .go{font-family:var(--f-hand);font-size:1.05rem;white-space:nowrap}
+.rdlg{border:3px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--pink);padding:26px;max-width:min(620px,calc(100% - 28px));width:100%;background:#fff;color:var(--ink)}
+.rdlg::backdrop{background:rgba(28,18,64,.55)}
+.rdlg h3{font-family:var(--f-display);font-size:1.7rem;line-height:1.1;margin:8px 0 2px}
+.rdlg .meta{color:var(--ink-2);font-size:.9rem;margin:0 0 10px}
+.rdlg h4{font-family:var(--f-display);margin:6px 0}
+.rdlg ul,.rdlg ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.rcols{display:grid;grid-template-columns:1fr 1.4fr;gap:20px}
+.rdlg .safe{margin:14px 0 0;background:var(--paper);border-radius:12px;padding:8px 12px;font-family:var(--f-hand);font-size:1.1rem}
+.rdlg .x{position:absolute;top:12px;right:14px;width:38px;height:38px;border-radius:50%;border:2.5px solid var(--ink);background:var(--yellow);font-size:1.4rem;line-height:1;cursor:pointer}
+/* v8: closets pan */
+.room.closet{height:440vh;--pan:0}
+.pan{position:absolute;top:-3%;bottom:-3%;left:0;width:300%;display:flex;z-index:-2;transform:translateX(calc(var(--pan)*-33.3333%))}
+.pan div{flex:1;background-size:cover;background-position:center 62%}
+.shade.cl{background:linear-gradient(90deg,rgba(255,248,236,var(--sl,.78)) 0%,transparent 48%,transparent 52%,rgba(255,248,236,var(--sr,0)) 100%)}
+.layer{position:absolute;inset:0}
+.layer.l1{transform:translateX(calc(var(--pan)*-100vw))}
+.layer.l2{transform:translateX(calc((1 - var(--pan))*100vw)) rotate(calc((1 - min(var(--pan),1))*-14deg));transform-origin:30% 100%}
+.layer.l3{transform:translateX(calc((2 - var(--pan))*100vw)) translateY(calc((2 - var(--pan))*-6vh))}
+.clo-ui{display:grid!important;align-items:center}
+.clo-ui .panel{grid-area:1/1}
+.clo-p1,.clo-p3{justify-self:start}.clo-p2{justify-self:end}
+.clo-ui .panel[data-off]{pointer-events:none;visibility:hidden}
+.nextdoor{font-family:var(--f-hand);font-size:1.15rem;color:var(--purple)}
+/* v9: shop categories */
+.cats{display:flex;gap:8px;flex-wrap:wrap;padding-top:18px}
+.cats button{font-family:var(--f-display);font-weight:600;border:2.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:6px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.cats button[aria-pressed="true"]{background:var(--yellow)}
+.cats button.ext{background:var(--purple);color:#fff}
+@media (max-width:760px){.cats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:6px;max-width:100%}.cats::-webkit-scrollbar{display:none}.cats button{flex:none}}
+/* v8: books */
+.books-head{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center}
+.books-head img{width:100%;max-height:300px;object-fit:contain;filter:drop-shadow(0 14px 16px rgba(30,15,60,.25))}
+@media (max-width:760px){
+  .room.closet{height:280vh}
+  .clo-ui .panel{justify-self:stretch}
+  .clo-ui .panel{transform:none!important}
+  .layer.l3 .kid.star{height:38vh!important}
+  .clo-ui .panel p{display:none}
+  .clo-ui{align-items:start!important;align-content:start}
+  .nextdoor{font-size:1rem}
+  .layer .kid.star{height:46vh!important;bottom:3vh!important}
+  .recipes{grid-template-columns:repeat(3,1fr);gap:6px}
+  .recipes button{grid-template-columns:1fr;padding:6px 8px;text-align:center;justify-items:center;gap:2px}
+  .recipes small,.recipes .go{display:none}
+  .recipes b{font-size:.8rem}
+  #r-kitchen .kid{height:40vh!important}
+  #r-concert .kid{height:40vh!important}
+  #r-story .kid.star{height:auto!important;width:92vw;bottom:8vh!important}
+  #r-story .kid.star img{width:100%;height:auto}
+  .books-head{grid-template-columns:1fr}
+  .books-head img{max-height:200px}
+  .rcols{grid-template-columns:1fr;gap:8px}
+  .rdlg{padding:20px}
+  .tabbar{grid-template-columns:repeat(5,1fr)!important}
+  .tabbar a{font-size:.68rem!important}
+}
+@media (prefers-reduced-motion:reduce){.room.closet{height:auto}.pan{width:100%}.pan div+div{display:none}.layer.l2,.layer.l3,.clo-p2,.clo-p3{display:none}.layer.l1,.clo-p1{transform:none;opacity:1}}
+/* v10: square bag drawer */
+[hidden]{display:none!important}
+.scrim{position:fixed;inset:0;background:rgba(28,18,64,.5);z-index:90}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--paper);border-left:3px solid var(--ink);z-index:91;box-shadow:-8px 0 0 var(--pink);display:flex}
+.drawer-in{display:flex;flex-direction:column;width:100%;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.drawer-h{display:flex;justify-content:space-between;align-items:center}
+.drawer-h h3{font-family:var(--f-display);font-size:1.6rem}
+.drawer .x,.adm .x{width:38px;height:38px;border-radius:50%;border:2.5px solid var(--ink);background:var(--yellow);font-size:1.4rem;line-height:1;cursor:pointer}
+.lines{flex:1;overflow:auto;display:grid;align-content:start;gap:12px;padding-block:16px}
+.line{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:8px}
+.line img{width:64px;height:64px;object-fit:contain;background:var(--paper);border-radius:10px}
+.line b{display:block;font-size:.95rem;line-height:1.2}.line small{color:var(--ink-2)}
+.qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{width:28px;height:28px;border-radius:8px;border:2px solid var(--ink);background:#fff;font-weight:800;cursor:pointer}
+.line .rm{background:none;border:0;color:var(--purple);text-decoration:underline;cursor:pointer;font-size:.8rem}
+.line .lp{font-family:var(--f-display);font-weight:700;text-align:right}
+.drawer-f{border-top:2.5px dashed var(--ink);padding-top:14px;display:grid;gap:8px}
+.drawer-f .sub{display:flex;justify-content:space-between;font-family:var(--f-display);font-size:1.2rem}
+.sqbtn{justify-content:center;width:100%}
+.sqbtn[disabled]{opacity:.45;cursor:not-allowed}
+.demo{color:var(--ink-2);font-size:.78rem}
+.empty-bag{font-family:var(--f-hand);font-size:1.2rem;text-align:center;padding:30px 0}
+.sq{font-family:var(--f-display)}
+.item.out .pic img{opacity:.35;filter:grayscale(.6)}
+.item.out .add{background:#ccc;color:var(--ink-2);cursor:not-allowed;box-shadow:none}
+.item.out .flag{background:#fff}
+.announce{background:var(--yellow);border-bottom:2.5px solid var(--ink);text-align:center;font-family:var(--f-display);font-weight:600;padding:7px 16px;font-size:.95rem}
+.admin-link{color:#EADFFF;font-size:.8rem;opacity:.7}
+/* v10: admin */
+.adm{padding-block:34px 90px;min-height:80vh}
+.adm-login{max-width:420px;margin:30px auto;background:#fff;border:3px solid var(--ink);border-radius:26px;box-shadow:7px 7px 0 var(--purple);padding:26px;display:grid;gap:12px}
+.adm-logo{width:140px;margin:0 auto}
+.adm h2{font-family:var(--f-display);font-size:1.8rem;line-height:1.1}
+.adm label{display:grid;gap:4px;font-weight:700;font-size:.9rem}
+.adm input[type=email],.adm input[type=text],.adm input[type=url],.adm input[type=number],.adm select{font:inherit;border:2.5px solid var(--ink);border-radius:12px;padding:8px 10px;background:#fff;min-width:0}
+.linkbtn{background:none;border:0;color:var(--purple);text-decoration:underline;cursor:pointer;font:inherit;font-size:.9rem}
+.adm-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.btn.ghost-ink{background:#fff}
+.sqstat{font-weight:800;font-size:.85rem;border:2px solid var(--ink);border-radius:999px;padding:4px 12px;background:#fff}
+.sqstat.on{background:#C9F7D9}
+.adm-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 14px;border-bottom:2.5px solid var(--ink);padding-bottom:10px}
+.adm-tabs button{font-family:var(--f-display);font-weight:600;border:2.5px solid var(--ink);background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
+.adm-tabs button[aria-selected=true]{background:var(--yellow);box-shadow:3px 3px 0 var(--ink)}
+.hint{color:var(--ink-2);max-width:70ch}.hint.sm{font-size:.85rem}
+.adm-actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.tbl-wrap{overflow-x:auto;border:3px solid var(--ink);border-radius:18px;background:#fff}
+.tbl{border-collapse:collapse;width:100%;font-size:.92rem}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;border-bottom:1.5px solid #EEE3F8;white-space:nowrap}
+.tbl th{font-family:var(--f-display);background:var(--paper)}
+.tbl td.n{font-variant-numeric:tabular-nums}
+.tbl img{width:40px;height:40px;object-fit:contain;vertical-align:middle;margin-right:8px;background:var(--paper);border-radius:8px}
+.tbl input[type=number]{width:74px;padding:4px 6px}
+.pill{font-size:.75rem;font-weight:800;border-radius:999px;padding:2px 8px;border:2px solid var(--ink)}
+.pill.ok{background:#C9F7D9}.pill.out{background:#FFD0E4}
+.cards2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.acard{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:18px;display:grid;gap:10px;align-content:start;box-shadow:5px 5px 0 var(--ink)}
+.acard h4{font-family:var(--f-display);font-size:1.15rem}
+.sw{display:flex!important;align-items:center;gap:8px;grid-template-columns:none}
+.pick{display:grid;grid-template-columns:90px 1fr 1fr;gap:8px;align-items:center;font-size:.9rem}
+.vlist{display:grid;gap:8px;padding:0;list-style:none;max-width:640px}
+.vlist li{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:6px 10px}
+.vlist img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+.vlist .mv{display:flex;gap:4px}.vlist .mv button{width:30px;height:30px;border-radius:8px;border:2px solid var(--ink);background:#fff;cursor:pointer}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.92rem}.kv dt{font-weight:800}
+.sqcard{max-width:520px}
+@media (max-width:760px){.shop-models{grid-template-columns:1fr}.pick{grid-template-columns:1fr}.adm-top h2{font-size:1.4rem}.drawer{box-shadow:none}}
 /* embedded inside Love & Ink: the parent site's nav replaces the breadcrumb bar */
 html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
+/* live site: the back-office prototype stays out of public view */
+.admin-link{display:none}
 </style>
 
 <div class="li-bar"><div class="wrap"><a href="/" style="color:inherit;text-decoration:none"><b>Love &amp; Ink</b></a><div class="li-crumbs"><span data-i="crumb"></span></div></div></div>
@@ -343,6 +501,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
     <a href="#legends" data-go="legends"><span class="nav-long" data-i="nav_legends"></span><span class="nav-short" data-i="nav_legends_s"></span></a>
     <a href="#watch" data-go="watch" data-i="nav_watch"></a>
     <a href="#shop" data-go="shop" data-i="nav_shop"></a>
+    <a href="#books" data-go="books" data-i="nav_books"></a>
   </nav>
   <label class="lang"><span class="sr" data-i="lang_label"></span>
     <select id="langSel">
@@ -352,6 +511,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
   <button class="bag" id="bag" type="button"><span data-i="bag"></span> · <span id="bagN">0</span></button>
 </div></header>
 
+<div class="announce" id="announce" hidden></div>
 <main>
 <!-- ================= HOME ================= -->
 <div class="view" id="v-home">
@@ -383,7 +543,8 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 
   <div class="doorway"><p data-i="doorway"></p></div>
 
-  <section class="room" id="r-living">
+  <!-- 1 · JAZIEL solo -->
+  <section class="room solo" id="r-living">
     <div class="room-stage">
       <div class="room-bg" style="background-image:url(assets/room_living.webp)"></div><div class="shade"></div>
       <div class="room-ui wrap">
@@ -391,39 +552,71 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
           <span class="tag" style="--t:var(--cyan)" data-i="living_tag"></span>
           <h2 data-i="living_title"></h2>
           <p data-i="living_text"></p>
-          <div class="thumbs" id="livingThumbs"></div>
           <a class="btn cyan" href="#watch" data-go="watch" data-i="cta_watch"></a>
         </div>
       </div>
-      <div class="kids">
-        <figure class="kid" style="--x:47%;--h:34vh;--b:4vh" data-at="0.10" data-from="-90,6,-8"><span class="say" data-i="b_liv_j"></span><img src="assets/liv_jaziel.webp" alt=""></figure>
-        <figure class="kid" style="--x:67%;--h:60vh;--b:6vh" data-at="0.22" data-from="0,40,10"><span class="say" data-i="b_liv_c"></span><img src="assets/liv_cambam.webp" alt=""></figure>
-        <figure class="kid" style="--x:85%;--h:30vh;--b:2vh" data-at="0.36" data-from="80,0,6"><span class="say" style="left:28%" data-i="b_liv_e"></span><img src="assets/liv_evaluna.webp" alt=""></figure>
-      </div>
+      <div class="kids"><figure class="kid star" style="--x:68%;--h:52vh;--b:6vh" data-at="0.08" data-from="-80,8,-10"><span class="say" data-i="b_liv_j"></span><img src="assets/liv_jaziel.webp" alt=""></figure></div>
     </div>
   </section>
 
-  <section class="room" id="r-kitchen">
+  <!-- 2 · TOGETHER: kitchen recipes -->
+  <section class="room together" id="r-kitchen">
     <div class="room-stage">
       <div class="room-bg" style="background-image:url(assets/room_kitchen.webp)"></div><div class="shade r"></div>
       <div class="kids">
-        <figure class="kid" style="--x:9%;--h:62vh;--b:4vh" data-at="0.08" data-from="-70,0,-6"><span class="say" style="left:66%" data-i="b_kit_c"></span><img src="assets/kit_cambam.webp" alt=""></figure>
-        <figure class="kid" style="--x:27%;--h:46vh;--b:2vh" data-at="0.22" data-from="0,50,0"><span class="say" data-i="b_kit_e"></span><img src="assets/kit_evaluna.webp" alt=""></figure>
-        <figure class="kid" style="--x:42%;--h:58vh;--b:3vh" data-at="0.36" data-from="60,0,8"><span class="say" data-i="b_kit_j"></span><img src="assets/kit_jaziel.webp" alt=""></figure>
+        <figure class="kid" style="--x:11%;--h:62vh;--b:4vh" data-at="0.08" data-from="-70,0,-6"><span class="say" style="left:62%" data-i="b_kit_c2"></span><img src="assets/kit_cambam.webp" alt=""></figure>
+        <figure class="kid" style="--x:29%;--h:46vh;--b:2vh" data-at="0.22" data-from="0,50,0"><span class="say" data-i="b_kit_e"></span><img src="assets/kit_evaluna.webp" alt=""></figure>
+        <figure class="kid" style="--x:45%;--h:58vh;--b:3vh" data-at="0.36" data-from="60,0,8"><span class="say" data-i="b_kit_j"></span><img src="assets/kit_jaziel.webp" alt=""></figure>
       </div>
       <div class="room-ui wrap right">
         <div class="panel" data-at="0.04" data-from="30,0,3">
-          <span class="tag" style="--t:var(--pink);color:#fff" data-i="kitchen_tag"></span>
-          <h2 data-i="kitchen_title"></h2>
-          <p data-i="kitchen_text"></p>
-          <div class="minishop" id="miniShop"></div>
-          <a class="btn pink" href="#shop" data-go="shop" data-i="kitchen_cta"></a>
+          <span class="tag" style="--t:var(--yellow)" data-i="cook_tag"></span>
+          <h2 data-i="cook_title"></h2>
+          <p data-i="cook_text"></p>
+          <div class="recipes" id="recipes"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="room" id="r-concert">
+  <!-- 3 · CLOSETS: CamBam -> pan next door -> Jaziel -->
+  <section class="room closet" id="r-closet">
+    <div class="room-stage">
+      <div class="pan" aria-hidden="true"><div style="background-image:url(assets/room_closet.webp)"></div><div style="background-image:url(assets/room_closet_jaziel.webp)"></div><div style="background-image:url(assets/room_closet_evaluna.webp)"></div></div>
+      <div class="shade cl"></div>
+      <div class="kids">
+        <div class="layer l1"><figure class="kid star" style="--x:70%;--h:74vh;--b:3vh" data-at="0.04" data-from="0,40,6"><span class="say" data-i="b_clo_c"></span><img src="assets/clo_cambam.webp" alt=""></figure></div>
+        <div class="layer l2"><figure class="kid star" style="--x:31%;--h:72vh;--b:3vh"><span class="say" data-i="b_clo_j"></span><img src="assets/clo_jaziel.webp" alt=""></figure></div>
+        <div class="layer l3"><figure class="kid star" style="--x:70%;--h:60vh;--b:4vh"><span class="say" data-i="b_clo_e"></span><img src="assets/clo_evaluna.webp" alt=""></figure></div>
+      </div>
+      <div class="room-ui wrap clo-ui">
+        <div class="panel clo-p1">
+          <span class="tag" style="--t:var(--pink);color:#fff" data-i="clo_tag"></span>
+          <h2 data-i="clo_title1"></h2>
+          <p data-i="clo_text"></p>
+          <div class="minishop" id="miniC"></div>
+          <span class="nextdoor" data-i="clo_next"></span>
+        </div>
+        <div class="panel clo-p2">
+          <span class="tag" style="--t:var(--cyan)" data-i="clo_tag2"></span>
+          <h2 data-i="clo_title2"></h2>
+          <p data-i="clo_text2"></p>
+          <div class="minishop" id="miniJ"></div>
+          <span class="nextdoor" data-i="clo_next2"></span>
+        </div>
+        <div class="panel clo-p3">
+          <span class="tag" style="--t:var(--purple);color:#fff" data-i="clo_tag3"></span>
+          <h2 data-i="clo_title3"></h2>
+          <p data-i="clo_text3"></p>
+          <div class="minishop" id="miniE"></div>
+          <a class="btn pink" href="#shop" data-go="shop" data-i="clo_cta"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · TOGETHER: backyard concert -->
+  <section class="room together" id="r-concert">
     <div class="room-stage">
       <div class="room-bg" style="background-image:url(assets/room_concert.webp);background-position:center 55%"></div><div class="shade n"></div><div class="sweep" aria-hidden="true"></div>
       <div class="room-ui wrap">
@@ -436,30 +629,26 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
         </div>
       </div>
       <div class="kids">
-        <figure class="kid" style="--x:49%;--h:44vh;--b:16vh" data-at="0.10" data-from="0,40,0"><span class="say" data-i="b_con_j"></span><img src="assets/con_jaziel.webp" alt=""></figure>
-        <figure class="kid" style="--x:67%;--h:60vh;--b:10vh" data-at="0.22" data-from="0,50,6"><span class="say" data-i="b_con_c"></span><img src="assets/con_cambam.webp" alt=""></figure>
-        <figure class="kid" style="--x:86%;--h:38vh;--b:14vh" data-at="0.36" data-from="60,0,8"><span class="say" style="left:30%" data-i="b_con_e"></span><img src="assets/con_evaluna.webp" alt=""></figure>
+        <figure class="kid" style="--x:52%;--h:44vh;--b:16vh" data-at="0.10" data-from="0,40,0"><span class="say" data-i="b_con_j"></span><img src="assets/con_jaziel.webp" alt=""></figure>
+        <figure class="kid" style="--x:69%;--h:62vh;--b:8vh" data-at="0.22" data-from="0,50,6"><span class="say" data-i="b_con_c"></span><img src="assets/con_cambam.webp" alt=""></figure>
+        <figure class="kid" style="--x:87%;--h:38vh;--b:12vh" data-at="0.36" data-from="60,0,8"><span class="say" style="left:30%" data-i="b_con_e"></span><img src="assets/con_evaluna.webp" alt=""></figure>
       </div>
     </div>
   </section>
 
-  <section class="room" id="r-bedroom">
+  <!-- 5 · EVALUNA solo: story time -> books -->
+  <section class="room solo" id="r-story">
     <div class="room-stage">
       <div class="room-bg" style="background-image:url(assets/room_bedroom.webp)"></div><div class="shade n"></div>
       <div class="room-ui wrap">
         <div class="panel dark" data-at="0.02" data-from="-30,0,-3">
-          <span class="tag" style="--t:var(--purple);color:#fff" data-i="bedroom_tag"></span>
-          <h2 data-i="bedroom_title"></h2>
-          <p data-i="bedroom_text"></p>
-          <div class="recline"><div><b>∞–0</b><span data-i="rec_label"></span></div><div><b>9.8M</b><span data-i="stat1"></span></div></div>
-          <a class="btn yellow" href="#legends" data-go="legends" data-i="nav_legends"></a>
+          <span class="tag" style="--t:var(--purple);color:#fff" data-i="story_tag"></span>
+          <h2 data-i="story_title"></h2>
+          <p data-i="story_text"></p>
+          <a class="btn yellow" href="#books" data-go="books" data-i="story_cta"></a>
         </div>
       </div>
-      <div class="kids">
-        <figure class="kid" style="--x:48%;--h:54vh;--b:5vh" data-at="0.10" data-from="-50,30,-10"><span class="say" data-i="b_bed_j"></span><img src="assets/bed_jaziel.webp" alt=""></figure>
-        <figure class="kid" style="--x:63%;--h:38vh;--b:22vh" data-at="0.24" data-from="0,-60,-12"><span class="say" data-i="b_bed_e"></span><img src="assets/bed_evaluna.webp" alt=""></figure>
-        <figure class="kid" style="--x:83%;--h:58vh;--b:3vh" data-at="0.38" data-from="70,0,8"><span class="say" data-i="b_bed_c"></span><img src="assets/bed_cambam.webp" alt=""></figure>
-      </div>
+      <div class="kids"><figure class="kid star" style="--x:68%;--h:50vh;--b:10vh" data-at="0.08" data-from="0,-50,-8"><span class="say" data-i="b_story_e"></span><img src="assets/story_evaluna.webp" alt=""></figure></div>
     </div>
   </section>
 
@@ -492,12 +681,82 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
   <section class="watch"><div class="wrap">
     <div class="player" id="watchPlayer"></div>
     <div>
-      <div class="watch-head"><span class="tag" style="--t:var(--cyan)" data-i="living_title"></span><h2 data-i="w_title"></h2><p data-i="w_sub"></p></div>
+      <div class="watch-head"><span class="tag" style="--t:var(--cyan)" data-i="w_eyebrow"></span><h2 data-i="w_title"></h2><p data-i="w_sub"></p></div>
       <div class="chips" id="chips" role="group"></div>
       <p class="upnext" data-i="w_upnext"></p>
       <div class="feed" id="feed"></div>
     </div>
   </div></section>
+</div>
+
+<!-- ================= BOOKS ================= -->
+<div class="view" id="v-books" hidden>
+  <div class="wrap page-head books-head">
+    <div>
+      <span class="tag" style="--t:var(--purple);color:#fff" data-i="bk_eyebrow"></span>
+      <h2 data-i="bk_title"></h2>
+      <p data-i="bk_sub"></p>
+    </div>
+    <img src="assets/story_evaluna.webp" alt="Evaluna asleep on a giant storybook">
+  </div>
+  <div class="wrap shop-grid" id="bookGrid"></div>
+  <div class="wrap shop-note"><b class="sq">■ Square</b><span data-i="sq_note"></span></div>
+</div>
+
+<!-- ================= ADMIN (demo) ================= -->
+<div class="view" id="v-admin" hidden>
+  <section class="adm">
+    <div class="wrap">
+      <div class="adm-login" id="admLogin">
+        <img src="assets/logo.webp" alt="Tiny Legends Adventures" class="adm-logo">
+        <h2>Team sign-in</h2>
+        <p>Love &amp; Ink staff only. We email you a one-time sign-in link, no password to remember.</p>
+        <label>Email<input type="email" id="admEmail" placeholder="you@loveandink.co" autocomplete="email"></label>
+        <button class="btn pink" type="button" id="admGo">Email me a sign-in link</button>
+        <button class="linkbtn" type="button" id="admDemo">Skip: open the demo dashboard</button>
+        <small class="demo">Prototype: sign-in is simulated. On the live site only approved Love &amp; Ink emails can get in.</small>
+      </div>
+      <div class="adm-dash" id="admDash" hidden>
+        <div class="adm-top">
+          <div><span class="tag" style="--t:var(--purple);color:#fff">Admin · demo</span><h2>Tiny Legends back office</h2></div>
+          <div class="sqstat" id="sqStat"></div>
+          <button class="btn ghost-ink" type="button" id="admOut">Sign out</button>
+        </div>
+        <nav class="adm-tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-tab="products">Products &amp; stock</button>
+          <button role="tab" aria-selected="false" data-tab="content">Closets &amp; homepage</button>
+          <button role="tab" aria-selected="false" data-tab="videos">Videos</button>
+          <button role="tab" aria-selected="false" data-tab="square">Square</button>
+        </nav>
+        <div class="adm-pane" data-pane="products">
+          <p class="hint">Products, prices, sizes and stock live in <b>Square</b>. Edit them in the Square app or Dashboard and the site updates on the next sync. Set stock to 0 and the item shows <b>Sold out</b>.</p>
+          <div class="adm-actions"><button class="btn yellow" type="button" id="syncNow">↻ Sync from Square</button><a class="btn ghost-ink" href="https://squareup.com/dashboard/items/library" target="_blank" rel="noopener">Open Square item library ↗</a></div>
+          <div class="tbl-wrap"><table class="tbl" id="prodTbl"><thead><tr><th>Item</th><th>Section</th><th>Price</th><th>Stock</th><th>On site</th></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div class="adm-pane" data-pane="content" hidden>
+          <p class="hint">Site content Square doesn't handle. Changes go live right away.</p>
+          <div class="cards2">
+            <div class="acard"><h4>Announcement bar</h4><label>Message<input type="text" id="annTxt" maxlength="90" placeholder="e.g. The 10M Champion drop is live!"></label><label class="sw"><input type="checkbox" id="annOn"> Show on site</label></div>
+            <div class="acard"><h4>Closet picks</h4><p class="hint sm">Two products featured in each kid's closet on the homepage.</p><div id="pickers"></div></div>
+          </div>
+        </div>
+        <div class="adm-pane" data-pane="videos" hidden>
+          <p class="hint">Pick which Instagram clips play in the hero phone, in order. Paste a new reel link to add it.</p>
+          <ol class="vlist" id="vlist"></ol>
+          <div class="adm-actions"><input type="url" id="newReel" placeholder="https://www.instagram.com/reel/…" aria-label="Instagram reel link"><button class="btn yellow" type="button" id="addReel">Add reel</button></div>
+        </div>
+        <div class="adm-pane" data-pane="square" hidden>
+          <div class="acard sqcard">
+            <h4>Square connection</h4>
+            <p id="sqText"></p>
+            <dl class="kv"><dt>Account</dt><dd>Love &amp; Ink</dd><dt>Used for</dt><dd>Products, stock, checkout, orders, refunds</dd><dt>Last sync</dt><dd id="sqSync">–</dd></dl>
+            <button class="btn pink" type="button" id="sqBtn"></button>
+            <small class="demo">Prototype: on the live site this button opens Square's own sign-in page to approve the connection. The site never sees the Square password or card numbers.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- ================= SHOP ================= -->
@@ -507,22 +766,31 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
     <h2 data-i="s_title"></h2>
     <p data-i="s_sub"></p>
   </div>
+  <div class="wrap shop-models">
+    <figure><img src="assets/mod_evaluna.webp" alt="Evaluna wearing the Undefeated tee"><figcaption>Evaluna</figcaption></figure>
+    <figure><img src="assets/mod_jaziel.webp" alt="Jaziel wearing the Legends Squad tee"><figcaption>Jaziel</figcaption></figure>
+    <figure class="mid"><img src="assets/mod_together.webp" alt="CamBam, Jaziel and Evaluna in matching Tiny Legends tees"><figcaption data-i="s_together"></figcaption></figure>
+    <figure><img src="assets/mod_cambam.webp" alt="CamBam wearing the Champion Belt hoodie"><figcaption>CamBam</figcaption></figure>
+  </div>
+  <div class="wrap cats" id="cats" role="group"></div>
   <div class="wrap shop-grid" id="shopGrid"></div>
-  <div class="wrap shop-note"><b>Yupiti</b><span data-i="paylock"></span></div>
+  <div class="wrap shop-note"><b class="sq">■ Square</b><span data-i="sq_note"></span></div>
 </div>
 </main>
 
 <footer><div class="wrap">
   <div><b style="font-family:var(--f-display);font-size:1.15rem">Tiny Legends Adventures</b><br><small><span data-i="f_series"></span> · loveandink.co/tinylegends</small></div>
   <small data-i="f_made"></small>
+  <a class="admin-link" href="#admin" data-go="admin">Team sign-in</a>
 </div></footer>
 
 <nav class="map" id="map" aria-label="House map">
   <a href="#top" data-jump="top"><i></i><span data-i="map_stage"></span></a>
-  <a href="#r-living" data-jump="r-living"><i></i><span data-i="map_living"></span></a>
+  <a href="#r-living" data-jump="r-living"><i></i><span>Jaziel</span></a>
   <a href="#r-kitchen" data-jump="r-kitchen"><i></i><span data-i="map_kitchen"></span></a>
+  <a href="#r-closet" data-jump="r-closet"><i></i><span data-i="map_closet"></span></a>
   <a href="#r-concert" data-jump="r-concert"><i></i><span data-i="map_concert"></span></a>
-  <a href="#r-bedroom" data-jump="r-bedroom"><i></i><span data-i="map_bedroom"></span></a>
+  <a href="#r-story" data-jump="r-story"><i></i><span>Evaluna</span></a>
   <a href="#lights" data-jump="lights"><i></i><span data-i="map_lights"></span></a>
 </nav>
 <nav class="tabbar" aria-label="Tiny Legends">
@@ -530,13 +798,114 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
   <a href="#legends" data-go="legends"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.6 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><span data-i="nav_legends_s"></span></a>
   <a href="#watch" data-go="watch"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 9l5 3-5 3z" fill="#FFF8EC"/></svg><span data-i="nav_watch"></span></a>
   <a href="#shop" data-go="shop"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8a3 3 0 0 1 6 0" /></svg><span data-i="nav_shop"></span></a>
+  <a href="#books" data-go="books"><svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1zM21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"/></svg><span data-i="nav_books"></span></a>
 </nav>
+<aside class="drawer" id="drawer" aria-labelledby="bagT" hidden>
+  <div class="drawer-in">
+    <div class="drawer-h"><h3 id="bagT" data-i="bag_title"></h3><button class="x" type="button" data-bagclose aria-label="Close">×</button></div>
+    <div class="lines" id="lines"></div>
+    <div class="drawer-f">
+      <div class="sub"><span data-i="bag_sub"></span><b id="subT">$0</b></div>
+      <small data-i="ship_note"></small>
+      <button class="btn pink sqbtn" type="button" id="checkout"><span data-i="bag_checkout"></span></button>
+      <small class="demo" data-i="bag_demo"></small>
+    </div>
+  </div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+<dialog class="rdlg" id="rdlg" aria-labelledby="rdT">
+  <button class="x" type="button" data-rclose aria-label="Close">×</button>
+  <span class="tag" id="rdK"></span>
+  <h3 id="rdT"></h3>
+  <p class="meta" id="rdM"></p>
+  <div class="rcols"><div><h4 data-i="rc_ing"></h4><ul id="rdI"></ul></div><div><h4 data-i="rc_steps"></h4><ol id="rdS"></ol></div></div>
+  <p class="safe" data-i="rc_safe"></p>
+</dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 /* ===================== i18n ===================== */
 const LANGS=['en','es','pt','fr','hi','zh'];
 const T={
+clo_title1:["CamBam's Closet", "El clóset de CamBam", "O closet da CamBam", "Le dressing de CamBam", "कैमबैम की अलमारी", "CamBam 的衣橱"],
+w_eyebrow:["Episodes", "Episodios", "Episódios", "Épisodes", "एपिसोड", "剧集"],
+sq_note:["Secure checkout with Square for Love & Ink.", "Pago seguro con Square para Love & Ink.", "Checkout seguro com Square para a Love & Ink.", "Paiement sécurisé avec Square pour Love & Ink.", "Love & Ink के लिए Square से सुरक्षित चेकआउट।", "通过 Square 为 Love & Ink 安全结账。"],
+bag_title:["Your bag", "Tu bolsa", "Sua sacola", "Ton panier", "आपका बैग", "你的购物袋"],
+bag_sub:["Subtotal", "Subtotal", "Subtotal", "Sous-total", "सबटोटल", "小计"],
+ship_note:["Shipping and tax calculated at checkout.", "Envío e impuestos se calculan al pagar.", "Frete e impostos calculados no checkout.", "Livraison et taxes calculées au paiement.", "शिपिंग और टैक्स चेकआउट पर जोड़े जाएँगे।", "运费和税费在结账时计算。"],
+bag_checkout:["Checkout with Square", "Pagar con Square", "Finalizar com Square", "Payer avec Square", "Square से चेकआउट करें", "用 Square 结账"],
+bag_demo:["Prototype: on the live site this opens Love & Ink's secure Square checkout.", "Prototipo: en el sitio real esto abre el pago seguro de Square de Love & Ink.", "Protótipo: no site real isto abre o checkout seguro Square da Love & Ink.", "Prototype : sur le vrai site, ceci ouvre le paiement Square sécurisé de Love & Ink.", "प्रोटोटाइप: असली साइट पर यह Love & Ink का सुरक्षित Square चेकआउट खोलेगा।", "原型：正式网站上会打开 Love & Ink 的 Square 安全结账页。"],
+remove:["Remove", "Quitar", "Remover", "Retirer", "हटाएँ", "移除"],
+soldout:["Sold out", "Agotado", "Esgotado", "Épuisé", "स्टॉक खत्म", "已售罄"],
+preorder:["Pre-order", "Preordenar", "Pré-venda", "Précommander", "प्री-ऑर्डर", "预订"],
+clo_next2:["One more door: the baby's room →","Una puerta más: el cuarto de la bebé →","Mais uma porta: o quarto da bebê →","Encore une porte : la chambre du bébé →","एक और दरवाज़ा: बेबी का कमरा →","还有一扇门：宝宝的房间 →"],
+clo_tag3:["Evaluna's nursery · 3:10 PM","Cuarto de Evaluna · 3:10 p. m.","Quarto da Evaluna · 15h10","Chambre d'Evaluna · 15 h 10","इवालूना की नर्सरी · दोपहर 3:10","Evaluna 的婴儿房 · 下午3:10"],
+clo_title3:["Evaluna's Closet","El clóset de Evaluna","O closet da Evaluna","Le dressing d'Evaluna","इवालूना की अलमारी","Evaluna 的衣橱"],
+clo_text3:["Tiny onesies, tiny socks, one very serious black belt. The champ naps in the laundry basket and still wins.","Mamelucos chiquitos, calcetines chiquitos y un cinturón negro muy serio. La campeona duerme en el cesto de ropa y aun así gana.","Bodies pequenininhos, meias pequenininhas e uma faixa preta muito séria. A campeã cochila no cesto de roupa e ainda vence.","De minuscules bodies, de minuscules chaussettes et une ceinture noire très sérieuse. La championne fait la sieste dans le panier à linge et gagne quand même.","छोटे-छोटे वनसी, छोटे-छोटे मोज़े और एक बहुत गंभीर ब्लैक बेल्ट। चैंपियन कपड़ों की टोकरी में सोती है और फिर भी जीतती है।","小小连体衣，小小袜子，还有一条非常认真的黑带。冠军在洗衣篮里睡觉，照样赢。"],
+b_clo_e:["…zzz (still undefeated)","…zzz (sigue invicta)","…zzz (ainda invicta)","…zzz (toujours invaincue)","…zzz (अब भी अजेय)","…zzz（依然不败）"],
+cat_all:["All","Todo","Tudo","Tout","सभी","全部"],
+cat_wear:["Wear","Ropa","Roupas","Vêtements","कपड़े","服饰"],
+cat_baby:["Baby","Bebé","Bebê","Bébé","बेबी","婴儿"],
+cat_studio:["Stickers & Studio","Stickers y taller","Adesivos e ateliê","Stickers et atelier","स्टिकर्स और स्टूडियो","贴纸与工作室"],
+cat_books:["Books & Prints","Libros y láminas","Livros e pôsteres","Livres et affiches","किताबें और प्रिंट्स","图书与装饰画"],
+p_onesie:["Undefeated Baby Onesie","Mameluco Invicta para bebé","Body Invicta para bebê","Body bébé Invaincue","“अजेय” बेबी वनसी","“不败”婴儿连体衣"],
+p_stickers:["Legends Sticker Sheet","Hoja de stickers de las Leyendas","Cartela de adesivos das Lendas","Planche de stickers des Légendes","लेजेंड्स स्टिकर शीट","小传奇贴纸"],
+sz_0_3:["0–3 mo","0–3 m","0–3 m","0–3 mois","0–3 माह","0–3个月"],
+sz_6_12:["6–12 mo","6–12 m","6–12 m","6–12 mois","6–12 माह","6–12个月"],
+sz_12_18:["12–18 mo","12–18 m","12–18 m","12–18 mois","12–18 माह","12–18个月"],
+sz_sheet:["Sheet of 12","Hoja de 12","Cartela com 12","Planche de 12","12 की शीट","一张12枚"],
+nav_books:["Books","Libros","Livros","Livres","किताबें","图书"],
+map_closet:["Closets","Clósets","Closets","Dressings","अलमारियाँ","衣橱"],
+cook_tag:["Kitchen · 12:00 PM","Cocina · 12:00 p. m.","Cozinha · 12h","Cuisine · 12 h","रसोई · दोपहर 12 बजे","厨房 · 中午12点"],
+cook_title:["Cooking with the Legends","Cocinando con las Leyendas","Cozinhando com as Lendas","En cuisine avec les Légendes","लेजेंड्स के साथ कुकिंग","和小传奇一起下厨"],
+cook_text:["Lunch is chaos, flour is everywhere, and every recipe is named after the Legend who invented it. Pick one and cook it with your crew.","El almuerzo es un caos, hay harina por todos lados y cada receta lleva el nombre de la Leyenda que la inventó. Elige una y cocínala con tu equipo.","O almoço é um caos, tem farinha pra todo lado e cada receita tem o nome da Lenda que a inventou. Escolha uma e cozinhe com a sua turma.","Le déjeuner, c'est le chaos, il y a de la farine partout, et chaque recette porte le nom de la Légende qui l'a inventée. Choisis-en une et cuisine-la avec ta bande.","लंच में धमाल है, हर तरफ़ आटा है, और हर रेसिपी उस लेजेंड के नाम पर है जिसने उसे बनाया। एक चुनो और अपनी टीम के साथ बनाओ।","午饭一团乱，面粉满天飞，每道菜都以发明它的小传奇命名。挑一道，和你的小伙伴一起做吧。"],
+rc_open:["Recipe","Receta","Receita","Recette","रेसिपी","食谱"],
+rc_ing:["You'll need","Necesitas","Você vai precisar","Il te faut","आपको चाहिए","准备材料"],
+rc_steps:["Let's cook","A cocinar","Mãos à obra","On cuisine","चलो बनाएँ","开始做"],
+rc_safe:["Little chefs cook with a grown-up.","Los pequeños chefs cocinan con un adulto.","Pequenos chefs cozinham com um adulto.","Les petits chefs cuisinent avec un adulte.","छोटे शेफ़ किसी बड़े के साथ ही पकाएँ।","小厨师要和大人一起做。"],
+rc_close:["Close","Cerrar","Fechar","Fermer","बंद करें","关闭"],
+rc_pancake:["Pancake Karate Stack","Torre de Panqueques Karate","Torre de Panquecas Caratê","Pile de crêpes karaté","पैनकेक कराटे स्टैक","空手道松饼塔"],
+rm_pancake:["Evaluna's · 20 min · serves 4","De Evaluna · 20 min · 4 porciones","Da Evaluna · 20 min · 4 porções","D'Evaluna · 20 min · 4 parts","इवालूना की · 20 मिनट · 4 लोग","Evaluna 的 · 20分钟 · 4人份"],
+ri_pancake:["2 cups pancake mix|1 banana, sliced into coins|A handful of berries|Maple syrup","2 tazas de mezcla para panqueques|1 plátano en rodajas|Un puñado de frutos rojos|Miel de maple","2 xícaras de mistura para panqueca|1 banana em rodelas|Um punhado de frutas vermelhas|Xarope de bordo","2 tasses de préparation à pancakes|1 banane en rondelles|Une poignée de baies|Sirop d'érable","2 कप पैनकेक मिक्स|1 केला, गोल टुकड़ों में|मुट्ठी भर बेरीज़|मेपल सिरप","松饼预拌粉 2杯|香蕉 1根，切片|浆果一小把|枫糖浆"],
+rs_pancake:["A grown-up cooks small pancakes on the griddle.|Stack them tall with banana coins between every layer.|Crown it with berries. HI-YAH! Then eat it before it wakes up.","Un adulto cocina panqueques pequeños en la plancha.|Apílalos bien alto con rodajas de plátano entre cada capa.|Corónala con frutos rojos. ¡JI-YA! Y cómetela antes de que despierte.","Um adulto faz panquecas pequenas na chapa.|Empilhe bem alto com rodelas de banana entre cada camada.|Coroe com frutas vermelhas. IÁÁÁ! E coma antes que ela acorde.","Un adulte cuit de petites pancakes à la poêle.|Empile-les bien haut avec des rondelles de banane entre chaque couche.|Couronne de baies. HI-YAH ! Et mange-la avant qu'elle se réveille.","कोई बड़ा तवे पर छोटे पैनकेक बनाए।|हर परत के बीच केले के टुकड़े रखकर ऊँचा स्टैक बनाओ।|ऊपर बेरीज़ सजाओ। हाय-या! और उसके जागने से पहले खा लो।","请大人在平底锅上煎几块小松饼。|一层松饼一层香蕉片，叠得高高的。|顶上放浆果。嘿哈！趁她醒来之前吃掉。"],
+rc_smoothie:["Jaziel's Zoom Smoothie","Smoothie Turbo de Jaziel","Smoothie Turbo do Jaziel","Smoothie Turbo de Jaziel","जज़ील की ज़ूम स्मूदी","Jaziel 的极速奶昔"],
+rm_smoothie:["Jaziel's · 5 min · serves 2","De Jaziel · 5 min · 2 porciones","Do Jaziel · 5 min · 2 porções","De Jaziel · 5 min · 2 parts","जज़ील की · 5 मिनट · 2 लोग","Jaziel 的 · 5分钟 · 2人份"],
+ri_smoothie:["1 banana|1 cup frozen mango|1 cup milk or yogurt|A handful of spinach (shh, it's turbo fuel)","1 plátano|1 taza de mango congelado|1 taza de leche o yogur|Un puñado de espinaca (shh, es combustible turbo)","1 banana|1 xícara de manga congelada|1 xícara de leite ou iogurte|Um punhado de espinafre (psiu, é combustível turbo)","1 banane|1 tasse de mangue surgelée|1 tasse de lait ou de yaourt|Une poignée d'épinards (chut, c'est du carburant turbo)","1 केला|1 कप फ्रोज़न आम|1 कप दूध या दही|मुट्ठी भर पालक (श्श, यह टर्बो फ़्यूल है)","香蕉 1根|冷冻芒果 1杯|牛奶或酸奶 1杯|菠菜一小把（嘘，这是涡轮燃料）"],
+rs_smoothie:["Drop everything into the blender.|A grown-up blends it at top speed for 30 seconds. VROOOM!|Pour, add a straw, and drink it at full speed.","Pon todo en la licuadora.|Un adulto la licúa a toda velocidad por 30 segundos. ¡RUUUM!|Sirve, ponle un popote y tómatela a toda velocidad.","Coloque tudo no liquidificador.|Um adulto bate na velocidade máxima por 30 segundos. VRUUUM!|Sirva, coloque um canudo e beba a toda velocidade.","Mets tout dans le blender.|Un adulte mixe à fond pendant 30 secondes. VROUUUM !|Verse, ajoute une paille et bois à toute vitesse.","सब कुछ ब्लेंडर में डालो।|कोई बड़ा 30 सेकंड तक फ़ुल स्पीड पर चलाए। व्रूऊम!|गिलास में डालो, स्ट्रॉ लगाओ और फ़ुल स्पीड से पियो।","把所有材料放进搅拌机。|请大人用最高速搅打30秒。呜——！|倒出来，插上吸管，全速喝光。"],
+rc_popcorn:["CamBam's Pink Party Popcorn","Palomitas Rosas de Fiesta de CamBam","Pipoca Rosa de Festa da CamBam","Pop-corn rose de fête de CamBam","कैमबैम का पिंक पार्टी पॉपकॉर्न","CamBam 的粉红派对爆米花"],
+rm_popcorn:["CamBam's · 15 min · serves 6","De CamBam · 15 min · 6 porciones","Da CamBam · 15 min · 6 porções","De CamBam · 15 min · 6 parts","कैमबैम का · 15 मिनट · 6 लोग","CamBam 的 · 15分钟 · 6人份"],
+ri_popcorn:["8 cups popped popcorn|1 cup white chocolate chips|1/2 cup freeze-dried strawberries, crushed|Rainbow sprinkles","8 tazas de palomitas|1 taza de chispas de chocolate blanco|1/2 taza de fresas liofilizadas, trituradas|Chispas de colores","8 xícaras de pipoca estourada|1 xícara de gotas de chocolate branco|1/2 xícara de morangos liofilizados, esmagados|Granulado colorido","8 tasses de pop-corn éclaté|1 tasse de pépites de chocolat blanc|1/2 tasse de fraises lyophilisées, écrasées|Vermicelles arc-en-ciel","8 कप पॉपकॉर्न|1 कप व्हाइट चॉकलेट चिप्स|1/2 कप फ़्रीज़-ड्राइड स्ट्रॉबेरी, कुटी हुई|रंग-बिरंगे स्प्रिंकल्स","爆好的爆米花 8杯|白巧克力豆 1杯|冻干草莓碎 1/2杯|彩虹糖针"],
+rs_popcorn:["A grown-up melts the white chocolate.|Stir in the crushed strawberries until it turns party pink.|Drizzle over the popcorn, add sprinkles, let it set 10 minutes. Then dance.","Un adulto derrite el chocolate blanco.|Mezcla las fresas trituradas hasta que quede rosa fiesta.|Báñalas sobre las palomitas, agrega chispas y deja reposar 10 minutos. Luego, a bailar.","Um adulto derrete o chocolate branco.|Misture os morangos esmagados até ficar rosa festa.|Regue a pipoca, jogue o granulado e deixe firmar por 10 minutos. Depois, dance.","Un adulte fait fondre le chocolat blanc.|Ajoute les fraises écrasées jusqu'à obtenir un rose fête.|Verse sur le pop-corn, ajoute les vermicelles, laisse prendre 10 minutes. Puis danse.","कोई बड़ा व्हाइट चॉकलेट पिघलाए।|कुटी स्ट्रॉबेरी मिलाओ जब तक रंग पार्टी पिंक न हो जाए।|पॉपकॉर्न पर डालो, स्प्रिंकल्स छिड़को, 10 मिनट जमने दो। फिर डांस करो।","请大人把白巧克力融化。|拌入草莓碎，直到变成派对粉。|淋在爆米花上，撒上糖针，静置10分钟。然后跳舞吧。"],
+b_kit_c2:["Extra sprinkles!","¡Más chispas!","Mais granulado!","Encore des vermicelles !","और स्प्रिंकल्स!","多加糖针！"],
+clo_tag:["CamBam's room · 3:00 PM","Cuarto de CamBam · 3:00 p. m.","Quarto da CamBam · 15h","Chambre de CamBam · 15 h","कैमबैम का कमरा · दोपहर 3 बजे","CamBam 的房间 · 下午3点"],
+clo_text:["Outfit change number eleven and it's not even dinner. Every tee in here is pressed by hand at home, and she has opinions about all of them.","Cambio de ropa número once y ni siquiera es la cena. Cada camiseta aquí se estampa a mano en casa, y ella tiene opinión sobre todas.","Troca de roupa número onze e nem é hora do jantar. Cada camiseta aqui é estampada à mão em casa, e ela tem opinião sobre todas.","Onzième changement de tenue et ce n'est même pas l'heure du dîner. Chaque t-shirt ici est pressé à la main à la maison, et elle a un avis sur chacun.","ग्यारहवीं बार कपड़े बदले और अभी डिनर भी नहीं हुआ। यहाँ की हर टी-शर्ट घर पर हाथ से प्रेस होती है, और उसे हर एक पर राय है।","还没到晚饭，已经换了第十一套衣服。这里每件T恤都是在家手工压印的，她对每一件都有意见。"],
+clo_next:["Keep scrolling, his closet is next door →","Sigue bajando, su clóset está al lado →","Continue rolando, o closet dele é ao lado →","Continue, son dressing est juste à côté →","स्क्रॉल करते रहो, उसकी अलमारी बगल में है →","继续往下滑，他的衣橱就在隔壁 →"],
+clo_tag2:["Jaziel's room · 3:05 PM","Cuarto de Jaziel · 3:05 p. m.","Quarto do Jaziel · 15h05","Chambre de Jaziel · 15 h 05","जज़ील का कमरा · दोपहर 3:05","Jaziel 的房间 · 下午3:05"],
+clo_title2:["Jaziel's Closet","El clóset de Jaziel","O closet do Jaziel","Le dressing de Jaziel","जज़ील की अलमारी","Jaziel 的衣橱"],
+clo_text2:["Monster trucks, light-up sneakers and one hoodie he refuses to take off. Built for zooming, tested on the couch.","Monster trucks, tenis con luces y una sudadera que se niega a quitarse. Hecho para correr, probado en el sofá.","Monster trucks, tênis de luzinha e um moletom que ele se recusa a tirar. Feito para correr, testado no sofá.","Monster trucks, baskets lumineuses et un sweat qu'il refuse d'enlever. Fait pour foncer, testé sur le canapé.","मॉन्स्टर ट्रक, लाइट वाले जूते और एक हुडी जो वह उतारता ही नहीं। ज़ूम करने के लिए बना, सोफ़े पर टेस्ट किया।","怪兽卡车、发光运动鞋，还有一件他死活不肯脱的卫衣。为飞驰而生，沙发上实测过。"],
+clo_cta:["Shop all three closets","Compra en los tres clósets","Compre nos três closets","Fouille les trois dressings","तीनों अलमारियाँ देखें","逛三个衣橱"],
+b_clo_c:["I can't choose!","¡No puedo elegir!","Não consigo escolher!","Je n'arrive pas à choisir !","मैं चुन ही नहीं पा रही!","我选不出来！"],
+b_clo_j:["ZOOM! New hoodie!","¡ZUUM! ¡Sudadera nueva!","ZUUM! Moletom novo!","ZOUM ! Nouveau sweat !","ज़ूम! नई हुडी!","嗖！新卫衣！"],
+story_tag:["Story time · 9:00 PM · PJs on","Hora del cuento · 9:00 p. m. · en pijama","Hora da história · 21h · de pijama","L'heure du conte · 21 h · en pyjama","कहानी का समय · रात 9 बजे · पजामा टाइम","故事时间 · 晚上9点 · 换睡衣"],
+story_title:["Little Luna, Big Trouble","Pequeña Luna, Gran Lío","Pequena Luna, Grande Confusão","Petite Luna, Gros Pétrin","छोटी लूना, बड़ी मुसीबत","小月亮，大麻烦"],
+story_text:["One bedtime story in, the champ is out cold on page two. Our first picture book, plus coloring books and prints for the whole crew.","Un cuento y la campeona ya está dormida en la página dos. Nuestro primer libro ilustrado, más libros para colorear y láminas para toda la familia.","Uma história e a campeã já apagou na página dois. Nosso primeiro livro ilustrado, mais livros de colorir e pôsteres para a turma toda.","Une histoire et la championne dort déjà page deux. Notre premier album, plus des livres de coloriage et des affiches pour toute la bande.","एक कहानी शुरू हुई और चैंपियन दूसरे पन्ने पर ही सो गई। हमारी पहली पिक्चर बुक, साथ में कलरिंग बुक्स और प्रिंट्स पूरे परिवार के लिए।","故事才讲一个，冠军已经在第二页睡着了。我们的第一本绘本，还有给全家的涂色书和装饰画。"],
+story_cta:["Books & Prints","Libros y láminas","Livros e pôsteres","Livres et affiches","किताबें और प्रिंट्स","图书与装饰画"],
+b_story_e:["…zzz the end","…zzz colorín colorado","…zzz fim","…zzz fin","…zzz समाप्त","…zzz 完"],
+bk_eyebrow:["Books & Prints","Libros y láminas","Livros e pôsteres","Livres et affiches","किताबें और प्रिंट्स","图书与装饰画"],
+bk_title:["Bedtime, but make it legendary","La hora de dormir, pero legendaria","Hora de dormir, só que lendária","Le coucher, version légendaire","सोने का समय, लेकिन लेजेंडरी","睡前时光，传奇版"],
+bk_sub:["Read it, color it, print it, hang it. Every page stars the Legends, drawn in the same world as the show.","Léelo, coloréalo, imprímelo, cuélgalo. Cada página tiene a las Leyendas, dibujadas en el mismo mundo que la serie.","Leia, pinte, imprima, pendure. Cada página tem as Lendas, desenhadas no mesmo mundo da série.","Lis-le, colorie-le, imprime-le, accroche-le. Chaque page met en scène les Légendes, dans le même univers que la série.","पढ़ो, रंग भरो, प्रिंट करो, दीवार पर लगाओ। हर पन्ने पर लेजेंड्स हैं, शो की उसी दुनिया में।","读一读，涂一涂，打印出来，挂上墙。每一页都是小传奇，和剧集同一个世界。"],
+p_bstory:["Little Luna, Big Trouble (picture book)","Pequeña Luna, Gran Lío (libro ilustrado)","Pequena Luna, Grande Confusão (livro ilustrado)","Petite Luna, Gros Pétrin (album)","छोटी लूना, बड़ी मुसीबत (पिक्चर बुक)","《小月亮，大麻烦》绘本"],
+p_bcolor:["Tiny Legends Coloring Book","Libro para colorear Tiny Legends","Livro de colorir Tiny Legends","Livre de coloriage Tiny Legends","टाइनी लेजेंड्स कलरिंग बुक","Tiny Legends 涂色书"],
+p_bdigital:["Printable Activity Pack","Paquete de actividades imprimible","Kit de atividades para imprimir","Pack d'activités à imprimer","प्रिंट करने योग्य एक्टिविटी पैक","可打印活动包"],
+p_bprint:["Legends Art Print","Lámina de las Leyendas","Pôster das Lendas","Affiche des Légendes","लेजेंड्स आर्ट प्रिंट","小传奇装饰画"],
+t_preorder:["Pre-order","Preventa","Pré-venda","Précommande","प्री-ऑर्डर","预售"],
+t_instant:["Instant download","Descarga inmediata","Download imediato","Téléchargement immédiat","तुरंत डाउनलोड","即时下载"],
+sz_hard:["Hardcover","Tapa dura","Capa dura","Relié","हार्डकवर","精装"],
+sz_paper:["Paperback","Tapa blanda","Brochura","Broché","पेपरबैक","平装"],
+sz_print:["Printed","Impreso","Impresso","Imprimé","प्रिंटेड","纸质版"],
+sz_pdf:["PDF","PDF","PDF","PDF","PDF","PDF"],
+sz_8x10:["8×10 in","8×10 in","8×10 pol","8×10 po","8×10 इंच","8×10 英寸"],
+sz_11x14:["11×14 in","11×14 in","11×14 pol","11×14 po","11×14 इंच","11×14 英寸"],
 crumb:["Shop › Publishing › Tiny Legends","Tienda › Publicaciones › Tiny Legends","Loja › Publicações › Tiny Legends","Boutique › Édition › Tiny Legends","शॉप › पब्लिशिंग › Tiny Legends","商店 › 出版 › Tiny Legends"],
 nav_home:["Home","Inicio","Início","Accueil","होम","首页"],
 nav_legends:["Meet the Legends","Conoce a las Leyendas","Conheça as Lendas","Rencontre les Légendes","लेजेंड्स से मिलें","认识小传奇"],
@@ -591,7 +960,8 @@ living_title:["Jaziel's Zoom Zone","La Zona Turbo de Jaziel","A Zona Turbo do Ja
 living_text:["The couch is a racetrack and nobody has walked since sunrise. Every adventure lives here.","El sofá es una pista de carreras y nadie ha caminado desde el amanecer. Aquí viven todas las aventuras.","O sofá virou pista de corrida e ninguém anda desde o nascer do sol. Todas as aventuras moram aqui.","Le canapé est une piste de course et personne n'a marché depuis le lever du soleil. Toutes les aventures sont ici.","सोफ़ा रेस ट्रैक है और सुबह से कोई चला नहीं। हर एडवेंचर यहीं है।","沙发变成赛道，从日出起就没人好好走过路。所有冒险都在这里。"],
 kitchen_tag:["Kitchen · 2:00 PM","Cocina · 2:00 p. m.","Cozinha · 14h","Cuisine · 14 h","रसोई · दोपहर 2 बजे","厨房 · 下午2点"],
 kitchen_title:["Fresh off the press","Recién salido de la prensa","Saindo da prensa","Tout juste pressé","प्रेस से ताज़ा","新鲜出炉"],
-kitchen_text:["Mamá runs the stove, CamBam runs the merch. Every tee, hoodie and tumbler is pressed by hand at home.","Mamá manda en la estufa, CamBam en la mercancía. Cada camiseta, sudadera y vaso se estampa a mano en casa.","A Mamá comanda o fogão, a CamBam comanda os produtos. Cada camiseta, moletom e copo é estampado à mão em casa.","Mamá s'occupe des fourneaux, CamBam du merch. Chaque t-shirt, sweat et gobelet est pressé à la main à la maison.","मामा चूल्हा संभालती हैं, कैमबैम मर्च। हर टी-शर्ट, हुडी और टम्बलर घर पर हाथ से प्रेस होता है।","妈妈掌勺，CamBam 管周边。每件T恤、卫衣和保温杯都在家里手工压印。"],
+kitchen_text:["All three Legends, one kitchen, matching tees. Every shirt, hoodie and tumbler is pressed by hand right here at home.","Las tres Leyendas, una cocina, camisetas iguales. Cada camiseta, sudadera y vaso se estampa a mano aquí en casa.","As três Lendas, uma cozinha, camisetas iguais. Cada camiseta, moletom e copo é estampado à mão aqui em casa.","Les trois Légendes, une cuisine, des t-shirts assortis. Chaque t-shirt, sweat et gobelet est pressé à la main ici, à la maison.","तीनों लेजेंड्स, एक रसोई, एक जैसी टी-शर्ट। हर शर्ट, हुडी और टम्बलर यहीं घर पर हाथ से प्रेस होता है।","三位小传奇，一个厨房，同款T恤。每件T恤、卫衣和保温杯都在家里手工压印。"],
+
 kitchen_cta:["Shop CamBam's Closet","Compra en el clóset de CamBam","Compre no closet da CamBam","Le dressing de CamBam","कैमबैम की अलमारी देखें","逛逛 CamBam 的衣橱"],
 concert_tag:["Backyard · 6:00 PM","Patio · 6:00 p. m.","Quintal · 18h","Jardin · 18 h","बैकयार्ड · शाम 6 बजे","后院 · 傍晚6点"],
 concert_title:["Tiny Legends Live","Tiny Legends en vivo","Tiny Legends ao vivo","Tiny Legends en live","टाइनी लेजेंड्स लाइव","Tiny Legends 现场"],
@@ -620,6 +990,9 @@ sw_on:["Lights on?","¿Encendemos?","Acender a luz?","On rallume ?","लाइ�
 goodnight:["Goodnight, Legends.","Buenas noches, Leyendas.","Boa noite, Lendas.","Bonne nuit, les Légendes.","शुभ रात्रि, लेजेंड्स।","晚安，小传奇们。"],
 lights_sub:["New episodes drop on Instagram first. Follow so the champ doesn't wake up mad.","Los nuevos episodios salen primero en Instagram. Síguenos para que la campeona no se despierte enojada.","Os episódios novos saem primeiro no Instagram. Siga para a campeã não acordar brava.","Les nouveaux épisodes sortent d'abord sur Instagram. Abonne-toi pour que la championne ne se réveille pas fâchée.","नए एपिसोड सबसे पहले Instagram पर आते हैं। फ़ॉलो करें ताकि चैंपियन गुस्से में न उठे।","新剧集首发在 Instagram。快关注，别让冠军醒来生气。"],
 follow_ig:["Follow on Instagram","Síguenos en Instagram","Siga no Instagram","Suivre sur Instagram","Instagram पर फ़ॉलो करें","在 Instagram 关注"],
+s_together:["The Legends in merch","Las Leyendas con merch","As Lendas com os produtos","Les Légendes en merch","मर्च में लेजेंड्स","小传奇穿周边"],
+s_see:["See it on a Legend","Míralo en una Leyenda","Veja numa Lenda","Voir porté par une Légende","लेजेंड पर देखें","看小传奇上身效果"],
+concert_text2:["CamBam takes the stage and the whole backyard sings along. Mamá and Dada are front row, filming everything.","CamBam sube al escenario y todo el patio canta con ella. Mamá y Dada en primera fila, grabándolo todo.","CamBam sobe ao palco e o quintal inteiro canta junto. Mamá e Dada na primeira fila, filmando tudo.","CamBam monte sur scène et tout le jardin chante avec elle. Mamá et Dada au premier rang, filment tout.","कैमबैम मंच पर आती है और पूरा बैकयार्ड साथ गाता है। मामा और दादा सबसे आगे, सब रिकॉर्ड करते हुए।","CamBam 一登台，整个后院都跟着唱。妈妈和爸爸坐第一排，全程录像。"],
 lg_eyebrow:["The whole crew","Toda la pandilla","A turma toda","Toute la bande","पूरी टोली","全员到齐"],
 lg_intro:["Every Legend keeps their own look, and the family always matches: everybody in PJs, or everybody dressed for adventure.","Cada Leyenda tiene su propio estilo, y la familia siempre combina: todos en pijama o todos listos para la aventura.","Cada Lenda tem seu próprio estilo, e a família sempre combina: todo mundo de pijama ou todo mundo pronto para a aventura.","Chaque Légende garde son style, et la famille est toujours assortie : tout le monde en pyjama, ou tout le monde prêt pour l'aventure.","हर लेजेंड का अपना अंदाज़ है, और परिवार हमेशा मैच करता है: या तो सब पजामे में, या सब एडवेंचर के लिए तैयार।","每位小传奇都有自己的造型，全家总是统一：要么都穿睡衣，要么都穿冒险装。"],
 f_power:["Superpower","Superpoder","Superpoder","Superpouvoir","सुपरपावर","超能力"],
@@ -629,12 +1002,12 @@ w_sub:["Every episode and every milestone fight, Reels-style. Tap any clip to pl
 w_all:["Everyone","Todos","Todos","Tout le monde","सभी","全部"],
 w_upnext:["Up next","A continuación","A seguir","À suivre","आगे","接下来"],
 w_empty:["No episodes yet. This Legend is still napping.","Aún no hay episodios. Esta Leyenda sigue durmiendo.","Ainda não há episódios. Esta Lenda ainda está cochilando.","Pas encore d'épisodes. Cette Légende fait encore la sieste.","अभी कोई एपिसोड नहीं। यह लेजेंड अभी सो रहा है।","还没有剧集，这位小传奇还在睡觉。"],
-s_title:["CamBam's Closet","El clóset de CamBam","O closet da CamBam","Le dressing de CamBam","कैमबैम की अलमारी","CamBam 的衣橱"],
-s_sub:["Shirts, hoodies and tumblers pressed by hand at home. Baby, kids and adult sizes so the whole family can match.","Camisetas, sudaderas y vasos estampados a mano en casa. Tallas de bebé, niño y adulto para que toda la familia combine.","Camisetas, moletons e copos estampados à mão em casa. Tamanhos bebê, infantil e adulto para a família toda combinar.","T-shirts, sweats et gobelets pressés à la main. Tailles bébé, enfant et adulte pour que toute la famille soit assortie.","घर पर हाथ से प्रेस की गई शर्ट, हुडी और टम्बलर। बेबी, बच्चों और बड़ों के साइज़ ताकि पूरा परिवार मैच करे।","在家手工压印的T恤、卫衣和保温杯。婴儿、儿童和成人尺码，全家都能穿同款。"],
+s_title:["The Legends' Closet","El clóset de las Leyendas","O closet das Lendas","Le dressing des Légendes","लेजेंड्स की अलमारी","小传奇的衣橱"],
+s_sub:["Tees, hoodies, baby onesies, stickers and tumblers, pressed and printed by hand at home. Baby, kids and adult sizes so the whole family can match.","Camisetas, sudaderas, mamelucos, stickers y vasos, estampados a mano en casa. Tallas de bebé, niño y adulto para que toda la familia combine.","Camisetas, moletons, bodies, adesivos e copos, estampados à mão em casa. Tamanhos bebê, infantil e adulto para a família toda combinar.","T-shirts, sweats, bodies, stickers et gobelets, pressés et imprimés à la main à la maison. Tailles bébé, enfant et adulte pour toute la famille.","टी-शर्ट, हुडी, बेबी वनसी, स्टिकर्स और टम्बलर, घर पर हाथ से प्रेस और प्रिंट किए गए। बेबी, बच्चों और बड़ों के साइज़ ताकि पूरा परिवार मैच करे।","T恤、卫衣、婴儿连体衣、贴纸和保温杯，都在家手工压印。婴儿、儿童和成人尺码，全家都能穿同款。"],
 add:["Add","Añadir","Adicionar","Ajouter","जोड़ें","加入"],
 added:["Added:","Añadido:","Adicionado:","Ajouté :","जोड़ा गया:","已加入："],
 bag_empty:["Your bag is empty. CamBam is disappointed.","Tu bolsa está vacía. CamBam está decepcionada.","Sua sacola está vazia. A CamBam ficou decepcionada.","Ton panier est vide. CamBam est déçue.","आपका बैग खाली है। कैमबैम निराश है।","购物袋是空的。CamBam 很失望。"],
-bag_ready:["in your bag, ready for Pay-Lock checkout","en tu bolsa, listos para pagar con Pay-Lock","na sacola, prontos para o checkout Pay-Lock","dans ton panier, prêts pour le paiement Pay-Lock","आपके बैग में, Pay-Lock चेकआउट के लिए तैयार","件在购物袋，可用 Pay-Lock 结账"],
+bag_ready:["in your bag","en tu bolsa","na sacola","dans ton panier","आपके बैग में","件在购物袋中"],
 paylock:["Secure checkout through Love & Ink.","Pago seguro con Love & Ink.","Checkout seguro pela Love & Ink.","Paiement sécurisé via Love & Ink.","Love & Ink पर सुरक्षित चेकआउट।","通过 Love & Ink 安全结账。"],
 sample:["Prices shown are sample pricing for this prototype.","Los precios son de muestra para este prototipo.","Os preços são exemplos para este protótipo.","Les prix affichés sont des exemples pour ce prototype.","दिखाए गए दाम इस प्रोटोटाइप के लिए नमूना हैं।","显示价格仅为原型示例。"],
 sz_baby:["Baby","Bebé","Bebê","Bébé","बेबी","婴儿"],sz_toddler:["Toddler","Pequeño","Criança","Tout-petit","टॉडलर","幼儿"],sz_kids:["Kids","Niños","Infantil","Enfant","बच्चे","儿童"],sz_adult:["Adult","Adulto","Adulto","Adulte","बड़े","成人"],sz_20:["20 oz","20 oz","20 oz","20 oz","20 oz","20 oz"],
@@ -698,12 +1071,27 @@ const HERO_CLIPS=['karate','9m','dance','7m','kitchen'].map(id=>CLIPS.find(c=>c.
 const LEGENDS=[['evaluna','var(--purple)'],['jaziel','var(--cyan)'],['cambam','var(--pink)'],['mama','var(--orange)'],['dada','var(--yellow)'],['padrino','var(--gold)'],['madrina','var(--cyan)']];
 const NAMES={evaluna:'Evaluna',jaziel:'Jaziel',cambam:'CamBam',mama:'Mamá',dada:'Dada',padrino:'Padrino Jey',madrina:'Madrina'};
 const PRODUCTS=[
- {id:'undefeated',img:'m_undefeated',p:24,tag:'t_best',sz:['sz_baby','sz_kids','sz_adult']},
- {id:'poster',img:'m_poster',p:26,tag:'t_new',sz:['sz_kids','sz_adult']},
- {id:'belt',img:'m_belt',p:42,tag:'t_match',sz:['sz_kids','sz_adult']},
- {id:'squad',img:'m_squad',p:26,tag:'t_match',sz:['sz_toddler','sz_kids','sz_adult']},
- {id:'tumbler',img:'m_undefeated',p:28,tag:'t_new',sz:['sz_20']},
- {id:'logo',img:'logo',p:22,tag:'t_best',sz:['sz_toddler','sz_kids','sz_adult']}];
+ {id:'undefeated',img:'prod_undefeated',on:'mod_evaluna',p:24,tag:'t_best',cat:['wear','baby'],sz:['sz_baby','sz_kids','sz_adult']},
+ {id:'onesie',img:'clo_evaluna',p:20,tag:'t_new',cat:['baby'],sz:['sz_0_3','sz_6_12','sz_12_18']},
+ {id:'logo',img:'prod_logo',on:'mod_together',p:22,tag:'t_match',cat:['wear'],sz:['sz_toddler','sz_kids','sz_adult']},
+ {id:'belt',img:'prod_belt',on:'mod_cambam',p:42,tag:'t_new',cat:['wear'],sz:['sz_kids','sz_adult']},
+ {id:'squad',img:'prod_squad',on:'mod_jaziel',p:26,tag:'t_match',cat:['wear'],sz:['sz_toddler','sz_kids','sz_adult']},
+ {id:'stickers',img:'prod_stickers',p:8,tag:'t_new',cat:['studio'],sz:['sz_sheet']},
+ {id:'poster',img:'prod_poster',p:26,tag:'t_new',cat:['wear'],sz:['sz_kids','sz_adult']},
+ {id:'tumbler',img:'prod_tumbler',p:28,tag:'t_best',cat:['studio'],sz:['sz_20']}];
+const CATS=['all','wear','baby','studio'];let shopCat='all';
+const STOCK={undefeated:24,onesie:12,logo:30,belt:8,squad:18,stickers:60,poster:10,tumbler:6,bstory:0,bcolor:25,bdigital:999,bprint:9};
+let PICKS={c:['logo','belt'],j:['squad','stickers'],e:['onesie','undefeated']};
+let SQ={on:true,sync:null};
+const BOOKS=[
+ {id:'bstory',img:'book_story',p:18,tag:'t_preorder',sz:['sz_hard','sz_paper']},
+ {id:'bcolor',img:'book_coloring',p:12,tag:'t_new',sz:['sz_print']},
+ {id:'bdigital',img:'book_digital',p:6,tag:'t_instant',sz:['sz_pdf']},
+ {id:'bprint',img:'book_print',p:25,tag:'t_new',sz:['sz_8x10','sz_11x14']}];
+const RECIPES=[
+ {id:'pancake',who:'evaluna',c:'var(--purple)'},
+ {id:'smoothie',who:'jaziel',c:'var(--cyan)'},
+ {id:'popcorn',who:'cambam',c:'var(--pink)'}];
 const $=s=>document.querySelector(s);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -749,17 +1137,24 @@ function Player(root,getList,opts={}){
 
 /* ===================== render ===================== */
 let heroP, watchP, filter='all', bag=0;
+const itemHTML=p=>{const out=STOCK[p.id]===0&&p.tag!=='t_preorder';return `<div class="item${out?' out':''}" data-item="${p.id}"><span class="flag">${out?t('soldout'):t(p.tag)}</span><div class="pic"><img src="assets/${p.img}.webp" alt="${t('p_'+p.id)}" loading="lazy">${p.on?`<div class="on"><img src="assets/${p.on}.webp" alt="" loading="lazy"></div>`:''}</div><h3>${t('p_'+p.id)}</h3>${p.on?`<button class="see" type="button" data-flip>${t('s_see')}</button>`:''}<div class="sizes" role="group">${p.sz.map((s,j)=>`<button type="button" aria-pressed="${j===0}" data-sz>${t(s)}</button>`).join('')}</div><div class="row-b"><span class="price">$${p.p}</span><button class="add" type="button" data-add="${p.id}"${out?' disabled':''}>${out?t('soldout'):t(p.tag==='t_preorder'?'preorder':'add')}</button></div></div>`};
 function renderStatic(){
   document.documentElement.lang=LANG==='zh'?'zh-Hans':LANG;
   document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
   $('#switchLbl').textContent=$('#lights').classList.contains('off')?t('sw_on'):t('sw_off');
   $('#switch').setAttribute('aria-label',$('#switchLbl').textContent);
-  $('#livingThumbs').innerHTML=['karate','9m','dance'].map(id=>`<button type="button" data-watch="${id}" aria-label="${t('play_clip')}: ${t('c_'+id)}"><img src="video/clip_${id}.jpg" alt="" loading="lazy"><span aria-hidden="true">▶</span></button>`).join('');
-  $('#miniShop').innerHTML=PRODUCTS.slice(0,2).map(p=>`<div><img src="assets/${p.img}.webp" alt="" loading="lazy"><b>$${p.p}</b><small>${t('p_'+p.id)}</small></div>`).join('');
+  if($('#livingThumbs'))$('#livingThumbs').innerHTML=['karate','9m','dance'].map(id=>`<button type="button" data-watch="${id}" aria-label="${t('play_clip')}: ${t('c_'+id)}"><img src="video/clip_${id}.jpg" alt="" loading="lazy"><span aria-hidden="true">▶</span></button>`).join('');
+  const mini=ids=>ids.map(id=>PRODUCTS.find(p=>p.id===id)).map(p=>`<div><img src="assets/${p.img}.webp" alt="" loading="lazy"><b>$${p.p}</b><small>${t('p_'+p.id)}</small></div>`).join('');
+  $('#miniC').innerHTML=mini(PICKS.c); $('#miniJ').innerHTML=mini(PICKS.j); $('#miniE').innerHTML=mini(PICKS.e);
+  renderBag();
+  $('#recipes').innerHTML=RECIPES.map(r=>`<button type="button" data-recipe="${r.id}" style="--c:${r.c}"><span class="dot"></span><span><b>${t('rc_'+r.id)}</b><small>${t('rm_'+r.id)}</small></span><span class="go">${t('rc_open')} →</span></button>`).join('');
   $('#cards').innerHTML=LEGENDS.map(([k,c])=>`<article class="card" style="--c:${c}"><div class="pic"><img src="assets/${k}.webp" alt="${NAMES[k]}" loading="lazy"></div><div class="body"><p class="role">${t('r_'+k)}</p><h3>${NAMES[k]}</h3><dl><dt>${t('f_power')}</dt><dd>${t('p_'+k)}</dd><dt>${t('f_loves')}</dt><dd>${t('l_'+k)}</dd></dl><q>${t('q_'+k)}</q></div></article>`).join('');
-  $('#shopGrid').innerHTML=PRODUCTS.map(p=>`<div class="item"><span class="flag">${t(p.tag)}</span><div class="pic"><img src="assets/${p.img}.webp" alt="${t('p_'+p.id)}" loading="lazy"></div><h3>${t('p_'+p.id)}</h3><div class="sizes" role="group">${p.sz.map((s,j)=>`<button type="button" aria-pressed="${j===0}" data-sz>${t(s)}</button>`).join('')}</div><div class="row-b"><span class="price">$${p.p}</span><button class="add" type="button" data-add="${p.id}">${t('add')}</button></div></div>`).join('');
+  $('#cats').innerHTML=CATS.map(c=>`<button type="button" data-cat="${c}" aria-pressed="${c===shopCat}">${t('cat_'+c)}</button>`).join('')+`<button type="button" class="ext" data-go="books">${t('cat_books')} →</button>`;
+  $('#shopGrid').innerHTML=PRODUCTS.filter(p=>shopCat==='all'||p.cat.includes(shopCat)).map(itemHTML).join('');
+  $('#bookGrid').innerHTML=BOOKS.map(itemHTML).join('');
   const who=[['all'],...LEGENDS.filter(([k])=>CLIPS.some(c=>c.who.includes(k)))];
   $('#chips').innerHTML=who.map(([k])=>`<button class="chip" type="button" aria-pressed="${k===filter}" data-f="${k}">${k==='all'?t('w_all'):NAMES[k]}</button>`).join('');
+  if(lastRecipe&&$('#rdlg').open)fillRecipe(lastRecipe);
   renderFeed(); heroP&&heroP.relabel(); watchP&&watchP.relabel();
 }
 function feedList(){return filter==='all'?CLIPS:CLIPS.filter(c=>c.who.includes(filter))}
@@ -770,7 +1165,7 @@ function renderFeed(){
 }
 
 /* ===================== routing ===================== */
-const VIEWS=['home','legends','watch','shop'];
+const VIEWS=['home','legends','watch','shop','books','admin'];
 function go(v,push){
   if(!VIEWS.includes(v))v='home';
   VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v});
@@ -779,6 +1174,7 @@ function go(v,push){
   window.scrollTo({top:0,behavior:'instant'});
   heroP&&heroP.activate(v==='home'&&heroVisible); watchP&&watchP.activate(v==='watch');
   $('#map').hidden=v!=='home'||innerWidth<=760;
+  document.body.classList.toggle('is-admin',v==='admin'); if(v==='admin'&&!$('#admDash').hidden)admRender();
   setTimeout(()=>{frame();mapUpd()},40);
 }
 document.addEventListener('click',e=>{
@@ -787,10 +1183,65 @@ document.addEventListener('click',e=>{
   const w=e.target.closest('[data-watch]'); if(w){go('watch',true);filter='all';renderStatic();watchP.setList(feedList(),feedList().findIndex(c=>c.id===w.dataset.watch));return}
   const c=e.target.closest('[data-clip]'); if(c){watchP.setList(feedList(),feedList().findIndex(x=>x.id===c.dataset.clip));const ph=$('#watchPlayer');if(innerWidth<=900)ph.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});return}
   const f=e.target.closest('[data-f]'); if(f){filter=f.dataset.f;document.querySelectorAll('#chips .chip').forEach(x=>x.setAttribute('aria-pressed',x===f));renderFeed();return}
+  const fl=e.target.closest('[data-flip]'); if(fl){fl.closest('.item').classList.toggle('flip');return}
   const s=e.target.closest('[data-sz]'); if(s){s.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===s));return}
-  const a=e.target.closest('[data-add]'); if(a){bag++;$('#bagN').textContent=bag;toast(t('added')+' '+t('p_'+a.dataset.add));return}
+  const ct=e.target.closest('[data-cat]'); if(ct){shopCat=ct.dataset.cat;renderStatic();return}
+  const rc=e.target.closest('[data-recipe]'); if(rc){openRecipe(rc.dataset.recipe);return}
+  if(e.target.closest('[data-rclose]')||e.target===$('#rdlg')){$('#rdlg').close();return}
+  const a=e.target.closest('[data-add]'); if(a){if(a.disabled)return;const it=a.closest('.item');const szb=it&&it.querySelector('[data-sz][aria-pressed="true"]');const sz=szb?[...szb.parentElement.children].indexOf(szb):0;addToBag(a.dataset.add,sz);toast(t('added')+' '+t('p_'+a.dataset.add));return}
+  const q=e.target.closest('[data-q]'); if(q){const [k,d]=q.dataset.q.split(':');const L=BAG.find(x=>x.k===k);if(L){L.qty+= +d;if(L.qty<1)BAG.splice(BAG.indexOf(L),1)}renderBag();return}
+  const rm=e.target.closest('[data-rm]'); if(rm){BAG.splice(BAG.findIndex(x=>x.k===rm.dataset.rm),1);renderBag();return}
+  if(e.target.closest('[data-bagclose]')||e.target===$('#scrim')){openBag(false);return}
 });
-$('#bag').addEventListener('click',()=>toast(bag?bag+' '+t('bag_ready'):t('bag_empty')));
+$('#bag').addEventListener('click',()=>openBag(true));
+const ALLP=()=>PRODUCTS.concat(BOOKS);
+let BAG=[];
+function addToBag(id,sz){const k=id+'|'+sz;const L=BAG.find(x=>x.k===k);L?L.qty++:BAG.push({k,id,sz,qty:1});renderBag()}
+function renderBag(){
+  const n=BAG.reduce((a,b)=>a+b.qty,0);$('#bagN').textContent=n;
+  let sub=0;$('#lines').innerHTML=BAG.length?BAG.map(L=>{const p=ALLP().find(x=>x.id===L.id);const lp=p.p*L.qty;sub+=lp;return `<div class="line"><img src="assets/${p.img}.webp" alt=""><div><b>${t('p_'+p.id)}</b><small>${t(p.sz[L.sz])}</small><div class="qty"><button type="button" data-q="${L.k}:-1" aria-label="−">−</button><span>${L.qty}</span><button type="button" data-q="${L.k}:1" aria-label="+">+</button><button class="rm" type="button" data-rm="${L.k}">${t('remove')}</button></div></div><span class="lp">$${lp}</span></div>`}).join(''):`<p class="empty-bag">${t('bag_empty')}</p>`;
+  $('#subT').textContent='$'+sub;$('#checkout').disabled=!BAG.length||!SQ.on;
+}
+let lastFocus=null;
+function openBag(on){const d=$('#drawer');d.hidden=!on;$('#scrim').hidden=!on;document.body.style.overflow=on?'hidden':'';if(on){lastFocus=document.activeElement;renderBag();d.querySelector('.x').focus()}else if(lastFocus)lastFocus.focus()}
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#drawer').hidden)openBag(false)});
+$('#checkout').addEventListener('click',()=>toast(t('bag_demo')));
+
+/* ===================== admin (demo) ===================== */
+const SECT={wear:'Wear',baby:'Baby',studio:'Stickers & Studio'};
+function admProducts(){$('#prodTbl tbody').innerHTML=ALLP().map(p=>{const st=STOCK[p.id];const live=st>0||p.tag==='t_preorder';return `<tr><td><img src="assets/${p.img}.webp" alt="">${T['p_'+p.id][0]}</td><td>${p.cat?p.cat.map(c=>SECT[c]).join(', '):'Books & Prints'}</td><td class="n">$${p.p}</td><td class="n"><input type="number" min="0" value="${st}" data-stock="${p.id}" aria-label="Stock for ${T['p_'+p.id][0]}"></td><td>${live?'<span class="pill ok">Live</span>':'<span class="pill out">Sold out</span>'}</td></tr>`}).join('')}
+function admPickers(){const opts=sel=>PRODUCTS.map(p=>`<option value="${p.id}"${p.id===sel?' selected':''}>${T['p_'+p.id][0]}</option>`).join('');
+  $('#pickers').innerHTML=[['c','CamBam'],['j','Jaziel'],['e','Evaluna']].map(([k,n])=>`<div class="pick"><b>${n}</b><select data-pick="${k}:0" aria-label="${n} pick 1">${opts(PICKS[k][0])}</select><select data-pick="${k}:1" aria-label="${n} pick 2">${opts(PICKS[k][1])}</select></div>`).join('')}
+let HERO_ON=HERO_CLIPS.map(c=>c.id);
+function admVideos(){$('#vlist').innerHTML=HERO_ON.map((id,i)=>`<li><img src="video/clip_${id}.jpg" alt=""><span>${T['c_'+id]?T['c_'+id][0]:id}</span><span class="mv"><button type="button" data-mv="${i}:-1" aria-label="Move up">↑</button><button type="button" data-mv="${i}:1" aria-label="Move down">↓</button><button type="button" data-mv="${i}:x" aria-label="Remove">×</button></span></li>`).join('')}
+function admSquare(){const st=$('#sqStat');st.textContent=SQ.on?'● Square connected':'○ Square not connected';st.classList.toggle('on',SQ.on);
+  $('#sqText').textContent=SQ.on?'Connected. Products, stock and checkout come from the Love & Ink Square account.':'Not connected. The shop shows items but checkout is turned off until Square is connected.';
+  $('#sqBtn').textContent=SQ.on?'Disconnect Square':'Connect Square';$('#sqSync').textContent=SQ.sync||'–';renderBag()}
+function admRender(){admProducts();admPickers();admVideos();admSquare()}
+$('#admGo').addEventListener('click',()=>{const v=$('#admEmail').value.trim();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){toast('Enter a valid email');$('#admEmail').focus();return}toast('Demo: a sign-in link would be emailed to '+v);setTimeout(admEnter,900)});
+$('#admDemo').addEventListener('click',admEnter);
+function admEnter(){$('#admLogin').hidden=true;$('#admDash').hidden=false;admRender()}
+$('#admOut').addEventListener('click',()=>{$('#admDash').hidden=true;$('#admLogin').hidden=false});
+document.querySelector('.adm-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;document.querySelectorAll('.adm-tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));document.querySelectorAll('.adm-pane').forEach(p=>p.hidden=p.dataset.pane!==b.dataset.tab)});
+$('#v-admin').addEventListener('change',e=>{
+  const s=e.target.closest('[data-stock]');if(s){STOCK[s.dataset.stock]=Math.max(0,parseInt(s.value)||0);renderStatic();admProducts();toast('Stock updated (demo: on the live site this is done in Square)');return}
+  const pk=e.target.closest('[data-pick]');if(pk){const [k,i]=pk.dataset.pick.split(':');PICKS[k][+i]=pk.value;renderStatic();toast('Closet picks updated');return}
+  if(e.target.id==='annOn'||e.target.id==='annTxt')setAnn();
+});
+$('#annTxt').addEventListener('input',setAnn);
+function setAnn(){const a=$('#announce'),v=$('#annTxt').value.trim();a.textContent=v;a.hidden=!($('#annOn').checked&&v)}
+$('#syncNow').addEventListener('click',()=>{SQ.sync=new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});admSquare();toast('Synced from Square (demo)')});
+$('#sqBtn').addEventListener('click',()=>{SQ.on=!SQ.on;if(SQ.on)SQ.sync=new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});admSquare();toast(SQ.on?'Square connected (demo)':'Square disconnected (demo)')});
+$('#vlist').addEventListener('click',e=>{const b=e.target.closest('[data-mv]');if(!b)return;const [i,d]=b.dataset.mv.split(':');const k=+i;if(d==='x'){if(HERO_ON.length>1)HERO_ON.splice(k,1)}else{const j=k+(+d);if(j>=0&&j<HERO_ON.length)[HERO_ON[k],HERO_ON[j]]=[HERO_ON[j],HERO_ON[k]]}admVideos();heroP&&heroP.setList(HERO_ON.map(id=>CLIPS.find(c=>c.id===id)))});
+$('#addReel').addEventListener('click',()=>{const v=$('#newReel').value.trim();if(!/^https:\/\/(www\.)?instagram\.com\/(reel|p)\//.test(v)){toast('Paste an Instagram reel link');return}toast('Demo: the live site would import this reel');$('#newReel').value=''});
+let lastRecipe=null;
+function fillRecipe(id){const r=RECIPES.find(x=>x.id===id);if(!r)return;lastRecipe=id;
+  const k=$('#rdK');k.textContent=NAMES[r.who];k.style.setProperty('--t',r.c);k.style.color='#fff';
+  $('#rdT').textContent=t('rc_'+id);$('#rdM').textContent=t('rm_'+id);
+  $('#rdI').innerHTML=t('ri_'+id).split('|').map(x=>`<li>${x}</li>`).join('');
+  $('#rdS').innerHTML=t('rs_'+id).split('|').map(x=>`<li>${x}</li>`).join('');
+  $('#rdlg .x').setAttribute('aria-label',t('rc_close'))}
+function openRecipe(id){fillRecipe(id);const d=$('#rdlg');if(d.showModal){if(!d.open)d.showModal()}else d.setAttribute('open','')}
 let tt;function toast(m){const el=$('#toast');el.textContent=m;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2200)}
 
 /* ===================== house scroll ===================== */
@@ -806,11 +1257,14 @@ function frame(){
     const ent=Math.min(1,Math.max(0,(vh-rect.top)/vh));
     const prog=reduce?1:Math.min(1,p*1.6+ent*.35);
     r.style.setProperty('--p',p.toFixed(3));
-    const kids=[...r.querySelectorAll('.kid')];
+    if(r.classList.contains('closet')){const sm=x=>x<0?0:x>1?1:x*x*(3-2*x);const pan=reduce?0:sm((p-.27)/.15)+sm((p-.6)/.15);r.style.setProperty('--pan',pan.toFixed(3));
+      const sides=['l','r','l'];r.querySelectorAll('.clo-ui .panel').forEach((el,k)=>{const d=pan-k,o=Math.max(0,1-Math.abs(d)*2.2);el.style.opacity=o.toFixed(2);el.style.transform=mobile?'':`translateX(${(-d*30).toFixed(1)}vw)`;o<.05?el.setAttribute('data-off',''):el.removeAttribute('data-off')});
+      const near=Math.round(pan),w=Math.max(0,1-Math.abs(pan-near)*2.2);r.style.setProperty('--sl',sides[near]==='l'?(.78*w).toFixed(2):'0');r.style.setProperty('--sr',sides[near]==='r'?(.8*w).toFixed(2):'0')}
+    const kids=[...r.querySelectorAll('.kid[data-at]')];
     r.querySelectorAll('[data-at]').forEach(el=>{
       const isKid=el.classList.contains('kid'); let [dx,dy,rot]=el.dataset.from.split(',').map(Number); let tx,ty,tr,op,q;
       if(reduce){tx=ty=tr=0;op=1;q=1}
-      else if(mobile&&isKid){
+      else if(mobile&&isKid&&kids.length>1){
         const k=kids.indexOf(el),n=kids.length,seg=1/n,st=k*seg;
         const qi=Math.min(1,Math.max(0,(p-st+.04)/(seg*.45)));
         const qo=k===n-1?0:Math.min(1,Math.max(0,(p-(st+seg*.85))/(seg*.3)));
@@ -824,7 +1278,7 @@ function frame(){
   });
 }
 const map=$('#map'), mapLinks=[...map.querySelectorAll('a')];
-function mapUpd(){if($('#v-home').hidden)return;const mid=innerHeight*.5;let cur='top';['r-living','r-kitchen','r-concert','r-bedroom','lights'].forEach(id=>{if(document.getElementById(id).getBoundingClientRect().top<mid)cur=id});mapLinks.forEach(l=>l.setAttribute('aria-current',l.dataset.jump===cur))}
+function mapUpd(){if($('#v-home').hidden)return;const mid=innerHeight*.5;let cur='top';['r-living','r-kitchen','r-closet','r-concert','r-story','lights'].forEach(id=>{if(document.getElementById(id).getBoundingClientRect().top<mid)cur=id});mapLinks.forEach(l=>l.setAttribute('aria-current',l.dataset.jump===cur))}
 let tick=false;addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(()=>{frame();mapUpd();tick=false})}},{passive:true});
 addEventListener('resize',()=>{frame();map.hidden=$('#v-home').hidden||innerWidth<=760});
 
@@ -851,19 +1305,40 @@ let heroVisible=true;
 </script>
 
 <script>
-/* Love & Ink bridge: when this page runs inside loveandink.co, the bag and routes talk to the parent site. */
-(function(){if(window.parent===window)return;document.documentElement.classList.add('emb');
-  const P=m=>{try{parent.postMessage(Object.assign({src:'tla'},m),'*')}catch(e){}};
-  document.addEventListener('click',e=>{
-    if(e.target.closest('#bag')){e.stopPropagation();e.preventDefault();P({type:'bag'});return}
-    const a=e.target.closest('[data-add]');if(!a)return;const id=a.dataset.add,p=PRODUCTS.find(x=>x.id===id);if(!p)return;
-    const item=a.closest('.item'),btns=item?[...item.querySelectorAll('.sizes button')]:[],k=btns.findIndex(b=>b.getAttribute('aria-pressed')==='true'),sk=k>=0?p.sz[k]:'';
-    P({type:'add',id,name:t('p_'+id),price:p.p,size:k>=0?btns[k].textContent:'',sizeKey:sk?sk.replace('sz_',''):'',img:new URL('assets/'+p.img+'.webp',location.href).href})},true);
-  addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data||{};if(d.src!=='li')return;
-    if(d.type==='count')$('#bagN').textContent=d.n;
-    if(d.type==='route'&&d.v)go(d.v,true);
-    if(d.type==='pause'){heroP&&heroP.activate(false);watchP&&watchP.activate(false)}
-    if(d.type==='resume'){const v=(location.hash||'#home').slice(1);heroP&&heroP.activate(v==='home'&&heroVisible);watchP&&watchP.activate(v==='watch')}});
-  P({type:'ready'})})();
+/* Love & Ink bridge (added at build time on loveandink.co).
+   Embedded in Love & Ink: adds and the bag go to the parent site's bag (Square checkout there).
+   Standalone at /tinylegends: the Square checkout button hands the bag to Love & Ink's checkout. */
+(function(){
+  const EMB=window.parent!==window;
+  const all=()=>(typeof ALLP==='function'?ALLP():PRODUCTS);
+  const img=p=>new URL('assets/'+p.img+'.webp',location.href).href;
+  const item=(id,szIdx,qty)=>{const p=all().find(x=>x.id===id);if(!p)return null;const sk=(p.sz&&p.sz[szIdx]||'').replace('sz_','');
+    return{id,p,qty:qty||1,size:p.sz&&p.sz[szIdx]?t(p.sz[szIdx]):'',sizeKey:sk,name:t('p_'+id),price:p.p,img:img(p)}};
+  if(EMB){
+    document.documentElement.classList.add('emb');
+    const P=m=>{try{parent.postMessage(Object.assign({src:'tla'},m),'*')}catch(e){}};
+    document.addEventListener('click',e=>{
+      if(e.target.closest('#bag')){e.stopPropagation();e.preventDefault();P({type:'bag'});return}
+      const a=e.target.closest('[data-add]');if(!a||a.disabled)return;
+      const it=a.closest('.item'),btns=it?[...it.querySelectorAll('.sizes button')]:[],k=Math.max(0,btns.findIndex(b=>b.getAttribute('aria-pressed')==='true'));
+      const x=item(a.dataset.add,k);if(x)P({type:'add',id:x.id,name:x.name,price:x.price,size:x.size,sizeKey:x.sizeKey,img:x.img})},true);
+    addEventListener('message',e=>{if(e.source!==parent)return;const d=e.data||{};if(d.src!=='li')return;
+      if(d.type==='count')$('#bagN').textContent=d.n;
+      if(d.type==='route'&&d.v)go(d.v,true);
+      if(d.type==='pause'){heroP&&heroP.activate(false);watchP&&watchP.activate(false)}
+      if(d.type==='resume'){const v=(location.hash||'#home').slice(1);heroP&&heroP.activate(v==='home'&&heroVisible);watchP&&watchP.activate(v==='watch')}});
+    P({type:'ready'});
+  }else{
+    const co=document.getElementById('checkout');
+    if(co&&typeof BAG!=='undefined'){co.addEventListener('click',e=>{e.stopImmediatePropagation();
+      let li=[];try{li=JSON.parse(localStorage.getItem('li_bag')||'[]')}catch(err){}
+      BAG.forEach(L=>{const x=item(L.id,L.sz,L.qty);if(!x)return;const key='tla-'+x.id+(x.sizeKey?'-'+x.sizeKey:'');const f=li.find(b=>b.key===key);
+        if(f)f.qty+=x.qty;else li.push({key,id:'tla-'+x.id,sku:('TLA-'+x.id+(x.sizeKey?'-'+x.sizeKey:'')).toUpperCase(),name:x.name,price:x.price,img:x.img,shop:'Tiny Legends',meta:x.size,qty:x.qty})});
+      try{localStorage.setItem('li_bag',JSON.stringify(li))}catch(err){}
+      location.href='/?bag=1'},true);
+      const dm=document.querySelector('.drawer .demo');if(dm)dm.textContent='Secure checkout with Square through Love & Ink.'}
+  }
+})();
 </script>
+
 </body></html>
