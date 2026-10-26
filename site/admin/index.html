@@ -264,6 +264,22 @@ details.more[open] summary{margin-bottom:12px}
 .idetail dl{display:grid;grid-template-columns:140px 1fr;gap:8px 16px;margin:16px 0}
 .idetail dt{color:var(--mut);font-size:.84rem}.idetail dd{margin:0;white-space:pre-wrap;word-break:break-word}
 
+/* ---------- brand kit ---------- */
+.kgroup{margin-bottom:26px}.kgroup>h2{margin-bottom:12px}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.kcard{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.kcard .kp{aspect-ratio:4/3;display:grid;place-items:center;padding:18px;background:repeating-conic-gradient(#EFEBE4 0 25%,#FFFFFF 0 50%) 0 0/18px 18px;border-bottom:1px solid var(--line)}
+.kcard .kp.dark{background:repeating-conic-gradient(#1B1A22 0 25%,#24232C 0 50%) 0 0/18px 18px}
+.kcard .kp img{max-width:100%;max-height:100%;object-fit:contain}
+.kcard .kb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px}
+.kcard .kb b{font-size:.88rem;line-height:1.25}.kcard .kb .acts{display:flex;gap:6px;flex-wrap:wrap}
+.kpick .kcard{cursor:pointer;transition:transform .15s,box-shadow .15s}.kpick .kcard:hover{transform:translateY(-2px);box-shadow:var(--shadow2);border-color:var(--hot)}
+.cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.colrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.colchip{border:1px solid var(--line2);background:var(--card2);border-radius:10px;padding:4px 8px 4px 4px;display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600}
+.colchip i{width:24px;height:24px;border-radius:7px;background:var(--c);border:1px solid var(--line2)}
+.colchip span{font-family:var(--m);color:var(--mut);font-weight:400}
+
 /* ---------- misc ---------- */
 .stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:18px}
 .stat .card b{display:block;font-family:var(--d);font-size:1.5rem;margin-top:4px}
@@ -362,6 +378,7 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
     <button class="nav-i" data-go="studio"><svg class="i"><use href="#i-brush"/></svg>Studio</button>
     <button class="nav-i" data-go="promos"><svg class="i"><use href="#i-mega"/></svg>Promos<span class="ct" data-count="promos" hidden></span></button>
     <button class="nav-i" data-go="tl"><svg class="i"><use href="#i-crown"/></svg>Tiny Legends</button>
+    <button class="nav-i" data-go="brand"><svg class="i"><use href="#i-palette"/></svg>Brand kit</button>
     <div class="nav-g">Shop</div>
     <button class="nav-i" data-go="merch"><svg class="i"><use href="#i-tag"/></svg>Merch &amp; stock</button>
     <button class="nav-i" data-go="orders"><svg class="i"><use href="#i-box"/></svg>Orders<span class="soon">next</span></button>
@@ -421,7 +438,7 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
         <div class="spanel">
           <div class="stabs"><div class="seg" id="sTabs"><button data-st="text" aria-pressed="true"><svg class="i"><use href="#i-type"/></svg>Edits</button><button data-st="theme" aria-pressed="false"><svg class="i"><use href="#i-palette"/></svg>Colors</button><button data-st="hist" aria-pressed="false"><svg class="i"><use href="#i-clock"/></svg>History</button></div></div>
           <div class="sbody" data-st-p="text">
-            <div class="howto"><svg class="i"><use href="#i-cursor"/></svg><div><b>Click anything on the page to change it.</b><br>Text edits in place. Click a photo or banner to swap it. Changes save as a draft until you hit <b>Publish</b>.</div></div>
+            <div class="howto"><svg class="i"><use href="#i-cursor"/></svg><div><b>Click anything on the page to change it.</b><br>Text edits in place. Click a photo or character to move it, resize it from the corner, or swap it. Links still work: double-click a link or button to edit its words. Nothing goes live until you hit <b>Publish</b>.</div></div>
             <div id="tlLangBox" class="note" style="margin:0" hidden>Editing Tiny Legends in <select class="in" id="tlLang" style="width:auto;display:inline-block;min-height:32px;padding:4px 8px;margin-left:6px"></select></div>
             <div class="eyebrow" id="chgCount">No changes yet</div>
             <div id="chgList" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -438,7 +455,8 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
         <div class="stage">
           <div class="stage-bar">
             <select class="in" id="pagePick" aria-label="Page">
-              <option value="/">Home</option><option value="/prints">Prints</option><option value="/publishing">Publishing</option><option value="/lifestyle">Lifestyle</option><option value="/tinylegends/">Tiny Legends</option>
+              <optgroup label="Love & Ink"><option value="/">Home</option><option value="/prints">Prints</option><option value="/publishing">Publishing</option><option value="/lifestyle">Lifestyle</option></optgroup>
+              <optgroup label="Tiny Legends"><option value="/tinylegends/#home">Tiny Legends · Home</option><option value="/tinylegends/#legends">Tiny Legends · Meet the Legends</option><option value="/tinylegends/#watch">Tiny Legends · Watch</option><option value="/tinylegends/#shop">Tiny Legends · Shop</option><option value="/tinylegends/#books">Tiny Legends · Books</option></optgroup>
             </select>
             <div class="seg" id="modeSeg"><button data-mode="edit" aria-pressed="true"><svg class="i"><use href="#i-cursor"/></svg>Edit</button><button data-mode="browse" aria-pressed="false"><svg class="i"><use href="#i-eye"/></svg>Browse</button></div>
             <span class="sp"></span>
@@ -517,6 +535,13 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
       </div></div>
     </section>
 
+    <!-- ===== brand kit ===== -->
+    <section class="page" data-panel="brand" hidden>
+      <div class="head"><div><div class="eyebrow">Website</div><h1 class="serif">Brand kit</h1><p>Every logo and character, ready to download as a transparent PNG. Use them for posts, flyers and promos, or pick them straight from here when you swap an image.</p></div>
+        <label class="btn hot" style="cursor:pointer"><svg class="i"><use href="#i-plus"/></svg>Upload a logo or image<input type="file" id="brandUp" accept="image/*" multiple hidden></label></div>
+      <div id="brandKit"></div>
+    </section>
+
     <!-- ===== settings ===== -->
     <section class="page" data-panel="settings" hidden>
       <div class="head"><div><div class="eyebrow">Settings</div><h1 class="serif">Square &amp; connections</h1><p>Jasmine's Square account runs checkout and inventory for all three shops.</p></div></div>
@@ -569,7 +594,7 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
       <label class="f">Button goes to<select class="in" id="pLinkPick"><option value="/tinylegends/#shop">Tiny Legends shop</option><option value="/tinylegends/#books">Tiny Legends books</option><option value="/lifestyle">Lifestyle</option><option value="/prints">Prints studio</option><option value="/publishing">Publishing</option><option value="/">Home</option><option value="custom">Another link…</option></select></label></div>
     <label class="f" id="pLinkWrap" hidden>Link<input class="in" data-p="link" maxlength="600" placeholder="https://… or /page"></label>
     <label class="f">Promo code <small>Optional. Shoppers tap to copy it. Create the matching discount in Square.</small><input class="in" data-p="code" maxlength="24" placeholder="LEGENDS15" style="text-transform:uppercase"></label>
-    <div data-only="popup"><div class="f" style="font-weight:600;font-size:.84rem;margin-bottom:6px">Image</div><div class="photo"><div class="ph" id="pImg"></div><div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn ghost small" style="cursor:pointer">Upload<input type="file" id="pFile" accept="image/*" hidden></label><button class="btn ghost small" id="pImgX">Remove</button></div></div></div>
+    <div data-only="popup"><div class="f" style="font-weight:600;font-size:.84rem;margin-bottom:6px">Image</div><div class="photo"><div class="ph" id="pImg"></div><div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn ghost small" style="cursor:pointer">Upload<input type="file" id="pFile" accept="image/*" hidden></label><button class="btn ghost small" id="pKit" type="button">Brand kit</button><button class="btn ghost small" id="pImgX">Remove</button></div></div></div>
     <div><div class="f" style="font-weight:600;font-size:.84rem;margin-bottom:8px">Look</div><div class="swatches" id="pPresets"></div>
       <div class="three" style="margin-top:10px"><label class="f">Background<div class="cpick"><input type="color" data-pc="bg"><span></span></div></label><label class="f">Text<div class="cpick"><input type="color" data-pc="fg"><span></span></div></label><label class="f">Button<div class="cpick"><input type="color" data-pc="accent"><span></span></div></label></div></div>
     <div><div class="f" style="font-weight:600;font-size:.84rem;margin-bottom:8px">Show on</div><div class="pages" id="pPages"></div></div>
@@ -585,10 +610,14 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
   <div class="mb"><h2 class="serif" style="font-size:1.6rem">Swap this image</h2>
     <div class="imgcmp"><figure><img id="imgNow" alt=""><figcaption>On the site now</figcaption></figure><figure><img id="imgNew" alt=""><figcaption id="imgNewCap">Your new image</figcaption></figure></div>
     <p class="muted" id="imgHint" style="margin:0;font-size:.84rem"></p>
-    <label class="btn ghost" style="cursor:pointer;justify-content:center">Choose an image<input type="file" id="imgFile" accept="image/*" hidden></label>
+    <div class="two"><label class="btn ghost" style="cursor:pointer;justify-content:center">Upload an image<input type="file" id="imgFile" accept="image/*" hidden></label><button type="button" class="btn ghost" id="imgKit" style="justify-content:center">Pick from brand kit</button></div>
   </div>
   <div class="mf"><button class="btn danger small" value="revert" id="imgRevert">Use original</button><span style="flex:1"></span><button class="btn ghost" value="cancel">Cancel</button><button class="btn hot" value="ok" id="imgOk" disabled>Use this image</button></div>
 </form></dialog>
+
+<dialog class="modal" id="kitDlg" style="width:min(880px,calc(100% - 32px))"><form method="dialog">
+  <div class="mb"><div style="display:flex;align-items:center;gap:10px"><h2 class="serif" style="font-size:1.6rem;flex:1">Brand kit</h2><button class="icon" value="cancel" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button></div>
+    <div id="kitPick" style="max-height:62vh;overflow:auto"></div></div></form></dialog>
 
 <div class="publishbar" id="tlBar" hidden><span>Tiny Legends changes not live yet</span><button class="btn small" id="tlSave">Publish</button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -615,7 +644,7 @@ const FLAB={bg:'Background',fg:'Text',accent:'Accent',purple:'Purple',pink:'Pink
 const PAGES=[['home','Home'],['prints','Prints'],['publishing','Publishing'],['lifestyle','Lifestyle'],['tinylegends','Tiny Legends']];
 const PRESETS=[['Love & Ink','#17161C','#FBF8F3','#F2C46B'],['Tiny Legends','#3A1A6B','#FFFFFF','#FFD23F'],['Bubblegum','#FF4FA3','#FFFFFF','#2A1450'],['Sky','#3EC6F2','#10213A','#FFFFFF'],['Lifestyle','#F4E9D8','#2B2320','#B4532F'],['Night','#0E1226','#EDE3CC','#F2C46B']];
 const S={me:null,items:[],sq:null,brand:'tla',def:null,content:null,tlDirty:false,edit:null,photo:null,rIdx:-1,
-  site:{text:{},theme:{},images:{},promos:[]},siteDirty:false,orig:{},frameReady:false,inbox:[],ibF:'new',ibSel:null,promo:null,promoIdx:-1};
+  site:{text:{},theme:{},images:{},layout:{},promos:[]},siteDirty:false,orig:{},frameReady:false,inbox:[],ibF:'new',ibSel:null,promo:null,promoIdx:-1};
 
 let tt;function toast(m,bad){const t=$('#toast');t.textContent=m;t.classList.toggle('bad',!!bad);t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),bad?5000:2400)}
 async function api(path,opt={}){const r=await fetch(F(path),Object.assign({credentials:'same-origin',headers:{'Content-Type':'application/json'}},opt));
@@ -648,17 +677,17 @@ async function start(me){S.me=me;$('#gate').hidden=true;$('#app').hidden=false;
   $('#today').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
   const [def,content,site]=await Promise.all([fetch('/admin/defaults.json').then(r=>r.json()),fetch(F('content'),{cache:'no-store'}).then(r=>r.json()).catch(()=>({})),api('site?draft=1').catch(()=>({}))]);
   S.def=def;S.content=JSON.parse(JSON.stringify({recipes:content.recipes&&content.recipes.length?content.recipes:def.recipes,announcement:content.announcement||def.announcement,picks:content.picks||def.picks,hero:content.hero||def.hero}));
-  S.site={text:site.text||{},theme:site.theme||{},images:site.images||{},promos:site.promos||[]};S.publishedAt=site.publishedAt;setSiteDirty(!!site.dirty,true);
+  S.site={text:site.text||{},theme:site.theme||{},images:site.images||{},layout:site.layout||{},promos:site.promos||[]};S.publishedAt=site.publishedAt;setSiteDirty(!!site.dirty,true);
   renderRecipes();renderHome();renderPromos();renderTheme();renderChanges();loadMerch();loadStatus();loadInbox();
   route(location.hash.slice(1)||'home')}
 
 /* ================= routing ================= */
-const TITLES={home:'Dashboard',studio:'Studio',promos:'Promos',tl:'Tiny Legends',merch:'Merch & stock',orders:'Orders',inbox:'Inbox',growth:'Campaigns & social',settings:'Square & connections'};
-function route(t){if(t==='more'){const m=['tl','orders','growth','settings'];t=m[(m.indexOf(S.cur)+1)%m.length]||'tl'}
+const TITLES={home:'Dashboard',studio:'Studio',promos:'Promos',tl:'Tiny Legends',brand:'Brand kit',merch:'Merch & stock',orders:'Orders',inbox:'Inbox',growth:'Campaigns & social',settings:'Square & connections'};
+function route(t){if(t==='more'){const m=['tl','brand','orders','growth','settings'];t=m[(m.indexOf(S.cur)+1)%m.length]||'tl'}
   if(!TITLES[t])t='home';S.cur=t;
-  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);$$('.nav-i,.mobnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===t||(b.dataset.go==='more'&&['tl','orders','growth','settings'].includes(t))));
+  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);$$('.nav-i,.mobnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===t||(b.dataset.go==='more'&&['tl','brand','orders','growth','settings'].includes(t))));
   $('#pageTitle').textContent=TITLES[t];history.replaceState(null,'','#'+t);window.scrollTo(0,0);
-  if(t==='studio'&&!$('#pv').src)loadFrame();if(t==='inbox')renderInbox()}
+  if(t==='studio'&&!$('#pv').src)loadFrame();if(t==='inbox')renderInbox();if(t==='brand')renderKit()}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b&&!b.closest('.sheet')){route(b.dataset.go)}});
 addEventListener('beforeunload',e=>{if(S.tlDirty||S.saving){e.preventDefault();e.returnValue=''}});
 const mq=matchMedia('(max-width:860px)');const mob=()=>{$('#mobTheme').hidden=!mq.matches};mq.addEventListener('change',mob);mob();
@@ -670,16 +699,18 @@ function setSiteDirty(on,quiet){S.siteDirty=on;const ps=$('#pubState');ps.classL
   $('#publishBtn').hidden=!on;$('#discardBtn').hidden=!on}
 function siteChanged(){setSiteDirty(true);pushFrame();clearTimeout(saveT);S.saving=true;saveT=setTimeout(async()=>{try{await api('site',{method:'PUT',body:JSON.stringify(S.site)})}catch(e){toast('Could not save the draft: '+e.message,1)}finally{S.saving=false}},700)}
 $('#publishBtn').onclick=async()=>{const b=$('#publishBtn');busy(b,true,'Publishing');try{clearTimeout(saveT);await api('site',{method:'PUT',body:JSON.stringify(S.site)});const r=await api('site',{method:'POST',body:JSON.stringify({action:'publish'})});S.publishedAt=r.publishedAt;setSiteDirty(false);toast('Live on loveandink.co');loadHistory();renderPromos();dashboard()}catch(e){toast(e.message,1)}finally{busy(b,false)}};
-$('#discardBtn').onclick=async()=>{if(!confirm('Throw away the draft and go back to what is live?'))return;try{await api('site',{method:'POST',body:JSON.stringify({action:'discard'})});const d=await api('site?draft=1');S.site={text:d.text||{},theme:d.theme||{},images:d.images||{},promos:d.promos||[]};setSiteDirty(false);renderChanges();renderTheme();renderPromos();pushFrame();toast('Back to the live version')}catch(e){toast(e.message,1)}};
+$('#discardBtn').onclick=async()=>{if(!confirm('Throw away the draft and go back to what is live?'))return;try{await api('site',{method:'POST',body:JSON.stringify({action:'discard'})});const d=await api('site?draft=1');S.site={text:d.text||{},theme:d.theme||{},images:d.images||{},layout:d.layout||{},promos:d.promos||[]};setSiteDirty(false);renderChanges();renderTheme();renderPromos();pushFrame();toast('Back to the live version')}catch(e){toast(e.message,1)}};
 
 /* ================= studio ================= */
 const frame=$('#frame'),pv=$('#pv');let dev='desk',mode='edit';
-function loadFrame(){S.frameReady=false;const p=$('#pagePick').value;pv.src=p+(p.includes('?')?'&':'?')+'edit=1';fit()}
+function loadFrame(force){const p=$('#pagePick').value,[path,hash]=p.split('#');let cur=null;try{cur=pv.contentWindow.location.pathname}catch(e){}
+  if(!force&&S.frameReady&&cur===path&&hash){try{pv.contentWindow.location.hash=hash}catch(e){}return}
+  S.frameReady=false;pv.src=path+'?edit=1'+(hash?'#'+hash:'');fit()}
 function fit(){const c=$('#canvas'),W=c.clientWidth-36,H=c.clientHeight-36;if(W<=0)return;
   if(dev==='phone'){frame.classList.add('phone');const w=390,h=Math.min(844,H),s=Math.min(1,(H)/844);frame.style.width=(w*s+16)+'px';frame.style.height=(844*s+16)+'px';pv.style.width=w+'px';pv.style.height='844px';pv.style.transform=`scale(${s})`}
   else{frame.classList.remove('phone');const w=Math.max(1280,W),s=W/w;frame.style.width=W+'px';frame.style.height=H+'px';pv.style.width=w+'px';pv.style.height=(H/s)+'px';pv.style.transform=`scale(${s})`}}
 addEventListener('resize',()=>{if(!$('[data-panel=studio]').hidden)fit()});
-$('#pagePick').onchange=loadFrame;$('#reloadFrame').onclick=loadFrame;
+$('#pagePick').onchange=()=>loadFrame();$('#reloadFrame').onclick=()=>loadFrame(true);
 $('#devSeg').onclick=e=>{const b=e.target.closest('[data-dev]');if(!b)return;dev=b.dataset.dev;$$('#devSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));fit()};
 $('#modeSeg').onclick=e=>{const b=e.target.closest('[data-mode]');if(!b)return;mode=b.dataset.mode;$$('#modeSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));post({type:'mode',mode});$('#modeTip').textContent=mode==='edit'?'Edit mode · click any text or image':'Browse mode · click around like a visitor';$('#modeTip').style.opacity=.92;setTimeout(()=>$('#modeTip').style.opacity=0,2600)};
 $('#sTabs').onclick=e=>{const b=e.target.closest('[data-st]');if(!b)return;$$('#sTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));$$('[data-st-p]').forEach(p=>p.hidden=p.dataset.stP!==b.dataset.st);if(b.dataset.st==='hist')loadHistory()};
@@ -691,22 +722,25 @@ addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==pv.cont
     if(d.key.startsWith('tl:')){const o=S.site.text[d.key]&&typeof S.site.text[d.key]==='object'?S.site.text[d.key]:{};o[d.lang||'en']=d.value;S.site.text[d.key]=o}
     else{if(d.value===S.orig[d.key])delete S.site.text[d.key];else S.site.text[d.key]=d.value}
     renderChanges();siteChanged()}
-  if(d.type==='image'){openImg(d)}});
+  if(d.type==='image'){openImg(d)}
+  if(d.type==='layout'){S.site.layout=S.site.layout||{};if(d.value)S.site.layout[d.key]=d.value;else delete S.site.layout[d.key];renderChanges();siteChanged()}
+  if(d.type==='route'&&d.tl){const v='/tinylegends/#'+(d.view||'home');if([...$('#pagePick').options].some(o=>o.value===v))$('#pagePick').value=v}});
 $('#tlLang').onchange=e=>{try{pv.contentWindow.localStorage.setItem('tla_lang',e.target.value)}catch(err){}const s=pv.contentDocument&&pv.contentDocument.getElementById('langSel');if(s){s.value=e.target.value;s.dispatchEvent(new Event('change'))}};
-function renderChanges(){const T=Object.entries(S.site.text),I=Object.entries(S.site.images);const n=T.length+I.length;
-  $('#chgCount').textContent=n?`${n} change${n>1?'s':''} on the website`:'No text or image changes yet';
-  $('#chgList').innerHTML=I.map(([k,u])=>`<div class="chg"><img src="${esc(u)}" alt=""><div class="tx"><span class="now">Image swapped</span><span class="mono muted">${esc(k.replace(/^tl:assets\//,'Tiny Legends · ').replace(/\.webp$/,''))}</span></div><button class="icon" data-rvi="${esc(k)}" title="Use original" aria-label="Use original"><svg class="i"><use href="#i-undo"/></svg></button></div>`).join('')
+function renderChanges(){const T=Object.entries(S.site.text),I=Object.entries(S.site.images),L=Object.entries(S.site.layout||{});const n=T.length+I.length+L.length;
+  $('#chgCount').textContent=n?`${n} change${n>1?'s':''} on the website`:'No changes yet';
+  const nice=k=>k.replace(/^m:/,'').replace(/^tl:assets\//,'Tiny Legends · ').replace(/\.webp/,'').replace(/#1$/,'').replace(/#(\d+)$/,' (#$1)');
+  $('#chgList').innerHTML=L.map(([k,v])=>`<div class="chg"><div class="tx"><span class="now">${k.startsWith('m:')?'Phone':'Desktop'} · moved${v.s!==1?' &amp; resized to '+Math.round(v.s*100)+'%':''}</span><span class="mono muted">${esc(nice(k))}</span></div><button class="icon" data-rvl="${esc(k)}" title="Put back" aria-label="Put back"><svg class="i"><use href="#i-undo"/></svg></button></div>`).join('')+I.map(([k,u])=>`<div class="chg"><img src="${esc(u)}" alt=""><div class="tx"><span class="now">Image swapped</span><span class="mono muted">${esc(k.replace(/^tl:assets\//,'Tiny Legends · ').replace(/\.webp$/,''))}</span></div><button class="icon" data-rvi="${esc(k)}" title="Use original" aria-label="Use original"><svg class="i"><use href="#i-undo"/></svg></button></div>`).join('')
    +T.map(([k,v])=>{const val=typeof v==='object'?Object.entries(v).map(([l,t])=>`${l.toUpperCase()}: ${t}`).join(' · '):v;return `<div class="chg"><div class="tx">${S.orig[k]?`<span class="was">${esc(S.orig[k])}</span>`:''}<span class="now">${esc(val)}</span>${k.startsWith('tl:')?'<span class="mono muted">Tiny Legends</span>':''}</div><button class="icon" data-rvt="${esc(k)}" title="Undo" aria-label="Undo"><svg class="i"><use href="#i-undo"/></svg></button></div>`}).join('')}
-$('#chgList').onclick=e=>{const t=e.target.closest('[data-rvt]'),i=e.target.closest('[data-rvi]');if(t){delete S.site.text[t.dataset.rvt];renderChanges();siteChanged()}if(i){delete S.site.images[i.dataset.rvi];renderChanges();siteChanged()}};
+$('#chgList').onclick=e=>{const t=e.target.closest('[data-rvt]'),i=e.target.closest('[data-rvi]'),l=e.target.closest('[data-rvl]');if(l){delete S.site.layout[l.dataset.rvl];renderChanges();siteChanged()}if(t){delete S.site.text[t.dataset.rvt];renderChanges();siteChanged()}if(i){delete S.site.images[i.dataset.rvi];renderChanges();siteChanged()}};
 function renderTheme(){$('#themeList').innerHTML=WORLDS.map(w=>{const cur=Object.assign({},w.d,S.site.theme[w.k]||{});const changed=!!S.site.theme[w.k]&&Object.keys(S.site.theme[w.k]).length;
   return `<div class="world"><div class="world-h"><span class="sw0" style="background:${cur.bg||cur.purple||cur.accent}"></span><b>${w.n}</b>${changed?`<button class="btn small ghost" data-tres="${w.k}">Reset</button>`:''}<button class="btn small ghost" data-tgo="${w.k}">View</button></div>
   <div class="colors">${w.f.map(f=>`<label>${FLAB[f]}<div class="cpick"><input type="color" value="${cur[f]}" data-tw="${w.k}" data-tf="${f}"><span>${cur[f].toUpperCase()}</span></div></label>`).join('')}</div></div>`}).join('')}
 $('#themeList').addEventListener('input',e=>{const i=e.target.closest('[data-tw]');if(!i)return;const w=i.dataset.tw,f=i.dataset.tf;S.site.theme[w]=S.site.theme[w]||{};S.site.theme[w][f]=i.value;i.nextElementSibling.textContent=i.value.toUpperCase();pushFrame();siteChanged()});
 $('#themeList').addEventListener('click',e=>{const r=e.target.closest('[data-tres]'),g=e.target.closest('[data-tgo]');if(r){delete S.site.theme[r.dataset.tres];renderTheme();siteChanged()}
-  if(g){const p={home:'/',prints:'/prints',publishing:'/publishing',lifestyle:'/lifestyle',tinylegends:'/tinylegends/'}[g.dataset.tgo];if($('#pagePick').value!==p){$('#pagePick').value=p;loadFrame()}}});
+  if(g){const p={home:'/',prints:'/prints',publishing:'/publishing',lifestyle:'/lifestyle',tinylegends:'/tinylegends/#home'}[g.dataset.tgo];if($('#pagePick').value!==p){$('#pagePick').value=p;loadFrame()}}});
 async function loadHistory(){try{const {versions}=await api('site?history=1');$('#histList').innerHTML=versions.length?versions.map((v,i)=>`<div class="row-i"><div class="av" style="background:var(--line);color:var(--ink2)"><svg class="i"><use href="#i-clock"/></svg></div><div class="tx"><b>${new Date(v.at).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}${i===0?' · live now':''}</b><small>by ${esc(v.by.split('@')[0])}</small></div>${i?`<button class="btn small ghost" data-restore="${v.id}">Restore</button>`:''}</div>`).join(''):'<div class="empty">Nothing published from the Studio yet.</div>'}catch(e){}}
 $('#histList').onclick=async e=>{const b=e.target.closest('[data-restore]');if(!b)return;if(!confirm('Load this version as your draft? You can check it in the preview, then publish.'))return;
-  try{const d=await api('site',{method:'POST',body:JSON.stringify({action:'restore',id:b.dataset.restore})});S.site={text:d.text,theme:d.theme,images:d.images,promos:d.promos};setSiteDirty(true);renderChanges();renderTheme();renderPromos();pushFrame();toast('Loaded as draft. Publish to make it live.')}catch(err){toast(err.message,1)}};
+  try{const d=await api('site',{method:'POST',body:JSON.stringify({action:'restore',id:b.dataset.restore})});S.site={text:d.text,theme:d.theme,images:d.images,layout:d.layout||{},promos:d.promos};setSiteDirty(true);renderChanges();renderTheme();renderPromos();pushFrame();toast('Loaded as draft. Publish to make it live.')}catch(err){toast(err.message,1)}};
 
 /* image swap */
 let imgCtx=null,imgNew=null;
@@ -754,7 +788,7 @@ function savePromo(){const p=S.promo;if(!p.title.trim()){toast('Give it a headli
   if(JSON.stringify(p)!==S.promoOrig)p.v=(p.v||1)+1;if(S.promoIdx>=0)S.site.promos[S.promoIdx]=p;else{S.site.promos.unshift(p);S.promoIdx=0}S.promoOrig=JSON.stringify(p);renderPromos();siteChanged();return true}
 $('#pDone').onclick=()=>{if(savePromo()){closeSheets();toast('Saved to the draft. Publish to put it live.')}};
 $('#pDel').onclick=()=>{if(!confirm('Delete this promo?'))return;S.site.promos.splice(S.promoIdx,1);renderPromos();siteChanged();closeSheets()};
-$('#pTry').onclick=()=>{if(!savePromo())return;closeSheets();const p=S.promo,pg=p.pages[0]||'home';const path={home:'/',prints:'/prints',publishing:'/publishing',lifestyle:'/lifestyle',tinylegends:'/tinylegends/'}[pg];route('studio');
+$('#pTry').onclick=()=>{if(!savePromo())return;closeSheets();const p=S.promo,pg=p.pages[0]||'home';const path={home:'/',prints:'/prints',publishing:'/publishing',lifestyle:'/lifestyle',tinylegends:'/tinylegends/#home'}[pg];route('studio');
   const show=()=>post({type:'promo',promo:p});if($('#pagePick').value!==path||!S.frameReady){$('#pagePick').value=path;loadFrame();const w=()=>{if(S.frameReady)setTimeout(show,300);else setTimeout(w,200)};w()}else show()};
 
 function closeSheets(){$$('.sheet').forEach(s=>s.hidden=true);document.body.style.overflow=''}
@@ -904,6 +938,25 @@ function wireSq(){let env='sandbox';const e=$('#sqEnv');if(e)e.onclick=ev=>{cons
   const sw=$('#sqSwap');if(sw)sw.onclick=()=>{$('#sqForm').hidden=!$('#sqForm').hidden}}
 function connections(){const C=[['Google sign-in','Jasmine and Veneko','on'],['Square','Checkout, merch and stock',S.sq&&S.sq.connected?'on':'off'],['Resend','Order and shipping emails to customers','next'],['Shippo','Shipping labels from the back office','later'],['Instagram & Facebook','Followers, posts and reach (Meta)','later'],['TikTok','Followers and video stats','later'],['YouTube','Subscribers and views','later']];
   return `<h2 style="margin:28px 0 12px">Connections</h2><div class="road">${C.map(([n,d,s])=>`<div class="card"><span class="pill ${s==='on'?'live':s==='off'?'out':''}">${s==='on'?'Connected':s==='off'?'Not connected':s==='next'?'Next update':'Coming'}</span><b>${n}</b><small>${d}</small></div>`).join('')}</div>`}
+
+/* ================= brand kit ================= */
+let KIT=null,MEDIA=[];
+async function getKit(){if(!KIT)KIT=await fetch('/admin/brand.json').then(r=>r.json());try{MEDIA=(await api('media?list=1')).items}catch(e){}return KIT}
+const kcard=(x,pick)=>`<div class="card kcard"${pick?` data-kurl="${esc(x.png||x.url)}"`:''}><div class="kp ${x.bg==='dark'?'dark':''}"><img src="${esc(x.webp||x.url)}" alt="" loading="lazy"></div><div class="kb"><b>${esc(x.name||'Upload')}</b>${pick?'':`<div class="acts">${x.png?`<a class="btn small ghost" href="${esc(x.png)}" download>PNG</a>`:`<a class="btn small ghost" href="${esc(x.url)}" download>Download</a>`}<button class="btn small ghost" data-copy="${esc(location.origin+(x.png||x.url))}">Copy link</button></div><span class="mono muted">${x.w?x.w+' × '+x.h+' px':ago(x.at||new Date().toISOString())}</span>`}</div></div>`;
+async function renderKit(){const k=await getKit();
+  $('#brandKit').innerHTML=(MEDIA.length?`<div class="kgroup"><h2>Your uploads</h2><div class="kgrid">${MEDIA.map(m=>kcard(m)).join('')}</div></div>`:'')
+   +k.groups.map(g=>`<div class="kgroup"><h2>${esc(g.title)}</h2><div class="kgrid">${g.items.map(x=>kcard(x)).join('')}</div></div>`).join('')
+   +`<div class="kgroup"><h2>Colors</h2><div class="cols">${k.colors.map(([n,cs])=>`<div class="card"><b>${esc(n)}</b><div class="colrow">${cs.map(([cn,h])=>`<button class="colchip" style="--c:${h}" data-copy="${h}" title="Copy ${h}"><i></i>${esc(cn)}<span>${h}</span></button>`).join('')}</div></div>`).join('')}</div></div>`
+   +`<div class="kgroup"><h2>Fonts</h2><div class="cols">${k.fonts.map(([n,u,l])=>`<a class="card" href="${esc(l)}" target="_blank" rel="noopener" style="text-decoration:none"><b style="font-family:'${esc(n)}',var(--u);font-size:1.4rem">${esc(n)}</b><div class="muted" style="font-size:.84rem">${esc(u)}</div></a>`).join('')}</div></div>`}
+document.addEventListener('click',e=>{const c=e.target.closest('[data-copy]');if(!c)return;try{navigator.clipboard.writeText(c.dataset.copy);toast('Copied '+(c.dataset.copy.startsWith('#')?c.dataset.copy:'link'))}catch(err){}});
+$('#brandUp').onchange=async e=>{const fs=[...e.target.files];if(!fs.length)return;toast('Uploading '+fs.length+'…');try{for(const f of fs){const d=await shrink(f,2400);await api('media',{method:'POST',body:JSON.stringify({data:d,name:f.name.replace(/\.\w+$/,''),brand:true})})}KIT=null;await renderKit();toast('Added to the brand kit')}catch(err){toast(err.message,1)}e.target.value=''};
+let kitCb=null;
+async function pickKit(cb){kitCb=cb;const k=await getKit();
+  $('#kitPick').innerHTML=(MEDIA.length?`<div class="kgroup"><h3 style="margin-bottom:10px">Your uploads</h3><div class="kgrid kpick">${MEDIA.map(m=>kcard(m,1)).join('')}</div></div>`:'')+k.groups.map(g=>`<div class="kgroup"><h3 style="margin-bottom:10px">${esc(g.title)}</h3><div class="kgrid kpick">${g.items.map(x=>kcard(x,1)).join('')}</div></div>`).join('');
+  $('#kitDlg').showModal()}
+$('#kitPick').onclick=e=>{const c=e.target.closest('[data-kurl]');if(!c)return;$('#kitDlg').close();kitCb&&kitCb(c.dataset.kurl)};
+$('#imgKit').onclick=()=>{const ctx=imgCtx;$('#imgDlg').close('cancel');pickKit(u=>{if(!ctx)return;S.site.images[ctx.key]=u;renderChanges();siteChanged();toast('Image swapped in the draft')})};
+$('#pKit').onclick=()=>pickKit(u=>{S.promo.image=u;pSync()});
 
 /* ================= boot ================= */
 api('auth').then(start).catch(()=>showGate());

@@ -1,12 +1,14 @@
 // Website customizations made in the back office Studio: text, theme colors, swapped images, promos.
 // Draft is what the Studio edits and previews; Publish copies it live and keeps a version history.
 import { wrap, json, store, requireAdmin, session, HttpError } from '../lib/lib.mjs';
-const EMPTY = { text: {}, theme: {}, images: {}, promos: [] };
+const EMPTY = { text: {}, theme: {}, images: {}, layout: {}, promos: [] };
 const s = v => typeof v === 'string' ? v : '';
 const hex = v => /^#[0-9a-f]{6}$/i.test(v || '') ? v : '';
 const url = v => { v = s(v).trim(); return /^(\/[^\s]*|https:\/\/[^\s]+)$/.test(v) ? v.slice(0, 600) : '' };
 function clean(d) {
-  const o = { text: {}, theme: {}, images: {}, promos: [] };
+  const o = { text: {}, theme: {}, images: {}, layout: {}, promos: [] };
+  const num = (v, lo, hi) => Math.max(lo, Math.min(hi, Math.round(Number(v) * 1000) / 1000 || 0));
+  for (const [k, v] of Object.entries(d.layout || {}).slice(0, 400)) if (/^[\w:./#\-]{1,140}$/.test(k) && v && typeof v === 'object') o.layout[k] = { x: num(v.x, -500, 500), y: num(v.y, -500, 500), s: num(v.s, .2, 4) || 1 };
   for (const [k, v] of Object.entries(d.text || {}).slice(0, 1500)) {
     if (!/^[\w:.\-]{1,80}$/.test(k)) continue;
     if (typeof v === 'string') o.text[k] = v.slice(0, 1200);
