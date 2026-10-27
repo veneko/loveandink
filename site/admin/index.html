@@ -306,6 +306,53 @@ details.more[open] summary{margin-bottom:12px}
 .bar-r b{font-family:var(--m);font-size:.8rem}
 @media (max-width:860px){.ocard{grid-template-columns:1fr auto}.ocard .dots3{display:none}.steps{grid-template-columns:repeat(3,1fr)}}
 
+/* ---------- calendar ---------- */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+.cal .dow{padding:8px 10px;font-family:var(--m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);background:var(--card2);border-bottom:1px solid var(--line)}
+.cday{min-height:118px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px;display:flex;flex-direction:column;gap:4px;cursor:pointer;position:relative;transition:background .15s}
+.cday:nth-child(7n+7){border-right:0}.cday:hover{background:var(--card2)}
+.cday.out{background:repeating-linear-gradient(135deg,transparent 0 8px,var(--line) 8px 9px);color:var(--mut)}
+.cday .n{font-family:var(--m);font-size:.74rem;color:var(--mut);display:flex;justify-content:space-between;align-items:center}
+.cday.today .n b{background:var(--hot);color:#fff;border-radius:999px;padding:1px 7px}
+.cday .add{opacity:0;border:0;background:none;color:var(--hot);font-weight:700;font-size:1rem;line-height:1;padding:0 2px}.cday:hover .add{opacity:1}
+.cpost{display:flex;align-items:center;gap:6px;border-radius:7px;padding:3px 6px;font-size:.74rem;font-weight:600;background:color-mix(in srgb,var(--c) 14%,var(--card));border-left:3px solid var(--c);text-align:left;border-top:0;border-right:0;border-bottom:0;width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--ink)}
+.cpost.idea{opacity:.65;border-left-style:dashed}.cpost.posted{text-decoration:line-through;opacity:.6}
+.cpost .pl{font-family:var(--m);font-size:.6rem;color:var(--mut);flex:none}
+.cpromo{font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:2px 6px;border-radius:5px;background:var(--hot-soft);color:var(--hot);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.calstats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.calstats .pill{font-size:.7rem;white-space:normal}
+.agenda{display:none}
+/* ---------- simulator ---------- */
+.simgrid{display:grid;grid-template-columns:300px 1fr;gap:14px;align-items:start}
+.simctl{display:flex;flex-direction:column;gap:14px}
+.scen{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.scen button{border:1px solid var(--line2);background:var(--card2);border-radius:12px;padding:10px;text-align:left;font-weight:700;font-size:.9rem;display:flex;flex-direction:column;gap:2px}
+.scen button small{font-weight:400;color:var(--mut);font-size:.74rem;line-height:1.3}
+.scen button[aria-pressed=true]{border-color:var(--hot);background:var(--hot-soft);box-shadow:0 0 0 1px var(--hot)}
+.rng{display:flex;align-items:center;gap:10px}.rng input{flex:1;accent-color:var(--hot)}.rng b{font-family:var(--m);font-size:.84rem;min-width:46px;text-align:right}
+.simstage{min-width:0}
+.simbar{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.simprog{flex:1;height:8px;border-radius:999px;background:var(--line);overflow:hidden}.simprog i{display:block;height:100%;width:0;background:var(--hot);border-radius:999px;transition:width .2s}
+.chart{height:150px;display:flex;align-items:flex-end;gap:3px;padding-top:6px}.chart.small{height:80px}
+.chart i{flex:1;border-radius:4px 4px 0 0;background:var(--hot);min-height:2px;transition:height .25s;position:relative}
+.chart i.wk{opacity:.75}.chart i.ev{background:var(--tla)}.chart i.bad{background:var(--warn)}.chart i.fut{background:var(--line);height:2px!important}
+.feed{display:flex;flex-direction:column;gap:6px;max-height:260px;overflow:auto;font-size:.84rem}
+.feed div{display:grid;grid-template-columns:50px 1fr;gap:8px;padding:6px 0;border-top:1px solid var(--line)}.feed div:first-child{border-top:0}
+.feed .d{font-family:var(--m);font-size:.72rem;color:var(--mut)}
+.feed .bad{color:var(--warn);font-weight:600}.feed .good{color:var(--ok);font-weight:600}
+.sbar{display:grid;grid-template-columns:1fr 90px 44px;gap:10px;align-items:center;padding:6px 0;font-size:.82rem;border-top:1px solid var(--line)}.sbar:first-child{border-top:0}
+.sbar .tr{height:8px;border-radius:999px;background:var(--line);overflow:hidden}.sbar .tr i{display:block;height:100%;background:var(--ok);transition:width .25s}
+.sbar.low .tr i{background:#E8B23A}.sbar.out .tr i{background:var(--warn)}.sbar b{font-family:var(--m);font-size:.76rem;text-align:right}
+.sbar span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.rep h2{margin-bottom:6px}.recs{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.rec{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px;border-radius:12px;background:var(--card2);border:1px solid var(--line)}
+.rec .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800}
+.rec.r .ic{background:var(--warn-soft);color:var(--warn)}.rec.y .ic{background:rgba(232,178,58,.16);color:#B7791F}.rec.g .ic{background:var(--ok-soft);color:var(--ok)}
+.rec b{display:block;margin-bottom:2px}.rec span{color:var(--ink2);font-size:.88rem}
+.pnl{display:grid;grid-template-columns:1fr auto;gap:4px 18px;font-size:.9rem;max-width:420px;margin-top:10px}.pnl .neg{color:var(--warn)}.pnl b{border-top:1px solid var(--line);padding-top:6px}
+@media (max-width:1100px){.simgrid{grid-template-columns:1fr}.simctl{position:static}}
+@media (max-width:860px){.cal{display:none}.agenda{display:flex;flex-direction:column;gap:10px}}
+
 /* ---------- brand kit ---------- */
 .kgroup{margin-bottom:26px}.kgroup>h2{margin-bottom:12px}
 .kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
@@ -400,6 +447,9 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
   <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></symbol>
   <symbol id="i-img" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></symbol>
   <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.9 1.8-1.8 0-1.4-1.3-1.8-1.3-3 0-1 .8-1.7 1.8-1.7H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3"/><path d="M7 15h10"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
   <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></symbol>
 </svg>
 
@@ -431,7 +481,10 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
     <button class="nav-i" data-go="orders"><svg class="i"><use href="#i-box"/></svg>Orders<span class="ct" data-count="orders" hidden></span></button>
     <div class="nav-g">Fans</div>
     <button class="nav-i" data-go="inbox"><svg class="i"><use href="#i-inbox"/></svg>Inbox<span class="ct" data-count="inbox" hidden></span></button>
+    <button class="nav-i" data-go="calendar"><svg class="i"><use href="#i-cal"/></svg>Content calendar</button>
     <button class="nav-i" data-go="growth"><svg class="i"><use href="#i-chart"/></svg>Campaigns &amp; social<span class="soon">soon</span></button>
+    <div class="nav-g">Plan</div>
+    <button class="nav-i" data-go="sim"><svg class="i"><use href="#i-flask"/></svg>Simulator</button>
     <div class="nav-g">Settings</div>
     <button class="nav-i" data-go="settings"><svg class="i"><use href="#i-gear"/></svg>Square &amp; connections</button>
     <div class="side-f">
@@ -574,6 +627,46 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
       <div class="ibox"><div class="card ilist" id="ilist"></div><div class="card idetail" id="idetail"><div class="empty">Pick a message to read it.</div></div></div>
     </section>
 
+    <!-- ===== calendar ===== -->
+    <section class="page" data-panel="calendar" hidden>
+      <div class="head"><div><div class="eyebrow">Fans</div><h1 class="serif">Content calendar</h1><p>Posts, reels, drops, Etsy promos (ShopLoveAndInk), markets and events for every brand. Website promos show up here automatically. Link a post to a product to plan a drop.</p></div>
+        <button class="btn hot" id="newPost"><svg class="i"><use href="#i-plus"/></svg>New post</button></div>
+      <div class="tools"><button class="icon" id="calPrev" aria-label="Previous month">‹</button><h2 class="serif" id="calMonth" style="font-size:1.6rem;min-width:190px;text-align:center"></h2><button class="icon" id="calNext" aria-label="Next month">›</button><button class="btn small ghost" id="calToday">Today</button><span style="flex:1"></span><div class="chips" id="calBrands"></div></div>
+      <div class="calstats" id="calStats"></div>
+      <div class="cal" id="cal"></div><div class="agenda" id="agenda"></div>
+    </section>
+
+    <!-- ===== simulator ===== -->
+    <section class="page" data-panel="sim" hidden>
+      <div class="head"><div><div class="eyebrow">Plan · practice mode, never touches real data</div><h1 class="serif">Simulator</h1><p>Play out a whole month in seconds. Watch orders, stock, the custom-print queue and money move, then get a list of what breaks first and how to fix it.</p></div></div>
+      <div class="simgrid">
+        <div class="card simctl">
+          <div class="eyebrow">Scenario</div>
+          <div class="scen" id="simScen"></div>
+          <div style="display:flex;gap:8px"><button class="btn hot" id="simRun" style="flex:1;justify-content:center"><svg class="i"><use href="#i-play"/></svg>Play the month</button><button class="btn ghost" id="simSkip">Skip to end</button></div>
+          <label class="f">Made-to-order capacity <small>Custom pieces you two can make per day</small><div class="rng"><input type="range" id="simCap" min="5" max="120" step="5" value="35"><b id="simCapV">35</b></div></label>
+          <label class="f">Apparel sent to print-on-demand <small>The rest is pressed at home from your stock</small><div class="rng"><input type="range" id="simPod" min="0" max="100" step="10" value="30"><b id="simPodV">30%</b></div></label>
+          <label class="f">Shipping you charge <small>Under $75 · free above</small><div class="rng"><input type="range" id="simShip" min="0" max="12" step="0.5" value="6.5"><b id="simShipV">$6.50</b></div></label>
+          <label class="toggle"><input type="checkbox" id="simRestock" checked> Restock tees at 3 left (5-day turnaround)</label>
+          <label class="toggle"><input type="checkbox" id="simCal" checked> Use the content calendar for post-day spikes</label>
+          <div class="muted" id="simSrc" style="font-size:.8rem"></div>
+        </div>
+        <div class="simstage">
+          <div class="simbar"><span class="pill" id="simDay">Day 0 of 30</span><div class="simprog"><i id="simProg"></i></div></div>
+          <div class="kpis" id="simKpis"></div>
+          <div class="dgrid">
+            <div class="card"><div class="card-h"><h2>Revenue by day</h2><span class="mono muted" id="simLeg"></span></div><div class="chart" id="simChart"></div>
+              <div class="card-h" style="margin-top:16px"><h2>Custom-print queue</h2><span class="mono muted" id="simQ"></span></div><div class="chart small" id="simQueue"></div></div>
+            <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+              <div class="card"><div class="card-h"><h2>Stock watch</h2></div><div class="list" id="simStock"></div></div>
+              <div class="card"><div class="card-h"><h2>What happened</h2></div><div class="feed" id="simFeed"></div></div>
+            </div>
+          </div>
+          <div class="card" id="simReport" hidden style="margin-top:14px"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== growth (soon) ===== -->
     <section class="page" data-panel="growth" hidden>
       <div class="head"><div><div class="eyebrow">Fans</div><h1 class="serif">Campaigns &amp; social</h1><p>Coming after Orders.</p></div></div>
@@ -627,6 +720,26 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
   <div class="sheet-h"><button class="icon" data-close aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button><h2 id="oTitle">Order</h2><span class="pill" id="oPay"></span></div>
   <div class="sheet-b" id="obody"></div>
   <div class="sheet-f"><button class="btn ghost small" id="oSlip"><svg class="i"><use href="#i-box"/></svg>Packing slip</button><span class="sp"></span><button class="btn ghost" id="oSave">Save</button><button class="btn hot" id="oNext">Next step</button></div>
+</div></div>
+
+<!-- post editor -->
+<div class="sheet" id="csheet" hidden><div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+  <div class="sheet-h"><button class="icon" data-close aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button><h2 id="cTitle">Post</h2></div>
+  <div class="sheet-b">
+    <div class="seg" id="cStat"><button data-cs="idea">Idea</button><button data-cs="draft">Draft</button><button data-cs="scheduled">Scheduled</button><button data-cs="posted">Posted</button></div>
+    <label class="f">What is it<input class="in" data-c="title" maxlength="140" placeholder="CamBam's Closet drop reel, Etsy summer sale, pop-up at the market"></label>
+    <div class="three"><label class="f">Date<input class="in" type="date" data-c="date"></label><label class="f">Time<input class="in" type="time" data-c="time"></label><label class="f">Type<select class="in" data-c="type"><option value="post">Post</option><option value="reel">Reel</option><option value="story">Story</option><option value="video">Video</option><option value="drop">Drop</option><option value="promo">Promo / sale</option><option value="listing">Etsy listing</option><option value="event">Event / market</option><option value="email">Email</option><option value="live">Live</option></select></label></div>
+    <div class="two" id="cEventRow"><label class="f">Ends <small>For sales and multi-day events</small><input class="in" type="date" data-c="end"></label><label class="f">Where <small>Market, venue or city</small><input class="in" data-c="place" maxlength="160" placeholder="Lake Nona Farmers Market"></label></div>
+    <label class="f">Brand<select class="in" data-c="brand"><option value="tla">Tiny Legends</option><option value="li">Love & Ink</option><option value="prints">Prints</option><option value="pub">Publishing</option><option value="lifestyle">Lifestyle</option></select></label>
+    <div><div class="f" style="font-weight:600;font-size:.84rem;margin-bottom:8px">Where</div><div class="pages" id="cPlat"></div></div>
+    <label class="f">Caption <small id="cCount">0 / 2200</small><textarea class="in" data-c="caption" maxlength="2200" style="min-height:130px" placeholder="Write it like you'd say it."></textarea></label>
+    <label class="f">Hashtags<input class="in" data-c="hashtags" maxlength="500" placeholder="#tinylegends #undefeatedwhileasleep"></label>
+    <div class="two"><label class="f">Product it sells<select class="in" data-c="item" id="cItem"></select></label><label class="f">Promo it pushes<select class="in" data-c="promo" id="cPromo"></select></label></div>
+    <div><div class="f" style="font-weight:600;font-size:.84rem;margin-bottom:8px">Media</div><div class="files" id="cAssets"></div><div style="display:flex;gap:8px;margin-top:8px"><label class="btn ghost small" style="cursor:pointer">Upload<input type="file" id="cFile" accept="image/*" hidden></label><button class="btn ghost small" id="cKit" type="button">Brand kit</button></div></div>
+    <div class="two"><label class="f">Who's on it<select class="in" data-c="owner"><option value="">Anyone</option><option value="jasmine">Jasmine</option><option value="veneko">Veneko</option></select></label><label class="f">Link<input class="in" data-c="link" maxlength="300" placeholder="Auto-fills from the product"></label></div>
+    <label class="f">Notes<textarea class="in" data-c="notes" maxlength="1000" placeholder="Shot list, song, who's in it"></textarea></label>
+  </div>
+  <div class="sheet-f"><button class="btn danger small" id="cDel">Delete</button><button class="btn ghost small" id="cCopy">Copy caption</button><span class="sp"></span><button class="btn ghost" data-close>Cancel</button><button class="btn hot" id="cSave">Save</button></div>
 </div></div>
 
 <!-- recipe editor -->
@@ -734,17 +847,18 @@ async function start(me){S.me=me;$('#gate').hidden=true;$('#app').hidden=false;
   const [def,content,site]=await Promise.all([fetch('/admin/defaults.json').then(r=>r.json()),fetch(F('content'),{cache:'no-store'}).then(r=>r.json()).catch(()=>({})),api('site?draft=1').catch(()=>({}))]);
   S.def=def;S.content=JSON.parse(JSON.stringify({recipes:content.recipes&&content.recipes.length?content.recipes:def.recipes,announcement:content.announcement||def.announcement,picks:content.picks||def.picks,hero:content.hero||def.hero}));
   S.site={text:site.text||{},theme:site.theme||{},images:site.images||{},layout:site.layout||{},promos:site.promos||[]};S.publishedAt=site.publishedAt;setSiteDirty(!!site.dirty,true);
-  renderRecipes();renderHome();renderPromos();renderTheme();renderChanges();loadMerch();loadStatus();loadInbox();loadOrders();
+  renderRecipes();renderHome();renderPromos();renderTheme();renderChanges();loadMerch();loadStatus();loadInbox();loadOrders();api('calendar').then(d=>{S.cal=d.items}).catch(()=>{});
   route(location.hash.slice(1)||'home')}
 
 /* ================= routing ================= */
-const TITLES={home:'Dashboard',studio:'Studio',promos:'Promos',tl:'Tiny Legends',brand:'Brand kit',merch:'Merch & stock',orders:'Orders',inbox:'Inbox',growth:'Campaigns & social',settings:'Square & connections'};
-function route(t){if(t==='more'){const m=['promos','tl','brand','growth','settings'];t=m[(m.indexOf(S.cur)+1)%m.length]||'tl'}
+const TITLES={calendar:'Content calendar',sim:'Simulator',home:'Dashboard',studio:'Studio',promos:'Promos',tl:'Tiny Legends',brand:'Brand kit',merch:'Merch & stock',orders:'Orders',inbox:'Inbox',growth:'Campaigns & social',settings:'Square & connections'};
+function route(t){if(t==='more'){const m=['calendar','promos','tl','brand','sim','growth','settings'];t=m[(m.indexOf(S.cur)+1)%m.length]||'tl'}
   if(!TITLES[t])t='home';S.cur=t;
-  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);$$('.nav-i,.mobnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===t||(b.dataset.go==='more'&&['promos','tl','brand','growth','settings'].includes(t))));
+  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==t);$$('.nav-i,.mobnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===t||(b.dataset.go==='more'&&['calendar','promos','tl','brand','sim','growth','settings'].includes(t))));
   $('#pageTitle').textContent=TITLES[t];history.replaceState(null,'','#'+t);window.scrollTo(0,0);
-  if(t==='studio'&&!$('#pv').src)loadFrame();if(t==='inbox')renderInbox();if(t==='orders')loadOrders();if(t==='brand')renderKit()}
+  if(t==='studio'&&!$('#pv').src)loadFrame();if(t==='inbox')renderInbox();if(t==='orders')loadOrders();if(t==='brand')renderKit();if(t==='calendar')loadCal();if(t==='sim')simSetup()}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b&&!b.closest('.sheet')){route(b.dataset.go)}});
+addEventListener('hashchange',()=>{const t=location.hash.slice(1);if(S.me&&t&&t!==S.cur)route(t)});
 addEventListener('beforeunload',e=>{if(S.tlDirty||S.saving){e.preventDefault();e.returnValue=''}});
 const mq=matchMedia('(max-width:860px)');const mob=()=>{$('#mobTheme').hidden=!mq.matches};mq.addEventListener('change',mob);mob();
 
@@ -1066,6 +1180,142 @@ function wireSq(){let env='sandbox';const e=$('#sqEnv');if(e)e.onclick=ev=>{cons
   const sw=$('#sqSwap');if(sw)sw.onclick=()=>{$('#sqForm').hidden=!$('#sqForm').hidden}}
 function connections(){const C=[['Google sign-in','Jasmine and Veneko','on'],['Square','Checkout, merch and stock',S.sq&&S.sq.connected?'on':'off'],['Resend','Order and shipping emails to customers','next'],['Shippo','Shipping labels from the back office','later'],['Instagram & Facebook','Followers, posts and reach (Meta)','later'],['TikTok','Followers and video stats','later'],['YouTube','Subscribers and views','later']];
   return `<h2 style="margin:28px 0 12px">Connections</h2><div class="road">${C.map(([n,d,s])=>`<div class="card"><span class="pill ${s==='on'?'live':s==='off'?'out':''}">${s==='on'?'Connected':s==='off'?'Not connected':s==='next'?'Next update':'Coming'}</span><b>${n}</b><small>${d}</small></div>`).join('')}</div>`}
+
+/* ================= content calendar ================= */
+const CB={tla:['Tiny Legends','#7B3FE4'],li:['Love & Ink','#8C7B6B'],prints:['Prints','#2F45D8'],pub:['Publishing','#C99A2E'],lifestyle:['Lifestyle','#D9822B']};
+const PLAT=[['instagram','IG','Instagram'],['tiktok','TT','TikTok'],['youtube','YT','YouTube'],['facebook','FB','Facebook'],['etsy','ETSY','Etsy · ShopLoveAndInk'],['email','EM','Email'],['site','WEB','Website'],['inperson','IRL','In person']];
+Object.assign(S,{cal:null,calM:new Date(new Date().getFullYear(),new Date().getMonth(),1),calB:'all',post:null});
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+async function loadCal(){try{S.cal=(await api('calendar')).items}catch(e){S.cal=S.cal||[]}renderCal()}
+function calItems(){return (S.cal||[]).filter(p=>S.calB==='all'||p.brand===S.calB)}
+function renderCal(){const m=S.calM,y=m.getFullYear(),mo=m.getMonth();$('#calMonth').textContent=m.toLocaleDateString(undefined,{month:'long',year:'numeric'});
+  $('#calBrands').innerHTML=[['all','All','var(--ink)'],...Object.entries(CB).map(([k,[n,c]])=>[k,n,c])].map(([k,n,c])=>`<button class="chip" style="--c:${c}" data-cb="${k}" aria-pressed="${k===S.calB}">${k!=='all'?'<i></i>':''}${n}</button>`).join('');
+  const first=new Date(y,mo,1),start=new Date(y,mo,1-((first.getDay()+6)%7)),today=ymd(new Date());const items=calItems();
+  const promos=S.site.promos||[];
+  const inM=items.filter(p=>p.date.startsWith(`${y}-${String(mo+1).padStart(2,'0')}`));
+  const by={};inM.forEach(p=>by[p.status]=(by[p.status]||0)+1);
+  $('#calStats').innerHTML=`<span class="pill">${inM.length} planned this month</span>`+['idea','draft','scheduled','posted'].map(k=>by[k]?`<span class="pill ${k==='scheduled'?'sched':k==='posted'?'live':k==='idea'?'hid':''}">${by[k]} ${k}</span>`:'').join('')+(inM.length<12?`<span class="pill new">Tip: 3 posts a week per brand keeps the algorithm fed</span>`:'');
+  let h=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dow">${d}</div>`).join('');
+  for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const k=ymd(d);if(i>=35&&d.getMonth()!==mo)break;
+    const ps=items.filter(p=>p.date===k||(p.end&&p.date<=k&&p.end>=k)).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+    const pr=promos.filter(p=>p.on&&(!p.start||p.start.slice(0,10)<=k)&&(!p.end||p.end.slice(0,10)>=k));
+    h+=`<div class="cday${d.getMonth()!==mo?' out':''}${k===today?' today':''}" data-cday="${k}"><div class="n"><b>${d.getDate()}</b><button class="add" data-cnew="${k}" aria-label="Add on ${k}">+</button></div>${pr.slice(0,1).map(p=>`<div class="cpromo">▸ ${esc(p.name||p.title)}</div>`).join('')}${ps.slice(0,4).map(p=>`<button class="cpost ${p.status}" data-cpost="${esc(p.id)}" style="--c:${CB[p.brand][1]}"><span class="pl">${(p.platforms||[]).map(x=>(PLAT.find(z=>z[0]===x)||[0,''])[1]).join(' ')||p.type.toUpperCase()}</span>${p.type==='event'?'📍 ':p.type==='promo'?'％ ':p.type==='listing'?'🛍 ':''}${esc(p.title||'Untitled')}</button>`).join('')}${ps.length>4?`<span class="mono muted">+${ps.length-4} more</span>`:''}</div>`}
+  $('#cal').innerHTML=h;
+  const days=[...new Set(inM.map(p=>p.date))].sort();
+  $('#agenda').innerHTML=days.length?days.map(k=>`<div class="card"><div class="eyebrow" style="margin-bottom:8px">${new Date(k+'T12:00').toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'})}</div><div style="display:flex;flex-direction:column;gap:6px">${inM.filter(p=>p.date===k).map(p=>`<button class="cpost ${p.status}" data-cpost="${esc(p.id)}" style="--c:${CB[p.brand][1]};padding:8px 10px;font-size:.88rem"><span class="pl">${p.time||''} ${(p.platforms||[]).map(x=>(PLAT.find(z=>z[0]===x)||[0,''])[1]).join(' ')}</span>${esc(p.title||'Untitled')}</button>`).join('')}</div></div>`).join(''):'<div class="card empty">Nothing planned this month. Tap “New post”.</div>'}
+$('#calPrev').onclick=()=>{S.calM=new Date(S.calM.getFullYear(),S.calM.getMonth()-1,1);renderCal()};
+$('#calNext').onclick=()=>{S.calM=new Date(S.calM.getFullYear(),S.calM.getMonth()+1,1);renderCal()};
+$('#calToday').onclick=()=>{const d=new Date();S.calM=new Date(d.getFullYear(),d.getMonth(),1);renderCal()};
+$('#calBrands').onclick=e=>{const b=e.target.closest('[data-cb]');if(b){S.calB=b.dataset.cb;renderCal()}};
+$('#newPost').onclick=()=>openPost(null,ymd(new Date()));
+document.addEventListener('click',e=>{if(!e.target.closest('[data-panel=calendar]'))return;const p=e.target.closest('[data-cpost]');if(p){openPost(p.dataset.cpost);return}
+  const n=e.target.closest('[data-cnew]')||e.target.closest('[data-cday]');if(n)openPost(null,n.dataset.cnew||n.dataset.cday)});
+function itemOptions(sel){const live=S.items.filter(i=>!i.archived);const L=live.length?live.map(i=>[i.brand+':'+i.id,i.name,i.brand]):(S.def.products||[]).map(p=>['tla:'+p.id,p.name,'tla']);
+  return '<option value="">None</option><option value="etsy"'+(sel==='etsy'?' selected':'')+'>Etsy shop · ShopLoveAndInk</option>'+L.map(([v,n])=>`<option value="${esc(v)}"${v===sel?' selected':''}>${esc(n)}</option>`).join('')}
+const itemLink=v=>{if(!v)return '';if(v==='etsy')return 'https://www.etsy.com/shop/ShopLoveAndInk';const [b,id]=v.split(':');return b==='tla'?'https://loveandink.co/tinylegends/#shop':b==='li'?'https://loveandink.co/lifestyle':b==='pub'?'https://loveandink.co/publishing':'https://loveandink.co/'};
+function openPost(id,date){const p=id?JSON.parse(JSON.stringify(S.cal.find(x=>x.id===id))):{id:'c'+Date.now().toString(36),date,end:'',place:'',time:'18:00',brand:S.calB!=='all'?S.calB:'tla',platforms:['instagram','tiktok'],type:'reel',status:'idea',title:'',caption:'',hashtags:'',link:'',item:'',promo:'',assets:[],owner:'',notes:''};
+  S.post=p;$('#cTitle').textContent=id?(p.title||'Post'):'New post';$('#cDel').hidden=!id;
+  $('#cItem').innerHTML=itemOptions(p.item);$('#cPromo').innerHTML='<option value="">None</option>'+(S.site.promos||[]).map(x=>`<option value="${esc(x.id)}"${x.id===p.promo?' selected':''}>${esc(x.name||x.title)}</option>`).join('');
+  $$('[data-c]').forEach(el=>{if(el.tagName==='SELECT'&&(el.id==='cItem'||el.id==='cPromo'))return;el.value=p[el.dataset.c]||''});
+  $('#cPlat').innerHTML=PLAT.map(([k,,n])=>`<label><input type="checkbox" value="${k}"${p.platforms.includes(k)?' checked':''}> ${n}</label>`).join('');
+  cSync();$('#csheet').hidden=false;document.body.style.overflow='hidden'}
+function cSync(){const p=S.post;$$('#cStat button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.cs===p.status));$('#cCount').textContent=`${(p.caption||'').length} / 2200`;
+  $('#cAssets').innerHTML=(p.assets||[]).map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener"><img src="${esc(u)}" alt=""><span data-cax="${i}" style="cursor:pointer">Remove</span></a>`).join('')}
+$('#csheet').addEventListener('input',e=>{const k=e.target.dataset.c;if(k){S.post[k]=e.target.value;if(k==='item'&&!S.post.link){S.post.link=itemLink(e.target.value);$('[data-c=link]').value=S.post.link}cSync()}});
+$('#csheet').addEventListener('change',e=>{if(e.target.closest('#cPlat'))S.post.platforms=$$('#cPlat input').filter(x=>x.checked).map(x=>x.value);const k=e.target.dataset.c;if(k){S.post[k]=e.target.value;if(k==='item'&&!S.post.link){S.post.link=itemLink(e.target.value);$('[data-c=link]').value=S.post.link}}});
+$('#cStat').onclick=e=>{const b=e.target.closest('[data-cs]');if(b){S.post.status=b.dataset.cs;cSync()}};
+$('#cAssets').onclick=e=>{const x=e.target.closest('[data-cax]');if(!x)return;e.preventDefault();S.post.assets.splice(+x.dataset.cax,1);cSync()};
+$('#cFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=await shrink(f,1800);toast('Uploading…');const r=await api('media',{method:'POST',body:JSON.stringify({data:d,name:f.name})});S.post.assets.push(r.url);cSync();toast('Added')}catch(err){toast(err.message,1)}e.target.value=''};
+$('#cKit').onclick=()=>pickKit(u=>{S.post.assets.push(u);cSync()});
+$('#cCopy').onclick=()=>{const p=S.post;try{navigator.clipboard.writeText([p.caption,p.hashtags,p.link].filter(Boolean).join('\n\n'));toast('Caption copied')}catch(e){}};
+$('#cSave').onclick=async()=>{const b=$('#cSave');if(!S.post.title.trim())return toast('Give it a name',1);busy(b,true);try{S.cal=(await api('calendar',{method:'POST',body:JSON.stringify({action:'save',item:S.post})})).items;renderCal();closeSheets();toast('Saved to the calendar')}catch(e){toast(e.message,1)}finally{busy(b,false)}};
+$('#cDel').onclick=async()=>{if(!confirm('Delete this post?'))return;try{S.cal=(await api('calendar',{method:'POST',body:JSON.stringify({action:'delete',id:S.post.id})})).items;renderCal();closeSheets()}catch(e){toast(e.message,1)}};
+
+/* ================= simulator ================= */
+const SCN={bad:{n:'Slow month',d:'Few posts land, people browse but don’t buy',v:70,c:.008,ev:[]},
+  normal:{n:'Normal month',d:'Steady posting, a couple of good days',v:260,c:.016,ev:[[14,1.8,'A reel does well · traffic ×1.8']]},
+  good:{n:'Great month',d:'Strong posting, a holiday weekend, a collab',v:650,c:.024,ev:[[8,2.2,'Collab post with another family creator'],[22,2.6,'Holiday weekend sale']]},
+  viral:{n:'Viral reel',d:'A Tiny Legends reel blows up on day 10',v:320,c:.018,ev:[[10,28,'A Tiny Legends reel goes viral · 2M views'],[11,14,'Still trending · press picks it up'],[12,6,'Long tail from the viral reel']]}};
+let SIMS={scen:'normal',timer:null};
+const FALLBACK=[['tla','Undefeated While Asleep Tee',[['Baby',24],['Kids',26],['Adult',28]],'tee'],['tla','Undefeated Baby Onesie',[['0-3 mo',20],['6-12 mo',20],['12-18 mo',20]],'tee'],['tla','Tiny Legends Logo Tee',[['Toddler',22],['Kids',22],['Adult',24]],'tee'],['tla','Champion Belt Hoodie',[['Kids',42],['Adult',46]],'tee'],['tla','Legends Sticker Sheet',[['Sheet',8]],'small'],['tla','Undefeated 20 oz Tumbler',[['20 oz',28]],'small'],['tla','Little Luna, Big Trouble',[['Hardcover',18],['Paperback',12]],'book'],
+  ['li','Brisa Boxy Tee',[['S',38],['M',38],['L',38],['XL',38]],'tee'],['li','Sol Camp Shirt',[['S',68],['M',68],['L',68]],'tee'],['li','Coral Tie Top',[['XS',52],['S',52],['M',52]],'tee'],['li','Sombra Bucket Hat',[['One size',32]],'small'],['li','Mercado Tote',[['One size',42]],'small'],
+  ['pub','The Adventures of Jaziel',[['Hardcover',19.99],['Paperback',11.99]],'book'],['pub','Luna Explores',[['Hardcover',19.99],['Paperback',11.99]],'book'],['pub','Coloring book (PDF)',[['Download',9]],'digital'],
+  ['prints','Custom mug',[['11 oz',24]],'custom'],['prints','Custom tumbler',[['40 oz',42]],'custom'],['prints','Custom tee',[['Any size',34]],'custom'],['prints','Custom keychain',[['Oak',15]],'custom']];
+function simCatalog(){const live=S.items.filter(i=>!i.archived&&i.variations.length);
+  const kind=n=>/tee|shirt|onesie|hoodie|top|short|pant|skirt|dress|tank|bikini|boardshort/i.test(n)?'tee':/book|luna|jaziel|cambam/i.test(n)?'book':/pdf|digital|printable/i.test(n)?'digital':'small';
+  let cat=live.map(i=>({shop:i.brand,name:i.name,kind:kind(i.name),vars:i.variations.map(v=>({name:v.name,price:v.price||20,stock:v.stock==null?null:v.stock}))}));
+  const src=cat.length?`Using your ${cat.length} live Square items and their real stock.`:'Square has no items yet, so this uses your site’s products with 12 of each size in stock.';
+  if(!cat.length)cat=FALLBACK.filter(f=>f[3]!=='custom').map(([shop,name,vs,k])=>({shop,name,kind:k,vars:vs.map(([n,p])=>({name:n,price:p,stock:k==='digital'?null:12}))}));
+  cat=cat.concat(FALLBACK.filter(f=>f[3]==='custom').map(([shop,name,vs,k])=>({shop,name,kind:k,vars:vs.map(([n,p])=>({name:n,price:p,stock:null}))})));
+  return {cat,src}}
+function simSetup(){if(!S.def)return;$('#simScen').innerHTML=Object.entries(SCN).map(([k,v])=>`<button data-scn="${k}" aria-pressed="${k===SIMS.scen}">${v.n}<small>${v.d}</small></button>`).join('');
+  $('#simSrc').textContent=simCatalog().src;if(!SIMS.res)simDraw(null,0)}
+$('#simScen').onclick=e=>{const b=e.target.closest('[data-scn]');if(!b)return;SIMS.scen=b.dataset.scn;simSetup()};
+$('#simCap').oninput=e=>$('#simCapV').textContent=e.target.value;
+$('#simPod').oninput=e=>$('#simPodV').textContent=e.target.value+'%';
+$('#simShip').oninput=e=>$('#simShipV').textContent='$'+(+e.target.value).toFixed(2);
+function rng(seed){let x=seed>>>0||1;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296}}
+function simulate(){const sc=SCN[SIMS.scen],cap=+$('#simCap').value,pod=+$('#simPod').value/100,shipCh=+$('#simShip').value,restock=$('#simRestock').checked,useCal=$('#simCal').checked;
+  const R=rng(({bad:11,normal:23,good:37,viral:51})[SIMS.scen]*7919);const {cat}=simCatalog();cat.forEach(p=>p.vars.forEach(v=>{v.start=v.stock;v.sold=0;v.lost=0;v.out=null;v.re=null}));
+  const SW={tla:.38,li:.24,prints:.2,pub:.18};if(SIMS.scen==='viral')Object.assign(SW,{tla:.62,li:.14,prints:.12,pub:.12});
+  const byShop=s=>cat.filter(p=>p.shop===s);const now=new Date(),y=now.getFullYear(),mo=now.getMonth();
+  const posts={};(S.cal||[]).forEach(p=>{const d=new Date(p.date+'T12:00');if(d.getFullYear()===y&&d.getMonth()===mo&&p.status!=='idea')posts[d.getDate()]=(posts[d.getDate()]||0)+1});
+  const days=[],feed=[];let queue=0,qMax=0,qMaxDay=0,T={rev:0,ship:0,orders:0,items:0,cogs:0,fees:0,shipCost:0,lost:0,lostN:0,podN:0};const shopRev={tla:0,li:0,prints:0,pub:0};
+  for(let d=1;d<=30;d++){const dow=new Date(y,mo,d).getDay();let mult=(dow===0||dow===6)?1.25:1;const ev=sc.ev.find(e=>e[0]===d);if(ev){mult*=ev[1];feed.push([d,ev[2],'good'])}
+    if(useCal&&posts[d])mult*=1+.35*Math.min(3,posts[d]);
+    const visitors=Math.round(sc.v*mult*(.8+R()*.4)),orders=Math.round(visitors*sc.c*(.75+R()*.5));let rev=0,made=0,lostD=0,done=0;
+    for(let o=0;o<orders;o++){const n=1+(R()<.35)+(R()<.1);let sub=0,cnt=0;
+      for(let k=0;k<n;k++){let r=R(),shop='tla';for(const[s,w]of Object.entries(SW)){if(r<w){shop=s;break}r-=w}
+        const list=byShop(shop);if(!list.length)continue;const p=list[Math.floor(R()*list.length)],v=p.vars[Math.floor(R()*p.vars.length)];
+        const isPod=p.kind==='tee'&&R()<pod;
+        if(!isPod&&v.stock!=null){if(v.stock<=0){v.lost++;T.lost+=v.price;T.lostN++;lostD++;continue}v.stock--;if(v.stock===0&&!v.out){v.out=d;feed.push([d,`${p.name} · ${v.name} sold out`,'bad'])}
+          if(restock&&p.kind==='tee'&&v.stock===3&&!v.re){v.re=d+5;feed.push([d,`Restock started: ${p.name} · ${v.name} (ready day ${d+5})`,''])}}
+        if(p.kind==='custom')queue++;v.sold++;sub+=v.price;cnt++;shopRev[shop]+=v.price;
+        T.cogs+=v.price*(isPod?.5:p.kind==='custom'?.28:p.kind==='book'?.3:p.kind==='digital'?0:.32);if(isPod)T.podN++;
+        if(isPod)T.shipCost+=0;else if(p.kind!=='digital')T.shipCost+=cnt===1?4.6:1.1}
+      if(!cnt)continue;done++;const sh=sub<75?shipCh:0;T.rev+=sub;T.ship+=sh;T.orders++;T.items+=cnt;T.fees+=(sub+sh)*.029+.3;rev+=sub+sh}
+    cat.forEach(p=>p.vars.forEach(v=>{if(v.re===d){v.stock+=24;v.re=null;if(v.out)feed.push([d,`${p.name} · ${v.name} back in stock (+24)`,'good']);v.out=null}}));
+    made=Math.min(queue,cap);queue-=made;const back=queue/cap;if(queue>qMax){qMax=queue;qMaxDay=d}
+    if(back>=3&&!(days[d-2]&&days[d-2].back>=3))feed.push([d,`Custom prints ${back.toFixed(1)} days behind (${queue} waiting)`,'bad']);
+    if(lostD>=5)feed.push([d,`${lostD} items couldn’t be bought, sold out`,'bad']);
+    days.push({d,visitors,orders:done,rev,queue,back,lostD,ev:!!ev,post:!!posts[d]})}
+  const net=T.rev+T.ship-T.cogs-T.fees-T.shipCost;
+  return {days,feed:feed.sort((a,b)=>a[0]-b[0]),T,cat,cap,pod,shipCh,qMax,qMaxDay,shopRev,net,sc}}
+function simDraw(res,upto){const days=res?res.days:[];const shown=days.slice(0,upto);
+  const sum=k=>shown.reduce((a,x)=>a+x[k],0);const rev=sum('rev'),ord=sum('orders');
+  $('#simDay').textContent=`Day ${upto} of 30`;$('#simProg').style.width=(upto/30*100)+'%';
+  const q=shown.length?shown[shown.length-1]:{queue:0,back:0};
+  $('#simKpis').innerHTML=[['Revenue',fm(rev),`${ord} orders`],['Visitors',sum('visitors').toLocaleString(),`${ord&&sum('visitors')?(ord/sum('visitors')*100).toFixed(1):'0'}% buy`],['Custom queue',q.queue,`${q.back.toFixed(1)} days behind`],['Missed sales',sum('lostD'),'items sold out']]
+    .map(([l,v,s2],i)=>`<div class="card kpi"><div class="eyebrow">${l}</div><div class="v" style="${i===2&&q.back>=3||i===3&&sum('lostD')>0?'color:var(--warn)':''}">${v}</div><div class="s">${s2}</div></div>`).join('');
+  const mx=Math.max(1,...days.map(x=>x.rev));$('#simChart').innerHTML=Array.from({length:30},(_,i)=>{const x=days[i];if(!x||i>=upto)return '<i class="fut"></i>';return `<i class="${x.ev?'ev':''}" style="height:${Math.max(2,x.rev/mx*100)}%" title="Day ${x.d}: ${fm(x.rev)} · ${x.orders} orders"></i>`}).join('');
+  $('#simLeg').textContent=res?'purple = big moment':'';
+  const qm=Math.max(1,...days.map(x=>x.back));$('#simQueue').innerHTML=Array.from({length:30},(_,i)=>{const x=days[i];if(!x||i>=upto)return '<i class="fut"></i>';return `<i class="${x.back>=3?'bad':''}" style="height:${Math.max(2,x.back/Math.max(qm,4)*100)}%;background:${x.back>=3?'':'var(--info)'}" title="Day ${x.d}: ${x.back.toFixed(1)} days behind"></i>`}).join('');
+  $('#simQ').textContent=res?`capacity ${res.cap}/day · red = 3+ days behind`:'';
+  const items=res?res.cat.flatMap(p=>p.vars.filter(v=>v.start!=null).map(v=>({n:p.name+' · '+v.name,start:v.start,v}))):[];
+  // live stock at day "upto" is approximated by end state when finished, else proportional
+  const st=items.map(x=>{const left=upto>=30?x.v.stock:Math.max(0,Math.round(x.start-(x.v.sold)*(upto/30)));return {...x,left}}).sort((a,b)=>a.left/(a.start||1)-b.left/(b.start||1)).slice(0,7);
+  $('#simStock').innerHTML=st.length?st.map(x=>`<div class="sbar ${x.left===0?'out':x.left<=3?'low':''}"><span>${esc(x.n)}</span><span class="tr"><i style="width:${Math.min(100,x.left/(x.start||1)*100)}%"></i></span><b>${x.left}</b></div>`).join(''):'<div class="empty" style="padding:20px 0">Press play to stress-test your stock.</div>';
+  $('#simFeed').innerHTML=res?res.feed.filter(f=>f[0]<=upto).slice(-40).reverse().map(([d,t,c])=>`<div><span class="d">Day ${d}</span><span class="${c}">${esc(t)}</span></div>`).join('')||'<div><span class="d"></span><span class="muted">Quiet so far…</span></div>':'<div><span class="d"></span><span class="muted">Pick a scenario and press play.</span></div>'}
+function simReport(r){const T=r.T,lostItems=r.cat.flatMap(p=>p.vars.filter(v=>v.lost).map(v=>({n:p.name+' · '+v.name,lost:v.lost,out:v.out,price:v.price}))).sort((a,b)=>b.lost-a.lost);
+  const firstOut=r.cat.flatMap(p=>p.vars.filter(v=>v.out||v.lost).map(v=>({n:p.name+' · '+v.name,d:v.out||30}))).sort((a,b)=>a.d-b.d)[0];
+  const shipGap=T.shipCost-T.ship,peak=Math.max(...r.days.map(x=>x.back)),needCap=Math.ceil(Math.max(...r.days.map(x=>x.queue+Math.min(x.queue,r.cap)))/3)||r.cap;
+  const recs=[];
+  if(lostItems.length)recs.push(['r','!',`You'd miss ${fm(T.lost)} in sales from sold-out sizes`,`${lostItems.slice(0,3).map(x=>`${x.n} (${x.lost} missed)`).join(', ')}. ${firstOut?`First to run out: ${firstOut.n}, day ${firstOut.d}. `:''}Stock deeper on these, turn on restock alerts, or route them to print-on-demand when they hit 3 left.`]);
+  if(peak>=3)recs.push(['r','!',`Custom prints fall ${peak.toFixed(1)} days behind (peak ${r.qMax} waiting, day ${r.qMaxDay})`,`At ${r.cap}/day you'd need about ${needCap}/day to stay under 3 days. Options: show "ships in X days" on Prints automatically, pause custom orders above a queue limit, or batch mugs and tumblers on a set day.`]);
+  else recs.push(['g','✓',`Custom prints keep up`,`The queue peaks at ${peak.toFixed(1)} days at ${r.cap}/day.`]);
+  if(shipGap>20)recs.push(['y','$',`Shipping costs you ${fm(shipGap)} more than you charge`,`You charged ${fm(T.ship)} and paid about ${fm(T.shipCost)} in postage. Live rates through Shippo, or a $${(r.shipCh+2).toFixed(2)} flat rate, closes most of it.`]);
+  if(r.pod<.2&&lostItems.some(x=>/tee|onesie|hoodie|shirt/i.test(x.n)))recs.push(['y','↗','Print-on-demand would catch the overflow',`With only ${Math.round(r.pod*100)}% of apparel on print-on-demand, sold-out tees become missed sales. Sending sold-out sizes to Printful automatically keeps them buyable without pressing more yourself.`]);
+  if(SIMS.scen==='viral')recs.push(['y','⚡','Viral days need a plan ready before they happen',`Pin a promo to Tiny Legends with a drop alert sign-up, keep the hoodie and tees on print-on-demand during spikes, and post a "made to order, ships in 7 days" note so nobody gets a surprise.`]);
+  recs.push(['g','%',`Fees and costs`,`Square fees about ${fm(T.fees)}. Product costs about ${fm(T.cogs)} (estimates: about 32% for pressed apparel, 50% for print-on-demand). Swap in your real costs and this gets sharper.`]);
+  $('#simReport').hidden=false;
+  $('#simReport').innerHTML=`<div class="rep"><div class="eyebrow">${esc(r.sc.n)} · report</div><h2 class="serif" style="font-size:2rem;margin-top:4px">${fm(T.rev+T.ship)} in, about ${fm(r.net)} left after costs</h2>
+   <div class="two" style="margin-top:6px"><div class="pnl"><span>Product sales</span><span>${fm(T.rev)}</span><span>Shipping charged</span><span>${fm(T.ship)}</span><span class="neg">Product costs</span><span class="neg">−${fm(T.cogs)}</span><span class="neg">Postage</span><span class="neg">−${fm(T.shipCost)}</span><span class="neg">Square fees</span><span class="neg">−${fm(T.fees)}</span><b>Left over</b><b>${fm(r.net)}</b></div>
+   <div class="bars" style="margin-top:12px">${['tla','prints','pub','li'].map(k=>{const mx=Math.max(1,...Object.values(r.shopRev));return `<div class="bar-r"><span class="shopdot" style="--c:${SHOP[k][1]}"><i></i>${SHOP[k][0]}</span><span class="tr"><i style="--c:${SHOP[k][1]};width:${r.shopRev[k]/mx*100}%"></i></span><b>${fm(r.shopRev[k])}</b></div>`}).join('')}<div class="muted" style="font-size:.8rem">${T.orders} orders · ${T.items} items · ${fm((T.rev+T.ship)/Math.max(1,T.orders))} average order</div></div></div>
+   <h3 style="margin-top:20px">Where to improve</h3><div class="recs">${recs.map(([c,i,t,d])=>`<div class="rec ${c}"><span class="ic">${i}</span><div><b>${esc(t)}</b><span>${esc(d)}</span></div></div>`).join('')}</div>
+   <p class="muted" style="font-size:.78rem;margin-top:14px">A model, not a forecast. Visitors, conversion and costs are estimates; it uses your real products and stock, and your content calendar when you turn that on.</p></div>`}
+function simPlay(skip){clearInterval(SIMS.timer);const r=simulate();SIMS.res=r;$('#simReport').hidden=true;if(skip){simDraw(r,30);simReport(r);return}
+  let d=0;$('#simRun').disabled=true;SIMS.timer=setInterval(()=>{d++;simDraw(r,d);if(d>=30){clearInterval(SIMS.timer);$('#simRun').disabled=false;simReport(r);$('#simReport').scrollIntoView({behavior:'smooth',block:'start'})}},matchMedia('(prefers-reduced-motion: reduce)').matches?20:380)}
+$('#simRun').onclick=()=>simPlay(false);$('#simSkip').onclick=()=>simPlay(true);
 
 /* ================= brand kit ================= */
 let KIT=null,MEDIA=[];

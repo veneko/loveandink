@@ -1015,6 +1015,24 @@ body[data-view="tinylegends"] .nav-links a.nav-tla[aria-current="page"]::after{d
 }
 @media (prefers-reduced-motion:reduce){.ch-print{clip-path:none;opacity:1}.ch-spread .ch-no,.ch-spread h2,.ch-spread p{opacity:1;transform:none}.ch-spread .ch-rule{transform:none}}
 [data-rf-size].so{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+
+/* Etsy shop band (home + prints) */
+.etsy-band{margin-block:clamp(28px,5vw,56px)}
+.etsy-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(16px,3vw,32px);padding:clamp(18px,3vw,28px) clamp(18px,3vw,32px);border-radius:24px;background:#1A1820;color:#F4EFE7;text-decoration:none;position:relative;overflow:hidden;transition:transform .4s var(--ease,ease),box-shadow .4s}
+.etsy-card::after{content:"";position:absolute;inset:auto -10% -60% 40%;height:160%;background:radial-gradient(closest-side,rgba(241,100,30,.28),transparent);pointer-events:none}
+.etsy-card:hover{transform:translateY(-3px);box-shadow:0 30px 60px -30px rgba(26,24,32,.6)}
+.etsy-card.blue{background:#1C2A9E}.etsy-card.blue::after{background:radial-gradient(closest-side,rgba(255,255,255,.18),transparent)}
+.etsy-mark{width:clamp(64px,9vw,96px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
+.etsy-mark img{width:70%;height:70%;object-fit:contain}
+.etsy-tx{display:flex;flex-direction:column;gap:6px;position:relative;z-index:1}
+.etsy-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#F1A26E}
+.etsy-card.blue .etsy-tag{color:#C9D1FF}
+.etsy-tx b{font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,2.6vw,2.1rem);line-height:1.05}
+.etsy-tx span:last-child{opacity:.75;font-size:.95rem}
+.etsy-go{display:inline-flex;align-items:center;gap:8px;background:#F1641E;color:#fff;border-radius:999px;padding:12px 20px;font-weight:600;white-space:nowrap;position:relative;z-index:1}
+.etsy-card.blue .etsy-go{background:#fff;color:#1C2A9E}
+.etsy-go .i{width:16px;height:16px}
+@media (max-width:720px){.etsy-card{grid-template-columns:auto 1fr}.etsy-go{grid-column:1/-1;justify-content:center}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -1075,6 +1093,13 @@ body[data-view="tinylegends"] .nav-links a.nav-tla[aria-current="page"]::after{d
     <a class="world w-pub" href="/publishing" data-go="publishing"><img data-a="moon_mark_light" alt=""><div><span class="wtag"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg>Publishing</span><h3>Books, songs &amp; series</h3><p>Bilingual stories starring our kids, with music for every book.</p></div><span class="go"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
     <a class="world w-life" href="/lifestyle" data-go="lifestyle"><img data-a="sun_mark_white" alt=""><div><span class="wtag"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg>Lifestyle</span><h3>Live by the sun</h3><p>Beachwear in bone, sand and sunset for everyone.</p></div><span class="go"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
     <a class="world w-tla" href="/tinylegends" data-go="tinylegends"><span class="tla-art" aria-hidden="true"><img class="ta-c" src="/tinylegends/assets/act_cambam.webp" alt="" loading="lazy"><img class="ta-j" src="/tinylegends/assets/act_jaziel.webp" alt="" loading="lazy"><img class="ta-e" src="/tinylegends/assets/act_evaluna.webp" alt="" loading="lazy"><img class="ta-logo" src="/tinylegends/assets/logo.webp" alt="" loading="lazy"></span><div><span class="wtag"><svg class="i" aria-hidden="true"><use href="#i-crown"/></svg>Tiny Legends Adventures</span><h3>Our kids have their own show.</h3><p>9.8M views on one karate nap. Step into the Legends' house, watch the episodes and shop the merch.</p></div><span class="go"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+  </section>
+  <section class="wrap etsy-band" aria-label="Love & Ink on Etsy">
+    <a class="etsy-card" href="https://www.etsy.com/shop/ShopLoveAndInk" target="_blank" rel="noopener">
+      <span class="etsy-mark" aria-hidden="true"><img data-a="heart_mark_light" alt=""></span>
+      <span class="etsy-tx"><span class="etsy-tag">Also on Etsy · ShopLoveAndInk</span><b>Ready-made pieces, gifts and one-of-a-kinds.</b><span>Same studio, same hands. Favorite the shop to catch new listings first.</span></span>
+      <span class="etsy-go">Visit our Etsy shop <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
   </section>
 
   <section class="doors" id="doors" aria-label="Three shops">
@@ -1211,6 +1236,14 @@ body[data-view="tinylegends"] .nav-links a.nav-tla[aria-current="page"]::after{d
       <p>Custom figures of your kids' characters, cake toppers, and one-off designs printed layer by layer.</p>
       <form class="notify" data-notify="3dprint"><label class="sr" for="n2">Email</label><input id="n2" type="email" placeholder="Your email" required><button>Notify me</button></form>
     </article>
+  </section>
+
+  <section class="wrap etsy-band" aria-label="Prints on Etsy">
+    <a class="etsy-card blue" href="https://www.etsy.com/shop/ShopLoveAndInk" target="_blank" rel="noopener">
+      <span class="etsy-mark" aria-hidden="true"><img data-a="star_mark_light" alt=""></span>
+      <span class="etsy-tx"><span class="etsy-tag">Shop ready-made on Etsy</span><b>Don't want to design? Grab one we already made.</b><span>Engraved coasters, mugs and keepsakes, ready to ship from ShopLoveAndInk.</span></span>
+      <span class="etsy-go">Open ShopLoveAndInk <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
   </section>
 
   <footer class="wrap"><div class="footer"><div><div class="big">Put your mark on it.</div><div>Love &amp; Ink Prints</div></div><nav aria-label="Footer"><a href="/publishing" data-go="publishing">Publishing</a><a href="/lifestyle" data-go="lifestyle">Lifestyle</a><a href="/tinylegends" data-go="tinylegends">Tiny Legends</a></nav></div></footer>
