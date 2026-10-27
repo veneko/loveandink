@@ -1272,7 +1272,7 @@ const itemHTML=p=>{const out=STOCK[p.id]===0&&p.tag!=='t_preorder';return `<div 
     const fd=new FormData(f);const ints=fd.getAll('interests');fd.delete('interests');fd.set('interests',ints.join(', '));
     const btn=f.querySelector('button[type=submit]');btn.disabled=true;
     try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});if(!r.ok)throw 0;
-      f.innerHTML='<div class="club-done" role="status"><img src="assets/club_crest.webp" alt="">'+t('club_ok')+'<small>'+t('club_ok2')+'</small></div>'}
+      f.innerHTML='<div class="club-done" role="status"><img src="assets/club_crest.webp?v=2" alt="">'+t('club_ok')+'<small>'+t('club_ok2')+'</small></div>'}
     catch(_){err.textContent=t('club_fail');err.hidden=false;btn.disabled=false}
   })})();
 function renderStatic(){
