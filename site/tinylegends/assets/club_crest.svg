@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 440" role="img" aria-label="Legends Club crest">
+  <defs>
+    <linearGradient id="lcShield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A5CFF"/><stop offset="1" stop-color="#5B22B8"/></linearGradient>
+    <linearGradient id="lcStar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE36B"/><stop offset=".55" stop-color="#FFC21F"/><stop offset="1" stop-color="#FF8A2B"/></linearGradient>
+    <linearGradient id="lcRib" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6FB6"/><stop offset="1" stop-color="#E43A8C"/></linearGradient>
+    <linearGradient id="lcGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE36B"/><stop offset="1" stop-color="#F5B82E"/></linearGradient>
+  </defs>
+  <g stroke="#3A1A6B" stroke-linejoin="round" stroke-linecap="round">
+    <!-- side sparkles -->
+    <path d="M38 150c3 18 9 24 27 27-18 3-24 9-27 27-3-18-9-24-27-27 18-3 24-9 27-27z" fill="#3EC6F2" stroke-width="6"/>
+    <path d="M362 126c2 13 7 18 20 20-13 2-18 7-20 20-2-13-7-18-20-20 13-2 18-7 20-20z" fill="#FF4FA3" stroke-width="6"/>
+    <path d="M356 236c2 10 5 13 15 15-10 2-13 5-15 15-2-10-5-13-15-15 10-2 13-5 15-15z" fill="#FFD23F" stroke-width="5"/>
+    <!-- shield -->
+    <path d="M200 70c40 18 84 24 122 22 4 104-22 196-122 254C100 288 74 196 78 92c38 2 82-4 122-22z" fill="url(#lcShield)" stroke-width="12"/>
+    <path d="M200 92c34 14 70 20 102 20 1 88-21 166-102 214-81-48-103-126-102-214 32 0 68-6 102-20z" fill="none" stroke="#FFD23F" stroke-width="5" stroke-dasharray="2 12"/>
+    <!-- black belt -->
+    <path d="M92 256c72 13 144 13 216 0l-6 28c-68 12-136 12-204 0z" fill="#1A1033" stroke-width="7"/>
+    <path d="M188 262l-30 50 20 4 22-40 22 40 20-4-30-50z" fill="#1A1033" stroke-width="7"/>
+    <rect x="184" y="254" width="32" height="32" rx="8" fill="#1A1033" stroke-width="7"/>
+    <!-- star -->
+    <path d="M200 116l22 46 50 6-37 34 10 50-45-25-45 25 10-50-37-34 50-6z" fill="url(#lcStar)" stroke-width="10"/>
+    <path d="M206 134l9 19" stroke="#FFF6C9" stroke-width="6" fill="none"/>
+    <!-- crown -->
+    <path d="M136 72l14-48 30 30 20-40 20 40 30-30 14 48c-42 10-86 10-128 0z" fill="url(#lcGold)" stroke-width="10"/>
+    <circle cx="150" cy="22" r="8" fill="#FF4FA3" stroke-width="6"/><circle cx="200" cy="12" r="9" fill="#3EC6F2" stroke-width="6"/><circle cx="250" cy="22" r="8" fill="#FF4FA3" stroke-width="6"/>
+    <!-- ribbon -->
+    <path d="M40 330l40-10 6 50-40 14 14-28z" fill="#C42A76" stroke-width="9"/>
+    <path d="M360 330l-40-10-6 50 40 14-14-28z" fill="#C42A76" stroke-width="9"/>
+    <path d="M70 312c86 22 174 22 260 0l-6 56c-82 20-166 20-248 0z" fill="url(#lcRib)" stroke-width="10"/>
+  </g>
+  <text x="200" y="353" text-anchor="middle" font-family="Fredoka, 'Arial Rounded MT Bold', sans-serif" font-weight="700" font-size="33" fill="#fff" stroke="#3A1A6B" stroke-width="7" paint-order="stroke" letter-spacing="1">LEGENDS CLUB</text>
+  <text x="200" y="208" text-anchor="middle" font-family="Fredoka, 'Arial Rounded MT Bold', sans-serif" font-weight="700" font-size="34" fill="#fff" stroke="#3A1A6B" stroke-width="8" paint-order="stroke">TL</text>
+  <text x="200" y="406" text-anchor="middle" font-family="Fredoka, 'Arial Rounded MT Bold', sans-serif" font-weight="700" font-size="20" fill="#3A1A6B" letter-spacing="5">EST · 2026</text>
+</svg>

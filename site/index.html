@@ -437,6 +437,11 @@ body[data-view="lifestyle"] .ex-frame{box-shadow:0 40px 80px -40px rgba(40,20,30
 .m-life span .i{width:24px;height:24px;color:var(--lagoon)}
 
 /* world cards */
+.studio-film{padding-block:5vh 0}
+.studio-film .mod{margin:0 0 14px;color:var(--muted)}
+.sf-frame{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:16/9;background:var(--cloud);border:1px solid var(--line);box-shadow:0 30px 70px rgba(26,24,32,.10)}
+.sf-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.sf-frame{aspect-ratio:9/16;max-height:78svh;margin-inline:auto}}
 .worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-block:6vh 4vh}
 .world{position:relative;border-radius:28px;padding:30px;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;overflow:hidden;color:#fff;transition:transform .6s var(--ease)}
 .world:hover{transform:translateY(-6px)}
@@ -1088,6 +1093,10 @@ body[data-view="tinylegends"] .nav-links a.nav-tla[aria-current="page"]::after{d
   </section>
 
   <div class="marquee m-home" aria-hidden="true"><div class="mq"><span class="chip c0"><svg class="i" aria-hidden="true"><use href="#i-cup"/></svg>Custom mugs</span><span class="chip c1"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg>Bilingual books</span><span class="chip c2"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg>Beach linen</span><span class="chip c3"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg>Family made</span><span class="chip c0"><svg class="i" aria-hidden="true"><use href="#i-tumbler"/></svg>20 oz tumbler wraps</span><span class="chip c1"><svg class="i" aria-hidden="true"><use href="#i-music"/></svg>Theme songs</span><span class="chip c2"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg>Linen for the water</span><span class="chip c3"><svg class="i" aria-hidden="true"><use href="#i-flame"/></svg>Pressed by hand</span><span class="chip c0"><svg class="i" aria-hidden="true"><use href="#i-cup"/></svg>Custom mugs</span><span class="chip c1"><svg class="i" aria-hidden="true"><use href="#i-book"/></svg>Bilingual books</span><span class="chip c2"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg>Beach linen</span><span class="chip c3"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg>Family made</span><span class="chip c0"><svg class="i" aria-hidden="true"><use href="#i-tumbler"/></svg>20 oz tumbler wraps</span><span class="chip c1"><svg class="i" aria-hidden="true"><use href="#i-music"/></svg>Theme songs</span><span class="chip c2"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg>Linen for the water</span><span class="chip c3"><svg class="i" aria-hidden="true"><use href="#i-flame"/></svg>Pressed by hand</span></div></div>
+  <section class="wrap studio-film" aria-label="Inside the studio">
+    <p class="mod">Inside the studio</p>
+    <div class="sf-frame"><video id="studioFilm" data-src="/video/hero_studio" muted loop playsinline preload="none" poster="/video/hero_studio_16x9.webp" aria-label="A short film moving through Love &amp; Ink: Prints, Publishing, Lifestyle and Tiny Legends"></video></div>
+  </section>
   <section class="wrap worlds" aria-label="Shop by world">
     <a class="world w-prints" href="/prints" data-go="prints"><img data-a="star_mark_light" alt=""><div><span class="wtag"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg>Prints</span><h3>Your art on anything</h3><p>Mugs, tumblers, tees and keychains with a live 3D preview.</p></div><span class="go"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
     <a class="world w-pub" href="/publishing" data-go="publishing"><img data-a="moon_mark_light" alt=""><div><span class="wtag"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg>Publishing</span><h3>Books, songs &amp; series</h3><p>Bilingual stories starring our kids, with music for every book.</p></div><span class="go"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
@@ -2691,4 +2700,14 @@ if(PROD)fetch('/.netlify/functions/catalog').then(r=>r.ok?r.json():null).then(d=
 (()=>{const q=new URLSearchParams(location.search);if(q.get('bag')){bag=store.get('li_bag',[]);renderBag();setTimeout(()=>openBag(true),600);history.replaceState(null,'',location.pathname)}})();
 (()=>{const o=new URLSearchParams(location.search).get('order');if(o){bag=[];bagSave();setTimeout(()=>toast(`Order ${o} is paid. Thank you. We’ll email you when it ships.`),800);history.replaceState(null,'',location.pathname)}})();
 </script><script>LISite.post()</script>
+<script>
+/* Studio film: 16:9 or 9:16 by screen, loads when on screen, pauses off screen, skipped for reduced motion / data saver */
+(()=>{const v=document.getElementById('studioFilm');if(!v)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData))return;
+  const pick=()=>matchMedia('(max-width:760px)').matches?'9x16':'16x9';
+  const load=()=>{const r=pick();if(v.dataset.r===r)return;v.dataset.r=r;const b=v.dataset.src+'_'+r;v.poster=b+'.webp';v.innerHTML=`<source src="${b}.webm" type="video/webm"><source src="${b}.mp4" type="video/mp4">`;v.load()};
+  if(matchMedia('(max-width:760px)').matches)v.poster='/video/hero_studio_9x16.webp';
+  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){load();v.play().catch(()=>{})}else v.pause()}),{threshold:.2}).observe(v);
+})();
+</script>
 </body></html>

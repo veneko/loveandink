@@ -513,9 +513,23 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 }
 @media (prefers-reduced-motion:reduce){.hero-vid,.lineup-vid video{display:none}}
 
+.books-vid{position:relative;width:100%;max-width:560px;aspect-ratio:4/3;justify-self:center}
+.books-head .books-vid img{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:contain}
+.books-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s;-webkit-mask-image:radial-gradient(80% 80% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(80% 80% at 50% 50%,#000 70%,transparent 100%)}
+.books-vid.vid-on video{opacity:1}.books-vid.vid-on img{opacity:0;transition:opacity .9s}
+.lights-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
+.lights.off.vid-on .lights-vid{opacity:1}
+.lights.off.vid-on .stars{opacity:0}
+@media (max-width:900px){.books-vid{max-width:420px}}
 /* join the club (sign-up) */
 .club{background:var(--paper);padding-block:80px 90px}
 .club-card{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;background:linear-gradient(135deg,#FFE7F3,#EDE3FF 55%,#DDF4FF);border:3px solid var(--ink);border-radius:32px;box-shadow:8px 8px 0 var(--ink);padding:44px;overflow:hidden}
+.club-head{display:flex;align-items:center;gap:20px}
+.club-crest{width:132px;height:auto;flex:0 0 auto;filter:drop-shadow(0 10px 14px rgba(58,26,107,.25));animation:crestBob 4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes crestBob{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(3deg) translateY(-6px)}}
+.club-done img{display:block;width:120px;margin:0 auto 12px}
+@media (max-width:900px){.club-head{flex-direction:column;align-items:flex-start;gap:8px}.club-crest{width:110px}}
+@media (prefers-reduced-motion:reduce){.club-crest{animation:none}}
 .club-copy h2{font-family:var(--f-display);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.05;margin:12px 0 10px;color:var(--ink)}
 .club-copy p{color:var(--ink-2);max-width:42ch;margin:0}
 .club-perks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;font-weight:700;color:var(--ink)}
@@ -701,8 +715,9 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
   <section class="club" id="club" aria-labelledby="clubT">
     <div class="wrap"><div class="club-card">
       <div class="club-copy">
+        <div class="club-head"><img class="club-crest" src="assets/club_crest.webp" width="204" height="220" alt="Legends Club crest"><div>
         <span class="tag" style="--t:var(--yellow)" data-i="club_tag"></span>
-        <h2 id="clubT" data-i="club_title"></h2>
+        <h2 id="clubT" data-i="club_title"></h2></div></div>
         <p data-i="club_sub"></p>
         <ul class="club-perks"><li data-i="club_p1"></li><li data-i="club_p2"></li><li data-i="club_p3"></li></ul>
       </div>
@@ -729,6 +744,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
   </section>
 
   <section class="lights" id="lights">
+    <video class="lights-vid tl-loop" data-src="video/hero_night" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="stars" aria-hidden="true"></div>
     <div class="wrap lights-in">
       <button class="switch" id="switch" type="button" aria-pressed="false"><span class="plate"><span class="toggle"></span></span><span class="hand" id="switchLbl"></span></button>
@@ -773,7 +789,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
       <h2 data-i="bk_title"></h2>
       <p data-i="bk_sub"></p>
     </div>
-    <img src="assets/story_evaluna.webp" alt="Evaluna asleep on a giant storybook">
+    <div class="books-vid"><img src="assets/story_evaluna.webp" alt="Evaluna asleep on a giant storybook"><video class="tl-loop" data-src="video/hero_books" data-fixed="1" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
   </div>
   <div class="wrap shop-grid" id="bookGrid"></div>
   <div class="wrap shop-note"><b class="sq">■ Square</b><span data-i="sq_note"></span></div>
@@ -1238,14 +1254,14 @@ const itemHTML=p=>{const out=STOCK[p.id]===0&&p.tag!=='t_preorder';return `<div 
 (()=>{const vids=[...document.querySelectorAll('video.tl-loop')];if(!vids.length)return;
   const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,sd=navigator.connection&&navigator.connection.saveData;if(rm||sd)return;
   const tall=()=>matchMedia('(max-width:760px)').matches;
-  const load=v=>{const r=tall()?'9x16':'16x9';if(v.dataset.r===r)return;v.dataset.r=r;const b=v.dataset.src+'_'+r;v.poster=b+'.webp';
+  const load=v=>{const r=v.dataset.fixed?'x':(tall()?'9x16':'16x9');if(v.dataset.r===r)return;v.dataset.r=r;const b=v.dataset.fixed?v.dataset.src:v.dataset.src+'_'+r;v.poster=b+'.webp';
     v.innerHTML=`<source src="${b}.webm" type="video/webm"><source src="${b}.mp4" type="video/mp4">`;v.load()};
-  const host=v=>v.closest('.hero,.lineup-vid');
+  const host=v=>v.closest('.hero,.lineup-vid,.books-vid,.lights');
   vids.forEach(v=>host(v).classList.add('vid-mode'));
   vids.forEach(v=>{v.addEventListener('playing',()=>{const h=host(v);h.classList.add('vid-on');if(h.classList.contains('hero')&&typeof heroP!=='undefined'&&heroP)heroP.activate(false)});v.addEventListener('error',()=>host(v).classList.remove('vid-on','vid-mode'),true)});
   const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){load(v);v.play().catch(()=>{})}else v.pause()}),{threshold:.15});
   vids.forEach(v=>io.observe(v));
-  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>vids.forEach(v=>{if(v.dataset.r&&v.dataset.r!==(tall()?'9x16':'16x9')){load(v);v.play().catch(()=>{})}}),300)});
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>vids.forEach(v=>{if(!v.dataset.fixed&&v.dataset.r&&v.dataset.r!==(tall()?'9x16':'16x9')){load(v);v.play().catch(()=>{})}}),300)});
 })();
 
 /* Legends Club sign-up → Netlify Forms (lands in the back office inbox) */
@@ -1256,7 +1272,7 @@ const itemHTML=p=>{const out=STOCK[p.id]===0&&p.tag!=='t_preorder';return `<div 
     const fd=new FormData(f);const ints=fd.getAll('interests');fd.delete('interests');fd.set('interests',ints.join(', '));
     const btn=f.querySelector('button[type=submit]');btn.disabled=true;
     try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});if(!r.ok)throw 0;
-      f.innerHTML='<div class="club-done" role="status">'+t('club_ok')+'<small>'+t('club_ok2')+'</small></div>'}
+      f.innerHTML='<div class="club-done" role="status"><img src="assets/club_crest.webp" alt="">'+t('club_ok')+'<small>'+t('club_ok2')+'</small></div>'}
     catch(_){err.textContent=t('club_fail');err.hidden=false;btn.disabled=false}
   })})();
 function renderStatic(){
