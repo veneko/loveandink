@@ -490,6 +490,29 @@ footer small{opacity:.8}
 html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 /* sizes that sold out in Square */
 .sizes button.sz-out{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+
+/* join the club (sign-up) */
+.club{background:var(--paper);padding-block:80px 90px}
+.club-card{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;background:linear-gradient(135deg,#FFE7F3,#EDE3FF 55%,#DDF4FF);border:3px solid var(--ink);border-radius:32px;box-shadow:8px 8px 0 var(--ink);padding:44px;overflow:hidden}
+.club-copy h2{font-family:var(--f-display);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.05;margin:12px 0 10px;color:var(--ink)}
+.club-copy p{color:var(--ink-2);max-width:42ch;margin:0}
+.club-perks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;font-weight:700;color:var(--ink)}
+.club-perks li::before{content:"★";color:var(--pink);margin-right:8px}
+.club-form{display:grid;gap:12px;background:#fff;border:3px solid var(--ink);border-radius:24px;padding:24px}
+.club-form label{font-weight:800;font-size:.9rem;color:var(--ink)}
+.club-form input[type=text],.club-form input[type=email]{width:100%;box-sizing:border-box;font:inherit;font-size:1rem;padding:13px 16px;border:2px solid var(--ink);border-radius:14px;background:#FFFDF8;color:var(--ink)}
+.club-form input:focus{outline:3px solid var(--cyan);outline-offset:1px}
+.club-chips{display:flex;flex-wrap:wrap;gap:8px}
+.club-chips label{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.92rem;padding:8px 14px;border:2px solid var(--ink);border-radius:999px;background:#fff;cursor:pointer;user-select:none}
+.club-chips input{accent-color:var(--pink);width:16px;height:16px;margin:0}
+.club-chips label:has(input:checked){background:var(--yellow)}
+.club-form .btn{justify-self:start;margin-top:4px}
+.club-fine{font-size:.8rem;color:var(--ink-2);margin:0}
+.club-done{text-align:center;padding:30px 10px;font-family:var(--f-display);font-size:1.5rem;color:var(--ink)}
+.club-done small{display:block;font-family:var(--f-body);font-size:1rem;color:var(--ink-2);margin-top:8px}
+.club-peek{position:absolute;right:-10px;bottom:-14px;width:150px;pointer-events:none;opacity:.95}
+.club-err{color:#C0264A;font-weight:700;font-size:.9rem;margin:0}
+@media (max-width:900px){.club-card{grid-template-columns:1fr;padding:28px;gap:24px}.club-peek{display:none}}
 </style>
 
 <div class="li-bar"><div class="wrap"><a href="/" style="color:inherit;text-decoration:none"><b>Love &amp; Ink</b></a><div class="li-crumbs"><span data-i="crumb"></span></div></div></div>
@@ -650,6 +673,36 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
       </div>
       <div class="kids"><figure class="kid star" style="--x:68%;--h:50vh;--b:10vh" data-at="0.08" data-from="0,-50,-8"><span class="say" data-i="b_story_e"></span><img src="assets/story_evaluna.webp" alt=""></figure></div>
     </div>
+  </section>
+
+  <section class="club" id="club" aria-labelledby="clubT">
+    <div class="wrap"><div class="club-card">
+      <div class="club-copy">
+        <span class="tag" style="--t:var(--yellow)" data-i="club_tag"></span>
+        <h2 id="clubT" data-i="club_title"></h2>
+        <p data-i="club_sub"></p>
+        <ul class="club-perks"><li data-i="club_p1"></li><li data-i="club_p2"></li><li data-i="club_p3"></li></ul>
+      </div>
+      <form class="club-form" id="clubForm" name="signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="signup">
+        <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+        <div><label for="clubName" data-i="club_name"></label><input id="clubName" type="text" name="name" autocomplete="given-name" maxlength="60"></div>
+        <div><label for="clubEmail" data-i="club_email"></label><input id="clubEmail" type="email" name="email" autocomplete="email" required maxlength="120"></div>
+        <div><label data-i="club_into"></label>
+          <div class="club-chips" role="group">
+            <label><input type="checkbox" name="interests" value="episodes" checked><span data-i="club_i1"></span></label>
+            <label><input type="checkbox" name="interests" value="merch"><span data-i="club_i2"></span></label>
+            <label><input type="checkbox" name="interests" value="books"><span data-i="club_i3"></span></label>
+            <label><input type="checkbox" name="interests" value="events"><span data-i="club_i4"></span></label>
+          </div>
+        </div>
+        <input type="hidden" name="language" id="clubLang" value="en">
+        <p class="club-err" id="clubErr" hidden></p>
+        <button class="btn pink" type="submit" data-i="club_btn"></button>
+        <p class="club-fine" data-i="club_fine"></p>
+      </form>
+      <img class="club-peek" src="assets/act_evaluna.webp" alt="" aria-hidden="true">
+    </div></div>
   </section>
 
   <section class="lights" id="lights">
@@ -987,6 +1040,25 @@ b_bed_e:["HI-YAH! …zzz","¡JI-YA! …zzz","IÁÁÁ! …zzz","HI-YAH ! …zzz",
 b_bed_c:["♪ one more song ♪","♪ una canción más ♪","♪ só mais uma música ♪","♪ encore une chanson ♪","♪ बस एक और गाना ♪","♪ 再唱一首 ♪"],
 sw_off:["Lights out?","¿Apagamos?","Apagar a luz?","On éteint ?","लाइट बंद करें?","关灯吗？"],
 sw_on:["Lights on?","¿Encendemos?","Acender a luz?","On rallume ?","लाइट जलाएं?","开灯吗？"],
+club_tag:["Legends Club","Club de Leyendas","Clube das Lendas","Club des Légendes","लेजेंड्स क्लब","小传奇俱乐部"],
+club_title:["Join the Legends Club","Únete al Club de Leyendas","Entre para o Clube das Lendas","Rejoins le Club des Légendes","लेजेंड्स क्लब से जुड़ें","加入小传奇俱乐部"],
+club_sub:["Be first to see new episodes, merch drops and the picture book. One friendly email, no spam.","Sé el primero en ver nuevos episodios, lanzamientos de merch y el libro ilustrado. Un correo amigable, sin spam.","Seja o primeiro a ver novos episódios, lançamentos e o livro ilustrado. Um e-mail amigável, sem spam.","Sois le premier à voir les nouveaux épisodes, les nouveautés et l'album illustré. Un e-mail sympa, zéro spam.","नए एपिसोड, मर्च और पिक्चर बुक सबसे पहले देखें। एक प्यारा ईमेल, कोई स्पैम नहीं।","第一时间看到新剧集、新周边和绘本。友好邮件，绝不打扰。"],
+club_p1:["Round 2 premiere alerts","Avisos del estreno de la Ronda 2","Alertas da estreia do Round 2","Alertes pour la première du Round 2","राउंड 2 प्रीमियर की सूचना","第二回合首播提醒"],
+club_p2:["Early access to new merch","Acceso anticipado al nuevo merch","Acesso antecipado aos novos produtos","Accès en avant-première aux nouveautés","नए मर्च की जल्दी पहुंच","新周边抢先购"],
+club_p3:["Picture book pre-order news","Novedades de la preventa del libro","Novidades da pré-venda do livro","Infos sur la précommande de l'album","पिक्चर बुक प्री-ऑर्डर की खबर","绘本预售消息"],
+club_name:["First name","Nombre","Nome","Prénom","पहला नाम","名字"],
+club_email:["Email","Correo electrónico","E-mail","E-mail","ईमेल","电子邮箱"],
+club_into:["I'm most excited for","Lo que más me emociona","O que mais me anima","Ce qui me plaît le plus","मुझे सबसे ज़्यादा इंतज़ार है","我最期待"],
+club_i1:["New episodes","Nuevos episodios","Novos episódios","Nouveaux épisodes","नए एपिसोड","新剧集"],
+club_i2:["Merch","Merch","Produtos","Produits","मर्च","周边"],
+club_i3:["Books","Libros","Livros","Livres","किताबें","图书"],
+club_i4:["Live events","Eventos en vivo","Eventos ao vivo","Événements","लाइव इवेंट","线下活动"],
+club_btn:["Join the club","Unirme al club","Entrar no clube","Rejoindre le club","क्लब से जुड़ें","加入俱乐部"],
+club_fine:["We only email about Tiny Legends. Unsubscribe anytime.","Solo te escribimos sobre Tiny Legends. Date de baja cuando quieras.","Só enviamos e-mails sobre Tiny Legends. Cancele quando quiser.","Uniquement des nouvelles de Tiny Legends. Désinscription à tout moment.","हम सिर्फ़ Tiny Legends के बारे में ईमेल करते हैं। कभी भी अनसब्सक्राइब करें।","只发送 Tiny Legends 相关邮件，可随时退订。"],
+club_ok:["You're in, Legend!","¡Ya estás dentro, Leyenda!","Você está dentro, Lenda!","Bienvenue, Légende !","आप जुड़ गए, लेजेंड!","欢迎加入，小传奇！"],
+club_ok2:["Watch your inbox for Round 2.","Atento a tu correo para la Ronda 2.","Fique de olho no e-mail para o Round 2.","Surveille ta boîte mail pour le Round 2.","राउंड 2 के लिए अपना इनबॉक्स देखें।","第二回合消息请留意邮箱。"],
+club_bad:["Please enter a valid email.","Escribe un correo válido.","Digite um e-mail válido.","Saisis un e-mail valide.","कृपया सही ईमेल डालें।","请输入有效邮箱。"],
+club_fail:["Something went wrong. Please try again.","Algo salió mal. Inténtalo de nuevo.","Algo deu errado. Tente novamente.","Un problème est survenu. Réessaie.","कुछ गलत हुआ। फिर से कोशिश करें।","出错了，请重试。"],
 goodnight:["Goodnight, Legends.","Buenas noches, Leyendas.","Boa noite, Lendas.","Bonne nuit, les Légendes.","शुभ रात्रि, लेजेंड्स।","晚安，小传奇们。"],
 lights_sub:["New episodes drop on Instagram first. Follow so the champ doesn't wake up mad.","Los nuevos episodios salen primero en Instagram. Síguenos para que la campeona no se despierte enojada.","Os episódios novos saem primeiro no Instagram. Siga para a campeã não acordar brava.","Les nouveaux épisodes sortent d'abord sur Instagram. Abonne-toi pour que la championne ne se réveille pas fâchée.","नए एपिसोड सबसे पहले Instagram पर आते हैं। फ़ॉलो करें ताकि चैंपियन गुस्से में न उठे।","新剧集首发在 Instagram。快关注，别让冠军醒来生气。"],
 follow_ig:["Follow on Instagram","Síguenos en Instagram","Siga no Instagram","Suivre sur Instagram","Instagram पर फ़ॉलो करें","在 Instagram 关注"],
@@ -1138,6 +1210,18 @@ function Player(root,getList,opts={}){
 /* ===================== render ===================== */
 let heroP, watchP, filter='all', bag=0;
 const itemHTML=p=>{const out=STOCK[p.id]===0&&p.tag!=='t_preorder';return `<div class="item${out?' out':''}" data-item="${p.id}"><span class="flag">${out?t('soldout'):t(p.tag)}</span><div class="pic"><img src="assets/${p.img}.webp" alt="${t('p_'+p.id)}" loading="lazy">${p.on?`<div class="on"><img src="assets/${p.on}.webp" alt="" loading="lazy"></div>`:''}</div><h3>${t('p_'+p.id)}</h3>${p.on?`<button class="see" type="button" data-flip>${t('s_see')}</button>`:''}<div class="sizes" role="group">${p.sz.map((s,j)=>`<button type="button" aria-pressed="${j===0}" data-sz>${t(s)}</button>`).join('')}</div><div class="row-b"><span class="price">$${p.p}</span><button class="add" type="button" data-add="${p.id}"${out?' disabled':''}>${out?t('soldout'):t(p.tag==='t_preorder'?'preorder':'add')}</button></div></div>`};
+
+/* Legends Club sign-up → Netlify Forms (lands in the back office inbox) */
+(()=>{const f=document.getElementById('clubForm');if(!f)return;
+  f.addEventListener('submit',async e=>{e.preventDefault();const err=document.getElementById('clubErr');err.hidden=true;
+    const em=f.email.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){err.textContent=t('club_bad');err.hidden=false;f.email.focus();return}
+    document.getElementById('clubLang').value=LANG;
+    const fd=new FormData(f);const ints=fd.getAll('interests');fd.delete('interests');fd.set('interests',ints.join(', '));
+    const btn=f.querySelector('button[type=submit]');btn.disabled=true;
+    try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});if(!r.ok)throw 0;
+      f.innerHTML='<div class="club-done" role="status">'+t('club_ok')+'<small>'+t('club_ok2')+'</small></div>'}
+    catch(_){err.textContent=t('club_fail');err.hidden=false;btn.disabled=false}
+  })})();
 function renderStatic(){
   document.documentElement.lang=LANG==='zh'?'zh-Hans':LANG;
   document.querySelectorAll('[data-i]').forEach(el=>{el.textContent=t(el.dataset.i)});
