@@ -486,10 +486,6 @@ footer small{opacity:.8}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.92rem}.kv dt{font-weight:800}
 .sqcard{max-width:520px}
 @media (max-width:760px){.shop-models{grid-template-columns:1fr}.pick{grid-template-columns:1fr}.adm-top h2{font-size:1.4rem}.drawer{box-shadow:none}}
-/* embedded inside Love & Ink: the parent site's nav replaces the breadcrumb bar */
-html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
-/* sizes that sold out in Square */
-.sizes button.sz-out{opacity:.4;text-decoration:line-through;cursor:not-allowed}
 
 /* hero loops (homepage background + Legends carousel) */
 .hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-1;opacity:0;transition:opacity 1.2s ease}
@@ -549,6 +545,10 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 .club-peek{position:absolute;right:-10px;bottom:-14px;width:150px;pointer-events:none;opacity:.95}
 .club-err{color:#C0264A;font-weight:700;font-size:.9rem;margin:0}
 @media (max-width:900px){.club-card{grid-template-columns:1fr;padding:28px;gap:24px}.club-peek{display:none}}
+/* embedded inside Love & Ink: the parent site's nav replaces the breadcrumb bar */
+html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
+/* sizes that sold out in Square */
+.sizes button.sz-out{opacity:.4;text-decoration:line-through;cursor:not-allowed}
 </style>
 
 <div class="li-bar"><div class="wrap"><a href="/" style="color:inherit;text-decoration:none"><b>Love &amp; Ink</b></a><div class="li-crumbs"><span data-i="crumb"></span></div></div></div>
@@ -1447,6 +1447,8 @@ let heroVisible=true;
    Standalone at /tinylegends: the Square checkout button hands the bag to Love & Ink's checkout. */
 (function(){
   const EMB=window.parent!==window;
+  /* links like #shop and the browser back button switch views, not just the first load */
+  addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(typeof VIEWS!=='undefined'&&VIEWS.includes(v)&&$('#v-'+v)&&$('#v-'+v).hidden)go(v)});
   const all=()=>(typeof ALLP==='function'?ALLP():PRODUCTS);
   const img=p=>new URL('assets/'+p.img+'.webp',location.href).href;
   const item=(id,szIdx,qty)=>{const p=all().find(x=>x.id===id);if(!p)return null;const sk=(p.sz&&p.sz[szIdx]||'').replace('sz_','');

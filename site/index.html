@@ -2699,9 +2699,7 @@ if(PROD)fetch('/.netlify/functions/catalog').then(r=>r.ok?r.json():null).then(d=
 /* returning from Square checkout */
 (()=>{const q=new URLSearchParams(location.search);if(q.get('bag')){bag=store.get('li_bag',[]);renderBag();setTimeout(()=>openBag(true),600);history.replaceState(null,'',location.pathname)}})();
 (()=>{const o=new URLSearchParams(location.search).get('order');if(o){bag=[];bagSave();setTimeout(()=>toast(`Order ${o} is paid. Thank you. We’ll email you when it ships.`),800);history.replaceState(null,'',location.pathname)}})();
-</script><script>LISite.post()</script>
-<script>
-/* Studio film: 16:9 or 9:16 by screen, loads when on screen, pauses off screen, skipped for reduced motion / data saver */
+</script><script>LISite.post()</script><script>/* Studio film: 16:9 or 9:16 by screen, loads when on screen, pauses off screen, skipped for reduced motion / data saver */
 (()=>{const v=document.getElementById('studioFilm');if(!v)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData))return;
   const pick=()=>matchMedia('(max-width:760px)').matches?'9x16':'16x9';
