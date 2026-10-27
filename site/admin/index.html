@@ -1053,7 +1053,7 @@ function tlDirty(){S.tlDirty=true;$('#tlBar').hidden=false}
 $('#tlSave').onclick=async()=>{const b=$('#tlSave');busy(b,true,'Publishing');try{await api('content',{method:'PUT',body:JSON.stringify(S.content)});S.tlDirty=false;$('#tlBar').hidden=true;toast('Live on the Tiny Legends page')}catch(e){toast(e.message,1)}finally{busy(b,false)}};
 
 /* ================= inbox ================= */
-const FORMS={notify:'Drop alert sign-up',preorder:'Pre-order',review:'Review',contact:'Message'};
+const FORMS={signup:'Legends Club sign-up',notify:'Drop alert sign-up',preorder:'Pre-order',review:'Review',contact:'Message'};
 async function loadInbox(){try{S.inbox=(await api('inbox')).items.filter(m=>m.form!=='preorder');}catch(e){S.inbox=[]}renderInbox();dashboard()}
 $('#inboxReload').onclick=()=>loadInbox().then(()=>toast('Inbox refreshed'));
 function ibName(m){return m.name||m.fields.name||m.email||m.fields.email||'Someone'}
