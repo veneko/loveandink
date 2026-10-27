@@ -491,6 +491,28 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 /* sizes that sold out in Square */
 .sizes button.sz-out{opacity:.4;text-decoration:line-through;cursor:not-allowed}
 
+/* hero loops (homepage background + Legends carousel) */
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-1;opacity:0;transition:opacity 1.2s ease}
+.hero.vid-on .hero-vid{opacity:1}
+.hero.vid-on .hero-bg{opacity:0;transition:opacity 1.2s ease .2s}
+.hero.vid-on .phone-stage{visibility:hidden;opacity:0;transition:opacity .6s,visibility 0s .6s}
+.hero.vid-on .hero-copy{position:relative;z-index:2}
+.lineup-vid{position:relative;width:min(1100px,100%);aspect-ratio:16/9;background:var(--night)}
+.lineup-vid img,.lineup-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lineup-vid img{object-fit:contain;background:var(--paper)}
+.lineup-vid video{opacity:0;transition:opacity .9s ease}
+.lineup-vid.vid-on video{opacity:1}
+@media (max-width:760px){
+  .hero.vid-mode{display:flex;flex-direction:column}
+  .hero.vid-mode .hero-grid{order:1;padding-bottom:0}
+  .hero.vid-mode .phone-stage{display:none}
+  .hero.vid-on .hero-bg{opacity:1}
+  .hero.vid-mode .hero-vid{position:relative;inset:auto;order:2;display:block;width:100%;height:auto;aspect-ratio:4/5;object-position:50% 78%;margin-top:-6px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 88%,transparent)}
+  .hero.vid-mode .stats{order:3}
+  .lineup-vid{aspect-ratio:9/16;max-height:82svh;width:auto;height:82svh;max-width:100%}
+}
+@media (prefers-reduced-motion:reduce){.hero-vid,.lineup-vid video{display:none}}
+
 /* join the club (sign-up) */
 .club{background:var(--paper);padding-block:80px 90px}
 .club-card{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;background:linear-gradient(135deg,#FFE7F3,#EDE3FF 55%,#DDF4FF);border:3px solid var(--ink);border-radius:32px;box-shadow:8px 8px 0 var(--ink);padding:44px;overflow:hidden}
@@ -540,6 +562,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 <div class="view" id="v-home">
   <section class="hero" aria-labelledby="h1">
     <div class="hero-bg" aria-hidden="true"></div>
+    <video class="hero-vid tl-loop" data-src="video/hero_home" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <img class="hero-logo" src="assets/logo.webp" alt="Tiny Legends Adventures">
@@ -558,7 +581,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
       </div>
     </div>
     <div class="stats"><div class="wrap">
-      <div><b>9.8M</b><span data-i="stat1"></span></div>
+      <div><b>10M</b><span data-i="stat1"></span></div>
       <div><b>9K+</b><span data-i="stat2"></span></div>
       <div><b>∞–0</b><span data-i="stat3"></span></div>
     </div></div>
@@ -724,7 +747,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
     <span class="tag" data-i="lg_eyebrow"></span>
     <h2 data-i="nav_legends"></h2>
     <p data-i="lg_intro"></p>
-    <div class="lineup"><img src="assets/lineup.webp" alt="Dada, Mamá, CamBam, Jaziel, Evaluna"></div>
+    <div class="lineup lineup-vid"><img src="assets/lineup.webp" alt="Dada, Mamá, CamBam, Jaziel, Evaluna"><video class="tl-loop" data-src="video/hero_legends" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
   </div>
   <div class="wrap cards" id="cards"></div>
 </div>
@@ -1211,6 +1234,20 @@ function Player(root,getList,opts={}){
 let heroP, watchP, filter='all', bag=0;
 const itemHTML=p=>{const out=STOCK[p.id]===0&&p.tag!=='t_preorder';return `<div class="item${out?' out':''}" data-item="${p.id}"><span class="flag">${out?t('soldout'):t(p.tag)}</span><div class="pic"><img src="assets/${p.img}.webp" alt="${t('p_'+p.id)}" loading="lazy">${p.on?`<div class="on"><img src="assets/${p.on}.webp" alt="" loading="lazy"></div>`:''}</div><h3>${t('p_'+p.id)}</h3>${p.on?`<button class="see" type="button" data-flip>${t('s_see')}</button>`:''}<div class="sizes" role="group">${p.sz.map((s,j)=>`<button type="button" aria-pressed="${j===0}" data-sz>${t(s)}</button>`).join('')}</div><div class="row-b"><span class="price">$${p.p}</span><button class="add" type="button" data-add="${p.id}"${out?' disabled':''}>${out?t('soldout'):t(p.tag==='t_preorder'?'preorder':'add')}</button></div></div>`};
 
+/* Hero loops: pick 16:9 or 9:16 by screen, load only when visible, pause off-screen; skip on reduced motion / data saver */
+(()=>{const vids=[...document.querySelectorAll('video.tl-loop')];if(!vids.length)return;
+  const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,sd=navigator.connection&&navigator.connection.saveData;if(rm||sd)return;
+  const tall=()=>matchMedia('(max-width:760px)').matches;
+  const load=v=>{const r=tall()?'9x16':'16x9';if(v.dataset.r===r)return;v.dataset.r=r;const b=v.dataset.src+'_'+r;v.poster=b+'.webp';
+    v.innerHTML=`<source src="${b}.webm" type="video/webm"><source src="${b}.mp4" type="video/mp4">`;v.load()};
+  const host=v=>v.closest('.hero,.lineup-vid');
+  vids.forEach(v=>host(v).classList.add('vid-mode'));
+  vids.forEach(v=>{v.addEventListener('playing',()=>{const h=host(v);h.classList.add('vid-on');if(h.classList.contains('hero')&&typeof heroP!=='undefined'&&heroP)heroP.activate(false)});v.addEventListener('error',()=>host(v).classList.remove('vid-on','vid-mode'),true)});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){load(v);v.play().catch(()=>{})}else v.pause()}),{threshold:.15});
+  vids.forEach(v=>io.observe(v));
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>vids.forEach(v=>{if(v.dataset.r&&v.dataset.r!==(tall()?'9x16':'16x9')){load(v);v.play().catch(()=>{})}}),300)});
+})();
+
 /* Legends Club sign-up → Netlify Forms (lands in the back office inbox) */
 (()=>{const f=document.getElementById('clubForm');if(!f)return;
   f.addEventListener('submit',async e=>{e.preventDefault();const err=document.getElementById('clubErr');err.hidden=true;
@@ -1256,7 +1293,7 @@ function go(v,push){
   document.querySelectorAll('.nav nav a, .tabbar a').forEach(a=>{a.dataset.go===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
   if(push){try{history.replaceState(null,'','#'+v)}catch(e){}}
   window.scrollTo({top:0,behavior:'instant'});
-  heroP&&heroP.activate(v==='home'&&heroVisible); watchP&&watchP.activate(v==='watch');
+  heroP&&heroP.activate(v==='home'&&heroVisible&&!$('.hero').classList.contains('vid-on')); watchP&&watchP.activate(v==='watch');
   $('#map').hidden=v!=='home'||innerWidth<=760;
   document.body.classList.toggle('is-admin',v==='admin'); if(v==='admin'&&!$('#admDash').hidden)admRender();
   setTimeout(()=>{frame();mapUpd()},40);
@@ -1383,7 +1420,7 @@ let heroVisible=true;
   watchP.onChange(c=>{current=c.id;renderFeed()});
   renderStatic();
   $('#langSel').addEventListener('change',e=>{LANG=e.target.value;try{localStorage.setItem('tla_lang',LANG)}catch(err){}renderStatic()});
-  new IntersectionObserver(es=>es.forEach(e=>{heroVisible=e.isIntersecting;heroP.activate(heroVisible&&!$('#v-home').hidden)}),{threshold:.25}).observe($('#heroPlayer'));
+  new IntersectionObserver(es=>es.forEach(e=>{heroVisible=e.isIntersecting;heroP.activate(heroVisible&&!$('#v-home').hidden&&!$('.hero').classList.contains('vid-on'))}),{threshold:.25}).observe($('#heroPlayer'));
   go((location.hash||'#home').slice(1),false);
 })();
 </script>
@@ -1411,7 +1448,7 @@ let heroVisible=true;
       if(d.type==='count')$('#bagN').textContent=d.n;
       if(d.type==='route'&&d.v)go(d.v,true);
       if(d.type==='pause'){heroP&&heroP.activate(false);watchP&&watchP.activate(false)}
-      if(d.type==='resume'){const v=(location.hash||'#home').slice(1);heroP&&heroP.activate(v==='home'&&heroVisible);watchP&&watchP.activate(v==='watch')}});
+      if(d.type==='resume'){const v=(location.hash||'#home').slice(1);heroP&&heroP.activate(v==='home'&&heroVisible&&!$('.hero').classList.contains('vid-on'));watchP&&watchP.activate(v==='watch')}});
     P({type:'ready'});
   }else{
     const co=document.getElementById('checkout');
