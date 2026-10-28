@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Legends Club Pass · Tiny Legends Adventures</title>
+<meta name="description" content="One pass, every perk, forever. Early episodes, members-only merch discount, printables and behind the scenes from the Tiny Legends family.">
+<meta property="og:title" content="Legends Club Pass · Tiny Legends Adventures"><meta property="og:image" content="https://loveandink.co/tinylegends/assets/club_crest.webp?v=2">
+<link rel="icon" href="/tinylegends/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&family=Gochi+Hand&display=swap">
+<link rel="stylesheet" href="club.css">
+</head><body>
+<header class="top"><div class="wrap">
+  <a class="home" href="/tinylegends/"><img src="/tinylegends/assets/logo.webp" alt="Tiny Legends Adventures"><span>← Back to Tiny Legends</span></a>
+  <nav><a class="btn sm" href="members/">Members Lounge</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <img class="crest" src="/tinylegends/assets/club_crest.webp?v=2" width="441" height="480" alt="Legends Club official crest">
+  <div>
+    <span class="tag">Legends Club Pass</span>
+    <h1>One pass. <span>Every perk. Forever.</span></h1>
+    <p class="lead">Join the family behind the 10M-view bedtime fight. See new episodes first, get members-only merch pricing, printables and the behind-the-scenes stuff nobody else sees.</p>
+    <div class="price"><b>$9.99</b><small>one time · yours for life</small></div>
+    <div class="cta" id="cta" aria-live="polite"><p>Loading…</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="center"><span class="tag" style="--t:var(--cyan)">What you get</span></div>
+  <h2>Four perks, one tiny price</h2>
+  <p class="sub">Everything lives in the Members Lounge, unlocked on your account the moment your pass is paid.</p>
+  <div class="perks">
+    <article class="perk" style="--c:var(--purple)"><div class="pic"><img src="/tinylegends/assets/ep_karate.webp" alt="" loading="lazy" style="object-position:50% 22%"></div><div class="tx"><h3>Early episodes</h3><p>New episodes, like the Round 2 bedtime rematch, land in the Lounge before Instagram and YouTube.</p></div></article>
+    <article class="perk" style="--c:var(--pink)"><div class="pic"><img src="/tinylegends/assets/prod_logo.webp" alt="" loading="lazy"></div><div class="tx"><h3><span id="pct">15</span>% off merch</h3><p>Shop while signed in and your member discount is taken off automatically at checkout. No code to remember.</p></div></article>
+    <article class="perk" style="--c:var(--yellow)"><div class="pic"><img src="/tinylegends/assets/book_coloring.webp" alt="" loading="lazy"></div><div class="tx"><h3>Printables</h3><p>Coloring pages and activity sheets starring the Legends, ready to download and print at home.</p></div></article>
+    <article class="perk" style="--c:var(--cyan)"><div class="pic"><img src="/tinylegends/assets/dada.webp" alt="" loading="lazy" style="object-position:50% 15%"></div><div class="tx"><h3>Behind the scenes</h3><p>How the episodes get made, bloopers and sneak peeks straight from the director's chair.</p></div></article>
+  </div>
+</div></section>
+
+<section class="band" style="background:#FFF1D6;border-block:3px solid var(--ink)"><div class="wrap">
+  <div class="center"><span class="tag" style="--t:var(--pink);color:#fff">How it works</span></div>
+  <h2>Three steps to the Lounge</h2>
+  <p class="sub">Your pass is locked to one Google account, so it's yours and only yours.</p>
+  <div class="steps">
+    <div class="step"><h3>Sign in with Google</h3><p>This is the account your pass belongs to. Use the one you'll keep using.</p></div>
+    <div class="step"><h3>Pay once, $9.99</h3><p>Secure checkout with Square. No subscription, no renewals.</p></div>
+    <div class="step"><h3>Open the Lounge</h3><p>Come back to the Members Lounge anytime and sign in with the same account.</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <h2>Questions</h2>
+  <div class="faq" style="margin-top:26px">
+    <details><summary>Can I share my pass?</summary><p>The pass works for one Google account. If you sign in on a new device, older devices are signed out, so it stays with you.</p></details>
+    <details><summary>Is it really one time?</summary><p>Yes. Pay $9.99 once and the Lounge stays open on your account. Nothing renews.</p></details>
+    <details><summary>How does the merch discount work?</summary><p>Sign in on this site, shop Tiny Legends merch, and the member discount is applied to your order at checkout automatically.</p></details>
+    <details><summary>Is this the same as the free Legends Club list?</summary><p>The free list just emails you news. The pass unlocks the Members Lounge and the perks. Want only the news? <a href="/tinylegends/#club">Join the free list</a>.</p></details>
+    <details><summary>Something not working?</summary><p>Send us a DM at <a href="https://www.instagram.com/tinylegendsadventures/" target="_blank" rel="noopener">@tinylegendsadventures</a> with the email you signed in with and we'll sort it out.</p></details>
+  </div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">Tiny Legends Adventures · a Love &amp; Ink family series · <a href="/tinylegends/">loveandink.co/tinylegends</a></div></footer>
+
+<script src="club.js"></script>
+<script>
+(async () => {
+  const cta = document.getElementById('cta'), E = Club.esc;
+  Club.config().then(c => { if (c.discount != null) document.getElementById('pct').textContent = c.discount }).catch(() => {});
+  const err = m => `<p class="err" role="alert">${E(m)}</p>`;
+  async function draw(s, msg) {
+    if (!s || !s.signedIn) {
+      cta.innerHTML = '<p>Sign in with Google to get your pass. Your pass is locked to this one account.</p><div id="gbtn"></div>' + (msg ? err(msg) : '');
+      Club.googleButton(document.getElementById('gbtn'), x => draw(x), e => draw(null, e.message)).catch(e => draw(null, e.message));
+      return;
+    }
+    const who = `<div class="who">${s.picture ? `<img src="${E(s.picture)}" alt="" referrerpolicy="no-referrer">` : ''}<span>${E(s.name || s.email)}</span></div>`;
+    const out = '<p style="margin-top:10px">Not you? <button class="linkbtn" id="out">Use a different account</button></p>';
+    if (s.active) { cta.innerHTML = who + '<p>You have the Legends Club Pass on this account.</p><a class="btn yellow" href="members/">Open the Members Lounge</a>' + out }
+    else {
+      cta.innerHTML = who + (s.pending ? '<p>We started a checkout for this account. If you already paid, open the Lounge to confirm it.</p><a class="btn sm" href="members/?paid=1" style="margin:0 8px 10px 0">I already paid</a>' : '<p>One pass for this account, yours for life.</p>')
+        + '<button class="btn yellow" id="buy">Get my pass · $9.99</button>' + (msg ? err(msg) : '') + out;
+      document.getElementById('buy').onclick = async e => { e.target.disabled = true; e.target.textContent = 'Opening secure checkout…';
+        try { const r = await Club.buy(); location.href = r.url } catch (x) { draw(s, x.message) } };
+    }
+    document.getElementById('out').onclick = async () => { await Club.signOut().catch(() => {}); try { google.accounts.id.disableAutoSelect() } catch (e) {} draw(null) };
+  }
+  try { draw(await Club.me()) } catch (e) { draw(null, e.message) }
+})();
+</script>
+</body></html>

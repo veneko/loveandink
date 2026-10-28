@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Members Lounge · Legends Club</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/tinylegends/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&family=Gochi+Hand&display=swap">
+<link rel="stylesheet" href="../club.css">
+</head><body>
+<header class="top"><div class="wrap">
+  <a class="home" href="/tinylegends/"><img src="/tinylegends/assets/logo.webp" alt="Tiny Legends Adventures"><span>← Back to Tiny Legends</span></a>
+  <nav id="topnav"><a class="btn sm" href="../">The Pass</a></nav>
+</div></header>
+<main id="app" aria-live="polite"><div class="state"><p>Opening the Lounge…</p></div></main>
+<footer class="foot"><div class="wrap">Legends Club Members Lounge · questions? DM <a href="https://www.instagram.com/tinylegendsadventures/" target="_blank" rel="noopener">@tinylegendsadventures</a></div></footer>
+
+<script src="../club.js"></script>
+<script>
+(() => {
+  const app = document.getElementById('app'), E = Club.esc, paid = new URLSearchParams(location.search).has('paid');
+  const crest = '<img src="/tinylegends/assets/club_crest.webp?v=2" alt="Legends Club crest">';
+  const yt = u => { const m = String(u).match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/); return m && m[1] };
+  function signIn(msg) {
+    app.innerHTML = `<div class="state">${crest}<h1>Members Lounge</h1><p>Sign in with the Google account that has your Legends Club Pass.</p><div id="gbtn"></div>${msg ? `<p class="err" role="alert" style="color:#C0264A;font-weight:700">${E(msg)}</p>` : ''}<p class="muted" style="margin-top:18px">No pass yet? <a href="../">Get the Legends Club Pass</a></p></div>`;
+    Club.googleButton(document.getElementById('gbtn'), s => render(s), e => signIn(e.message)).catch(e => signIn(e.message));
+  }
+  let tries = 0;
+  function notMember(s) {
+    if (paid && tries < 20) { tries++; app.innerHTML = `<div class="state">${crest}<h1>Confirming your payment…</h1><p>This usually takes a few seconds. Keep this page open.</p></div>`; setTimeout(load, 3000); return }
+    app.innerHTML = `<div class="state">${crest}<h1>Almost there, ${E((s.name || '').split(' ')[0] || 'Legend')}</h1>
+      <p>${s.pending ? "We haven't received the payment for this account yet. If you just paid, give it a minute and refresh." : `${E(s.email)} doesn't have a Legends Club Pass yet.`}</p>
+      <p><a class="btn yellow" href="../">${s.pending ? 'Back to the Pass' : 'Get the pass · $9.99'}</a></p>
+      <p class="muted">Bought it with another Google account? <button class="linkbtn" id="out">Switch account</button></p></div>`;
+    document.getElementById('out').onclick = out;
+  }
+  async function out() { await Club.signOut().catch(() => {}); try { google.accounts.id.disableAutoSelect() } catch (e) {} signIn() }
+  const items = (list, kind) => !list.length ? '<p class="empty">First drop coming soon. You\'ll see it here before anyone else.</p>' : '<div class="list">' + list.map(x => {
+    const id = yt(x.url), href = kind === 'file' ? (x.file ? '/.netlify/functions/club?file=' + x.file : '') : x.url;
+    const btn = href ? `<a class="btn sm ${kind === 'file' ? 'yellow' : ''}" href="${E(href)}" ${kind === 'file' ? 'download' : 'target="_blank" rel="noopener"'}>${kind === 'file' ? 'Download' : 'Watch'}</a>` : '<span class="when">Coming soon</span>';
+    return `<div class="item"><div><h4>${E(x.title)}</h4>${x.note ? `<p>${E(x.note)}</p>` : ''}${x.date ? `<p class="when">${E(x.date)}</p>` : ''}</div>${id ? '' : btn}${id ? `<div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${E(x.title)}" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>` : ''}</div>`;
+  }).join('') + '</div>';
+  function lounge(s) {
+    const c = s.content || {}, first = (s.name || '').split(' ')[0] || 'Legend';
+    app.innerHTML = `
+      <section class="lounge-head"><div class="wrap">${crest.replace('<img', '<img class="c"')}
+        <div><span class="tag">Members Lounge</span><h1>Welcome back, ${E(first)}!</h1><p>${E(c.welcome || '')}</p></div>
+        <div class="member-card"><small>Legends Club Pass</small><b>${E(s.name || s.email)}</b><small style="margin-top:6px">${E(Club.sinceText(s.since))}${s.admin && !s.since ? ' · team' : ''}</small></div>
+      </div></section>
+      <section class="band" style="padding-block:44px"><div class="wrap" style="display:grid;gap:24px">
+        <div class="card" style="--c:var(--pink);display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center">
+          <div class="code">${Number(c.discount) || 0}% off</div>
+          <div><h3 style="font-size:1.3rem">Your member discount</h3><p class="muted" style="margin:4px 0 0">It comes off automatically at checkout while you're signed in on this device. Just shop.</p></div>
+          <a class="btn pink" href="/tinylegends/#shop">Shop merch</a></div>
+        <div class="card" style="--c:var(--purple)"><span class="tag" style="--t:var(--purple);color:#fff">Early access</span><h2 style="font-size:1.7rem;margin:10px 0 14px">Episodes before everyone</h2>${items(c.episodes || [])}</div>
+        <div class="grid2">
+          <div class="card" style="--c:var(--cyan)"><span class="tag" style="--t:var(--cyan)">Behind the scenes</span><h2 style="font-size:1.5rem;margin:10px 0 14px">From the director's chair</h2>${items(c.bts || [])}</div>
+          <div class="card" style="--c:var(--yellow)"><span class="tag">Printables</span><h2 style="font-size:1.5rem;margin:10px 0 14px">Print, color, play</h2>${items(c.printables || [], 'file')}</div>
+        </div>
+        <p class="center muted">Signed in as ${E(s.email)} · <button class="linkbtn" id="out">Sign out</button></p>
+        ${s.admin ? '<div id="ed"></div>' : ''}
+      </div></section>`;
+    document.getElementById('out').onclick = out;
+    if (s.admin) editor(s);
+  }
+  /* ---------- team editor (only shown to the Love & Ink team) ---------- */
+  function editor(s) {
+    const c = JSON.parse(JSON.stringify(s.content || {})), ed = document.getElementById('ed');
+    const rowsHTML = (key, file) => (c[key] || []).map((x, i) => `<div class="row" data-k="${key}" data-i="${i}">
+        <input data-f="title" placeholder="Title" value="${E(x.title)}"><input data-f="note" placeholder="Short note" value="${E(x.note)}">
+        ${file ? `<span class="muted">${x.file ? E(x.name || 'file') : 'no file yet'} <input type="file" data-up accept=".pdf,.png,.jpg,.jpeg,.webp,.zip"></span>` : `<input data-f="url" placeholder="https:// link (YouTube embeds)" value="${E(x.url)}">`}
+        <input data-f="date" placeholder="Date / label" value="${E(x.date)}"><button class="btn sm" data-del>Remove</button></div>`).join('');
+    const block = (key, label, file) => `<label>${label}</label><div class="rows">${rowsHTML(key, file)}</div><button class="btn sm" data-add="${key}" style="margin-top:8px">+ Add</button>`;
+    function draw(msg) {
+      ed.innerHTML = `<div class="editor"><h2>Team: edit the Lounge</h2><p class="muted">Only you and Jasmine see this box. Members see the changes as soon as you save.</p>
+        <div id="mcount" class="muted"></div>
+        <label for="disc">Member discount (%)</label><input id="disc" type="number" min="0" max="50" value="${Number(c.discount) || 0}" style="max-width:140px">
+        <label for="wel">Welcome line</label><textarea id="wel">${E(c.welcome || '')}</textarea>
+        ${block('episodes', 'Early episodes (paste an unlisted YouTube link to embed it)')}
+        ${block('bts', 'Behind the scenes')}
+        ${block('printables', 'Printables (PDF or image, under 4 MB)', true)}
+        <p style="margin-top:18px"><button class="btn yellow" id="save">Save the Lounge</button> <span id="msg" class="muted">${E(msg || '')}</span></p></div>`;
+      ed.querySelectorAll('[data-f]').forEach(inp => inp.oninput = () => { const r = inp.closest('.row'); c[r.dataset.k][+r.dataset.i][inp.dataset.f] = inp.value });
+      ed.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { const r = b.closest('.row'); c[r.dataset.k].splice(+r.dataset.i, 1); draw() });
+      ed.querySelectorAll('[data-add]').forEach(b => b.onclick = () => { (c[b.dataset.add] = c[b.dataset.add] || []).push({ title: '', note: '', url: '', date: '' }); draw() });
+      ed.querySelectorAll('[data-up]').forEach(inp => inp.onchange = async () => {
+        const f = inp.files[0], r = inp.closest('.row'); if (!f) return;
+        if (f.size > 4e6) return draw('That file is over 4 MB.');
+        const data = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1]); fr.readAsDataURL(f) });
+        try { const u = await Club.api('', { method: 'POST', body: JSON.stringify({ action: 'upload', name: f.name, type: f.type, data }) }); Object.assign(c[r.dataset.k][+r.dataset.i], { file: u.id, name: u.name }); draw('Uploaded. Remember to save.') } catch (e) { draw(e.message) }
+      });
+      document.getElementById('disc').oninput = e => c.discount = e.target.value;
+      document.getElementById('wel').oninput = e => c.welcome = e.target.value;
+      document.getElementById('save').onclick = async () => {
+        try { const saved = await Club.api('', { method: 'POST', body: JSON.stringify({ action: 'content', content: c }) }); s.content = saved; lounge(s); document.getElementById('msg') && (document.getElementById('msg').textContent = 'Saved.') } catch (e) { draw(e.message) }
+      };
+      Club.me('?members').then(x => { const n = (x.members || []).length; const el = document.getElementById('mcount'); if (el) el.textContent = `${n} paid member${n === 1 ? '' : 's'} so far.` }).catch(() => {});
+    }
+    draw();
+  }
+  function render(s) { if (!s || !s.signedIn) return signIn(); if (!s.active) return notMember(s); if (paid) history.replaceState(null, '', location.pathname); lounge(s) }
+  async function load() { try { render(await Club.me()) } catch (e) { signIn(e.message) } }
+  load();
+})();
+</script>
+</body></html>

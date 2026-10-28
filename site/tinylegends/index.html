@@ -526,6 +526,9 @@ footer small{opacity:.8}
 .club-done img{display:block;width:120px;margin:0 auto 12px}
 @media (max-width:900px){.club-head{flex-direction:column;align-items:flex-start;gap:8px}.club-crest{width:110px}}
 @media (prefers-reduced-motion:reduce){.club-crest{animation:none}}
+.club-pass{display:flex;align-items:center;gap:12px;margin-top:20px;padding:10px 16px 10px 10px;background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:4px 4px 0 var(--ink);text-decoration:none;color:var(--ink);max-width:420px;transition:transform .15s}
+.club-pass:hover{transform:translate(-1px,-1px)}
+.club-pass img{width:48px;height:auto}.club-pass b{display:block;font-family:var(--f-display);font-size:1.05rem}.club-pass small{color:var(--ink-2);font-size:.85rem}.club-pass i{margin-left:auto;font-style:normal;font-weight:800;font-size:1.3rem}
 .club-copy h2{font-family:var(--f-display);font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.05;margin:12px 0 10px;color:var(--ink)}
 .club-copy p{color:var(--ink-2);max-width:42ch;margin:0}
 .club-perks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;font-weight:700;color:var(--ink)}
@@ -720,6 +723,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
         <h2 id="clubT" data-i="club_title"></h2></div></div>
         <p data-i="club_sub"></p>
         <ul class="club-perks"><li data-i="club_p1"></li><li data-i="club_p2"></li><li data-i="club_p3"></li></ul>
+        <a class="club-pass" href="/tinylegends/club/"><img src="assets/club_crest.webp?v=2" alt=""><span><b data-i="club_pass_t"></b><small data-i="club_pass_s"></small></span><i aria-hidden="true">→</i></a>
       </div>
       <form class="club-form" id="clubForm" name="signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="signup">
@@ -1079,6 +1083,8 @@ b_bed_e:["HI-YAH! …zzz","¡JI-YA! …zzz","IÁÁÁ! …zzz","HI-YAH ! …zzz",
 b_bed_c:["♪ one more song ♪","♪ una canción más ♪","♪ só mais uma música ♪","♪ encore une chanson ♪","♪ बस एक और गाना ♪","♪ 再唱一首 ♪"],
 sw_off:["Lights out?","¿Apagamos?","Apagar a luz?","On éteint ?","लाइट बंद करें?","关灯吗？"],
 sw_on:["Lights on?","¿Encendemos?","Acender a luz?","On rallume ?","लाइट जलाएं?","开灯吗？"],
+club_pass_t:["Get the Legends Club Pass","Consigue el Pase del Club de Leyendas","Garanta o Passe do Clube das Lendas","Obtiens le Pass du Club des Légendes","लेजेंड्स क्लब पास पाएं","获取小传奇俱乐部通行证"],
+club_pass_s:["$9.99 once: early episodes, member discount, printables","$9.99 una vez: episodios antes, descuento de miembro, imprimibles","$9.99 uma vez: episódios antes, desconto de membro, imprimíveis","9,99 $ une fois : épisodes en avance, réduction membre, à imprimer","एक बार $9.99: पहले एपिसोड, सदस्य छूट, प्रिंटेबल","一次 $9.99：抢先看剧集、会员折扣、可打印资料"],
 club_tag:["Legends Club","Club de Leyendas","Clube das Lendas","Club des Légendes","लेजेंड्स क्लब","小传奇俱乐部"],
 club_title:["Join the Legends Club","Únete al Club de Leyendas","Entre para o Clube das Lendas","Rejoins le Club des Légendes","लेजेंड्स क्लब से जुड़ें","加入小传奇俱乐部"],
 club_sub:["Be first to see new episodes, merch drops and the picture book. One friendly email, no spam.","Sé el primero en ver nuevos episodios, lanzamientos de merch y el libro ilustrado. Un correo amigable, sin spam.","Seja o primeiro a ver novos episódios, lançamentos e o livro ilustrado. Um e-mail amigável, sem spam.","Sois le premier à voir les nouveaux épisodes, les nouveautés et l'album illustré. Un e-mail sympa, zéro spam.","नए एपिसोड, मर्च और पिक्चर बुक सबसे पहले देखें। एक प्यारा ईमेल, कोई स्पैम नहीं।","第一时间看到新剧集、新周边和绘本。友好邮件，绝不打扰。"],

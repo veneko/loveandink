@@ -5,6 +5,7 @@
 //   SQUARE_LOCATION_ID
 //   SQUARE_ENV           "sandbox" or "production"
 import { loadSquare, store } from '../lib/lib.mjs';
+import { memberSession, clubContent } from './club.mjs';
 let API;
 const H = () => ({ 'Square-Version': '2025-01-23', Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`, 'Content-Type': 'application/json' });
 // Custom prints are priced in the Prints studio; the server only accepts prices inside these ranges (USD).
@@ -60,6 +61,8 @@ export default async (req) => {
       return { catalog_object_id: v.id, quantity: String(qty), note };
     });
     const order = { location_id: process.env.SQUARE_LOCATION_ID, reference_id: code, line_items };
+    // Legends Club Pass members get their discount automatically (signed-in member cookie, checked server-side).
+    try { const me = await memberSession(req); if (me && me.active) { const pct = (await clubContent()).discount; if (pct > 0) order.discounts = [{ uid: 'club', name: `Legends Club ${pct}% off`, percentage: String(pct), scope: 'ORDER' }] } } catch (e) {}
     if (subtotal < 75) order.service_charges = [{ name: 'Shipping', amount_money: { amount: 650, currency: 'USD' }, calculation_phase: 'SUBTOTAL_PHASE' }];
     const site = process.env.URL || 'https://loveandink.co';
     const d = await sq('/v2/online-checkout/payment-links', {
