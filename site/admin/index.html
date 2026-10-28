@@ -580,8 +580,8 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
 
     <!-- ===== tiny legends ===== -->
     <section class="page" data-panel="tl" hidden>
-      <div class="head"><div><div class="eyebrow">Website · Tiny Legends</div><h1 class="serif">Tiny Legends</h1><p>Recipes, the announcement bar, each Legend's closet picks and the reels in the hero phone.</p></div></div>
-      <div class="chips" id="tlTabs" style="margin-bottom:18px"><button class="chip" data-tlt="recipes" aria-pressed="true">Recipes</button><button class="chip" data-tlt="homepage" aria-pressed="false">Homepage</button></div>
+      <div class="head"><div><div class="eyebrow">Website · Tiny Legends</div><h1 class="serif">Tiny Legends</h1><p>Recipes, the announcement bar, each Legend's closet picks, the reels in the hero phone and the arcade scoreboard.</p></div></div>
+      <div class="chips" id="tlTabs" style="margin-bottom:18px"><button class="chip" data-tlt="recipes" aria-pressed="true">Recipes</button><button class="chip" data-tlt="homepage" aria-pressed="false">Homepage</button><button class="chip" data-tlt="arcade" aria-pressed="false">Arcade</button></div>
       <div data-tlp="recipes">
         <div class="tools"><span class="muted" style="flex:1">English and Spanish first; other languages are optional.</span><button class="btn hot" id="newRecipe"><svg class="i"><use href="#i-plus"/></svg>New recipe</button></div>
         <div class="rlist" id="rlist"></div>
@@ -595,6 +595,15 @@ dialog.modal .mf{display:flex;gap:10px;justify-content:flex-end;padding:14px 20p
         <div class="sec"><h3>Closet picks</h3><div class="picks" id="picks"></div></div>
         <div class="sec"><h3>Hero reels, in order</h3><div class="clips" id="clips"></div>
           <div class="tools" style="margin-top:10px"><select class="in" id="clipAdd" aria-label="Add a reel" style="flex:1"></select><button class="btn ghost" id="clipAddBtn">Add</button></div></div>
+      </div>
+      <div data-tlp="arcade" hidden>
+        <div class="sec card"><h3>Games started, last 14 days</h3><p class="muted" id="arcPlaysN" style="margin:4px 0 12px">Loading…</p><div id="arcPlays"></div></div>
+        <div class="two" style="align-items:start">
+          <div class="sec card"><h3>Bedtime Blocks · top scores</h3><div id="arcTop-blocks"></div></div>
+          <div class="sec card"><h3>Tiny Chop · top scores</h3><div id="arcTop-chop"></div></div>
+        </div>
+        <div class="sec card"><h3>Blocked nicknames</h3><p class="muted" style="margin:4px 0 10px">Removing a nickname deletes all its scores from both games and stops it from being used again.</p><div id="arcBanned"></div></div>
+        <p class="muted">Players' saved games stay on their own devices. Nobody signs in and no emails or real names are collected. <a href="/tinylegends/arcade/" target="_blank" rel="noopener">Open the arcade ↗</a></p>
       </div>
     </section>
 
@@ -1016,7 +1025,17 @@ $('#edHide').onclick=async()=>{const e=S.edit,b=$('#edHide'),act=e.archived?'res
 $('#newItem').onclick=()=>{if(!S.sq||!S.sq.connected)return toast('Connect Square first (Square & connections)',1);openItem(null)};
 
 /* ================= tiny legends: recipes + homepage ================= */
-$('#tlTabs').onclick=e=>{const b=e.target.closest('[data-tlt]');if(!b)return;$$('#tlTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));$$('[data-tlp]').forEach(p=>p.hidden=p.dataset.tlp!==b.dataset.tlt)};
+$('#tlTabs').onclick=e=>{const b=e.target.closest('[data-tlt]');if(!b)return;$$('#tlTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));$$('[data-tlp]').forEach(p=>p.hidden=p.dataset.tlp!==b.dataset.tlt);if(b.dataset.tlt==='arcade')loadArcade()};
+/* ================= arcade scoreboard ================= */
+async function loadArcade(){let d;try{d=await api('scores?admin=1')}catch(e){$('#arcPlaysN').textContent='Could not load the arcade: '+e.message;return}S.arc=d;
+  const P=d.plays||[],tot=P.reduce((a,p)=>a+(p.blocks||0)+(p.chop||0),0),mx=Math.max(1,...P.map(p=>(p.blocks||0)+(p.chop||0)));
+  $('#arcPlaysN').textContent=tot?`${tot.toLocaleString()} games started · Bedtime Blocks ${P.reduce((a,p)=>a+(p.blocks||0),0)} · Tiny Chop ${P.reduce((a,p)=>a+(p.chop||0),0)}`:'No games played yet.';
+  $('#arcPlays').innerHTML=P.map(p=>{const n=(p.blocks||0)+(p.chop||0);return `<div class="bar-r"><span>${esc(new Date(p.day+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}))}</span><span class="tr"><i style="--c:#7B3FE4;width:${n/mx*100}%"></i></span><b>${n}</b></div>`}).join('');
+  ['blocks','chop'].forEach(g=>{const G=d.games[g]||{top:[]};$('#arcTop-'+g).innerHTML=G.top.length?G.top.slice(0,15).map((e,i)=>`<div class="row-i" style="cursor:default"><span class="av" style="background:var(--line);color:var(--ink)">${i+1}</span><span class="tx"><b>${esc(e.name)}</b><small>${esc(new Date(e.ts).toLocaleDateString())} · ${Number(e.score).toLocaleString()} pts</small></span><button class="btn ghost" data-arcrm="${esc(e.name)}" style="padding:6px 12px">Remove</button></div>`).join(''):'<div class="empty" style="padding:18px 0">No scores yet.</div>'});
+  $('#arcBanned').innerHTML=(d.banned||[]).length?d.banned.map(n=>`<span class="chip" style="margin:0 6px 6px 0">${esc(n)} <button class="btn ghost" data-arcub="${esc(n)}" style="padding:2px 10px;margin-left:6px">Unblock</button></span>`).join(''):'<span class="muted">None.</span>'}
+document.addEventListener('click',async e=>{const r=e.target.closest('[data-arcrm]'),u=e.target.closest('[data-arcub]');if(!r&&!u)return;
+  const name=(r||u).dataset[r?'arcrm':'arcub'];if(r&&!confirm(`Remove every score by ${name} and block that nickname?`))return;
+  try{busy(r||u,1,'…');await api('scores?admin=1',{method:'POST',body:JSON.stringify({action:r?'remove':'unban',name})});toast(r?`${name} removed and blocked`:`${name} unblocked`);loadArcade()}catch(err){toast(err.message,1);busy(r||u,0)}});
 const lines=s=>String(s||'').split('|').join('\n'),unlines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean).join('|');
 function renderRecipes(){const R=S.content.recipes;$('#rlist').innerHTML=R.length?R.map((r,i)=>`<div class="card rcard" style="--c:${hex(r.color)}"><span class="dot"></span><div class="tx"><b>${esc(r.name[0])}</b><small>${esc(r.name[1]||'')}${r.name[1]?' · ':''}${esc((S.def.names||{})[r.who]||r.who)}</small></div><div class="act"><button class="icon" data-mv="${i}:-1" aria-label="Move up"${i?'':' disabled'}>↑</button><button class="icon" data-mv="${i}:1" aria-label="Move down"${i<R.length-1?'':' disabled'}>↓</button><button class="btn ghost small" data-ed="${i}">Edit</button></div></div>`).join(''):'<div class="empty">No recipes yet.</div>'}
 $('#rlist').onclick=e=>{const m=e.target.closest('[data-mv]');if(m){const [i,d]=m.dataset.mv.split(':').map(Number),R=S.content.recipes;[R[i],R[i+d]]=[R[i+d],R[i]];renderRecipes();tlDirty();return}const b=e.target.closest('[data-ed]');if(b)openRecipe(+b.dataset.ed)};

@@ -311,7 +311,7 @@ footer small{opacity:.8}
   .nav nav{display:none}
   .nav .lang{margin-left:auto}
   .nav .mark{width:74px}
-  .tabbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:65;background:rgba(255,248,236,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:2.5px solid var(--ink);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+  .tabbar{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:65;background:rgba(255,248,236,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:2.5px solid var(--ink);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
   .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;font-family:var(--f-display);font-weight:600;font-size:.74rem;color:var(--ink-2);padding:4px 0;border-radius:14px}
   .tabbar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
   .tabbar a[aria-current="page"]{color:var(--ink);background:var(--yellow)}
@@ -416,8 +416,8 @@ footer small{opacity:.8}
   .books-head img{max-height:200px}
   .rcols{grid-template-columns:1fr;gap:8px}
   .rdlg{padding:20px}
-  .tabbar{grid-template-columns:repeat(5,1fr)!important}
-  .tabbar a{font-size:.68rem!important}
+  .tabbar{grid-template-columns:repeat(6,1fr)!important}
+  .tabbar a{font-size:.64rem!important}
 }
 @media (prefers-reduced-motion:reduce){.room.closet{height:auto}.pan{width:100%}.pan div+div{display:none}.layer.l2,.layer.l3,.clo-p2,.clo-p3{display:none}.layer.l1,.clo-p1{transform:none;opacity:1}}
 /* v10: square bag drawer */
@@ -548,6 +548,48 @@ footer small{opacity:.8}
 .club-peek{position:absolute;right:-10px;bottom:-14px;width:150px;pointer-events:none;opacity:.95}
 .club-err{color:#C0264A;font-weight:700;font-size:.9rem;margin:0}
 @media (max-width:900px){.club-card{grid-template-columns:1fr;padding:28px;gap:24px}.club-peek{display:none}}
+
+/* ===== Evaluna's Arcade ===== */
+.nav nav a .new,.tabbar a .new{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:999px;background:var(--pink);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.04em;vertical-align:2px;line-height:1.5}
+.tabbar a{position:relative}.tabbar a .new{position:absolute;top:-2px;right:4px;margin:0;font-size:.52rem;padding:0 4px}
+.arc{background:#120c27;background-image:radial-gradient(1px 1px at 12% 18%,#fff8 50%,transparent 51%),radial-gradient(1.5px 1.5px at 78% 9%,#fff9 50%,transparent 51%),radial-gradient(1px 1px at 52% 32%,#fff6 50%,transparent 51%),radial-gradient(1px 1px at 88% 44%,#fff6 50%,transparent 51%),radial-gradient(1200px 520px at 50% -10%,#2d1d60 0%,transparent 70%);color:#fff4e6;padding-block:56px 80px;min-height:70vh}
+.arc .tag{background:#c9a7ff;color:#24124f}
+.arc h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:12px 0 8px;background:linear-gradient(180deg,#ffe9a8 0%,#ffd36b 40%,#ff9ad4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.arc-sub{color:#b4a7d8;max-width:52ch;margin:0 0 28px;font-size:1.05rem}
+.arc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.arc-card{position:relative;display:flex;flex-direction:column;background:#221947;border:2px solid #3a2c70;border-radius:24px;overflow:hidden;cursor:pointer;text-align:left;color:inherit;font:inherit;padding:0;transition:transform .18s,border-color .18s}
+.arc-card:hover{transform:translateY(-3px);border-color:#c9a7ff}
+.arc-card:focus-visible{outline:3px solid #ffd36b;outline-offset:3px}
+.arc-art{position:relative;aspect-ratio:16/10;background:#1b1338 center/cover no-repeat;display:grid;place-items:center}
+.arc-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(18,12,39,.85))}
+.arc-art img{position:relative;z-index:1;width:68%;max-width:340px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
+.arc-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.arc-body p{margin:0;color:#d9cff5}
+.arc-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:auto}
+.arc-play{font-family:var(--f-display);font-weight:700;font-size:1.05rem;background:#ff7ac6;color:#2a0f3d;border-radius:999px;padding:10px 22px;box-shadow:0 4px 0 #b43c86}
+.arc-top{font-size:.88rem;color:#b4a7d8}.arc-top b{color:#ffd36b;font-family:var(--f-display);letter-spacing:.03em}
+.arc-note{margin:26px 0 0;color:#b4a7d8;font-size:.92rem}
+.arc-full{position:fixed;inset:0;z-index:200;background:#120c27;display:flex;flex-direction:column}
+.arc-full[hidden]{display:none}
+.arc-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));padding-top:calc(8px + env(safe-area-inset-top,0px));background:#1b1338;border-bottom:1px solid #3a2c70;color:#fff4e6}
+.arc-bar b{font-family:var(--f-display);font-size:1.05rem}
+.arc-x{font-family:var(--f-display);font-weight:700;background:#fff4e6;color:#24124f;border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.arc-x:focus-visible{outline:3px solid #ffd36b;outline-offset:2px}
+.arc-full iframe{flex:1;width:100%;border:0;display:block;background:#120c27}
+body.arc-open{overflow:hidden}
+.arc-home{background:var(--paper);padding-block:10px 70px}
+.arc-home a{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;background:#221947;color:#fff4e6;border:3px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);padding:18px 26px;text-decoration:none;transition:transform .15s}
+.arc-home a:hover{transform:translate(-2px,-2px)}
+.arc-home .pair{display:flex}.arc-home .pair img{width:120px;height:auto}.arc-home .pair img+img{margin-left:-14px}
+.arc-home h3{font-size:clamp(1.3rem,2.6vw,1.8rem);color:#ffd36b}
+.arc-home p{margin:4px 0 0;color:#d9cff5}
+.arc-home i{font-style:normal;font-family:var(--f-display);font-weight:700;background:#ff7ac6;color:#2a0f3d;border-radius:999px;padding:10px 20px;white-space:nowrap}
+@media (max-width:760px){
+  .arc{padding-block:32px 110px}
+  .arc-grid{grid-template-columns:1fr;gap:16px}
+  .arc-home a{grid-template-columns:1fr;text-align:center;justify-items:center;gap:12px;padding:20px}
+  .arc-home .pair img{width:104px}
+}
 /* embedded inside Love & Ink: the parent site's nav replaces the breadcrumb bar */
 html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
 /* sizes that sold out in Square */
@@ -564,6 +606,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
     <a href="#watch" data-go="watch" data-i="nav_watch"></a>
     <a href="#shop" data-go="shop" data-i="nav_shop"></a>
     <a href="#books" data-go="books" data-i="nav_books"></a>
+    <a href="#arcade" data-go="arcade"><span data-i="nav_arcade"></span><span class="new" data-i="arc_new"></span></a>
   </nav>
   <label class="lang"><span class="sr" data-i="lang_label"></span>
     <select id="langSel">
@@ -715,6 +758,14 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
     </div>
   </section>
 
+  <section class="arc-home" aria-labelledby="arcHomeT">
+    <div class="wrap"><a href="#arcade" data-go="arcade">
+      <span class="pair" aria-hidden="true"><img src="arcade/a/title_blocks.webp" alt="" width="240" height="160" loading="lazy"><img src="arcade/a/title_chop.webp" alt="" width="240" height="160" loading="lazy"></span>
+      <span><h3 id="arcHomeT" data-i="arc_home_t"></h3><p data-i="arc_home_s"></p></span>
+      <i data-i="arc_play_now"></i>
+    </a></div>
+  </section>
+
   <section class="club" id="club" aria-labelledby="clubT">
     <div class="wrap"><div class="club-card">
       <div class="club-copy">
@@ -770,6 +821,31 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
     <div class="lineup lineup-vid"><img src="assets/lineup.webp" alt="Dada, Mamá, CamBam, Jaziel, Evaluna, Padrino J and Madrina B"><video class="tl-loop" data-src="video/hero_legends7" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
   </div>
   <div class="wrap cards" id="cards"></div>
+</div>
+
+<!-- ================= ARCADE ================= -->
+<div class="view" id="v-arcade" hidden>
+  <section class="arc" aria-labelledby="arcT"><div class="wrap">
+    <span class="tag" data-i="arc_tag"></span>
+    <h2 id="arcT" data-i="arc_title"></h2>
+    <p class="arc-sub" data-i="arc_sub"></p>
+    <div class="arc-grid">
+      <button class="arc-card" type="button" data-arcade="blocks">
+        <span class="arc-art" style="background-image:url(arcade/a/bg_bed.webp)"><img src="arcade/a/title_blocks.webp" alt="Bedtime Blocks" loading="lazy"></span>
+        <span class="arc-body"><p data-i="arc_blocks_d"></p>
+          <span class="arc-row"><span class="arc-play" data-i="arc_play"></span><span class="arc-top" data-arctop="blocks"></span></span></span>
+      </button>
+      <button class="arc-card" type="button" data-arcade="chop">
+        <span class="arc-art" style="background-image:url(arcade/a/bg_kitchen.webp)"><img src="arcade/a/title_chop.webp" alt="Tiny Chop" loading="lazy"></span>
+        <span class="arc-body"><p data-i="arc_chop_d"></p>
+          <span class="arc-row"><span class="arc-play" data-i="arc_play"></span><span class="arc-top" data-arctop="chop"></span></span></span>
+      </button>
+    </div>
+    <p class="arc-note" data-i="arc_note"></p>
+  </div></section>
+</div>
+<div class="arc-full" id="arcFull" hidden role="dialog" aria-modal="true" aria-labelledby="arcFullT">
+  <div class="arc-bar"><b id="arcFullT">Evaluna's Arcade</b><button class="arc-x" type="button" id="arcClose" data-i="arc_close"></button></div>
 </div>
 
 <!-- ================= WATCH ================= -->
@@ -895,6 +971,7 @@ html.emb .li-bar,html.emb .toast,html.emb .bag{display:none}
   <a href="#watch" data-go="watch"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 9l5 3-5 3z" fill="#FFF8EC"/></svg><span data-i="nav_watch"></span></a>
   <a href="#shop" data-go="shop"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6zM9 8a3 3 0 0 1 6 0" /></svg><span data-i="nav_shop"></span></a>
   <a href="#books" data-go="books"><svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1zM21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"/></svg><span data-i="nav_books"></span></a>
+  <a href="#arcade" data-go="arcade"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r="1.1"/><circle cx="18" cy="13.8" r="1.1"/></svg><span data-i="nav_arcade"></span><span class="new" data-i="arc_new"></span></a>
 </nav>
 <aside class="drawer" id="drawer" aria-labelledby="bagT" hidden>
   <div class="drawer-in">
@@ -951,6 +1028,21 @@ sz_6_12:["6–12 mo","6–12 m","6–12 m","6–12 mois","6–12 माह","6�
 sz_12_18:["12–18 mo","12–18 m","12–18 m","12–18 mois","12–18 माह","12–18个月"],
 sz_sheet:["Sheet of 12","Hoja de 12","Cartela com 12","Planche de 12","12 की शीट","一张12枚"],
 nav_books:["Books","Libros","Livros","Livres","किताबें","图书"],
+nav_arcade:["Arcade","Arcade","Fliperama","Arcade","आर्केड","游戏厅"],
+arc_new:["NEW","NUEVO","NOVO","NOUVEAU","नया","新"],
+arc_tag:["Evaluna's Arcade","El Arcade de Evaluna","O Fliperama da Evaluna","L'Arcade d'Evaluna","इवालूना का आर्केड","伊娃露娜游戏厅"],
+arc_title:["Tiny, but mighty. Now you play.","Pequeña, pero poderosa. Ahora juegas tú.","Pequena, mas poderosa. Agora é sua vez.","Petite, mais puissante. À toi de jouer.","छोटी, पर ताकतवर। अब आपकी बारी।","小小的，超厉害。轮到你了。"],
+arc_sub:["Two free games starring Evaluna. Your game saves on this device, and the best scores land on the weekly scoreboard.","Dos juegos gratis con Evaluna. Tu partida se guarda en este dispositivo y los mejores puntajes llegan al marcador semanal.","Dois jogos grátis com a Evaluna. Seu jogo fica salvo neste aparelho e as melhores pontuações vão para o placar da semana.","Deux jeux gratuits avec Evaluna. Ta partie est sauvegardée sur cet appareil et les meilleurs scores vont au classement de la semaine.","इवालूना के साथ दो मुफ़्त गेम। आपका गेम इस डिवाइस पर सेव होता है और सबसे अच्छे स्कोर साप्ताहिक स्कोरबोर्ड पर आते हैं।","两款伊娃露娜主演的免费游戏。进度保存在本设备上，最高分会登上每周排行榜。"],
+arc_blocks_d:["Bedtime Blocks: every pose she sleeps in is a block. Fill a row and somebody gets kicked out of the bed. Make it to sunrise.","Bedtime Blocks: cada pose en la que duerme es un bloque. Llena una fila y alguien sale volando de la cama. Llega al amanecer.","Bedtime Blocks: cada pose em que ela dorme é um bloco. Complete uma fileira e alguém é chutado da cama. Chegue até o amanhecer.","Bedtime Blocks : chaque position où elle dort est un bloc. Complète une ligne et quelqu'un est éjecté du lit. Tiens jusqu'au lever du soleil.","Bedtime Blocks: वह जिस पोज़ में सोती है, वह एक ब्लॉक है। एक लाइन भरो और कोई बिस्तर से बाहर! सुबह तक टिको।","Bedtime Blocks：她的每个睡姿都是一块积木。填满一行，就有人被踢下床。坚持到日出！"],
+arc_chop_d:["Tiny Chop: breakfast is flying. Karate-chop pancakes, blueberries, plátanos and arepas, but never Mamá's café.","Tiny Chop: el desayuno vuela. Corta con karate panqueques, arándanos, plátanos y arepas, pero nunca el café de Mamá.","Tiny Chop: o café da manhã está voando. Corte panquecas, mirtilos, bananas-da-terra e arepas no caratê, mas nunca o café da Mamã.","Tiny Chop : le petit-déj vole ! Tranche pancakes, myrtilles, bananes plantain et arepas au karaté, mais jamais le café de Maman.","Tiny Chop: नाश्ता उड़ रहा है! पैनकेक, ब्लूबेरी, प्लांटेन और अरेपा पर कराटे चॉप करो, पर मम्मी की कॉफ़ी नहीं।","Tiny Chop：早餐满天飞！空手道劈开松饼、蓝莓、大蕉和玉米饼，但千万别劈妈妈的咖啡。"],
+arc_play:["Play","Jugar","Jogar","Jouer","खेलें","开始玩"],
+arc_play_now:["Play now →","Jugar ya →","Jogar agora →","Jouer →","अभी खेलें →","立即玩 →"],
+arc_top:["This week's #1:","#1 de la semana:","#1 da semana:","N°1 de la semaine :","इस हफ़्ते #1:","本周第一："],
+arc_none:["No scores this week yet. Be the first legend.","Aún no hay puntajes esta semana. Sé la primera leyenda.","Ainda não há pontuações esta semana. Seja a primeira lenda.","Pas encore de score cette semaine. Sois la première légende.","इस हफ़्ते अभी कोई स्कोर नहीं। पहले लेजेंड बनो।","本周还没有成绩，来当第一位传奇吧。"],
+arc_note:["The games are in English for now. More Legends are coming to the arcade.","Por ahora los juegos están en inglés. Pronto llegan más Leyendas al arcade.","Por enquanto os jogos estão em inglês. Mais Lendas chegam em breve.","Les jeux sont en anglais pour l'instant. D'autres Légendes arrivent bientôt.","अभी गेम अंग्रेज़ी में हैं। और लेजेंड्स जल्द आ रहे हैं।","游戏目前为英文版。更多小传奇即将加入！"],
+arc_close:["✕ Close","✕ Cerrar","✕ Fechar","✕ Fermer","✕ बंद करें","✕ 关闭"],
+arc_home_t:["Evaluna's Arcade is open","El Arcade de Evaluna está abierto","O Fliperama da Evaluna abriu","L'Arcade d'Evaluna est ouvert","इवालूना का आर्केड खुल गया","伊娃露娜游戏厅开张啦"],
+arc_home_s:["Can you survive bedtime? Two free games and a weekly scoreboard.","¿Sobrevives a la hora de dormir? Dos juegos gratis y un marcador semanal.","Você sobrevive à hora de dormir? Dois jogos grátis e um placar semanal.","Survivras-tu à l'heure du dodo ? Deux jeux gratuits et un classement hebdo.","क्या आप सोने का वक़्त झेल पाओगे? दो मुफ़्त गेम और साप्ताहिक स्कोरबोर्ड।","你能熬过睡觉时间吗？两款免费游戏，每周排行榜。"],
 map_closet:["Closets","Clósets","Closets","Dressings","अलमारियाँ","衣橱"],
 cook_tag:["Kitchen · 12:00 PM","Cocina · 12:00 p. m.","Cozinha · 12h","Cuisine · 12 h","रसोई · दोपहर 12 बजे","厨房 · 中午12点"],
 cook_title:["Cooking with the Legends","Cocinando con las Leyendas","Cozinhando com as Lendas","En cuisine avec les Légendes","लेजेंड्स के साथ कुकिंग","和小传奇一起下厨"],
@@ -1307,8 +1399,40 @@ function renderFeed(){
   $('#feed').innerHTML=l.length?l.map(c=>`<button type="button" data-clip="${c.id}" aria-current="${c.id===current}"><div class="th"><img src="video/clip_${c.id}.jpg" alt="" loading="lazy"><span class="k">${t(c.k)}</span>${c.id===current?`<span class="nowp">${t('now_playing')}</span>`:''}</div><b>${t('c_'+c.id)}</b></button>`).join(''):`<p>${t('w_empty')}</p>`;
 }
 
+/* ===================== arcade ===================== */
+let arcFrame=null, arcGame=null, arcPushed=false;
+const ARC_SRC='/tinylegends/arcade/?embed=1';
+function arcTops(){
+  ['blocks','chop'].forEach(g=>{const el=document.querySelector('[data-arctop="'+g+'"]');if(!el)return;
+    fetch('/.netlify/functions/scores?game='+g+'&range=week',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{
+      const e=j&&j.entries&&j.entries[0]; el.textContent=''; if(!e){el.textContent=t('arc_none');return}
+      el.append(t('arc_top')+' '); const b=document.createElement('b'); b.textContent=String(e.name).replace(/[^A-Z0-9 _]/gi,'').slice(0,10)+' · '+Number(e.score).toLocaleString(); el.append(b);
+    }).catch(()=>{el.textContent=''})});
+}
+function arcOpen(g){
+  const box=$('#arcFull'); arcGame=g;
+  if(!arcFrame){arcFrame=document.createElement('iframe');arcFrame.title="Evaluna's Arcade";arcFrame.allow='autoplay; fullscreen';
+    arcFrame.setAttribute('sandbox','allow-scripts allow-same-origin allow-forms');
+    arcFrame.src=ARC_SRC+(g==='chop'?'&game=chop':''); box.append(arcFrame);}
+  else { try{arcFrame.contentWindow.postMessage({src:'tl-arcade-host',cmd:'game',game:g},location.origin)}catch(e){} }
+  box.hidden=false; document.body.classList.add('arc-open');
+  if(!arcPushed){try{history.pushState({arc:1},'');arcPushed=true}catch(e){}}
+  setTimeout(()=>{try{arcFrame.focus()}catch(e){}},60);
+}
+function arcClose(fromNav){
+  const box=$('#arcFull'); if(!box||box.hidden)return;
+  try{arcFrame&&arcFrame.contentWindow.postMessage({src:'tl-arcade-host',cmd:'pause'},location.origin)}catch(e){}
+  box.hidden=true; document.body.classList.remove('arc-open'); arcTops();
+  if(arcPushed&&!fromNav){arcPushed=false;try{history.back()}catch(e){}} else arcPushed=false;
+  const c=document.querySelector('[data-arcade="'+arcGame+'"]'); c&&c.focus({preventScroll:true});
+}
+document.addEventListener('click',e=>{const c=e.target.closest('[data-arcade]');if(c){e.preventDefault();arcOpen(c.dataset.arcade)}});
+$('#arcClose').addEventListener('click',()=>arcClose());
+addEventListener('popstate',()=>{if(!$('#arcFull').hidden)arcClose(true)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#arcFull').hidden&&document.activeElement!==arcFrame)arcClose()});
+
 /* ===================== routing ===================== */
-const VIEWS=['home','legends','watch','shop','books','admin'];
+const VIEWS=['home','legends','watch','shop','books','arcade','admin'];
 function go(v,push){
   if(!VIEWS.includes(v))v='home';
   VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v});
@@ -1317,6 +1441,7 @@ function go(v,push){
   window.scrollTo({top:0,behavior:'instant'});
   heroP&&heroP.activate(v==='home'&&heroVisible&&!$('.hero').classList.contains('vid-on')); watchP&&watchP.activate(v==='watch');
   $('#map').hidden=v!=='home'||innerWidth<=760;
+  if(v==='arcade')arcTops(); else arcClose(true);
   document.body.classList.toggle('is-admin',v==='admin'); if(v==='admin'&&!$('#admDash').hidden)admRender();
   setTimeout(()=>{frame();mapUpd()},40);
 }
@@ -1454,7 +1579,7 @@ let heroVisible=true;
 (function(){
   const EMB=window.parent!==window;
   /* links like #shop and the browser back button switch views, not just the first load */
-  addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(typeof VIEWS!=='undefined'&&VIEWS.includes(v)&&$('#v-'+v)&&$('#v-'+v).hidden)go(v)});
+  addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(typeof VIEWS!=='undefined'&&v!=='admin'&&VIEWS.includes(v)&&$('#v-'+v)&&$('#v-'+v).hidden)go(v)});
   const all=()=>(typeof ALLP==='function'?ALLP():PRODUCTS);
   const img=p=>new URL('assets/'+p.img+'.webp',location.href).href;
   const item=(id,szIdx,qty)=>{const p=all().find(x=>x.id===id);if(!p)return null;const sk=(p.sz&&p.sz[szIdx]||'').replace('sz_','');
@@ -1698,6 +1823,7 @@ html.li-edit [data-tkx]:not([contenteditable]),html.li-edit [data-ix]{box-shadow
   const orig=window.renderStatic;window.renderStatic=function(){orig.apply(this,arguments);applyAnn();applySizes()};
   /* team sign-in goes to the real back office */
   document.querySelectorAll('.admin-link').forEach(a=>{a.href='/admin/';a.removeAttribute('data-go');a.target='_top'});
+  {const va=document.getElementById('v-admin');if(va)va.innerHTML='<div id="admDash" hidden></div>';} /* the old demo team area is removed on the live site */
   if(location.hash==='#admin')location.replace('/admin/');
   addEventListener('hashchange',()=>{if(location.hash==='#admin')location.href='/admin/'});
 
